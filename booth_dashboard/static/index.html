@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="/static/styles.css?v=5" />
+  <link rel="stylesheet" href="/static/styles.css?v=6" />
 </head>
 
 <body>
@@ -406,110 +406,101 @@
        SLIDE 4 — THE DEMO (the WOW)
        ============================================================= -->
   <section class="slide slide-demo" id="slide-demo">
-    <div class="eyebrow">Beat 04 · Live · 10 minutes · Press <kbd style="font-family:inherit;background:var(--paper);border:1px solid var(--ink-line);padding:1px 6px;font-size:10px">R</kbd> to reset</div>
-    <h2 style="margin-bottom: 8px;">Watch the agent learn.</h2>
-    <p style="font-family:var(--serif);font-style:italic;font-size:20px;color:var(--ink-soft);margin:0 0 8px;max-width:820px;">
-      Before each customer walks in, the agent checks the memory shelf — like a librarian pulling the right books from thousands of options, fitted to a precise token budget.
+    <div class="eyebrow">Beat 04 · Live · 10 minutes · Press <kbd style="font-family:inherit;background:var(--paper);border:1px solid var(--ink-line);padding:1px 6px;font-size:10px">R</kbd> to replay</div>
+    <h2 style="margin-bottom: 8px;">Same customer. Same question. Two architectures.</h2>
+    <p class="vv-sub">
+      Emma bought the cream linen shift three weeks ago. She's back on vineyardvines.com tonight, asking for help with a beach-trip outfit. Watch what each chatbot does with that fact.
     </p>
-    <p style="font-family:var(--sans);font-size:13px;color:var(--ink-soft);margin:0 0 28px;max-width:820px;letter-spacing:0.01em;">
-      Click each customer in order · watch the strip update · watch the shelf fill up
+    <p class="vv-sub-meta">
+      Two windows · same brand · same chatbot UI · only the memory architecture differs
     </p>
 
-    <!-- Progress strip — 3 cells -->
-    <div class="demo-progress">
-      <div class="prog-cell" id="progConv">
-        <div class="lbl">Conversations handled</div>
-        <div class="val"><span id="convCount">0</span> <span style="color:var(--ink-faint);font-size:24px;">/ 3</span></div>
-        <div class="sub">Sarah, Jessica, Emma</div>
-      </div>
-      <div class="prog-cell" id="progMem">
-        <div class="lbl">What the agent remembers</div>
-        <div class="val" id="memCount">0</div>
-        <div class="sub" id="memSub">Nothing yet — the store just opened</div>
-      </div>
-      <div class="prog-cell" id="progQual">
-        <div class="lbl">Answer quality</div>
-        <div class="val" id="qualVal" style="font-family:var(--sans);font-weight:500;font-size:26px;">Baseline</div>
-        <div class="sub" id="qualSub">Generic policy, no context</div>
-      </div>
-    </div>
+    <div class="vv-stage">
 
-    <!-- The stage -->
-    <div class="stage">
-      <div class="stage-top">
-        <div class="stage-idle" id="stageIdle">
-          <div class="cue">A customer will walk in when you're ready. Click Sarah below.</div>
-          <div class="hint">CLICK TO BEGIN</div>
+      <!-- ==================== BEFORE TIDB ==================== -->
+      <div class="vv-panel vv-before">
+        <div class="vv-panel-label">
+          <div class="vv-tag">Before TiDB</div>
+          <div class="vv-tag-sub">Stateless · session-only memory</div>
         </div>
-
-        <div class="interaction" id="interaction">
-          <div class="customer" id="custBlock">
-            <div class="avatar" id="custInitial">S</div>
-            <div class="who">
-              <div class="name" id="custName">Sarah</div>
-              <div class="ctx" id="custCtx">VIP tier · first visit</div>
-              <div class="question" id="custQuestion">"..."</div>
+        <div class="vv-browser">
+          <div class="vv-browser-bar">
+            <div class="vv-dots"><span></span><span></span><span></span></div>
+            <div class="vv-url">🔒 vineyardvines.com</div>
+          </div>
+          <div class="vv-page">
+            <div class="vv-header">
+              <svg class="vv-whale" viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg">
+                <path d="M 8,28 C 8,15 25,10 45,12 C 60,13 72,17 80,22 L 92,12 L 92,28 C 92,32 88,35 82,35 L 18,35 C 12,35 8,32 8,28 Z" fill="#EA4F30"/>
+                <circle cx="22" cy="22" r="1.6" fill="white"/>
+              </svg>
+              <div class="vv-brand">vineyard vines</div>
+              <div class="vv-nav">SHOP · WHALE WORLD · GIFT GUIDE</div>
+            </div>
+            <div class="vv-hero"></div>
+            <div class="vv-chat">
+              <div class="vv-chat-header">
+                <div class="vv-chat-avatar">🐋</div>
+                <div>
+                  <div class="vv-chat-title">Vineyard Vines Concierge</div>
+                  <div class="vv-chat-sub">Online now</div>
+                </div>
+              </div>
+              <div class="vv-chat-body" id="vv-msgs-before"></div>
             </div>
           </div>
-
-          <div class="thinking" id="thinking">
-            <div class="lbl">Before answering, the agent checks memory</div>
-            <div class="retrieval" id="retrieval"></div>
-          </div>
-
-          <div class="answer" id="answer">
-            <div class="lbl">The agent's reply</div>
-            <div class="text" id="answerText">"..."</div>
-          </div>
-
-          <div class="learned" id="learned">
-            <div class="icon">+</div>
-            <div class="txt" id="learnedText"></div>
-          </div>
+        </div>
+        <div class="vv-outcome vv-outcome-bad" id="vv-outcome-before">
+          <strong>Outcome</strong>
+          <span id="vv-outcome-text-before">—</span>
         </div>
       </div>
 
-      <div class="shelf">
-        <div class="shelf-label">
-          <div class="title">The agent's memory</div>
-          <div class="count"><span id="memShelfCount">0</span> insight<span id="memPlural">s</span> accumulated</div>
+      <!-- ==================== AFTER TIDB ==================== -->
+      <div class="vv-panel vv-after">
+        <div class="vv-panel-label">
+          <div class="vv-tag">After TiDB Cognitive Foundation</div>
+          <div class="vv-tag-sub">Persistent · cross-session memory</div>
         </div>
-        <div id="memoriesWrap">
-          <div class="shelf-empty" id="shelfEmpty">
-            The shelf is empty. Memories from each conversation will land here.
+        <div class="vv-browser">
+          <div class="vv-browser-bar">
+            <div class="vv-dots"><span></span><span></span><span></span></div>
+            <div class="vv-url">🔒 vineyardvines.com</div>
           </div>
-          <div class="memories" id="memories" style="display:none;"></div>
+          <div class="vv-page">
+            <div class="vv-header">
+              <svg class="vv-whale" viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg">
+                <path d="M 8,28 C 8,15 25,10 45,12 C 60,13 72,17 80,22 L 92,12 L 92,28 C 92,32 88,35 82,35 L 18,35 C 12,35 8,32 8,28 Z" fill="#EA4F30"/>
+                <circle cx="22" cy="22" r="1.6" fill="white"/>
+              </svg>
+              <div class="vv-brand">vineyard vines</div>
+              <div class="vv-nav">SHOP · WHALE WORLD · GIFT GUIDE</div>
+            </div>
+            <div class="vv-hero"></div>
+            <div class="vv-chat">
+              <div class="vv-chat-header">
+                <div class="vv-chat-avatar">🐋</div>
+                <div>
+                  <div class="vv-chat-title">Vineyard Vines Concierge</div>
+                  <div class="vv-chat-sub">Online now · recognized you</div>
+                </div>
+              </div>
+              <div class="vv-chat-body" id="vv-msgs-after"></div>
+            </div>
+          </div>
+        </div>
+        <div class="vv-outcome vv-outcome-good" id="vv-outcome-after">
+          <strong>Outcome</strong>
+          <span id="vv-outcome-text-after">—</span>
         </div>
       </div>
+
     </div>
 
-    <!-- Case buttons -->
-    <div class="cases">
-      <button class="case" id="caseBtn-0" data-case="0">
-        <div class="num">01</div>
-        <div class="name">Sarah</div>
-        <div class="ctx">VIP tier · first visit</div>
-        <div class="question-preview">"I love the linen shift dress. I'm between a 6 and 8 — which should I go with?"</div>
-        <div class="cta">Start ›</div>
-      </button>
-      <button class="case" id="caseBtn-1" data-case="1" disabled>
-        <div class="num">02</div>
-        <div class="name">Jessica</div>
-        <div class="ctx">New customer</div>
-        <div class="question-preview">"Looking at the cotton shirt dress — I'm between a 4 and 6."</div>
-        <div class="cta">Locked</div>
-      </button>
-      <button class="case" id="caseBtn-2" data-case="2" disabled>
-        <div class="num">03</div>
-        <div class="name">Emma</div>
-        <div class="ctx">Returning customer</div>
-        <div class="question-preview">"Returned the wrap dress last month — want to try the linen version."</div>
-        <div class="cta">Locked</div>
-      </button>
-      <button class="case reset-card">
-        <div class="num">↺</div>
-        <div class="name">Reset</div>
-      </button>
+    <div class="vv-controls">
+      <button class="vv-btn vv-btn-play" id="vvPlay">▶  Play conversation</button>
+      <button class="vv-btn vv-btn-reset" id="vvReset">↺  Reset</button>
+      <span class="vv-control-hint">Both windows animate in lockstep — same customer, same question, same UI, different memory.</span>
     </div>
 
     <!-- Reveal -->

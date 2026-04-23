@@ -99,256 +99,162 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
-/* ---------- 2. INTERACTIVE DEMO ---------- */
+/* ---------- 2. VINEYARD VINES BEFORE/AFTER DEMO ---------- */
 
-const CASES = [
+/* The conversation script. Both panels use the SAME customer messages.
+   Only the bot side differs — that's the entire point. */
+const VV_SCRIPT = [
   {
-    name: "Sarah",
-    initial: "S",
-    ctx: "VIP tier · first visit",
-    question:
-      "I love the linen shift dress. I'm usually a 6 but run between a 6 and 8 depending on brand — what do you recommend?",
-    retrieval: {
-      html: "No prior customers yet. The agent is starting from scratch.",
-      noneFlag: true
-    },
-    answer:
-      "Our linen shift typically runs true to size. If you're between a 6 and 8, I'd suggest the 6 for a tailored fit. Happy to help with anything else.",
-    learned: {
-      summary: "Linen shift · between-size customers",
-      detail: " Outcome recorded. Will confirm after the next similar customer."
-    },
-    memory: {
-      pattern: "Linen shift · between sizes",
-      action: "Size 6 for tailored fit. Outcome pending.",
-      evidence: "1 conversation"
-    },
-    qual: { label: "Baseline", sub: "Generic policy, no context" }
+    side: "customer",
+    text:
+      "Hi! I bought the linen shift in cream a few weeks ago and loved it. Looking for something for a beach trip in two weeks — what would you recommend?",
+    typeMs: 1100
   },
   {
-    name: "Jessica",
-    initial: "J",
-    ctx: "New customer",
-    question:
-      "Thinking about the cotton shirt dress — I'm between a 4 and a 6. Which should I go with?",
-    retrieval: {
-      html:
-        "Found <strong>1 relevant insight</strong> from a prior conversation:<br>" +
-        "<span class='pulled'>Linen shift · between sizes → Sarah recommended the 6 · pattern emerging</span>",
-      noneFlag: false,
-      highlightIndex: 0
-    },
-    answer:
-      "Cotton shirts in this cut behave similarly to our linen — they tend to relax a touch after first wash. Based on what we've seen with similar between-size customers, the 6 gives you a more forgiving long-term fit. The 4 can feel snug through the shoulders after a couple of wears.",
-    learned: {
-      summary: "Between-size customers · size up for relaxed-weave fabrics",
-      detail: " Pattern generalizing across linen and cotton."
-    },
-    memory: {
-      pattern: "Between sizes · relaxed-weave fabrics",
-      action: "Recommend size up · linen and cotton both relax.",
-      evidence: "2 conversations"
-    },
-    qual: { label: "Informed", sub: "Applies pattern from Sarah's case" }
+    side: "bot",
+    typeMs: 1400,
+    before:
+      "Hi there! 🌊 Happy to help you find your next favorite. To get you the right recommendations, could you tell me what size you usually wear and any color preferences?",
+    after:
+      "Hi Emma! 🌊 Welcome back — so glad the cream linen shift worked out. For a beach trip, the new cotton voile midi just dropped in your usual 8 (the size-up rule for relaxed weaves still applies). Same easy fit, lighter for the heat. Want it in cream, or try the coral this time?"
   },
   {
-    name: "Emma",
-    initial: "E",
-    ctx: "Returning customer",
-    question:
-      "I returned the wrap dress last month — sizing was off. I want to try the linen version but I'm nervous about it fitting.",
-    retrieval: {
-      html:
-        "Found <strong>2 relevant insights</strong> and Emma's return history:<br>" +
-        "<span class='pulled'>Between sizes · relaxed-weave fabrics → size up</span>" +
-        "<span class='pulled'>Emma's previous return · wrap dress bias cut (not a sizing issue)</span>",
-      noneFlag: false,
-      highlightIndex: 0,
-      mergeAfter: true
-    },
-    answer:
-      "I checked your return — the wrap dress fit issue was the bias cut, not the size you picked. The linen shift cuts straight and, based on two customers with a similar between-size pattern, the 8 has held up best over a couple of wears. I'd go with the 8 confidently — and if it's not right in 14 days, we'll make it right.",
-    learned: {
-      summary: "Consolidated: between-size rule refined",
-      detail: " Rule applies to straight cuts, not bias cuts. Emma's return history joined live."
-    },
-    memory: {
-      pattern: "Between sizes · relaxed-weave fabrics (straight cut only)",
-      action: "Size up. Bias cuts behave differently — flag separately.",
-      evidence: "3 conversations · pattern refined"
-    },
-    qual: { label: "Confident", sub: "Pattern refined, joined to customer history" }
+    side: "customer",
+    typeMs: 900,
+    before: "I'm a 6 in linen — but didn't I tell you that last time?",
+    after: "Coral — let's try something different! Add it to my cart please."
+  },
+  {
+    side: "bot",
+    typeMs: 1300,
+    before:
+      "Apologies, I don't have access to your previous conversations. Here are some popular summer pieces in size 6 — let me know if you'd like to filter by color or fabric.",
+    after:
+      "Done — coral cotton voile midi, size 8, in your cart ($148). Free shipping kicks in at $150 — the matching scarf would push you over and tie the look together. Want me to add it?"
   }
 ];
 
-let completed = 0;
-let memories = [];
+const VV_OUTCOMES = {
+  before:
+    "8 more turns of back-and-forth re-entering size, fit history, and color preferences. Customer left without adding to cart.",
+  after:
+    "Cart total: $172 · checked out in 4 turns. Memory of cream + linen + size-up rule turned a session into a sale."
+};
 
-function setProgress(conv, memCount, qualLabel, qualSub, memSubText) {
-  $("convCount").textContent = conv;
-  $("memCount").textContent = memCount;
-  $("qualVal").textContent = qualLabel;
-  $("qualSub").textContent = qualSub;
-  $("memSub").textContent = memSubText;
-  $("progConv").classList.toggle("active", conv > 0 && conv < 3);
-  $("progMem").classList.toggle("active", memCount > 0);
-  $("progQual").classList.toggle("active", qualLabel !== "Baseline");
+let vvPlaying = false;
+let vvTimers = [];
+let vvCompleted = false;
+
+function vvClearChildren(node) {
+  while (node.firstChild) node.removeChild(node.firstChild);
 }
 
-function renderMemoryShelf(highlightIdx = -1, mergeFlag = false) {
-  const wrap = $("memories");
-  const empty = $("shelfEmpty");
-  if (memories.length === 0) {
-    empty.style.display = "block";
-    wrap.style.display = "none";
-    $("memShelfCount").textContent = "0";
-    $("memPlural").textContent = "s";
-    return;
-  }
-  empty.style.display = "none";
-  wrap.style.display = "grid";
-  $("memShelfCount").textContent = memories.length;
-  $("memPlural").textContent = memories.length === 1 ? "" : "s";
-
-  wrap.innerHTML = memories
-    .map((m, i) => {
-      const classes = ["memory-card"];
-      if (i === highlightIdx) classes.push("highlight");
-      if (mergeFlag && i === memories.length - 1) classes.push("merged");
-      return `<div class="${classes.join(" ")}">
-        <div class="pattern">${m.pattern}</div>
-        <div class="action">${m.action}</div>
-        <div class="evidence">${m.evidence}</div>
-      </div>`;
-    })
-    .join("");
-
-  const cards = wrap.querySelectorAll(".memory-card");
-  cards.forEach((c, i) => setTimeout(() => c.classList.add("in"), i * 120));
+function vvAddTyping(panelId) {
+  const body = $(panelId);
+  const typing = document.createElement("div");
+  typing.className = "vv-typing vv-typing-current";
+  for (let i = 0; i < 3; i++) typing.appendChild(document.createElement("span"));
+  body.appendChild(typing);
+  body.scrollTop = body.scrollHeight;
+  return typing;
 }
 
-function clearInteraction() {
-  $("thinking").classList.remove("shown");
-  $("answer").classList.remove("shown");
-  $("learned").classList.remove("shown");
+function vvRemoveTyping(panelId) {
+  const body = $(panelId);
+  const t = body.querySelector(".vv-typing-current");
+  if (t) t.remove();
 }
 
-async function runCase(idx) {
-  const btn = $("caseBtn-" + idx);
-  if (btn.disabled) return;
-
-  document.querySelectorAll(".case").forEach((c) => c.classList.remove("active"));
-  btn.classList.add("active");
-
-  $("stageIdle").style.display = "none";
-  $("interaction").classList.add("shown");
-  clearInteraction();
-
-  const c = CASES[idx];
-  $("custInitial").textContent = c.initial;
-  $("custName").textContent = c.name;
-  $("custCtx").textContent = c.ctx;
-  $("custQuestion").textContent = "\u201C" + c.question + "\u201D";
-
-  const custBlock = $("custBlock");
-  custBlock.style.animation = "none";
-  void custBlock.offsetWidth;
-  custBlock.style.animation = "fadeUp 0.5s forwards";
-
-  setProgress(
-    completed,
-    memories.length,
-    $("qualVal").textContent,
-    $("qualSub").textContent,
-    $("memSub").textContent
-  );
-
-  // Beat 1 — the agent checks memory
-  await wait(600);
-  $("retrieval").innerHTML = c.retrieval.html;
-  $("retrieval").classList.toggle("none", !!c.retrieval.noneFlag);
-  $("thinking").classList.add("shown");
-
-  if (typeof c.retrieval.highlightIndex === "number" && memories.length > 0) {
-    await wait(400);
-    renderMemoryShelf(c.retrieval.highlightIndex);
-  }
-
-  // Beat 2 — the answer
-  await wait(1400);
-  $("answerText").textContent = "\u201C" + c.answer + "\u201D";
-  $("answer").classList.add("shown");
-
-  // Beat 3 — what the agent learned
-  await wait(1200);
-  $("learnedText").innerHTML = `<strong>${c.learned.summary}</strong>${c.learned.detail}`;
-  $("learned").classList.add("shown");
-
-  // Beat 4 — land on the shelf
-  await wait(900);
-  if (c.retrieval.mergeAfter && memories.length > 0) {
-    memories[memories.length - 1] = c.memory;
-    renderMemoryShelf(-1, true);
-  } else {
-    memories.push(c.memory);
-    renderMemoryShelf();
-  }
-
-  // Beat 5 — update progress cells
-  completed++;
-  setProgress(
-    completed,
-    memories.length,
-    c.qual.label,
-    c.qual.sub,
-    memories.length === 1
-      ? "One pattern, waiting for confirmation"
-      : memories.length === 2
-      ? "Two patterns — starting to generalize"
-      : "Refined · applied to new customers"
-  );
-
-  await wait(800);
-  btn.classList.remove("active");
-  btn.classList.add("done");
-  btn.querySelector(".cta").textContent = "Completed ✓";
-  btn.disabled = true;
-
-  if (completed < CASES.length) {
-    const nextBtn = $("caseBtn-" + completed);
-    nextBtn.disabled = false;
-    nextBtn.querySelector(".cta").textContent = "Start ›";
-  } else {
-    await wait(700);
-    $("reveal").classList.add("shown");
-    setTimeout(
-      () => $("reveal").scrollIntoView({ behavior: "smooth", block: "start" }),
-      500
-    );
-  }
+function vvAddMessage(panelId, side, text) {
+  const body = $(panelId);
+  const msg = document.createElement("div");
+  msg.className = side === "customer" ? "vv-msg vv-msg-customer" : "vv-msg vv-msg-bot";
+  msg.textContent = text;
+  body.appendChild(msg);
+  body.scrollTop = body.scrollHeight;
 }
 
-function resetDemo() {
-  completed = 0;
-  memories = [];
-  setProgress(0, 0, "Baseline", "Generic policy, no context", "Nothing yet — the store just opened");
-  renderMemoryShelf();
-  $("interaction").classList.remove("shown");
-  $("stageIdle").style.display = "flex";
-  $("reveal").classList.remove("shown");
-  document.querySelectorAll(".case").forEach((c, i) => {
-    c.classList.remove("active", "done");
-    if (i === 0) {
-      c.disabled = false;
-      const cta = c.querySelector(".cta");
-      if (cta) cta.textContent = "Start ›";
-    } else if (i < 3) {
-      c.disabled = true;
-      const cta = c.querySelector(".cta");
-      if (cta) cta.textContent = "Locked";
-    }
+function vvScheduleStep(delay, fn) {
+  vvTimers.push(setTimeout(fn, delay));
+}
+
+function vvPlay() {
+  if (vvPlaying) return;
+  vvResetVV(false);
+  vvPlaying = true;
+
+  const playBtn = $("vvPlay");
+  const resetBtn = $("vvReset");
+  playBtn.disabled = true;
+  resetBtn.disabled = true;
+
+  let cursor = 600;
+
+  for (const step of VV_SCRIPT) {
+    const beforeText = step.side === "customer" ? (step.before ?? step.text) : step.before;
+    const afterText  = step.side === "customer" ? (step.after  ?? step.text) : step.after;
+
+    vvScheduleStep(cursor, () => {
+      vvAddTyping("vv-msgs-before");
+      vvAddTyping("vv-msgs-after");
+    });
+    cursor += step.typeMs;
+
+    vvScheduleStep(cursor, () => {
+      vvRemoveTyping("vv-msgs-before");
+      vvRemoveTyping("vv-msgs-after");
+      vvAddMessage("vv-msgs-before", step.side, beforeText);
+      vvAddMessage("vv-msgs-after", step.side, afterText);
+    });
+    cursor += 800;
+  }
+
+  vvScheduleStep(cursor + 400, () => {
+    $("vv-outcome-text-before").textContent = VV_OUTCOMES.before;
+    $("vv-outcome-text-after").textContent = VV_OUTCOMES.after;
+    $("vv-outcome-before").classList.add("shown");
+    $("vv-outcome-after").classList.add("shown");
   });
-  window.scrollTo({ top: 0, behavior: "smooth" });
+
+  vvScheduleStep(cursor + 1400, () => {
+    $("reveal").classList.add("shown");
+    $("reveal").scrollIntoView({ behavior: "smooth", block: "start" });
+    vvPlaying = false;
+    vvCompleted = true;
+    playBtn.disabled = false;
+    resetBtn.disabled = false;
+    playBtn.textContent = "▶  Replay conversation";
+  });
+}
+
+function vvResetVV(scrollUp = true) {
+  vvTimers.forEach(clearTimeout);
+  vvTimers = [];
+  vvPlaying = false;
+  vvCompleted = false;
+
+  vvClearChildren($("vv-msgs-before"));
+  vvClearChildren($("vv-msgs-after"));
+  $("vv-outcome-before").classList.remove("shown");
+  $("vv-outcome-after").classList.remove("shown");
+  $("vv-outcome-text-before").textContent = "—";
+  $("vv-outcome-text-after").textContent = "—";
+  $("reveal").classList.remove("shown");
+
+  const playBtn = $("vvPlay");
+  const resetBtn = $("vvReset");
+  if (playBtn) {
+    playBtn.disabled = false;
+    playBtn.textContent = "▶  Play conversation";
+  }
+  if (resetBtn) resetBtn.disabled = false;
+
+  if (scrollUp) window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+/* alias kept so the existing keyboard "R" handler still works */
+function resetDemo() {
+  vvResetVV(true);
 }
 
 /* ---------- 3. INIT ---------- */
@@ -364,21 +270,15 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // wire demo case buttons
-  document.querySelectorAll(".case").forEach((c) => {
-    const idx = c.dataset.case;
-    if (idx !== undefined) c.addEventListener("click", () => runCase(parseInt(idx, 10)));
-  });
-  const resetBtn = document.querySelector(".case.reset-card");
-  if (resetBtn) resetBtn.addEventListener("click", resetDemo);
-
-  // init demo state
-  setProgress(0, 0, "Baseline", "Generic policy, no context", "Nothing yet — the store just opened");
-  renderMemoryShelf();
+  // wire VV demo controls
+  const vvPlayBtn = $("vvPlay");
+  const vvResetBtn = $("vvReset");
+  if (vvPlayBtn) vvPlayBtn.addEventListener("click", vvPlay);
+  if (vvResetBtn) vvResetBtn.addEventListener("click", () => vvResetVV(true));
 
   // route from URL
   loadFromHash();
 });
 
 // Expose on window for quick console debugging
-window.__deck = { showSlide, next, prev, resetDemo, runCase, SLIDES };
+window.__deck = { showSlide, next, prev, resetDemo, vvPlay, vvResetVV, SLIDES };

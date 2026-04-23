@@ -2056,3 +2056,329 @@ body::before {
   border-top: 1px solid var(--ink-line);
   padding-top: 18px;
 }
+
+/* =========================================================
+   Vineyard Vines Before/After Demo
+   ========================================================= */
+.vv-sub {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 19px;
+  color: var(--ink-soft);
+  margin: 0 0 8px;
+  max-width: 880px;
+  line-height: 1.5;
+}
+.vv-sub-meta {
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--ink-soft);
+  margin: 0 0 22px;
+  letter-spacing: 0.04em;
+}
+
+.vv-stage {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  margin: 18px 0 22px;
+}
+
+.vv-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.vv-panel-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--ink-line);
+}
+.vv-tag {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.vv-before .vv-tag { color: var(--burgundy); }
+.vv-after  .vv-tag { color: var(--moss); }
+.vv-tag-sub {
+  font-family: var(--sans);
+  font-size: 11px;
+  color: var(--ink-soft);
+  letter-spacing: 0.04em;
+}
+
+/* The fake browser frame */
+.vv-browser {
+  background: white;
+  border: 1px solid rgba(0,0,0,0.10);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(10, 31, 61, 0.08);
+}
+.vv-before .vv-browser {
+  filter: grayscale(0.45) opacity(0.92);
+}
+
+.vv-browser-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  background: #ECEAE4;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+.vv-dots { display: flex; gap: 6px; }
+.vv-dots span {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: #ccc;
+}
+.vv-dots span:nth-child(1) { background: #ff5f57; }
+.vv-dots span:nth-child(2) { background: #febc2e; }
+.vv-dots span:nth-child(3) { background: #28c840; }
+.vv-url {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 11px;
+  color: #555;
+  background: white;
+  padding: 3px 14px;
+  border-radius: 4px;
+  border: 1px solid rgba(0,0,0,0.08);
+  flex: 1;
+  text-align: center;
+}
+
+/* The fake VV page */
+.vv-page {
+  background: white;
+  min-height: 420px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.vv-header {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 18px;
+  border-bottom: 1px solid #F0EDE6;
+}
+.vv-whale {
+  width: 36px;
+  height: 22px;
+  display: block;
+}
+.vv-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 19px;
+  color: #002664;
+  letter-spacing: 0.01em;
+  line-height: 1;
+}
+.vv-nav {
+  font-family: 'Manrope', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  color: #002664;
+  letter-spacing: 0.18em;
+}
+.vv-hero {
+  flex: 1;
+  background:
+    linear-gradient(135deg, #F5EAE0 0%, #E8D4C8 60%, #D4B8A4 100%);
+  border-bottom: 1px solid #F0EDE6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  min-height: 90px;
+}
+.vv-hero::after {
+  content: 'NEW · LINEN & COTTON FOR THE COAST';
+  font-family: 'Manrope', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  color: rgba(0, 38, 100, 0.55);
+  letter-spacing: 0.22em;
+}
+
+/* Chat widget anchored bottom-right */
+.vv-chat {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  width: calc(100% - 28px);
+  max-width: 340px;
+  background: white;
+  border: 1px solid rgba(0,0,0,0.10);
+  border-radius: 12px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+  overflow: hidden;
+  z-index: 2;
+}
+.vv-chat-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  background: #002664;
+  color: white;
+}
+.vv-chat-avatar {
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  background: #EA4F30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+.vv-chat-title {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: 12.5px;
+  letter-spacing: 0.04em;
+}
+.vv-chat-sub {
+  font-family: 'Manrope', sans-serif;
+  font-size: 10px;
+  opacity: 0.7;
+  letter-spacing: 0.04em;
+}
+.vv-chat-body {
+  padding: 12px;
+  min-height: 220px;
+  max-height: 280px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: #FAFAFA;
+}
+.vv-msg {
+  font-family: 'Manrope', sans-serif;
+  font-size: 12px;
+  line-height: 1.45;
+  padding: 8px 12px;
+  border-radius: 14px;
+  max-width: 85%;
+  opacity: 0;
+  transform: translateY(6px);
+  animation: vvIn 0.35s forwards;
+}
+@keyframes vvIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+.vv-msg-customer {
+  background: #EA4F30;
+  color: white;
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+}
+.vv-msg-bot {
+  background: white;
+  color: #002664;
+  border: 1px solid #ECECEC;
+  align-self: flex-start;
+  border-bottom-left-radius: 4px;
+}
+.vv-typing {
+  background: white;
+  border: 1px solid #ECECEC;
+  align-self: flex-start;
+  padding: 10px 14px;
+  border-radius: 14px;
+  border-bottom-left-radius: 4px;
+  display: flex;
+  gap: 4px;
+  opacity: 0;
+  animation: vvIn 0.25s forwards;
+}
+.vv-typing span {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #888;
+  animation: vvDot 1.1s infinite ease-in-out;
+}
+.vv-typing span:nth-child(2) { animation-delay: 0.18s; }
+.vv-typing span:nth-child(3) { animation-delay: 0.36s; }
+@keyframes vvDot {
+  0%, 60%, 100% { opacity: 0.3; transform: translateY(0); }
+  30% { opacity: 1; transform: translateY(-3px); }
+}
+
+/* Outcome card under each browser */
+.vv-outcome {
+  font-family: var(--sans);
+  font-size: 12.5px;
+  line-height: 1.55;
+  padding: 14px 16px;
+  border-radius: 8px;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: all 0.5s ease;
+}
+.vv-outcome.shown { opacity: 1; transform: translateY(0); }
+.vv-outcome strong {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.vv-outcome-bad {
+  background: rgba(107, 39, 55, 0.08);
+  color: var(--burgundy);
+  border-left: 3px solid var(--burgundy);
+}
+.vv-outcome-good {
+  background: rgba(74, 93, 58, 0.08);
+  color: var(--moss);
+  border-left: 3px solid var(--moss);
+}
+
+/* Controls */
+.vv-controls {
+  display: flex;
+  gap: 12px;
+  margin: 6px 0 24px;
+  align-items: center;
+}
+.vv-btn {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 11px 26px;
+  border-radius: 6px;
+  border: 1px solid var(--ink-line);
+  background: white;
+  color: var(--ink);
+  cursor: pointer;
+  transition: all 0.18s;
+}
+.vv-btn-play {
+  background: var(--gold-2);
+  color: white;
+  border-color: var(--gold-2);
+}
+.vv-btn-play:hover { background: var(--gold); border-color: var(--gold); }
+.vv-btn-reset:hover { background: var(--cream); }
+.vv-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+.vv-control-hint {
+  font-family: var(--sans);
+  font-size: 11px;
+  color: var(--ink-soft);
+  letter-spacing: 0.04em;
+}
