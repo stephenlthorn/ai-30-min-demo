@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "isoftstone-may8-demo"
+version = "1.0.0"
+description = "Booth deck for the iSoftStone × TiDB × Microsoft AI Workshop, NYC, May 8 2026"
+readme = "README.md"
+license = { text = "Apache-2.0" }
+requires-python = ">=3.11"
+authors = [
+  { name = "Stephen Thorn", email = "stephen.thorn@pingcap.com" }
+]
+dependencies = [
+  "fastapi>=0.110,<1.0",
+  "uvicorn[standard]>=0.27,<1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "ruff>=0.4",
+  "httpx>=0.27",
+  "pytest>=8",
+]
+
+[tool.setuptools]
+packages = ["booth_dashboard"]
+
+[tool.setuptools.package-data]
+"booth_dashboard" = ["static/*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
