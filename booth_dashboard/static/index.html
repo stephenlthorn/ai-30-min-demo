@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="/static/styles.css?v=16" />
+  <link rel="stylesheet" href="/static/styles.css?v=17" />
 </head>
 
 <body>
@@ -210,45 +210,17 @@
        SLIDE 3 — WHY AGENTS FORGET
        ============================================================= -->
   <section class="slide" id="slide-why">
-    <div class="eyebrow">Beat 02 · Why This Happens — and the architecture that fixes it · 5 minutes</div>
-    <h2>Two problems — one architectural answer.</h2>
+    <div class="eyebrow">The Answer</div>
+    <h2>Two problems. One architectural answer.</h2>
 
     <p class="why-lede">
-      <strong>The model has no memory by design.</strong> Every LLM — Copilot, GPT, Claude —
-      is a next-word predictor trained on frozen data. When the chat ends, it's gone.
-      Memory has to come from <em>somewhere else</em>. The question is whether that
-      somewhere-else is four systems duct-taped together — or one.
+      Memory has to live somewhere. The question is whether that somewhere is
+      <em>four systems duct-taped together</em> — or one.
     </p>
-
-    <p class="why-callout">
-      <span class="why-callout-tag">The trap</span>
-      Model providers will sell you a 1M-token context window as the answer.
-      <em>It benefits them, not you.</em> Every token you load, you pay for — every call, forever.
-      A bigger window is a bigger meter. It is not memory. The memory wall is real, and you can't prompt your way past it.
-    </p>
-
-    <div class="failure-modes">
-      <div class="failure-header">Three failure modes of fragmented memory</div>
-      <div class="failure-row">
-        <div class="failure-mode">
-          <div class="failure-label">Token debt</div>
-          <div class="failure-desc">Every invocation re-assembles context from scratch. Cost scales with the square of history.</div>
-        </div>
-        <div class="failure-mode">
-          <div class="failure-label">Context amnesia</div>
-          <div class="failure-desc">4 systems, 4 consistency models. The agent sees a different reality depending on sync state.</div>
-        </div>
-        <div class="failure-mode">
-          <div class="failure-label">Memory decay</div>
-          <div class="failure-desc">Stale facts accumulate alongside current ones. The agent cites a conclusion contradicted months ago.</div>
-        </div>
-      </div>
-      <div class="failure-root">Root cause: fragmented stacks. Every system boundary adds latency, gaps, and cost.</div>
-    </div>
 
     <div class="two-col">
       <div class="frankenstack">
-        <div class="label">Before · the stack most retailers are running today</div>
+        <div class="label">Before · the stack most retailers run today</div>
         <div class="frank-grid">
           <div class="frank-db">
             <div class="name">Aurora / SQL Server</div>
@@ -268,14 +240,12 @@
           </div>
         </div>
         <div class="frank-note">
-          Four systems. Four consistency models. Inventory, returns, prices, preferences
-          have to propagate across all four. That sync breaks. Often. At 3 AM.
-          The agent reasons on four different versions of reality.
+          Four systems. Four consistency models. Sync breaks at 3 AM. The agent reasons on four versions of reality.
         </div>
       </div>
 
       <div class="tidb-unified">
-        <div class="label">After · one cluster, one transaction boundary</div>
+        <div class="label">After · one cluster, one transaction</div>
         <div class="tidb-grid">
           <div class="tidb-plane">
             <div class="name">Rows</div>
@@ -299,64 +269,13 @@
           </div>
         </div>
         <div class="tidb-note">
-          One write. One transaction. ACID across all four. The agent sees
-          one source of truth — and your apps keep talking MySQL, so nothing
-          above the database has to change.
-        </div>
-
-        <div class="tidb-compliance">
-          <span class="compliance-tag">Compliance bonus</span>
-          One ACID audit log. <em>Right-to-delete cascades through SQL + vectors
-          in the same transaction</em> — the only architecture where it actually
-          does. CCPA, GDPR, EU exposure: solved at the engine, not the app layer.
+          One write. One transaction. ACID across all four. Apps keep talking MySQL.
         </div>
       </div>
-    </div>
-
-    <div class="librarian-box">
-      <div class="lb-panel lb-bad">
-        <div class="lb-top-label">Without targeted memory — the token tax</div>
-        <div class="lb-scatter">
-          <div class="lb-sb"></div><div class="lb-sb"></div><div class="lb-sb"></div>
-          <div class="lb-sb"></div><div class="lb-sb"></div><div class="lb-sb"></div>
-          <div class="lb-sb"></div><div class="lb-sb"></div><div class="lb-sb"></div>
-          <div class="lb-sb"></div><div class="lb-sb"></div><div class="lb-sb"></div>
-          <div class="lb-sb"></div><div class="lb-sb"></div><div class="lb-sb"></div>
-          <div class="lb-sb"></div><div class="lb-sb"></div><div class="lb-sb"></div>
-        </div>
-        <div class="lb-caption">Load all 10,000 books every session.<br>Pay per token — whether you read it or not.</div>
-      </div>
-
-      <div class="lb-middle">
-        <div class="lb-fn">assemble_context()</div>
-        <div class="lb-arrow">→</div>
-        <div class="lb-fn-note">5 sections checked<br>ranked by relevance<br>fitted to token budget</div>
-      </div>
-
-      <div class="lb-panel lb-good">
-        <div class="lb-top-label">With Cognitive Foundation — curated context</div>
-        <div class="lb-curated">
-          <div class="lb-cb" style="--bc:var(--gold-2)">Customer profile <em>80 tok · always first</em></div>
-          <div class="lb-cb" style="--bc:var(--burgundy)">Recent events <em>~200 tok</em></div>
-          <div class="lb-cb" style="--bc:var(--moss)">Prior decisions <em>~300 tok</em></div>
-          <div class="lb-cb lb-cb-opt" style="--bc:var(--ink-faint)">Fleet memory <em>if budget remains</em></div>
-        </div>
-        <div class="lb-caption">The researcher receives a perfectly curated stack.<br>Never knowing 10,000 books existed but weren't selected.</div>
-      </div>
-    </div>
-
-    <div class="field-signal">
-      <div class="field-signal-tag">What the field is reporting</div>
-      <ul class="field-signal-list">
-        <li><span class="pull">1,000× cost difference</span> between pure-agent and workflow-plus-agent on the <em>same</em> customer use case. Token tax is now a margin conversation, not an engineering one.</li>
-        <li>Determinism where you can. Reasoning only where you must. The architecture decides which calls are even worth making.</li>
-        <li>Operators shipping fastest aren't the ones rolling their own memory layer — they're the ones who skipped the four-system stack entirely.</li>
-      </ul>
     </div>
 
     <p class="why-land">
-      Memory is infrastructure. Not a feature you bolt on.
-      You can't prompt your way out of an architecture problem. <span class="gold">Stop running four systems.</span>
+      Memory is infrastructure. Not a feature you bolt on. <span class="gold">Stop running four systems.</span>
     </p>
   </section>
 
