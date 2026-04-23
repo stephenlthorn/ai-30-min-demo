@@ -1663,9 +1663,95 @@ body::before {
 
 @media (max-width: 900px) {
   .slide, .slide-title, .slide-demo { padding: 48px 32px; }
-  .topnav { padding: 12px 20px; }
-  .topnav .tabs { gap: 0; }
-  .topnav .tab { padding: 8px 10px; font-size: 10px; }
 }
 
 :focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+/* =========================================================
+   THREE FAILURE MODES — slide 02 (Why)
+   ========================================================= */
+.failure-modes {
+  margin: 20px 0 24px;
+  padding: 18px 20px 14px;
+  background: rgba(107, 39, 55, 0.05);   /* very faint burgundy */
+  border-left: 3px solid var(--burgundy);
+  border-radius: 0 4px 4px 0;
+}
+.failure-header {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--burgundy);
+  margin-bottom: 12px;
+}
+.failure-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+}
+.failure-mode {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.failure-label {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--burgundy);
+}
+.failure-desc {
+  font-family: var(--sans);
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+.failure-root {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(107, 39, 55, 0.15);
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 13px;
+  color: var(--burgundy);
+}
+
+/* =========================================================
+   DEMO REVEAL — "Stateless model. Stateful platform."
+   ========================================================= */
+.reveal-tagline {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  margin: 20px 0 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--ink-line);
+  letter-spacing: 0.01em;
+}
+.reveal-tagline em {
+  font-style: normal;
+  color: var(--gold-2);
+}
+
+/* =========================================================
+   Q&A — wide card + five duties grid
+   ========================================================= */
+.qa-card-wide {
+  grid-column: 1 / -1;     /* span full width of the qa-grid */
+}
+.duties-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 20px;
+  margin-top: 10px;
+}
+.duty {
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  padding-left: 8px;
+  border-left: 2px solid var(--gold);
+}

@@ -101,6 +101,25 @@
       somewhere-else is four systems duct-taped together — or one.
     </p>
 
+    <div class="failure-modes">
+      <div class="failure-header">Three failure modes of fragmented memory</div>
+      <div class="failure-row">
+        <div class="failure-mode">
+          <div class="failure-label">Token debt</div>
+          <div class="failure-desc">Every invocation re-assembles context from scratch. Cost scales with the square of history.</div>
+        </div>
+        <div class="failure-mode">
+          <div class="failure-label">Context amnesia</div>
+          <div class="failure-desc">4 systems, 4 consistency models. The agent sees a different reality depending on sync state.</div>
+        </div>
+        <div class="failure-mode">
+          <div class="failure-label">Memory decay</div>
+          <div class="failure-desc">Stale facts accumulate alongside current ones. The agent cites a conclusion contradicted months ago.</div>
+        </div>
+      </div>
+      <div class="failure-root">Root cause: fragmented stacks. Every system boundary adds latency, gaps, and cost.</div>
+    </div>
+
     <div class="two-col">
       <div class="frankenstack">
         <div class="label">Before · the stack most retailers are running today</div>
@@ -169,8 +188,8 @@
     </div>
 
     <p class="why-land">
-      You can't prompt your way out of an architecture problem.
-      Bigger context windows won't fix it. <span class="gold">Stop running four systems.</span>
+      Memory is infrastructure. Not a feature you bolt on.
+      You can't prompt your way out of an architecture problem. <span class="gold">Stop running four systems.</span>
     </p>
   </section>
 
@@ -345,6 +364,7 @@
           <div class="small">stop running four systems · that's the whole argument</div>
         </div>
       </div>
+      <p class="reveal-tagline">Stateless model. <em>Stateful platform.</em> Cross-session learning.</p>
     </div>
   </section>
 
@@ -564,7 +584,7 @@
       <div class="close-col walk-out">
         <div class="close-label">Walk out knowing</div>
         <ul>
-          <li><strong>Memory is what makes agents learn</strong> — and it has to live somewhere</li>
+          <li><strong>Memory isn't stored. It's maintained</strong> — and only one architecture does it without four systems breaking at 3 AM</li>
           <li><strong>One database</strong> with rows + vectors + search + analytics beats four duct-taped together</li>
           <li><strong>The labs that actually build AI</strong> — Kimi, DeepSeek, Manus, Dify — all chose this architecture</li>
         </ul>
@@ -625,6 +645,18 @@
       <div class="qa-card">
         <div class="q">"What's the compliance story — CCPA, GDPR, EU exposure?"</div>
         <div class="a">One ACID audit log covers every agent decision. Right-to-Delete cascades through the relational layer and the vector layer <strong>in one transaction</strong> — they're the same engine. That's something a Frankenstack fundamentally can't give you.</div>
+      </div>
+      <div class="qa-card qa-card-wide">
+        <div class="q">"How does the memory stay accurate over time? Doesn't it get stale or contradictory?"</div>
+        <div class="a">Memory has <strong>five maintenance duties</strong> — all running inside a single TiDB cluster, no external schedulers:
+          <div class="duties-grid">
+            <div class="duty"><strong>Write control</strong> — Only confirmed outcomes persist. Working reasoning stays ephemeral.</div>
+            <div class="duty"><strong>Deduplication</strong> — Cosine similarity &lt; 0.15 merges with existing memory. One strong memory, not ten weak ones.</div>
+            <div class="duty"><strong>Reconciliation</strong> — New evidence auto-supersedes contradicted conclusions. Stale facts are linked, not lost.</div>
+            <div class="duty"><strong>Confidence decay</strong> — 5% monthly decay without reinforcement. Below 0.30 = auto-deprecated.</div>
+            <div class="duty"><strong>Compaction</strong> — Weekly re-clustering merges drifted memories. Evidence counts consolidated.</div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
