@@ -4,25 +4,32 @@
    reads as "their world," not "another tech dashboard."
    ========================================================= */
 :root {
-  --ink:        #0A1F3D;
-  --ink-2:      #13294B;
-  --cream:      #F4EDE0;
-  --cream-2:    #EADFCC;
-  --paper:      #FBF7EE;
-  --gold:       #C9A96E;
-  --gold-2:     #A8874E;
-  --gold-soft:  rgba(201, 169, 110, 0.12);
-  --moss:       #4A5D3A;
-  --burgundy:   #6B2737;
-  --ink-soft:   rgba(10, 31, 61, 0.6);
-  --ink-faint:  rgba(10, 31, 61, 0.28);
-  --ink-line:   rgba(10, 31, 61, 0.12);
+  /* ── TiDB Brand: Background Blue theme ────────────────────────────────
+     Background Blue: #0D3152  |  Dark Blue:   #10487B
+     Light Teal:      #50DBD9  |  Medium Teal: #1AA8A8
+     Light Blue:      #509DEA  |  Medium Blue: #2C80CE
+     Light Red:       #F35048  |  Brand Red:   #DC150B
+     Carbon 100:      #E5E8EB  |  Carbon 300:  #B9C2CA
+  ──────────────────────────────────────────────────────────────────── */
+  --ink:        #E5E8EB;   /* Carbon 100 — main text on dark bg */
+  --ink-2:      #CBD1D7;   /* Carbon 200 */
+  --cream:      #0D3152;   /* Background Blue — main surface */
+  --cream-2:    #0A2744;   /* slightly deeper */
+  --paper:      #142038;   /* card / panel backgrounds */
+  --gold:       #50DBD9;   /* Light Teal — primary accent (replaces warm gold) */
+  --gold-2:     #1AA8A8;   /* Medium Teal — deeper accent */
+  --gold-soft:  rgba(80, 219, 217, 0.14);
+  --moss:       #509DEA;   /* Light Blue — "after/good" states */
+  --burgundy:   #F35048;   /* Light Red — "before/bad" states */
+  --ink-soft:   rgba(229, 232, 235, 0.6);
+  --ink-faint:  rgba(229, 232, 235, 0.3);
+  --ink-line:   rgba(255, 255, 255, 0.1);
 
   --serif: "Cormorant Garamond", Georgia, serif;
   --sans:  "Manrope", -apple-system, BlinkMacSystemFont, sans-serif;
 
-  --shadow-card: 0 1px 2px rgba(10, 31, 61, 0.04), 0 6px 18px rgba(10, 31, 61, 0.08);
-  --shadow-lift: 0 2px 6px rgba(10, 31, 61, 0.08), 0 20px 48px rgba(10, 31, 61, 0.14);
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.35), 0 6px 18px rgba(0, 0, 0, 0.4);
+  --shadow-lift: 0 2px 8px rgba(0, 0, 0, 0.45), 0 20px 48px rgba(0, 0, 0, 0.55);
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -59,7 +66,7 @@ body::before {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 100;
-  background: rgba(244, 237, 224, 0.92);
+  background: rgba(13, 49, 82, 0.96);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--ink-line);
@@ -352,8 +359,8 @@ body::before {
 }
 .frank-db {
   padding: 14px 16px;
-  border: 1px dashed rgba(107, 39, 55, 0.45);
-  background: rgba(107, 39, 55, 0.03);
+  border: 1px dashed rgba(243, 80, 72, 0.45);
+  background: rgba(243, 80, 72, 0.03);
 }
 .frank-db .name {
   font-family: var(--serif);
@@ -371,7 +378,7 @@ body::before {
 .frank-note {
   margin-top: 18px;
   padding: 14px 16px;
-  background: rgba(107, 39, 55, 0.06);
+  background: rgba(243, 80, 72, 0.06);
   border-left: 2px solid var(--burgundy);
   font-family: var(--serif);
   font-style: italic;
@@ -461,8 +468,8 @@ body::before {
 }
 .tidb-plane {
   padding: 14px 16px;
-  border: 1px solid rgba(74, 93, 58, 0.35);
-  background: rgba(74, 93, 58, 0.04);
+  border: 1px solid rgba(80, 157, 234, 0.35);
+  background: rgba(80, 157, 234, 0.04);
   position: relative;
 }
 .tidb-plane .name {
@@ -491,7 +498,7 @@ body::before {
 .tidb-note {
   margin-top: 18px;
   padding: 14px 16px;
-  background: rgba(74, 93, 58, 0.07);
+  background: rgba(80, 157, 234, 0.07);
   border-left: 2px solid var(--moss);
   font-family: var(--serif);
   font-style: italic;
@@ -503,7 +510,7 @@ body::before {
 .tidb-compliance {
   margin-top: 10px;
   padding: 12px 16px 13px;
-  border: 1px dashed rgba(74, 93, 58, 0.4);
+  border: 1px dashed rgba(80, 157, 234, 0.4);
   background: transparent;
   font-size: 13px;
   line-height: 1.5;
@@ -525,7 +532,7 @@ body::before {
   font-weight: 700;
   margin-right: 8px;
   padding: 2px 6px;
-  border: 1px solid rgba(74, 93, 58, 0.45);
+  border: 1px solid rgba(80, 157, 234, 0.45);
 }
 
 /* =========================================================
@@ -780,7 +787,7 @@ body::before {
   display: inline-block;
   padding: 3px 10px;
   background: var(--gold-soft);
-  border: 1px solid rgba(201, 169, 110, 0.4);
+  border: 1px solid rgba(80, 219, 217, 0.4);
   font-size: 12px;
   color: var(--ink);
   margin: 6px 6px 0 0;
@@ -817,7 +824,7 @@ body::before {
   margin-top: 20px;
   padding: 16px 20px;
   background: var(--gold-soft);
-  border: 1px solid rgba(201, 169, 110, 0.35);
+  border: 1px solid rgba(80, 219, 217, 0.35);
   display: flex;
   align-items: center;
   gap: 18px;
@@ -932,7 +939,7 @@ body::before {
   box-shadow: var(--shadow-lift);
   transform: translateY(-2px);
 }
-.memory-card.merged { border-color: var(--moss); background: rgba(74, 93, 58, 0.06); }
+.memory-card.merged { border-color: var(--moss); background: rgba(80, 157, 234, 0.06); }
 .memory-card.merged::after {
   content: "CONSOLIDATED";
   position: absolute;
@@ -975,7 +982,7 @@ body::before {
   box-shadow: var(--shadow-card);
 }
 .case.active { border-color: var(--gold); background: var(--gold-soft); box-shadow: var(--shadow-card); }
-.case.done { border-color: var(--moss); background: rgba(74, 93, 58, 0.04); }
+.case.done { border-color: var(--moss); background: rgba(80, 157, 234, 0.04); }
 .case .num {
   font-family: var(--serif);
   font-style: italic;
@@ -1070,7 +1077,7 @@ body::before {
   gap: 30px;
   padding-top: 8px;
 }
-.rev-stat { padding-left: 18px; border-left: 1px solid rgba(244, 237, 224, 0.2); }
+.rev-stat { padding-left: 18px; border-left: 1px solid rgba(229, 232, 235, 0.2); }
 .rev-stat:first-child { border-left-color: var(--gold); }
 .rev-stat .big {
   font-family: var(--serif);
@@ -1086,7 +1093,7 @@ body::before {
   font-style: italic;
   font-weight: 400;
   font-size: 24px;
-  color: rgba(244, 237, 224, 0.7);
+  color: rgba(229, 232, 235, 0.7);
   margin-left: 6px;
 }
 .rev-stat .cap {
@@ -1099,7 +1106,7 @@ body::before {
 }
 .rev-stat .small {
   font-size: 10.5px;
-  color: rgba(244, 237, 224, 0.55);
+  color: rgba(229, 232, 235, 0.55);
   margin-top: 8px;
   letter-spacing: 0.04em;
 }
@@ -1233,7 +1240,7 @@ body::before {
 .window .big em {
   font-style: normal;
   font-size: 28px;
-  color: rgba(244, 237, 224, 0.7);
+  color: rgba(229, 232, 235, 0.7);
   display: block;
   margin-top: 8px;
   font-weight: 400;
@@ -1290,7 +1297,7 @@ body::before {
   z-index: 99;
   display: flex;
   gap: 8px;
-  background: rgba(251, 247, 238, 0.95);
+  background: rgba(13, 49, 82, 0.96);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   padding: 8px;
@@ -1506,7 +1513,7 @@ body::before {
 .era-fix strong { color: var(--ink); font-weight: 600; }
 
 .era.era-current {
-  background: rgba(201, 169, 110, 0.06);
+  background: rgba(80, 219, 217, 0.06);
 }
 .era.era-current .era-year { color: var(--gold-2); }
 .era.era-current .era-name { color: var(--gold-2); }
@@ -1575,7 +1582,7 @@ body::before {
   margin: 8px 0 60px 0;
   padding: 24px 28px 26px;
   border-left: 3px solid var(--gold);
-  background: rgba(201, 169, 110, 0.06);
+  background: rgba(80, 219, 217, 0.06);
 }
 .slide-title .promise-label {
   font-size: 10px;
@@ -1708,7 +1715,7 @@ body::before {
 .failure-modes {
   margin: 20px 0 24px;
   padding: 18px 20px 14px;
-  background: rgba(107, 39, 55, 0.05);   /* very faint burgundy */
+  background: rgba(243, 80, 72, 0.05);   /* very faint burgundy */
   border-left: 3px solid var(--burgundy);
   border-radius: 0 4px 4px 0;
 }
@@ -1746,7 +1753,7 @@ body::before {
 .failure-root {
   margin-top: 12px;
   padding-top: 10px;
-  border-top: 1px solid rgba(107, 39, 55, 0.15);
+  border-top: 1px solid rgba(243, 80, 72, 0.15);
   font-family: var(--serif);
   font-style: italic;
   font-size: 13px;
@@ -1780,8 +1787,8 @@ body::before {
   background: linear-gradient(90deg, var(--gold-soft) 0%, transparent 60%);
   margin: 0 -20px;
   padding: 20px 20px;
-  border-top: 1px solid rgba(201,169,110,0.3);
-  border-bottom: 1px solid rgba(201,169,110,0.3);
+  border-top: 1px solid rgba(80, 219, 217, 0.3);
+  border-bottom: 1px solid rgba(80, 219, 217, 0.3);
 }
 .about-entry-current + .about-entry {
   border-top: none;
@@ -1846,11 +1853,11 @@ body::before {
   padding: 16px 18px;
 }
 .lb-bad {
-  background: rgba(107, 39, 55, 0.04);
+  background: rgba(243, 80, 72, 0.04);
   border-right: 1px solid var(--ink-line);
 }
 .lb-good {
-  background: rgba(74, 93, 58, 0.04);
+  background: rgba(80, 157, 234, 0.04);
   border-left: 1px solid var(--ink-line);
 }
 .lb-top-label {
@@ -1918,7 +1925,7 @@ body::before {
   font-size: 11px;
   font-weight: 700;
   color: var(--ink);
-  background: rgba(201,169,110,0.25);
+  background: rgba(80, 219, 217, 0.25);
   padding: 4px 10px;
   border-radius: 3px;
   white-space: nowrap;
@@ -2015,12 +2022,12 @@ body::before {
   gap: 0;
 }
 .manus-aws {
-  background: rgba(107, 39, 55, 0.05);
-  border: 1px solid rgba(107, 39, 55, 0.18);
+  background: rgba(243, 80, 72, 0.05);
+  border: 1px solid rgba(243, 80, 72, 0.18);
 }
 .manus-tidb {
-  background: rgba(74, 93, 58, 0.05);
-  border: 1px solid rgba(74, 93, 58, 0.18);
+  background: rgba(80, 157, 234, 0.05);
+  border: 1px solid rgba(80, 157, 234, 0.18);
 }
 .manus-col-label {
   font-family: var(--sans);
@@ -2073,12 +2080,12 @@ body::before {
   border-radius: 7px;
 }
 .manus-verdict-bad {
-  background: rgba(107, 39, 55, 0.09);
+  background: rgba(243, 80, 72, 0.09);
   color: var(--burgundy);
   border-left: 3px solid var(--burgundy);
 }
 .manus-verdict-good {
-  background: rgba(74, 93, 58, 0.09);
+  background: rgba(80, 157, 234, 0.09);
   color: var(--moss);
   border-left: 3px solid var(--moss);
 }
@@ -2117,7 +2124,7 @@ body::before {
   color: var(--ink);
   margin: 0 0 22px;
   padding: 10px 14px;
-  background: rgba(10, 31, 61, 0.04);
+  background: rgba(255, 255, 255, 0.04);
   border-left: 3px solid var(--gold-2);
   border-radius: 3px;
   max-width: 940px;
@@ -2180,7 +2187,7 @@ body::before {
   border: 1px solid rgba(0,0,0,0.10);
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 6px 18px rgba(10, 31, 61, 0.08);
+  box-shadow: 0 6px 18px rgba(255, 255, 255, 0.08);
 }
 .vv-before .vv-browser {
   filter: grayscale(0.45) opacity(0.92);
@@ -2191,7 +2198,7 @@ body::before {
   align-items: center;
   gap: 10px;
   padding: 9px 12px;
-  background: #ECEAE4;
+  background: #d4d0c8;
   border-bottom: 1px solid rgba(0,0,0,0.08);
 }
 .vv-dots { display: flex; gap: 6px; }
@@ -2397,12 +2404,12 @@ body::before {
   margin-bottom: 4px;
 }
 .vv-outcome-bad {
-  background: rgba(107, 39, 55, 0.08);
+  background: rgba(243, 80, 72, 0.08);
   color: var(--burgundy);
   border-left: 3px solid var(--burgundy);
 }
 .vv-outcome-good {
-  background: rgba(74, 93, 58, 0.08);
+  background: rgba(80, 157, 234, 0.08);
   color: var(--moss);
   border-left: 3px solid var(--moss);
 }
@@ -2450,7 +2457,7 @@ body::before {
   margin-top: 28px;
   padding: 22px 26px;
   border-left: 3px solid var(--gold-2);
-  background: rgba(168, 135, 78, 0.06);
+  background: rgba(26, 168, 168, 0.06);
   font-family: var(--serif);
   font-size: 19px;
   line-height: 1.55;
@@ -2475,7 +2482,7 @@ body::before {
 .why-callout {
   margin: 18px 0 28px;
   padding: 18px 22px;
-  background: rgba(107, 39, 55, 0.06);
+  background: rgba(243, 80, 72, 0.06);
   border-left: 3px solid var(--burgundy);
   border-radius: 4px;
   font-family: var(--serif);
@@ -2494,7 +2501,7 @@ body::before {
   color: var(--burgundy);
   margin-right: 8px;
   padding: 3px 8px;
-  background: rgba(107, 39, 55, 0.10);
+  background: rgba(243, 80, 72, 0.10);
   border-radius: 3px;
   vertical-align: middle;
 }
@@ -2570,7 +2577,7 @@ body::before {
   border-bottom: 1px solid var(--ink-line);
 }
 .mt-table code {
-  background: rgba(10, 31, 61, 0.05);
+  background: rgba(255, 255, 255, 0.05);
   padding: 1px 7px;
   border-radius: 3px;
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
@@ -2591,7 +2598,7 @@ body::before {
   line-height: 1.5;
   color: var(--ink-soft);
   padding: 10px 12px;
-  background: rgba(10, 31, 61, 0.03);
+  background: rgba(255, 255, 255, 0.03);
   border-radius: 5px;
 }
 .mt-tag {
@@ -2607,8 +2614,8 @@ body::before {
 .duties-strip {
   margin: 14px 0 18px;
   padding: 14px 18px;
-  background: rgba(168, 135, 78, 0.07);
-  border: 1px solid rgba(168, 135, 78, 0.18);
+  background: rgba(26, 168, 168, 0.07);
+  border: 1px solid rgba(26, 168, 168, 0.18);
   border-radius: 8px;
 }
 .duties-strip-label {
@@ -2679,7 +2686,7 @@ body::before {
   bottom: 0;
   left: 0;
   right: 0;
-  background: #0A1F3D;
+  background: #060e1c;
   color: #F4EDE0;
   border-top: 2px solid var(--gold-2);
   box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.25);
@@ -2698,7 +2705,7 @@ body::before {
   align-items: center;
   padding: 10px 22px;
   background: rgba(0, 0, 0, 0.2);
-  border-bottom: 1px solid rgba(244, 237, 224, 0.12);
+  border-bottom: 1px solid rgba(229, 232, 235, 0.12);
 }
 .notes-meta {
   display: flex;
@@ -2717,17 +2724,17 @@ body::before {
   font-family: var(--serif);
   font-style: italic;
   font-size: 14px;
-  color: rgba(244, 237, 224, 0.85);
+  color: rgba(229, 232, 235, 0.85);
 }
 .notes-hint {
   font-family: var(--sans);
   font-size: 11px;
-  color: rgba(244, 237, 224, 0.55);
+  color: rgba(229, 232, 235, 0.55);
   letter-spacing: 0.04em;
 }
 .notes-hint kbd {
-  background: rgba(244, 237, 224, 0.12);
-  border: 1px solid rgba(244, 237, 224, 0.25);
+  background: rgba(229, 232, 235, 0.12);
+  border: 1px solid rgba(229, 232, 235, 0.25);
   padding: 1px 7px;
   border-radius: 3px;
   font-family: inherit;
@@ -2757,8 +2764,8 @@ body::before {
 .field-signal {
   margin: 22px 0;
   padding: 18px 22px 16px;
-  background: rgba(10, 31, 61, 0.04);
-  border: 1px solid rgba(10, 31, 61, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-left: 3px solid var(--gold-2);
   border-radius: 4px;
   max-width: 940px;
@@ -2774,7 +2781,7 @@ body::before {
   color: var(--gold-2);
   margin-bottom: 10px;
   padding: 3px 8px;
-  background: rgba(168, 135, 78, 0.10);
+  background: rgba(26, 168, 168, 0.10);
   border-radius: 3px;
 }
 .field-signal-list {
@@ -2789,7 +2796,7 @@ body::before {
   color: var(--ink);
   padding: 7px 0 7px 18px;
   position: relative;
-  border-top: 1px dashed rgba(10, 31, 61, 0.08);
+  border-top: 1px dashed rgba(255, 255, 255, 0.08);
 }
 .field-signal-list li:first-child {
   border-top: none;
