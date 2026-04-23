@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="/static/styles.css?v=6" />
+  <link rel="stylesheet" href="/static/styles.css?v=7" />
 </head>
 
 <body>
@@ -24,6 +24,7 @@
   <button id="tab-convergence"></button>
   <button id="tab-manus"></button>
   <button id="tab-demo"></button>
+  <button id="tab-memories"></button>
   <button id="tab-category"></button>
   <button id="tab-proof"></button>
   <button id="tab-lineage"></button>
@@ -139,6 +140,13 @@
         But every new session billed you to rediscover everything it already knew.
         That's the token tax — and that gap is where every AI investment in this room is leaking value right now.
       </p>
+
+      <p class="sarah-land">
+        Here's the unwelcome truth nobody on the model side will tell you:
+        <span class="big-line">agents do not have memory.</span>
+        Not by accident — <em>by design</em>. The model is a stateless function. Memory has to come from somewhere else.
+        That somewhere-else is the Cognitive Foundation.
+      </p>
     </div>
   </section>
 
@@ -154,6 +162,13 @@
       is a next-word predictor trained on frozen data. When the chat ends, it's gone.
       Memory has to come from <em>somewhere else</em>. The question is whether that
       somewhere-else is four systems duct-taped together — or one.
+    </p>
+
+    <p class="why-callout">
+      <span class="why-callout-tag">The trap</span>
+      Model providers will sell you a 1M-token context window as the answer.
+      <em>It benefits them, not you.</em> Every token you load, you pay for — every call, forever.
+      A bigger window is a bigger meter. It is not memory. The memory wall is real, and you can't prompt your way past it.
     </p>
 
     <div class="failure-modes">
@@ -530,6 +545,71 @@
   </section>
 
   <!-- =============================================================
+       SLIDE 4.5 — THREE MEMORIES (the architecture, named)
+       ============================================================= -->
+  <section class="slide" id="slide-memories">
+    <div class="eyebrow">Beat 04.5 · The Architecture, Named · 3 minutes</div>
+    <h2>The Memory Wall <span class="arrow">→</span> The Cognitive Foundation.</h2>
+    <p class="mem-lede">
+      What you just watched isn't magic — it's three named memory types working in concert.
+      Cognitive science gave us the taxonomy. <span class="emph">We built the maintenance layer that makes it production-grade.</span>
+      The Cognitive Foundation is both — the named types, and the duties that keep them honest.
+    </p>
+
+    <div class="memories-grid">
+      <div class="memory-type mt-episodic">
+        <div class="mt-label">Episodic</div>
+        <div class="mt-name">What happened</div>
+        <div class="mt-table">in TiDB · <code>agent_reasoning</code></div>
+        <div class="mt-desc">
+          Time-stamped investigation history. Scoped by entity, linked by supersession chains.
+          Every interaction Emma had with the brand — across web, store, voice, six-month gaps —
+          available in one query.
+        </div>
+        <div class="mt-demo">In the demo: recognizing Emma. The cream linen shift. The wrap dress return.</div>
+        <div class="mt-tag">per-customer · per-session · auditable</div>
+      </div>
+
+      <div class="memory-type mt-semantic">
+        <div class="mt-label">Semantic</div>
+        <div class="mt-name">What we learned</div>
+        <div class="mt-table">in TiDB · <code>fleet_memory</code></div>
+        <div class="mt-desc">
+          Platform-wide knowledge. Scoped by global / site / segment. Deduplicated, decayed, compacted.
+          The lessons every customer pays for once and every other customer benefits from forever.
+        </div>
+        <div class="mt-demo">In the demo: the size-up rule for relaxed weaves. Bias cuts behave differently than straight cuts.</div>
+        <div class="mt-tag">cross-customer · self-maintaining · compounding</div>
+      </div>
+
+      <div class="memory-type mt-procedural">
+        <div class="mt-label">Procedural</div>
+        <div class="mt-name">What works</div>
+        <div class="mt-table">next architectural step</div>
+        <div class="mt-desc">
+          Learned investigation strategies. <em>"When a between-size customer asks about linen,
+          check return history first, then size-up rule, then color preference."</em>
+          Today this lives implicitly in semantic memory. Tomorrow: its own retrieval path and lifecycle.
+        </div>
+        <div class="mt-demo">In the demo: the order of operations the agent followed without being told.</div>
+        <div class="mt-tag">strategy memory · the missing layer · the roadmap</div>
+      </div>
+    </div>
+
+    <div class="duties-strip">
+      <div class="duties-strip-label">The five duties — what makes memory production-grade</div>
+      <div class="duties-strip-list">
+        <span>Write control</span><span>Deduplication</span><span>Reconciliation</span><span>Confidence decay</span><span>Compaction</span>
+      </div>
+    </div>
+
+    <p class="mem-land">
+      Session state and context snapshots are operational infrastructure — they support the memory system, but they aren't memory.
+      <span class="emph">CMA — the Cognitive Memory Architecture — is the Cognitive Foundation. We know how to build it. Here's how it's built.</span>
+    </p>
+  </section>
+
+  <!-- =============================================================
        SLIDE 5 — YOUR CATEGORY (generic retail use cases)
        ============================================================= -->
   <section class="slide" id="slide-category">
@@ -764,6 +844,9 @@
     <p class="close-slogan">
       Stop running four systems. <span class="close-slogan-tail">That's the whole argument.</span>
     </p>
+    <p class="close-cf-line">
+      We know how to build it. <span class="emph">CMA is the Cognitive Foundation.</span> The memory wall has an architecture on the other side.
+    </p>
   </section>
 
   <!-- =============================================================
@@ -828,6 +911,20 @@
   <button class="nav-btn" id="prevBtn" aria-label="Previous slide">‹</button>
   <button class="nav-btn" id="nextBtn" aria-label="Next slide">›</button>
 </div>
+
+<!-- Speaker notes panel · toggle with N -->
+<aside class="notes-panel" id="notesPanel" aria-hidden="true">
+  <div class="notes-bar">
+    <div class="notes-meta">
+      <span class="notes-tag">Speaker notes</span>
+      <span class="notes-slide" id="notesSlideName">—</span>
+    </div>
+    <div class="notes-hint">Press <kbd>N</kbd> to hide</div>
+  </div>
+  <div class="notes-content" id="notesContent">
+    <em>Press N at any time to surface the talking points for the current slide.</em>
+  </div>
+</aside>
 
 <script src="/static/app.js"></script>
 </body>

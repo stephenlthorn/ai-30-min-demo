@@ -16,6 +16,7 @@ const SLIDES = [
   { id: "convergence", label: "Convergence",   shortLabel: "3" },
   { id: "manus",       label: "Manus Math",    shortLabel: "M" },
   { id: "demo",        label: "Demo",          shortLabel: "4" },
+  { id: "memories",    label: "Three Memories", shortLabel: "T" },
   { id: "category",    label: "Your Category", shortLabel: "5" },
   { id: "proof",       label: "Proof",         shortLabel: "6" },
   { id: "lineage",     label: "11 Years",      shortLabel: "7" },
@@ -28,6 +29,84 @@ let currentSlide = 0;
 
 const $ = (id) => document.getElementById(id);
 const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+
+/* ---------- SPEAKER NOTES ---------- */
+/* Phrases to land per slide. Toggle with N. */
+const SPEAKER_NOTES = {
+  title:
+    "Promise the deliverable up front: 30 minutes, three things you'll walk out with — why agents reset, the architecture that compounds, three questions for Monday. Don't dive in until you've made the promise.",
+
+  about:
+    "30 seconds, no more. The point isn't your résumé — it's that you've been doing AI work since before it had a name. USNA capstone on 580M tweets, EACL 2012. Sosivio in-house models, no API to call. Now TiDB. Pivot fast to Sarah.",
+
+  sarah:
+    "Slow this story down. Let the silence land after 'It has no idea who she is.'\n\nKEY LINES:\n• 'The model is brilliant. The model has amnesia.'\n• 'Agents do not have memory — not by accident, by design.'\n• 'That gap is the token tax — every AI investment in this room is leaking value through it right now.'\n\nDon't apologize for the discomfort. They paid to feel it.",
+
+  why:
+    "Two halves.\n\nHALF 1 — The diagnosis (Memory Wall):\n• Three failure modes: token debt, context amnesia, memory decay.\n• THE TRAP: 'Model providers will sell you a 1M-token window as the answer. It benefits THEM, not you. Every token you load, you pay for. A bigger window is a bigger meter — it is not memory.'\n\nHALF 2 — The cure (Cognitive Foundation):\n• Frankenstack vs. one cluster.\n• Librarian analogy. assemble_context() = librarian with a 10-book limit, picking from 10,000.\n• LAND: 'Memory is infrastructure. Not a feature you bolt on. Stop running four systems.'",
+
+  convergence:
+    "Four labs. Different countries. Different problems. Same architectural answer. That's not a coincidence — that's convergence.\n\nThe database stopped being a storage layer. It became the substrate the agent thinks against.",
+
+  manus:
+    "The math IS the punchline. Walk the numbers slowly.\n\n• AWS cheapest DB: $9.60/month.\n• Manus has 10M databases.\n• That's $96M/month, $1.15B/year — on AWS.\n• Manus charges $5/month per user.\n\nLAND: 'You can't price an AI product without solving the database problem first. Every AI company eventually discovers this math.'",
+
+  demo:
+    "Let it play. Don't narrate over the animation.\n\nAFTER both windows finish:\n'Same customer. Same brand. Same chatbot UI. The only thing different is the memory architecture. One left without buying. One checked out for $172 in four turns. That delta — across 10 million customers, every day — is the whole game.'",
+
+  memories:
+    "This is THE architecture slide. The intellectual backbone.\n\n• EPISODIC (agent_reasoning) — what happened. Per-customer, time-stamped, auditable. In the demo: recognizing Emma.\n• SEMANTIC (fleet_memory) — what we learned. Cross-customer, deduplicated, decayed. In the demo: the size-up rule.\n• PROCEDURAL — what works. The missing layer. Strategy memory. The roadmap.\n\nTHE CREDIT LINE: 'Cognitive science named the types. We built the maintenance layer. The Cognitive Foundation is both.'\n\nEnd on: 'CMA — the Cognitive Memory Architecture — IS the Cognitive Foundation. We know how to build it. Here's how it's built.'",
+
+  category:
+    "The dress is interchangeable. The architecture isn't. Pick the vertical that matches whoever you're talking to. Apparel = fit memory. Furniture = decision memory. Wellness = regimen memory. Loyalty = relationship memory.",
+
+  proof:
+    "Real customers. Real numbers. No vapor. Pause on whichever logo matches the audience.",
+
+  lineage:
+    "Eleven years. Enterprise battle-tested in production at PingCAP, Pinterest, etc. Not a startup pivoting to AI — the database the AI labs are pivoting onto.",
+
+  whynow:
+    "The window is now. Six months from now your competitors have agents that remember. Yours don't. The compounding starts the day you migrate, not the day you finish the RFP.",
+
+  close:
+    "Three questions for Monday. The first is the killer:\n\n'Where does our agent's memory ACTUALLY live? Show me the database.'\n\nWalk away with: 'Memory isn't stored — it's maintained.' / 'One database beats four duct-taped together.' / 'The labs that build AI all chose this architecture.'\n\nFINAL LINE: 'We know how to build it. CMA is the Cognitive Foundation. The memory wall has an architecture on the other side. Stop running four systems.'",
+
+  qa:
+    "Reference card. Don't read these out. Tap whichever the question matches and walk through it conversationally."
+};
+
+let notesOpen = false;
+
+function updateNotesContent(slideIdx) {
+  const id = SLIDES[slideIdx]?.id;
+  const note = SPEAKER_NOTES[id] || "";
+  const nameEl = $("notesSlideName");
+  const contentEl = $("notesContent");
+  if (nameEl) nameEl.textContent = `${String(slideIdx).padStart(2, "0")} · ${SLIDES[slideIdx]?.label || ""}`;
+  if (contentEl) {
+    while (contentEl.firstChild) contentEl.removeChild(contentEl.firstChild);
+    note.split("\n\n").forEach((para) => {
+      const p = document.createElement("p");
+      // preserve single \n as line breaks within a paragraph
+      const lines = para.split("\n");
+      lines.forEach((line, i) => {
+        if (i > 0) p.appendChild(document.createElement("br"));
+        p.appendChild(document.createTextNode(line));
+      });
+      contentEl.appendChild(p);
+    });
+  }
+}
+
+function toggleNotes() {
+  notesOpen = !notesOpen;
+  const panel = $("notesPanel");
+  if (!panel) return;
+  panel.classList.toggle("open", notesOpen);
+  panel.setAttribute("aria-hidden", notesOpen ? "false" : "true");
+  if (notesOpen) updateNotesContent(currentSlide);
+}
 
 function showSlide(idx, push = true) {
   if (idx < 0 || idx >= SLIDES.length) return;
@@ -51,6 +130,9 @@ function showSlide(idx, push = true) {
 
   currentSlide = idx;
   window.scrollTo({ top: 0, behavior: "instant" });
+
+  // refresh notes panel content if it's open
+  if (notesOpen) updateNotesContent(idx);
 
   // sync URL hash so links work
   if (push) {
@@ -93,6 +175,10 @@ document.addEventListener("keydown", (e) => {
     // Q jumps straight to the Q&A appendix (slide indices > 9 aren't reachable via digit keys)
     const idx = SLIDES.findIndex((s) => s.id === "qa");
     if (idx >= 0) { e.preventDefault(); showSlide(idx); }
+  } else if (e.key === "n" || e.key === "N") {
+    // N toggles speaker notes panel
+    e.preventDefault();
+    toggleNotes();
   } else if (e.key === "c" && (e.ctrlKey || e.metaKey) && e.shiftKey) {
     // Ctrl+Shift+C — jump to demo cases directly (1/2/3 already reserved for slide nav)
     // no-op here; documented in queries.md
