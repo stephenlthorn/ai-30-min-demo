@@ -1719,6 +1719,83 @@ body::before {
 }
 
 /* =========================================================
+   SLIDE 1 — ABOUT
+   ========================================================= */
+.about-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 32px 0 28px;
+  max-width: 860px;
+}
+.about-entry {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 0 32px;
+  padding: 20px 0;
+  border-top: 1px solid var(--ink-line);
+}
+.about-entry:last-child {
+  border-bottom: 1px solid var(--ink-line);
+}
+.about-entry-current .about-org {
+  color: var(--gold-2);
+}
+.about-entry-current {
+  background: linear-gradient(90deg, var(--gold-soft) 0%, transparent 60%);
+  margin: 0 -20px;
+  padding: 20px 20px;
+  border-top: 1px solid rgba(201,169,110,0.3);
+  border-bottom: 1px solid rgba(201,169,110,0.3);
+}
+.about-entry-current + .about-entry {
+  border-top: none;
+}
+.about-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding-top: 2px;
+}
+.about-year {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+}
+.about-org {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.2;
+}
+.about-line {
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--ink-soft);
+}
+.about-line em {
+  font-style: italic;
+  color: var(--ink);
+  font-weight: 500;
+}
+.about-bridge {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-style: italic;
+  color: var(--ink-soft);
+  margin: 0;
+  max-width: 680px;
+  border-left: 3px solid var(--gold);
+  padding-left: 20px;
+  line-height: 1.5;
+}
+
+/* =========================================================
    LIBRARIAN ANALOGY GRAPHIC — slide 02 (Why)
    ========================================================= */
 .librarian-box {

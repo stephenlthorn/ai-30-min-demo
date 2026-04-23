@@ -10,6 +10,7 @@
 
 const SLIDES = [
   { id: "title",       label: "Title",         shortLabel: "0" },
+  { id: "about",       label: "About",         shortLabel: "A" },
   { id: "sarah",       label: "The Hook",      shortLabel: "1" },
   { id: "why",         label: "Why",           shortLabel: "2" },
   { id: "convergence", label: "Convergence",   shortLabel: "3" },
