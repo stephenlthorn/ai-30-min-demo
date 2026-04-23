@@ -14,6 +14,7 @@ const SLIDES = [
   { id: "sarah",       label: "The Hook",      shortLabel: "1" },
   { id: "why",         label: "Why",           shortLabel: "2" },
   { id: "convergence", label: "Convergence",   shortLabel: "3" },
+  { id: "manus",       label: "Manus Math",    shortLabel: "M" },
   { id: "demo",        label: "Demo",          shortLabel: "4" },
   { id: "category",    label: "Your Category", shortLabel: "5" },
   { id: "proof",       label: "Proof",         shortLabel: "6" },

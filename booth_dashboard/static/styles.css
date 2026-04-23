@@ -1964,3 +1964,95 @@ body::before {
   padding-left: 8px;
   border-left: 2px solid var(--gold);
 }
+
+/* ----- Manus Unit Economics slide ----- */
+.manus-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  margin: 24px 0 20px;
+}
+.manus-col {
+  border-radius: 10px;
+  padding: 24px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.manus-aws {
+  background: rgba(107, 39, 55, 0.05);
+  border: 1px solid rgba(107, 39, 55, 0.18);
+}
+.manus-tidb {
+  background: rgba(74, 93, 58, 0.05);
+  border: 1px solid rgba(74, 93, 58, 0.18);
+}
+.manus-col-label {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--ink-line);
+}
+.manus-line-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  padding: 7px 0;
+  border-bottom: 1px solid var(--ink-line);
+}
+.mli-label {
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--ink-soft);
+  flex-shrink: 0;
+}
+.mli-value {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  text-align: right;
+}
+.mli-red  { color: var(--burgundy); }
+.mli-green { color: var(--moss); }
+.mli-total {
+  border-bottom: 2px solid var(--ink-line);
+}
+.mli-total .mli-label,
+.mli-total .mli-value {
+  font-size: 14px;
+  font-weight: 700;
+}
+.manus-verdict {
+  margin-top: 14px;
+  font-family: var(--sans);
+  font-size: 12.5px;
+  line-height: 1.65;
+  padding: 12px 14px;
+  border-radius: 7px;
+}
+.manus-verdict-bad {
+  background: rgba(107, 39, 55, 0.09);
+  color: var(--burgundy);
+  border-left: 3px solid var(--burgundy);
+}
+.manus-verdict-good {
+  background: rgba(74, 93, 58, 0.09);
+  color: var(--moss);
+  border-left: 3px solid var(--moss);
+}
+.manus-punchline {
+  font-family: var(--serif);
+  font-size: 19px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  max-width: 860px;
+  border-top: 1px solid var(--ink-line);
+  padding-top: 18px;
+}
