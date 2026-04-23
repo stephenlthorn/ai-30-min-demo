@@ -9,14 +9,17 @@
 /* ---------- 1. SLIDE NAVIGATION ---------- */
 
 const SLIDES = [
-  { id: "title",       label: "Title",        shortLabel: "0" },
-  { id: "sarah",       label: "The Hook",     shortLabel: "1" },
-  { id: "why",         label: "Why",          shortLabel: "2" },
-  { id: "convergence", label: "Convergence",  shortLabel: "3" },
-  { id: "demo",        label: "Demo",         shortLabel: "4" },
-  { id: "proof",       label: "Proof",        shortLabel: "5" },
-  { id: "microsoft",   label: "Microsoft",    shortLabel: "6" },
-  { id: "qa",          label: "Q&A",          shortLabel: "7" }
+  { id: "title",       label: "Title",         shortLabel: "0" },
+  { id: "sarah",       label: "The Hook",      shortLabel: "1" },
+  { id: "why",         label: "Why",           shortLabel: "2" },
+  { id: "convergence", label: "Convergence",   shortLabel: "3" },
+  { id: "demo",        label: "Demo",          shortLabel: "4" },
+  { id: "category",    label: "Your Category", shortLabel: "5" },
+  { id: "proof",       label: "Proof",         shortLabel: "6" },
+  { id: "lineage",     label: "11 Years",      shortLabel: "7" },
+  { id: "whynow",      label: "Why Now",       shortLabel: "8" },
+  { id: "close",       label: "Close",         shortLabel: "9" },
+  { id: "qa",          label: "Q&A",           shortLabel: "Q" }
 ];
 
 let currentSlide = 0;
@@ -84,6 +87,10 @@ document.addEventListener("keydown", (e) => {
   } else if (e.key === "r" || e.key === "R") {
     // R resets the demo only if we're on the demo slide
     if (SLIDES[currentSlide].id === "demo") resetDemo();
+  } else if (e.key === "q" || e.key === "Q") {
+    // Q jumps straight to the Q&A appendix (slide indices > 9 aren't reachable via digit keys)
+    const idx = SLIDES.findIndex((s) => s.id === "qa");
+    if (idx >= 0) { e.preventDefault(); showSlide(idx); }
   } else if (e.key === "c" && (e.ctrlKey || e.metaKey) && e.shiftKey) {
     // Ctrl+Shift+C — jump to demo cases directly (1/2/3 already reserved for slide nav)
     // no-op here; documented in queries.md

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
-  <title>Watch an AI Agent Learn — iSoftStone × TiDB × Microsoft · May 8 2026</title>
-  <meta name="description" content="Stephen Thorn · TiDB · iSoftStone Microsoft AI Workshop · NYC · May 8 2026" />
+  <title>Your AI Has Amnesia — TiDB agent memory</title>
+  <meta name="description" content="Live booth demo: how a unified database makes AI agents learn across conversations." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -15,23 +15,21 @@
 
 <body>
 
-<!-- ================ TOP NAV (persistent) ================ -->
-<nav class="topnav" aria-label="Deck navigation">
-  <a class="brand" href="#title">Watch an AI Agent <em>Learn</em></a>
-
-  <div class="tabs" role="tablist">
-    <button class="tab" data-idx="0" id="tab-title"       role="tab"><span class="num">00</span> Title</button>
-    <button class="tab" data-idx="1" id="tab-sarah"       role="tab"><span class="num">01</span> The Hook</button>
-    <button class="tab" data-idx="2" id="tab-why"         role="tab"><span class="num">02</span> Why</button>
-    <button class="tab" data-idx="3" id="tab-convergence" role="tab"><span class="num">03</span> Convergence</button>
-    <button class="tab" data-idx="4" id="tab-demo"        role="tab"><span class="num">04</span> Demo</button>
-    <button class="tab" data-idx="5" id="tab-proof"       role="tab"><span class="num">05</span> Proof</button>
-    <button class="tab" data-idx="6" id="tab-microsoft"   role="tab"><span class="num">06</span> Microsoft</button>
-    <button class="tab" data-idx="7" id="tab-qa"          role="tab"><span class="num">07</span> Q&amp;A</button>
-  </div>
-
-  <div class="counter" id="slideCounter">00 / 07</div>
-</nav>
+<!-- hidden tab targets kept for JS (showSlide looks up by id) -->
+<div style="display:none">
+  <button id="tab-title"></button>
+  <button id="tab-sarah"></button>
+  <button id="tab-why"></button>
+  <button id="tab-convergence"></button>
+  <button id="tab-demo"></button>
+  <button id="tab-category"></button>
+  <button id="tab-proof"></button>
+  <button id="tab-lineage"></button>
+  <button id="tab-whynow"></button>
+  <button id="tab-close"></button>
+  <button id="tab-qa"></button>
+  <span id="slideCounter"></span>
+</div>
 
 <div class="deck">
 
@@ -39,19 +37,18 @@
        SLIDE 0 — TITLE
        ============================================================= -->
   <section class="slide-title" id="slide-title">
-    <div class="eyebrow">iSoftStone × TiDB × Microsoft · NYC · May 8 2026</div>
+    <h1>Your AI Has <em>Amnesia</em>.</h1>
 
-    <h1>Watch an AI Agent <em>Learn</em>.</h1>
-
-    <p class="subtitle">
-      Three customers. The same store. One agent that remembers what it learns —
-      and why the companies actually building AI all chose this architecture.
-    </p>
+    <div class="promise">
+      <div class="promise-label">In the next 30 minutes</div>
+      <p class="promise-body">
+        Why AI pilots stall · the architecture the labs chose · three questions for Monday.
+      </p>
+    </div>
 
     <div class="speaker">
-      <strong>Presented by</strong>
       <div class="name">Stephen Thorn</div>
-      <div class="role">Head of Solution Engineering · TiDB</div>
+      <div class="role">Head of Solution Engineering</div>
     </div>
   </section>
 
@@ -94,12 +91,19 @@
        SLIDE 2 — WHY AGENTS FORGET
        ============================================================= -->
   <section class="slide" id="slide-why">
-    <div class="eyebrow">Beat 02 · Why This Happens · 4 minutes</div>
-    <h2>Two problems — one architectural, one invisible.</h2>
+    <div class="eyebrow">Beat 02 · Why This Happens — and the architecture that fixes it · 5 minutes</div>
+    <h2>Two problems — one architectural answer.</h2>
+
+    <p class="why-lede">
+      <strong>The model has no memory by design.</strong> Every LLM — Copilot, GPT, Claude —
+      is a next-word predictor trained on frozen data. When the chat ends, it's gone.
+      Memory has to come from <em>somewhere else</em>. The question is whether that
+      somewhere-else is four systems duct-taped together — or one.
+    </p>
 
     <div class="two-col">
       <div class="frankenstack">
-        <div class="label">The stack most retailers are running today</div>
+        <div class="label">Before · the stack most retailers are running today</div>
         <div class="frank-grid">
           <div class="frank-db">
             <div class="name">Aurora / SQL Server</div>
@@ -119,29 +123,55 @@
           </div>
         </div>
         <div class="frank-note">
-          Every time inventory, a return, a price, a preference changes —
-          it has to propagate across all four. That sync breaks. Often.
-          At 3 AM. Your agent reasons on four different versions of reality.
+          Four systems. Four consistency models. Inventory, returns, prices, preferences
+          have to propagate across all four. That sync breaks. Often. At 3 AM.
+          The agent reasons on four different versions of reality.
         </div>
       </div>
 
-      <div class="explain">
-        <p><strong>The model has no memory by design.</strong>
-          Every LLM — Copilot, GPT, Claude — is a next-word predictor trained
-          on frozen data. When the chat ends, everything is gone.
-          There is no "remember Sarah" button inside the model.</p>
+      <div class="tidb-unified">
+        <div class="label">After · one cluster, one transaction boundary</div>
+        <div class="tidb-grid">
+          <div class="tidb-plane">
+            <div class="name">Rows</div>
+            <div class="role">Orders · customers · inventory</div>
+            <div class="tag">SQL · OLTP</div>
+          </div>
+          <div class="tidb-plane">
+            <div class="name">Embeddings</div>
+            <div class="role">Conversation memory · semantic recall</div>
+            <div class="tag">Vector · ANN</div>
+          </div>
+          <div class="tidb-plane">
+            <div class="name">Search</div>
+            <div class="role">Product lookup · keyword match</div>
+            <div class="tag">Full-text · BM25</div>
+          </div>
+          <div class="tidb-plane">
+            <div class="name">Analytics</div>
+            <div class="role">Live cohorts · loyalty · returns</div>
+            <div class="tag">Columnar · HTAP</div>
+          </div>
+        </div>
+        <div class="tidb-note">
+          One write. One transaction. ACID across all four. The agent sees
+          one source of truth — and your apps keep talking MySQL, so nothing
+          above the database has to change.
+        </div>
 
-        <p><strong>The somewhere-else is a mess.</strong>
-          Memory has to come from outside the model — and most retailers have four
-          separate systems holding together with duct tape.</p>
-
-        <p class="land">
-          This is not a model problem. You can't prompt your way out of it.
-          Bigger context windows won't fix it.
-          It's an architecture problem — and it needs an architecture answer.
-        </p>
+        <div class="tidb-compliance">
+          <span class="compliance-tag">Compliance bonus</span>
+          One ACID audit log. <em>Right-to-delete cascades through SQL + vectors
+          in the same transaction</em> — the only architecture where it actually
+          does. CCPA, GDPR, EU exposure: solved at the engine, not the app layer.
+        </div>
       </div>
     </div>
+
+    <p class="why-land">
+      You can't prompt your way out of an architecture problem.
+      Bigger context windows won't fix it. <span class="gold">Stop running four systems.</span>
+    </p>
   </section>
 
   <!-- =============================================================
@@ -305,24 +335,86 @@
           <div class="small">no fine-tuning · no retraining · no engineering ticket</div>
         </div>
         <div class="rev-stat">
-          <div class="big">$150K <em>/month</em></div>
-          <div class="cap">saved versus starting-from-scratch at 100,000 daily customer conversations.</div>
-          <div class="small">typical retailer scale · the cost of forgetting</div>
+          <div class="big">Compounds <em>daily</em></div>
+          <div class="cap">Every conversation makes the next sale easier — better fit, fewer returns, higher AOV. Your data moat compounds.</div>
+          <div class="small">competitors' pilots restart from zero · yours doesn't</div>
         </div>
         <div class="rev-stat">
           <div class="big">1 <em>database</em></div>
           <div class="cap">instead of four — and the sync jobs breaking at 3 AM that made the agent forget in the first place.</div>
-          <div class="small">on Azure Marketplace · 100% burns down your MACC commitment</div>
+          <div class="small">stop running four systems · that's the whole argument</div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- =============================================================
-       SLIDE 5 — PROOF
+       SLIDE 5 — YOUR CATEGORY (generic retail use cases)
+       ============================================================= -->
+  <section class="slide" id="slide-category">
+    <div class="eyebrow">Beat 05 · Your category · 2 minutes</div>
+    <h2>Same architecture. <em>Your customer.</em></h2>
+    <p class="lede">
+      The demo is dress sizing. The mechanism is identical for every retail
+      vertical. The agent's memory is whatever your customers come back for.
+    </p>
+
+    <div class="category-grid">
+      <div class="cat-card">
+        <div class="cat-tag">Apparel · accessories · luxury</div>
+        <div class="cat-name">Fit memory</div>
+        <div class="cat-desc">
+          Sizes that worked. Returns that didn't. Brand-by-brand quirks.
+          The agent recognizes the same customer across Coach, Kate, Stuart —
+          or across web, store, voice.
+        </div>
+        <div class="cat-stat">cross-brand · cross-channel · cross-session</div>
+      </div>
+
+      <div class="cat-card">
+        <div class="cat-tag">Furniture · home · big-ticket</div>
+        <div class="cat-name">Decision memory</div>
+        <div class="cat-desc">
+          Budget. Room dimensions. Financing terms in flight. Family changes.
+          A six-month consideration cycle stitched into one continuous conversation
+          instead of forty disconnected sessions.
+        </div>
+        <div class="cat-stat">multi-visit · financing-aware · household-level</div>
+      </div>
+
+      <div class="cat-card">
+        <div class="cat-tag">Wellness · beauty · CPG</div>
+        <div class="cat-name">Regimen memory</div>
+        <div class="cat-desc">
+          Skin type, allergies, what worked, what caused a reaction.
+          The agent supports the customer <em>and</em> the independent rep —
+          same memory shelf, two front ends.
+        </div>
+        <div class="cat-stat">side-effect aware · rep-empowering · subscription-native</div>
+      </div>
+
+      <div class="cat-card">
+        <div class="cat-tag">Loyalty · gifting · advisory</div>
+        <div class="cat-name">Relationship memory</div>
+        <div class="cat-desc">
+          Recipients. Occasions. Tier history. The associate equivalent who knows
+          you bought your daughter's graduation gift here last May —
+          available in every channel, 3 AM included.
+        </div>
+        <div class="cat-stat">occasion-aware · tier-aware · associate-grade</div>
+      </div>
+    </div>
+
+    <p class="cat-land">
+      The dress in the demo is interchangeable. <span class="gold">The architecture isn't.</span>
+    </p>
+  </section>
+
+  <!-- =============================================================
+       SLIDE 6 — PROOF
        ============================================================= -->
   <section class="slide" id="slide-proof">
-    <div class="eyebrow">Beat 05 · Production Proof · 2 minutes</div>
+    <div class="eyebrow">Beat 06 · Production Proof · 2 minutes</div>
     <h2>Not a vision. Already live in retail.</h2>
 
     <div class="proof-grid">
@@ -356,29 +448,70 @@
   </section>
 
   <!-- =============================================================
-       SLIDE 6 — MICROSOFT + WHY NOW
+       SLIDE 7 — THE LINEAGE (11 years, three eras, same architecture)
        ============================================================= -->
-  <section class="slide" id="slide-microsoft">
-    <div class="eyebrow">Beat 06 · Why Microsoft · Why Now · 4 minutes</div>
-    <h2>The Microsoft piece — three things that matter.</h2>
+  <section class="slide" id="slide-lineage">
+    <div class="eyebrow">Beat 07 · The lineage · 2 minutes</div>
+    <h2>Eleven years. Same architecture. <em>Three eras of scale.</em></h2>
+    <p class="lede">
+      TiDB shipped in 2015 to solve internet-scale SQL. The architecture that
+      scaled commerce, then real-time analytics, now scales agent memory.
+      This isn't a pivot — it's a fit.
+    </p>
 
-    <div class="ms-three">
-      <div class="ms-card">
-        <div class="num">01</div>
-        <h3>Azure Marketplace · MACC</h3>
-        <p>100% of this spend <strong>burns down your Microsoft Azure Consumption Commitment.</strong> It's not a net-new line item — it's retiring an obligation you've already made. Procurement already works.</p>
+    <div class="lineage-timeline">
+      <div class="era">
+        <div class="era-year">2015 → 2018</div>
+        <div class="era-name">Internet scale</div>
+        <div class="era-customers">Flipkart · Pinterest · Shopee · ByteDance</div>
+        <div class="era-problem">"Sharded MySQL won't scale us another year."</div>
+        <div class="era-fix">
+          Distributed SQL with strong consistency. <strong>One cluster instead of 700.</strong>
+          MySQL-compatible — apps don't change.
+        </div>
       </div>
-      <div class="ms-card">
-        <div class="num">02</div>
-        <h3>BYOC · your Azure tenant</h3>
-        <p>Deploys <strong>inside your Azure VPC.</strong> Your customer data never leaves. Your CISO keeps full control of IAM, keys, and security groups. Built for regulated retail — PII, payments, customer history.</p>
+
+      <div class="era">
+        <div class="era-year">2019 → 2022</div>
+        <div class="era-name">Real-time on live data</div>
+        <div class="era-customers">Banks · payments · ad-tech · fraud · gaming</div>
+        <div class="era-problem">"Our analytics is six hours stale by the time it matters."</div>
+        <div class="era-fix">
+          HTAP — <strong>TiKV (rows) + TiFlash (columnar)</strong> on the same data.
+          One source of truth, two access patterns.
+        </div>
       </div>
-      <div class="ms-card">
-        <div class="num">03</div>
-        <h3>iSoftStone · consulting &amp; migration</h3>
-        <p>One procurement path, one vendor accountability surface. Aurora → TiDB is usually <strong>a weekend with two engineers.</strong> Jason's team has done this before.</p>
+
+      <div class="era era-current">
+        <div class="era-year">2023 → now</div>
+        <div class="era-name">Agent memory at scale</div>
+        <div class="era-customers">Manus · Kimi · DeepSeek · Dify</div>
+        <div class="era-problem">"Rows + vectors + analytics in one transaction. For agents."</div>
+        <div class="era-fix">
+          The architecture that already worked. <strong>New workload, same engine.</strong>
+          Native vector + full-text added on the existing transaction boundary.
+        </div>
       </div>
     </div>
+
+    <div class="lineage-bookends">
+      <div class="bookend">
+        <div class="bookend-label">If you're starting your first agent pilot</div>
+        <div class="bookend-msg">Eleven years of production proof you didn't have to build. Same database the labs chose.</div>
+      </div>
+      <div class="bookend">
+        <div class="bookend-label">If you're hitting an inflection point</div>
+        <div class="bookend-msg">A ceiling you cannot outgrow. <strong>Manus runs 10M+ databases on it.</strong> Pinterest runs a million-QPS graph on it.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================================
+       SLIDE 8 — WHY NOW (decision window + friction-removed)
+       ============================================================= -->
+  <section class="slide" id="slide-whynow">
+    <div class="eyebrow">Beat 08 · Why Now · 3 minutes</div>
+    <h2>The decision window is <em>36 months</em>.</h2>
 
     <div class="window">
       <div class="big">36 <em>months</em></div>
@@ -387,6 +520,69 @@
         <p style="margin:0;">The window is about three years. After that, patterns calcify and switching costs become prohibitive. You saw this curve with cloud between 2012 and 2015.</p>
       </div>
     </div>
+
+    <p class="whynow-bridge">
+      The friction that used to keep this off your roadmap — procurement, security, migration — is already gone:
+    </p>
+
+    <div class="ms-three">
+      <div class="ms-card">
+        <div class="num">01</div>
+        <h3>Procurement is solved</h3>
+        <p>Available on every major cloud marketplace. <strong>Burns down your existing cloud commit</strong> — not a net-new line item. Procurement path your team already knows.</p>
+      </div>
+      <div class="ms-card">
+        <div class="num">02</div>
+        <h3>Security is solved</h3>
+        <p>Deploys <strong>inside your own cloud tenant.</strong> Customer data never leaves. Your CISO keeps full control of IAM, keys, and security groups. Built for regulated retail.</p>
+      </div>
+      <div class="ms-card">
+        <div class="num">03</div>
+        <h3>Migration is solved</h3>
+        <p>MySQL-compatible — <strong>your apps don't change.</strong> Aurora to TiDB is typically a weekend with two engineers. Snapshot, replicate, dual-write, cutover.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================================
+       SLIDE 7 — CONTRIBUTIONS CLOSE (mirrors the opening promise)
+       ============================================================= -->
+  <section class="slide" id="slide-close">
+    <div class="eyebrow">Beat 09 · Promise kept · 2 minutes</div>
+    <h2>What you walked in vs. what you walk out with.</h2>
+
+    <div class="close-grid">
+      <div class="close-col walked-in">
+        <div class="close-label">Walked in not knowing</div>
+        <ul>
+          <li>Why brilliant LLMs still produce dumb agent experiences</li>
+          <li>Why bigger context windows and better models won't fix it</li>
+          <li>Why your competitors' AI feels like it's compounding while yours plateaus</li>
+        </ul>
+      </div>
+
+      <div class="close-col walk-out">
+        <div class="close-label">Walk out knowing</div>
+        <ul>
+          <li><strong>Memory is what makes agents learn</strong> — and it has to live somewhere</li>
+          <li><strong>One database</strong> with rows + vectors + search + analytics beats four duct-taped together</li>
+          <li><strong>The labs that actually build AI</strong> — Kimi, DeepSeek, Manus, Dify — all chose this architecture</li>
+        </ul>
+      </div>
+
+      <div class="close-col monday">
+        <div class="close-label">Three questions for Monday</div>
+        <ol>
+          <li>"Where does our agent's memory <em>actually</em> live? Show me the database."</li>
+          <li>"Could a single query join customer history + conversation memory + live inventory?"</li>
+          <li>"What would change for our customer if our agents could learn between conversations?"</li>
+        </ol>
+      </div>
+    </div>
+
+    <p class="close-slogan">
+      Stop running four systems. <span class="close-slogan-tail">That's the whole argument.</span>
+    </p>
   </section>
 
   <!-- =============================================================
@@ -399,45 +595,40 @@
 
     <div class="qa-grid">
       <div class="qa-card">
-        <div class="q">"We already have Azure OpenAI and Cosmos DB / Aurora. Why another database?"</div>
-        <div class="a">MySQL-compatible wire protocol — if you're on Aurora, the app doesn't change. Adds native vector + real-time analytics on live data. On Marketplace, burns down the same MACC you're already committing to. <strong>Additive to Microsoft's stack, not competitive.</strong></div>
+        <div class="q">"We already have Postgres / MySQL / Aurora. Why another database?"</div>
+        <div class="a">MySQL-compatible wire protocol — if you're on Aurora or MySQL, the app doesn't change. Adds <strong>native vector search + real-time analytics on live data</strong> in one transaction boundary. Replaces three or four systems with one.</div>
       </div>
       <div class="qa-card">
         <div class="q">"Our data cannot leave our tenant."</div>
-        <div class="a">BYOC in Azure — runs inside your Azure VPC. Control plane never touches customer data. PrivateLink only. <strong>Your IAM, your keys, your encryption.</strong></div>
+        <div class="a">BYOC — runs inside your own cloud account. Control plane never touches customer data. <strong>Your IAM, your keys, your encryption.</strong> PrivateLink only.</div>
       </div>
       <div class="qa-card">
-        <div class="q">"What about Copilot / Copilot Studio?"</div>
-        <div class="a">Copilot is the language centre — the reasoning layer. This is the memory layer underneath it. They connect via MCP (Model Context Protocol). <strong>Complementary, not competing.</strong></div>
+        <div class="q">"What about Copilot / Bedrock agents / Vertex agents?"</div>
+        <div class="a">Those are the reasoning layer — language centres. <strong>This is the memory layer underneath them.</strong> They connect via MCP (Model Context Protocol). Complementary, not competing — works with any agent framework.</div>
       </div>
       <div class="qa-card">
-        <div class="q">"How is this different from pgvector on Aurora?"</div>
-        <div class="a"><strong>Two things.</strong> (1) pgvector hits a ceiling around 10M vectors — Manus runs 10M databases on this. (2) pgvector still leaves analytics in a separate warehouse, so your agents reason on stale data. This keeps SQL, vectors, and real-time analytics in one transaction boundary.</div>
+        <div class="q">"How is this different from pgvector on Postgres?"</div>
+        <div class="a"><strong>Two things.</strong> (1) pgvector hits a practical ceiling around 10M vectors — Manus runs 10M+ databases on this. (2) pgvector still leaves analytics in a separate warehouse, so your agents reason on stale data. TiDB keeps SQL, vectors, full-text, and real-time analytics in <strong>one transaction boundary.</strong></div>
       </div>
       <div class="qa-card">
-        <div class="q">"What does migration from Aurora look like?"</div>
-        <div class="a">Typically a weekend with two engineers. Snapshot, replicate binlog in real-time, 48–72 hours of dual-write validation, DNS cutover. <strong>iSoftStone has done it before — Jason can walk through the methodology.</strong></div>
+        <div class="q">"What does migration from Aurora / MySQL look like?"</div>
+        <div class="a">Typically a weekend with two engineers. Snapshot, replicate binlog in real-time, 48–72 hours of dual-write validation, DNS cutover. <strong>MySQL-compatible means your apps don't change.</strong></div>
       </div>
       <div class="qa-card">
         <div class="q">"Pinecone benchmarks better on vector recall."</div>
-        <div class="a">In isolation, yes. The question isn't raw recall — it's whether running two systems with a sync job between them beats one unified system. The sync lag, the failed deletes, the Right-to-Delete cascade that doesn't reach your vector store — <strong>those costs show up in your 3 AM pages, not a benchmark.</strong></div>
+        <div class="a">In isolation, yes. The real question isn't raw recall — it's whether running two systems with a sync job between them beats one unified system. The sync lag, the failed deletes, the Right-to-Delete cascade that doesn't reach your vector store — <strong>those costs show up in your 3 AM pages, not a benchmark.</strong></div>
       </div>
       <div class="qa-card">
         <div class="q">"We're evaluating CockroachDB / YugabyteDB / PlanetScale."</div>
-        <div class="a">MySQL compatibility is the unlock vs. Cockroach's Postgres-first approach. HTAP (real-time analytics on live data) is the unlock vs. all of them. Vector search native is the unlock vs. PlanetScale. <strong>Happy to do a head-to-head on a specific workload.</strong></div>
+        <div class="a">MySQL compatibility is the unlock vs. Cockroach's Postgres-first approach. HTAP (real-time analytics on live data) is the unlock vs. all of them. Native vector + full-text is the unlock vs. PlanetScale. <strong>Happy to do a head-to-head on a specific workload.</strong></div>
       </div>
       <div class="qa-card">
-        <div class="q">"What's the compliance story — CCPA, EU exposure?"</div>
+        <div class="q">"What's the compliance story — CCPA, GDPR, EU exposure?"</div>
         <div class="a">One ACID audit log covers every agent decision. Right-to-Delete cascades through the relational layer and the vector layer <strong>in one transaction</strong> — they're the same engine. That's something a Frankenstack fundamentally can't give you.</div>
       </div>
     </div>
   </section>
 
-</div>
-
-<!-- ================ BOTTOM NAV / KEYBOARD HINT ================ -->
-<div class="keyhint">
-  <kbd>←</kbd> <kbd>→</kbd> navigate · <kbd>0</kbd>–<kbd>7</kbd> jump · <kbd>R</kbd> reset demo
 </div>
 
 <div class="nav-controls">
