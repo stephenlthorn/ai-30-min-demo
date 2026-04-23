@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="/static/styles.css?v=8" />
+  <link rel="stylesheet" href="/static/styles.css?v=9" />
 </head>
 
 <body>
@@ -151,7 +151,7 @@
   </section>
 
   <!-- =============================================================
-       SLIDE 2 — WHY AGENTS FORGET
+       SLIDE 3 — WHY AGENTS FORGET
        ============================================================= -->
   <section class="slide" id="slide-why">
     <div class="eyebrow">Beat 02 · Why This Happens — and the architecture that fixes it · 5 minutes</div>
@@ -305,10 +305,11 @@
   </section>
 
   <!-- =============================================================
-       SLIDE 3 — THE CONVERGENCE
+       SLIDE 4 — THE CONVERGENCE
        ============================================================= -->
   <section class="slide" id="slide-convergence">
     <div class="eyebrow">Beat 03 · The Convergence · 4 minutes</div>
+    <p class="conv-kicker">You're not the first to figure this out.</p>
     <h2>Four labs building AI. One architectural answer.</h2>
 
     <div class="convergence-grid">
@@ -347,96 +348,94 @@
   </section>
 
   <!-- =============================================================
-       SLIDE 4.5 — MANUS UNIT ECONOMICS
+       SLIDE 5 — THREE MEMORIES (the architecture, named)
        ============================================================= -->
-  <section class="slide" id="slide-manus">
-    <div class="eyebrow">Beat 03.5 · The Manus Math · 2 minutes</div>
-    <h2>Their $5/month price is arithmetic — not marketing.</h2>
+  <section class="slide" id="slide-memories">
+    <div class="eyebrow">Beat 04 · The Architecture, Named · 3 minutes</div>
+    <h2>The Memory Wall <span class="arrow">→</span> The Cognitive Foundation.</h2>
+    <p class="mem-lede">
+      Before we run the demo, here's the vocabulary. What you're about to watch isn't magic — it's three named memory types working in concert.
+      Cognitive science gave us the taxonomy. <span class="emph">We built the maintenance layer that makes it production-grade.</span>
+      The Cognitive Foundation is both — the named types, and the duties that keep them honest.
+    </p>
 
-    <div class="manus-grid">
-
-      <div class="manus-col manus-aws">
-        <div class="manus-col-label">If Manus ran on AWS</div>
-        <div class="manus-line-item">
-          <div class="mli-label">Cheapest managed DB</div>
-          <div class="mli-value">db.t4g.micro · reserved 1-yr</div>
+    <div class="memories-grid">
+      <div class="memory-type mt-episodic">
+        <div class="mt-label">Episodic</div>
+        <div class="mt-name">What happened</div>
+        <div class="mt-table">in TiDB · <code>agent_reasoning</code></div>
+        <div class="mt-desc">
+          Time-stamped investigation history. Scoped by entity, linked by supersession chains.
+          Every interaction Emma had with the brand — across web, store, voice, six-month gaps —
+          available in one query.
         </div>
-        <div class="manus-line-item">
-          <div class="mli-label">Cost per database</div>
-          <div class="mli-value mli-red">$9.60 / month</div>
-        </div>
-        <div class="manus-line-item">
-          <div class="mli-label">Manus databases today</div>
-          <div class="mli-value">10,000,000</div>
-        </div>
-        <div class="manus-line-item mli-total">
-          <div class="mli-label">Monthly DB bill</div>
-          <div class="mli-value mli-red">$96,000,000</div>
-        </div>
-        <div class="manus-line-item mli-total">
-          <div class="mli-label">Annual DB bill</div>
-          <div class="mli-value mli-red">$1,150,000,000</div>
-        </div>
-        <div class="manus-verdict manus-verdict-bad">
-          Starter plan: $5/month per user.<br>
-          DB cost per user on AWS: $9.60.<br>
-          <strong>Loss per user: $4.60 — before any compute, bandwidth, or support.</strong>
-        </div>
+        <div class="mt-demo">Watch for: recognizing Emma. The cream linen shift. The wrap dress return.</div>
+        <div class="mt-tag">per-customer · per-session · auditable</div>
       </div>
 
-      <div class="manus-col manus-tidb">
-        <div class="manus-col-label">With TiDB Serverless</div>
-        <div class="manus-line-item">
-          <div class="mli-label">Free tier per database</div>
-          <div class="mli-value">25 GB storage + 250M RUs</div>
+      <div class="memory-type mt-semantic">
+        <div class="mt-label">Semantic</div>
+        <div class="mt-name">What we learned</div>
+        <div class="mt-table">in TiDB · <code>fleet_memory</code></div>
+        <div class="mt-desc">
+          Platform-wide knowledge. Scoped by global / site / segment. Deduplicated, decayed, compacted.
+          The lessons every customer pays for once and every other customer benefits from forever.
         </div>
-        <div class="manus-line-item">
-          <div class="mli-label">95% of Manus databases</div>
-          <div class="mli-value">Agent-created · often idle</div>
-        </div>
-        <div class="manus-line-item">
-          <div class="mli-label">Cost of an idle database</div>
-          <div class="mli-value mli-green">~$0 / month</div>
-        </div>
-        <div class="manus-line-item">
-          <div class="mli-label">Pay-as-you-go</div>
-          <div class="mli-value mli-green">Fractions of a cent / row read</div>
-        </div>
-        <div class="manus-line-item mli-total">
-          <div class="mli-label">10M databases</div>
-          <div class="mli-value mli-green">Viable</div>
-        </div>
-        <div class="manus-line-item mli-total">
-          <div class="mli-label">Migration time</div>
-          <div class="mli-value mli-green">2 weeks</div>
-        </div>
-        <div class="manus-verdict manus-verdict-good">
-          Idle databases cost near zero.<br>
-          You pay only for what agents actually use.<br>
-          <strong>The architecture makes the business model possible.</strong>
-        </div>
+        <div class="mt-demo">Watch for: the size-up rule for relaxed weaves. Bias cuts behave differently than straight cuts.</div>
+        <div class="mt-tag">cross-customer · self-maintaining · compounding</div>
       </div>
 
+      <div class="memory-type mt-procedural">
+        <div class="mt-label">Procedural</div>
+        <div class="mt-name">What works</div>
+        <div class="mt-table">next architectural step</div>
+        <div class="mt-desc">
+          Learned investigation strategies. <em>"When a between-size customer asks about linen,
+          check return history first, then size-up rule, then color preference."</em>
+          Today this lives implicitly in semantic memory. Tomorrow: its own retrieval path and lifecycle.
+        </div>
+        <div class="mt-demo">Watch for: the order of operations the agent follows without being told.</div>
+        <div class="mt-tag">strategy memory · the missing layer · the roadmap</div>
+      </div>
     </div>
 
-    <div class="manus-punchline">
-      Manus charges $5/month because TiDB Serverless scales to zero.
-      You can't price an AI product without solving the database problem first.
-      <span class="emph">Every AI company eventually discovers this math.</span>
+    <div class="duties-strip">
+      <div class="duties-strip-label">The five duties — what makes memory production-grade</div>
+      <div class="duties-strip-list">
+        <span>Write control</span><span>Deduplication</span><span>Reconciliation</span><span>Confidence decay</span><span>Compaction</span>
+      </div>
     </div>
+
+    <div class="field-signal field-signal-compact">
+      <div class="field-signal-tag">What practitioners are converging on</div>
+      <ul class="field-signal-list">
+        <li><span class="pull-gold">Episodic memory and audit trails are not nice-to-haves</span> — they're the only way to control context bloat without retraining.</li>
+        <li>Compound ROI shows up where the same lesson never has to be paid for twice. That's semantic memory doing its job.</li>
+        <li>The taxonomy is converging across vendors, labs, and operators. The question is no longer <em>whether</em> to build it — it's whose stack you build it on.</li>
+      </ul>
+    </div>
+
+    <p class="mem-land">
+      Session state and context snapshots are operational infrastructure — they support the memory system, but they aren't memory.
+      <span class="emph">CMA — the Cognitive Memory Architecture — is the Cognitive Foundation. We know how to build it. Here's how it's built.</span>
+    </p>
   </section>
 
   <!-- =============================================================
-       SLIDE 4 — THE DEMO (the WOW)
+       SLIDE 6 — THE DEMO (the WOW)
        ============================================================= -->
   <section class="slide slide-demo" id="slide-demo">
-    <div class="eyebrow">Beat 04 · Live · 10 minutes · Press <kbd style="font-family:inherit;background:var(--paper);border:1px solid var(--ink-line);padding:1px 6px;font-size:10px">R</kbd> to replay</div>
+    <div class="eyebrow">Beat 05 · Live · 10 minutes · Press <kbd style="font-family:inherit;background:var(--paper);border:1px solid var(--ink-line);padding:1px 6px;font-size:10px">R</kbd> to replay</div>
     <h2 style="margin-bottom: 8px;">Same customer. Same question. Two architectures.</h2>
     <p class="vv-sub">
       Emma bought the cream linen shift three weeks ago. She's back on vineyardvines.com tonight, asking for help with a beach-trip outfit. Watch what each chatbot does with that fact.
     </p>
     <p class="vv-sub-meta">
       Two windows · same brand · same chatbot UI · only the memory architecture differs
+    </p>
+    <p class="vv-vocab">
+      <span class="vv-vocab-tag">Watch for</span>
+      <strong>episodic memory</strong> recognizing Emma · <strong>semantic memory</strong> applying the size-up rule · <strong>procedural memory</strong> deciding the order of operations.
     </p>
 
     <div class="vv-stage">
@@ -554,84 +553,127 @@
   </section>
 
   <!-- =============================================================
-       SLIDE 4.5 — THREE MEMORIES (the architecture, named)
+       SLIDE 7 — MANUS UNIT ECONOMICS
        ============================================================= -->
-  <section class="slide" id="slide-memories">
-    <div class="eyebrow">Beat 04.5 · The Architecture, Named · 3 minutes</div>
-    <h2>The Memory Wall <span class="arrow">→</span> The Cognitive Foundation.</h2>
-    <p class="mem-lede">
-      What you just watched isn't magic — it's three named memory types working in concert.
-      Cognitive science gave us the taxonomy. <span class="emph">We built the maintenance layer that makes it production-grade.</span>
-      The Cognitive Foundation is both — the named types, and the duties that keep them honest.
-    </p>
+  <section class="slide" id="slide-manus">
+    <div class="eyebrow">Beat 06 · The Manus Math · 2 minutes</div>
+    <h2>Their $5/month price is arithmetic — not marketing.</h2>
 
-    <div class="memories-grid">
-      <div class="memory-type mt-episodic">
-        <div class="mt-label">Episodic</div>
-        <div class="mt-name">What happened</div>
-        <div class="mt-table">in TiDB · <code>agent_reasoning</code></div>
-        <div class="mt-desc">
-          Time-stamped investigation history. Scoped by entity, linked by supersession chains.
-          Every interaction Emma had with the brand — across web, store, voice, six-month gaps —
-          available in one query.
+    <div class="manus-grid">
+
+      <div class="manus-col manus-aws">
+        <div class="manus-col-label">If Manus ran on AWS</div>
+        <div class="manus-line-item">
+          <div class="mli-label">Cheapest managed DB</div>
+          <div class="mli-value">db.t4g.micro · reserved 1-yr</div>
         </div>
-        <div class="mt-demo">In the demo: recognizing Emma. The cream linen shift. The wrap dress return.</div>
-        <div class="mt-tag">per-customer · per-session · auditable</div>
+        <div class="manus-line-item">
+          <div class="mli-label">Cost per database</div>
+          <div class="mli-value mli-red">$9.60 / month</div>
+        </div>
+        <div class="manus-line-item">
+          <div class="mli-label">Manus databases today</div>
+          <div class="mli-value">10,000,000</div>
+        </div>
+        <div class="manus-line-item mli-total">
+          <div class="mli-label">Monthly DB bill</div>
+          <div class="mli-value mli-red">$96,000,000</div>
+        </div>
+        <div class="manus-line-item mli-total">
+          <div class="mli-label">Annual DB bill</div>
+          <div class="mli-value mli-red">$1,150,000,000</div>
+        </div>
+        <div class="manus-verdict manus-verdict-bad">
+          Starter plan: $5/month per user.<br>
+          DB cost per user on AWS: $9.60.<br>
+          <strong>Loss per user: $4.60 — before any compute, bandwidth, or support.</strong>
+        </div>
       </div>
 
-      <div class="memory-type mt-semantic">
-        <div class="mt-label">Semantic</div>
-        <div class="mt-name">What we learned</div>
-        <div class="mt-table">in TiDB · <code>fleet_memory</code></div>
-        <div class="mt-desc">
-          Platform-wide knowledge. Scoped by global / site / segment. Deduplicated, decayed, compacted.
-          The lessons every customer pays for once and every other customer benefits from forever.
+      <div class="manus-col manus-tidb">
+        <div class="manus-col-label">With TiDB Serverless</div>
+        <div class="manus-line-item">
+          <div class="mli-label">Free tier per database</div>
+          <div class="mli-value">25 GB storage + 250M RUs</div>
         </div>
-        <div class="mt-demo">In the demo: the size-up rule for relaxed weaves. Bias cuts behave differently than straight cuts.</div>
-        <div class="mt-tag">cross-customer · self-maintaining · compounding</div>
+        <div class="manus-line-item">
+          <div class="mli-label">95% of Manus databases</div>
+          <div class="mli-value">Agent-created · often idle</div>
+        </div>
+        <div class="manus-line-item">
+          <div class="mli-label">Cost of an idle database</div>
+          <div class="mli-value mli-green">~$0 / month</div>
+        </div>
+        <div class="manus-line-item">
+          <div class="mli-label">Pay-as-you-go</div>
+          <div class="mli-value mli-green">Fractions of a cent / row read</div>
+        </div>
+        <div class="manus-line-item mli-total">
+          <div class="mli-label">10M databases</div>
+          <div class="mli-value mli-green">Viable</div>
+        </div>
+        <div class="manus-line-item mli-total">
+          <div class="mli-label">Migration time</div>
+          <div class="mli-value mli-green">2 weeks</div>
+        </div>
+        <div class="manus-verdict manus-verdict-good">
+          Idle databases cost near zero.<br>
+          You pay only for what agents actually use.<br>
+          <strong>The architecture makes the business model possible.</strong>
+        </div>
       </div>
 
-      <div class="memory-type mt-procedural">
-        <div class="mt-label">Procedural</div>
-        <div class="mt-name">What works</div>
-        <div class="mt-table">next architectural step</div>
-        <div class="mt-desc">
-          Learned investigation strategies. <em>"When a between-size customer asks about linen,
-          check return history first, then size-up rule, then color preference."</em>
-          Today this lives implicitly in semantic memory. Tomorrow: its own retrieval path and lifecycle.
-        </div>
-        <div class="mt-demo">In the demo: the order of operations the agent followed without being told.</div>
-        <div class="mt-tag">strategy memory · the missing layer · the roadmap</div>
-      </div>
     </div>
 
-    <div class="duties-strip">
-      <div class="duties-strip-label">The five duties — what makes memory production-grade</div>
-      <div class="duties-strip-list">
-        <span>Write control</span><span>Deduplication</span><span>Reconciliation</span><span>Confidence decay</span><span>Compaction</span>
-      </div>
+    <div class="manus-punchline">
+      Manus charges $5/month because TiDB Serverless scales to zero.
+      You can't price an AI product without solving the database problem first.
+      <span class="emph">Every AI company eventually discovers this math.</span>
     </div>
-
-    <div class="field-signal field-signal-compact">
-      <div class="field-signal-tag">What practitioners are converging on</div>
-      <ul class="field-signal-list">
-        <li><span class="pull-gold">Episodic memory and audit trails are not nice-to-haves</span> — they're the only way to control context bloat without retraining.</li>
-        <li>Compound ROI shows up where the same lesson never has to be paid for twice. That's semantic memory doing its job.</li>
-        <li>The taxonomy is converging across vendors, labs, and operators. The question is no longer <em>whether</em> to build it — it's whose stack you build it on.</li>
-      </ul>
-    </div>
-
-    <p class="mem-land">
-      Session state and context snapshots are operational infrastructure — they support the memory system, but they aren't memory.
-      <span class="emph">CMA — the Cognitive Memory Architecture — is the Cognitive Foundation. We know how to build it. Here's how it's built.</span>
-    </p>
   </section>
 
   <!-- =============================================================
-       SLIDE 5 — YOUR CATEGORY (generic retail use cases)
+       SLIDE 8 — PROOF
+       ============================================================= -->
+  <section class="slide" id="slide-proof">
+    <div class="eyebrow">Beat 07 · Production Proof · 2 minutes</div>
+    <h2>Not a vision. Already live in retail.</h2>
+
+    <div class="proof-grid">
+      <div class="proof-card">
+        <div class="logo">Rakuten</div>
+        <div class="sector">Loyalty · payments</div>
+        <div class="hero">Real-time <em>on live data</em></div>
+        <div class="desc">Modernized the loyalty platform with real-time analytics running on the same data that handles transactions. No ETL lag. Higher concurrency, lower operational load.</div>
+        <div class="why">The reference for Bob's Discount–scale reactivation and Amway loyalty rewards.</div>
+      </div>
+      <div class="proof-card">
+        <div class="logo">Pinterest</div>
+        <div class="sector">Graph · discovery</div>
+        <div class="hero">1M+ <em>QPS</em></div>
+        <div class="desc">Replaced the Zen graph service with a distributed graph built on this architecture. Horizontal scale, sub-5ms p95 tail latency, simpler ops.</div>
+        <div class="why">If you're building product-discovery graphs — Tapestry, Vineyard Vines — this is the scale ceiling.</div>
+      </div>
+      <div class="proof-card">
+        <div class="logo">Flipkart</div>
+        <div class="sector">Commerce · holiday scale</div>
+        <div class="hero">700 → <em>1 cluster</em></div>
+        <div class="desc">Replaced 700+ MySQL clusters with one. Zero-downtime maintenance during holiday-spike windows. Over one million queries per second.</div>
+        <div class="why">The reference architecture for Black Friday and Cyber Monday volume.</div>
+      </div>
+    </div>
+
+    <div class="punchline" style="margin-top: 20px;">
+      You have not read about this architecture in a pitch deck.
+      <span class="emph">You've watched competitors run on it for two years already.</span>
+    </div>
+  </section>
+
+  <!-- =============================================================
+       SLIDE 9 — YOUR CATEGORY (generic retail use cases)
        ============================================================= -->
   <section class="slide" id="slide-category">
-    <div class="eyebrow">Beat 05 · Your category · 2 minutes</div>
+    <div class="eyebrow">Beat 08 · Your category · 2 minutes</div>
     <h2>Same architecture. <em>Your customer.</em></h2>
     <p class="lede">
       The demo is dress sizing. The mechanism is identical for every retail
@@ -690,47 +732,10 @@
   </section>
 
   <!-- =============================================================
-       SLIDE 6 — PROOF
-       ============================================================= -->
-  <section class="slide" id="slide-proof">
-    <div class="eyebrow">Beat 06 · Production Proof · 2 minutes</div>
-    <h2>Not a vision. Already live in retail.</h2>
-
-    <div class="proof-grid">
-      <div class="proof-card">
-        <div class="logo">Rakuten</div>
-        <div class="sector">Loyalty · payments</div>
-        <div class="hero">Real-time <em>on live data</em></div>
-        <div class="desc">Modernized the loyalty platform with real-time analytics running on the same data that handles transactions. No ETL lag. Higher concurrency, lower operational load.</div>
-        <div class="why">The reference for Bob's Discount–scale reactivation and Amway loyalty rewards.</div>
-      </div>
-      <div class="proof-card">
-        <div class="logo">Pinterest</div>
-        <div class="sector">Graph · discovery</div>
-        <div class="hero">1M+ <em>QPS</em></div>
-        <div class="desc">Replaced the Zen graph service with a distributed graph built on this architecture. Horizontal scale, sub-5ms p95 tail latency, simpler ops.</div>
-        <div class="why">If you're building product-discovery graphs — Tapestry, Vineyard Vines — this is the scale ceiling.</div>
-      </div>
-      <div class="proof-card">
-        <div class="logo">Flipkart</div>
-        <div class="sector">Commerce · holiday scale</div>
-        <div class="hero">700 → <em>1 cluster</em></div>
-        <div class="desc">Replaced 700+ MySQL clusters with one. Zero-downtime maintenance during holiday-spike windows. Over one million queries per second.</div>
-        <div class="why">The reference architecture for Black Friday and Cyber Monday volume.</div>
-      </div>
-    </div>
-
-    <div class="punchline" style="margin-top: 20px;">
-      You have not read about this architecture in a pitch deck.
-      <span class="emph">You've watched competitors run on it for two years already.</span>
-    </div>
-  </section>
-
-  <!-- =============================================================
-       SLIDE 7 — THE LINEAGE (11 years, three eras, same architecture)
+       SLIDE 10 — THE LINEAGE (11 years, three eras, same architecture)
        ============================================================= -->
   <section class="slide" id="slide-lineage">
-    <div class="eyebrow">Beat 07 · The lineage · 2 minutes</div>
+    <div class="eyebrow">Beat 09 · The lineage · 2 minutes</div>
     <h2>Eleven years. Same architecture. <em>Three eras of scale.</em></h2>
     <p class="lede">
       TiDB shipped in 2015 to solve internet-scale SQL. The architecture that
@@ -783,13 +788,17 @@
         <div class="bookend-msg">A ceiling you cannot outgrow. <strong>Manus runs 10M+ databases on it.</strong> Pinterest runs a million-QPS graph on it.</div>
       </div>
     </div>
+
+    <p class="lineage-pivot">
+      Three eras. <span class="emph">The fourth one is being decided right now.</span>
+    </p>
   </section>
 
   <!-- =============================================================
-       SLIDE 8 — WHY NOW (decision window + friction-removed)
+       SLIDE 11 — WHY NOW (decision window + friction-removed)
        ============================================================= -->
   <section class="slide" id="slide-whynow">
-    <div class="eyebrow">Beat 08 · Why Now · 3 minutes</div>
+    <div class="eyebrow">Beat 10 · Why Now · 3 minutes</div>
     <h2>The decision window is <em>36 months</em>.</h2>
 
     <div class="window">
@@ -833,10 +842,10 @@
   </section>
 
   <!-- =============================================================
-       SLIDE 7 — CONTRIBUTIONS CLOSE (mirrors the opening promise)
+       SLIDE 12 — CONTRIBUTIONS CLOSE (mirrors the opening promise)
        ============================================================= -->
   <section class="slide" id="slide-close">
-    <div class="eyebrow">Beat 09 · Promise kept · 2 minutes</div>
+    <div class="eyebrow">Beat 11 · Promise kept · 2 minutes</div>
     <h2>What you walked in vs. what you walk out with.</h2>
 
     <div class="close-grid">
@@ -877,7 +886,7 @@
   </section>
 
   <!-- =============================================================
-       SLIDE 7 — Q&A APPENDIX (reference card for audience questions)
+       SLIDE 13 — Q&A APPENDIX (reference card for audience questions)
        ============================================================= -->
   <section class="slide" id="slide-qa">
     <div class="eyebrow">Appendix · Anticipated questions</div>
