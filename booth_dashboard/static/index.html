@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="/static/styles.css?v=17" />
+  <link rel="stylesheet" href="/static/styles.css?v=18" />
 </head>
 
 <body>
@@ -271,6 +271,39 @@
         <div class="tidb-note">
           One write. One transaction. ACID across all four. Apps keep talking MySQL.
         </div>
+      </div>
+    </div>
+
+    <!-- Librarian analogy — visual explanation of token tax vs curated context -->
+    <div class="librarian-box">
+      <div class="lb-panel lb-bad">
+        <div class="lb-top-label">1M context window · the token tax</div>
+        <div class="lb-scatter">
+          <div class="lb-sb"></div><div class="lb-sb"></div><div class="lb-sb"></div>
+          <div class="lb-sb"></div><div class="lb-sb"></div><div class="lb-sb"></div>
+          <div class="lb-sb"></div><div class="lb-sb"></div><div class="lb-sb"></div>
+          <div class="lb-sb"></div><div class="lb-sb"></div><div class="lb-sb"></div>
+          <div class="lb-sb"></div><div class="lb-sb"></div><div class="lb-sb"></div>
+          <div class="lb-sb"></div><div class="lb-sb"></div><div class="lb-sb"></div>
+        </div>
+        <div class="lb-caption">Carry all 10,000 books, every session. Pay per page — whether you read it or not.</div>
+      </div>
+
+      <div class="lb-middle">
+        <div class="lb-fn">assemble_context()</div>
+        <div class="lb-arrow">↓</div>
+        <div class="lb-fn-note">ranked by relevance<br>fitted to budget</div>
+      </div>
+
+      <div class="lb-panel lb-good">
+        <div class="lb-top-label">Cognitive Foundation · curated context</div>
+        <div class="lb-curated">
+          <div class="lb-cb" style="--bc:var(--gold-2)">Customer profile <em>80 tok · always first</em></div>
+          <div class="lb-cb" style="--bc:var(--burgundy)">Recent events <em>~200 tok</em></div>
+          <div class="lb-cb" style="--bc:var(--moss)">Prior decisions <em>~300 tok</em></div>
+          <div class="lb-cb lb-cb-opt" style="--bc:var(--ink-faint)">Fleet memory <em>if budget remains</em></div>
+        </div>
+        <div class="lb-caption">A perfectly curated stack — never knowing 10,000 books existed but weren't selected.</div>
       </div>
     </div>
 
