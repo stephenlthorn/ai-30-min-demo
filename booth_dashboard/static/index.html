@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="/static/styles.css?v=15" />
+  <link rel="stylesheet" href="/static/styles.css?v=16" />
 </head>
 
 <body>
@@ -110,42 +110,100 @@
        SLIDE 2 — THE HOOK (the Sarah story)
        ============================================================= -->
   <section class="slide" id="slide-sarah">
-    <div class="eyebrow">Beat 01 · The Hook · 4 minutes</div>
+    <div class="eyebrow">The Problem</div>
     <h2>It's Black Friday. Your top-1% VIP is back.</h2>
 
-    <div class="story">
-      <p>
-        Three weeks ago she bought a <span class="gold">$4,800 basket</span> through your digital channel.
-        Your AI associate handled it beautifully — she was in the session, so it "knew" her.
-      </p>
+    <div class="sarah-scene">
 
-      <p>
-        She comes back tonight. Different session. Same brand. Same AI.
-      </p>
+      <!-- Column 1: Customer Profile Card -->
+      <div class="sarah-profile">
+        <div class="sarah-profile-top">
+          <div class="sarah-avatar">S</div>
+          <div class="sarah-identity">
+            <div class="sarah-name">Sarah M.</div>
+            <div class="sarah-tier">⭐ Top 1% VIP · Platinum</div>
+          </div>
+        </div>
+        <div class="sarah-divider"></div>
+        <div class="sarah-facts">
+          <div class="sarah-fact">
+            <div class="sf-label">Last purchase</div>
+            <div class="sf-val sf-gold">$4,800 · 3 weeks ago</div>
+          </div>
+          <div class="sarah-fact">
+            <div class="sf-label">Preferred size</div>
+            <div class="sf-val">4 · fitted</div>
+          </div>
+          <div class="sarah-fact">
+            <div class="sf-label">Open return</div>
+            <div class="sf-val">Black sheath dress</div>
+          </div>
+          <div class="sarah-fact">
+            <div class="sf-label">Madison Ave note</div>
+            <div class="sf-val">Loves bold prints. Ask about new arrivals.</div>
+          </div>
+          <div class="sarah-fact">
+            <div class="sf-label">In-store visits</div>
+            <div class="sf-val">14 this year</div>
+          </div>
+        </div>
+      </div>
 
-      <p class="emph">
-        It has no idea who she is.
-      </p>
+      <!-- Column 2: Session 1 — 3 weeks ago, worked -->
+      <div class="sarah-session sarah-ok">
+        <div class="session-header session-header-ok">
+          <span class="session-dot"></span>
+          3 weeks ago · session active
+        </div>
+        <div class="chat-log">
+          <div class="chat-bubble chat-ai">
+            <div class="chat-sender">AI Associate</div>
+            Hi Sarah! I see you loved the Arabella collection. The new bold florals just landed — your size 4 is in stock.
+          </div>
+          <div class="chat-bubble chat-user">
+            Perfect. I'll take the floral midi and the matching belt.
+          </div>
+          <div class="chat-bubble chat-ai">
+            <div class="chat-sender">AI Associate</div>
+            Added to cart. And the black sheath return — want me to schedule a pickup?
+          </div>
+          <div class="chat-receipt">
+            <span>🛍</span> $4,800 · 3 items · Checkout complete
+          </div>
+        </div>
+      </div>
 
-      <p>
-        Not the dress. Not the size. Not the return she flagged last month.
-        Not the fact that your Madison Avenue associate has already solved
-        this exact conversation forty times this quarter.
-      </p>
+      <!-- Column 3: Session 2 — tonight, AI forgot -->
+      <div class="sarah-session sarah-bad">
+        <div class="session-header session-header-bad">
+          <span class="session-dot"></span>
+          Tonight · Black Friday · new session
+        </div>
+        <div class="chat-log">
+          <div class="chat-bubble chat-ai">
+            <div class="chat-sender">AI Associate</div>
+            Hi! Welcome to Vineyard Vines. How can I help you today?
+          </div>
+          <div class="chat-bubble chat-user">
+            It's me again. Any update on my return?
+          </div>
+          <div class="chat-bubble chat-ai">
+            <div class="chat-sender">AI Associate</div>
+            I'd be happy to help! Could you share your order number?
+          </div>
+          <div class="chat-blank">
+            Memory wiped. Starts from zero.
+          </div>
+        </div>
+      </div>
 
-      <p>
-        <span class="gold">The model is brilliant.</span>
-        But every new session billed you to rediscover everything it already knew.
-        That's the token tax — and that gap is where every AI investment in this room is leaking value right now.
-      </p>
-
-      <p class="sarah-land">
-        Here's the unwelcome truth nobody on the model side will tell you:
-        <span class="big-line">agents do not have memory.</span>
-        Not by accident — <em>by design</em>. The model is a stateless function. Memory has to come from somewhere else.
-        That somewhere-else is the Cognitive Foundation.
-      </p>
     </div>
+
+    <p class="sarah-land">
+      <span class="emph">Agents do not have memory</span> — not by accident, <em>by design</em>.
+      The model is stateless. Every new session, every AI in this room starts over.
+      That gap is where your investment is leaking right now.
+    </p>
   </section>
 
   <!-- =============================================================
