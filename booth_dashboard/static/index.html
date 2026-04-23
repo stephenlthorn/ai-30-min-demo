@@ -562,31 +562,31 @@
     <div class="manus-grid">
 
       <div class="manus-col manus-aws">
-        <div class="manus-col-label">If Manus ran on AWS</div>
+        <div class="manus-col-label">Standard managed DB (any major cloud)</div>
         <div class="manus-line-item">
-          <div class="mli-label">Cheapest managed DB</div>
-          <div class="mli-value">db.t4g.micro · reserved 1-yr</div>
+          <div class="mli-label">Cheapest managed DB available</div>
+          <div class="mli-value">Render Postgres Basic · $6/mo</div>
         </div>
         <div class="manus-line-item">
           <div class="mli-label">Cost per database</div>
-          <div class="mli-value mli-red">$9.60 / month</div>
+          <div class="mli-value mli-red">$6 / month</div>
         </div>
         <div class="manus-line-item">
-          <div class="mli-label">Manus databases today</div>
-          <div class="mli-value">10,000,000</div>
+          <div class="mli-label">Manus databases</div>
+          <div class="mli-value">1,000,000</div>
         </div>
         <div class="manus-line-item mli-total">
           <div class="mli-label">Monthly DB bill</div>
-          <div class="mli-value mli-red">$96,000,000</div>
+          <div class="mli-value mli-red">$6,000,000</div>
         </div>
         <div class="manus-line-item mli-total">
           <div class="mli-label">Annual DB bill</div>
-          <div class="mli-value mli-red">$1,150,000,000</div>
+          <div class="mli-value mli-red">$72,000,000</div>
         </div>
         <div class="manus-verdict manus-verdict-bad">
-          Starter plan: $5/month per user.<br>
-          DB cost per user on AWS: $9.60.<br>
-          <strong>Loss per user: $4.60 — before any compute, bandwidth, or support.</strong>
+          Subscription: $5/month per user.<br>
+          Cheapest DB anywhere: $6/month.<br>
+          <strong>Loss per user: $1 on DB alone — before compute, bandwidth, or support.</strong>
         </div>
       </div>
 
@@ -597,7 +597,7 @@
           <div class="mli-value">25 GB storage + 250M RUs</div>
         </div>
         <div class="manus-line-item">
-          <div class="mli-label">95% of Manus databases</div>
+          <div class="mli-label">Most Manus databases</div>
           <div class="mli-value">Agent-created · often idle</div>
         </div>
         <div class="manus-line-item">
@@ -605,11 +605,11 @@
           <div class="mli-value mli-green">~$0 / month</div>
         </div>
         <div class="manus-line-item">
-          <div class="mli-label">Pay-as-you-go</div>
-          <div class="mli-value mli-green">Fractions of a cent / row read</div>
+          <div class="mli-label">Cost reduction vs. standard DB</div>
+          <div class="mli-value mli-green">~90%</div>
         </div>
         <div class="manus-line-item mli-total">
-          <div class="mli-label">10M databases</div>
+          <div class="mli-label">1M databases</div>
           <div class="mli-value mli-green">Viable</div>
         </div>
         <div class="manus-line-item mli-total">
@@ -618,7 +618,7 @@
         </div>
         <div class="manus-verdict manus-verdict-good">
           Idle databases cost near zero.<br>
-          You pay only for what agents actually use.<br>
+          ~90% cost reduction vs. any standard managed DB.<br>
           <strong>The architecture makes the business model possible.</strong>
         </div>
       </div>
