@@ -328,7 +328,10 @@ body::before {
   font-weight: 500;
 }
 
-/* Two-line speaker block — name large, role smaller below */
+/* Two-line speaker block — name large, role smaller below, both left-aligned */
+.slide-title .speaker-quiet {
+  text-align: left;
+}
 .slide-title .speaker-quiet .name {
   font-family: var(--sans);
   font-weight: 600;
@@ -337,6 +340,7 @@ body::before {
   text-transform: uppercase;
   color: var(--ink);
   margin-bottom: 4px;
+  text-align: left;
 }
 .slide-title .speaker-quiet .role {
   font-family: var(--sans);
@@ -345,6 +349,7 @@ body::before {
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--ink-soft);
+  text-align: left;
 }
 .slide-title .speaker {
   padding-top: 32px;
