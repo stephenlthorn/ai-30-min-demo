@@ -280,6 +280,31 @@ body::before {
   line-height: 1.45;
   margin-bottom: 48px;
 }
+
+/* Two-beat empowerment promise — hook line + explanation */
+.slide-title .title-promise {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 38px;
+  color: var(--gold);
+  line-height: 1.15;
+  margin: 8px 0 6px;
+  letter-spacing: -0.01em;
+}
+.slide-title .title-promise-sub {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 22px;
+  color: var(--ink-soft);
+  line-height: 1.35;
+  max-width: 760px;
+  margin: 0 0 36px;
+}
+.slide-title .title-promise-sub em {
+  font-style: italic;
+  color: var(--ink);
+  font-weight: 500;
+}
 .slide-title .speaker {
   padding-top: 32px;
   border-top: 1px solid var(--ink-line);
