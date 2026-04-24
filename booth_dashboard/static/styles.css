@@ -3335,307 +3335,512 @@ body::before {
 }
 
 /* =========================================================
-   SLIDE — MAYA'S YEAR
-   Compounding-architecture demo. 6 acts in a 3x2 grid,
-   each with a chat panel + SQL panel + caption.
-   The hero card (Day 60) is gold-bordered.
-   Bottom tally bar summarizes the whole architectural pitch.
+   SLIDE — MAYA'S YEAR (interactive demo)
+   Hero chat panel (left) + live cluster-metrics sidebar (right).
+   Step navigator at top drives both — TiDB wins are the story.
    ========================================================= */
 #slide-maya {
-  padding-bottom: 48px;
+  padding-bottom: 36px;
 }
 
-.maya-lede {
-  font-family: var(--serif);
-  font-size: 16px;
-  font-style: italic;
-  color: var(--ink-2);
-  text-align: center;
-  margin: 4px auto 12px;
-  max-width: 920px;
-  line-height: 1.4;
-}
-
-.maya-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 12px;
-  max-width: 1320px;
-  margin: 0 auto;
-}
-
-.maya-act {
-  background: var(--paper);
-  border: 1px solid var(--ink-line);
-  border-radius: 8px;
-  padding: 10px 13px 8px;
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-  min-height: 226px;
-  position: relative;
-  overflow: hidden;
-}
-
-.maya-act-hero {
-  border: 1px solid var(--gold);
-  box-shadow:
-    0 0 0 1px rgba(80, 219, 217, 0.25),
-    0 4px 18px rgba(80, 219, 217, 0.15);
-}
-
-.maya-act-hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg,
-    rgba(80, 219, 217, 0.06) 0%,
-    transparent 60%);
-  pointer-events: none;
-}
-
-.ma-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  border-bottom: 1px solid var(--ink-line);
-  padding-bottom: 6px;
-}
-
-.ma-day {
-  font-family: var(--sans);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  color: var(--gold);
-}
-
-.ma-tag {
-  font-family: var(--sans);
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-}
-
-.ma-tag-hero {
-  color: var(--gold);
-  font-weight: 700;
-}
-
-/* ── Chat panel ─────────────────────────────────────────── */
-.ma-chat {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  min-height: 52px;
-  position: relative;
-  z-index: 1;
-}
-
-.ma-msg {
-  font-family: var(--sans);
-  font-size: 12px;
-  line-height: 1.4;
-  padding: 6px 9px;
-  border-radius: 6px;
-  max-width: 96%;
-}
-
-.ma-user {
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--ink-2);
-  align-self: flex-end;
-}
-
-.ma-agent {
-  background: rgba(80, 219, 217, 0.08);
-  border-left: 2px solid var(--gold);
-  color: var(--ink);
-  align-self: flex-start;
-}
-
-.ma-system {
-  background: transparent;
-  border-left: 2px solid var(--ink-faint);
-  color: var(--ink-soft);
-  font-style: italic;
-  font-size: 11.5px;
-  padding: 4px 8px;
-}
-
-.ma-msg-meta {
-  font-size: 10px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  padding: 0 2px;
-  font-weight: 600;
-}
-
-.ma-msg-hero {
-  background: rgba(80, 219, 217, 0.14);
-  border-left-width: 3px;
-  font-size: 13px;
-  line-height: 1.5;
-}
-
-.ma-msg-hero strong {
-  color: var(--gold);
-  font-weight: 700;
-}
-
-/* ── Fleet event (Act 3 special) ────────────────────────── */
-.ma-chat-fleet {
-  align-items: stretch;
-  padding: 6px 4px 8px;
-  gap: 7px;
-}
-
-.ma-fleet-event {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 11.5px;
-  color: var(--ink-2);
-}
-
-.ma-fe-icon {
-  color: var(--gold);
-  font-weight: 700;
-  font-size: 14px;
-}
-
-.ma-fleet-bar {
-  background: rgba(255, 255, 255, 0.06);
-  height: 6px;
-  border-radius: 3px;
-  overflow: hidden;
-}
-
-.ma-fleet-fill {
-  background: linear-gradient(90deg, var(--gold-2), var(--gold));
-  height: 100%;
-  width: 94%;
-  border-radius: 3px;
-}
-
-.ma-fleet-meta {
-  font-size: 10.5px;
-  color: var(--ink-soft);
-  letter-spacing: 0.04em;
-}
-
-.ma-fleet-meta strong {
-  color: var(--gold);
-  font-weight: 700;
-}
-
-/* ── SQL panel ──────────────────────────────────────────── */
-.ma-sql {
-  background: rgba(0, 0, 0, 0.28);
-  border: 1px solid rgba(255, 255, 255, 0.04);
-  border-radius: 6px;
-  padding: 8px 10px;
-  flex: 1;
-  overflow: hidden;
-}
-
-.ma-sql pre {
-  margin: 0;
-  font-family: 'JetBrains Mono', 'Menlo', 'Monaco', monospace;
-  font-size: 10.5px;
-  line-height: 1.5;
-  color: #B9C2CA;
-  white-space: pre-wrap;
-  word-break: break-word;
-}
-
-.ma-comment {
-  color: var(--gold-2);
-  font-style: italic;
-}
-
-/* ── Caption ────────────────────────────────────────────── */
-.ma-caption {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 12px;
-  color: var(--ink-2);
-  text-align: center;
-  margin-top: auto;
-  padding-top: 6px;
-  border-top: 1px solid var(--ink-line);
-  line-height: 1.35;
-}
-
-.maya-act-hero .ma-caption {
-  color: var(--gold);
-  font-weight: 500;
-}
-
-/* ── Bottom tally bar ───────────────────────────────────── */
-.maya-tally {
-  margin: 14px auto 0;
-  max-width: 1320px;
-  background: rgba(80, 219, 217, 0.05);
-  border: 1px solid rgba(80, 219, 217, 0.22);
-  border-radius: 10px;
-  padding: 12px 22px 12px;
+/* ── Stepper ──────────────────────────────────────────── */
+.maya-stepper {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 16px;
-  flex-wrap: wrap;
+  gap: 0;
+  max-width: 1320px;
+  margin: 8px auto 14px;
+  padding: 0 8px;
 }
 
-.mt-stat {
+.ms-step {
+  background: transparent;
+  border: 1px solid var(--ink-line);
+  border-radius: 6px;
+  padding: 6px 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
-  min-width: 70px;
+  gap: 1px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: var(--sans);
+  min-width: 132px;
 }
 
-.mt-num {
-  font-family: var(--serif);
-  font-size: 26px;
-  font-weight: 600;
+.ms-step:hover {
+  border-color: var(--ink-soft);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.ms-day {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--ink-soft);
+}
+
+.ms-lbl {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--ink-soft);
+}
+
+.ms-step.ms-active {
+  border-color: var(--gold);
+  background: rgba(80, 219, 217, 0.1);
+}
+.ms-step.ms-active .ms-day,
+.ms-step.ms-active .ms-lbl {
   color: var(--gold);
-  line-height: 1;
+}
+
+.ms-step.ms-done {
+  border-color: rgba(80, 219, 217, 0.4);
+}
+.ms-step.ms-done .ms-day,
+.ms-step.ms-done .ms-lbl {
+  color: var(--gold-2);
+}
+
+.ms-step.ms-hero.ms-active {
+  box-shadow: 0 0 0 1px var(--gold), 0 4px 14px rgba(80, 219, 217, 0.25);
+}
+
+.ms-line {
+  flex: 1;
+  height: 1px;
+  background: var(--ink-line);
+  max-width: 24px;
+  margin: 0 2px;
+}
+
+/* ── Stage layout ─────────────────────────────────────── */
+.maya-stage {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  gap: 16px;
+  max-width: 1320px;
+  margin: 0 auto;
+  min-height: 480px;
+}
+
+/* ── Chat panel ───────────────────────────────────────── */
+.maya-chat-panel {
+  background: var(--paper);
+  border: 1px solid var(--ink-line);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  min-height: 480px;
+}
+
+.mcp-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--ink-line);
+  background: rgba(0, 0, 0, 0.18);
+}
+
+.mcp-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold-2), var(--gold));
+  color: var(--cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 17px;
+  flex-shrink: 0;
+}
+
+.mcp-meta {
+  flex: 1;
+  min-width: 0;
+}
+
+.mcp-name {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--ink);
   letter-spacing: -0.01em;
 }
 
-.mt-lbl {
+.mcp-sub {
+  font-family: var(--sans);
+  font-size: 11px;
+  color: var(--ink-soft);
+  margin-top: 2px;
+  font-style: italic;
+}
+
+.mcp-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   font-family: var(--sans);
   font-size: 10px;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--ink-soft);
-  font-weight: 500;
-}
-
-.mt-divider {
-  color: var(--ink-faint);
-  font-size: 18px;
-  font-weight: 300;
-}
-
-.maya-punchline {
-  flex-basis: 100%;
-  text-align: center;
-  font-family: var(--serif);
-  font-size: 14px;
-  color: var(--ink-2);
-  margin-top: 6px;
-  padding-top: 8px;
-  border-top: 1px solid rgba(80, 219, 217, 0.15);
-  line-height: 1.4;
-}
-
-.maya-punchline em {
   color: var(--gold);
+  font-weight: 600;
+}
+
+.mcp-status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 0 0 rgba(80, 219, 217, 0.7);
+  animation: mcp-pulse 1.8s ease-out infinite;
+}
+
+@keyframes mcp-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(80, 219, 217, 0.7); }
+  70%  { box-shadow: 0 0 0 6px rgba(80, 219, 217, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(80, 219, 217, 0); }
+}
+
+.mcp-body {
+  flex: 1;
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: auto;
+}
+
+.mcp-msg {
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.55;
+  padding: 10px 14px;
+  border-radius: 10px;
+  max-width: 86%;
+  animation: mcp-msg-in 0.32s ease-out;
+}
+
+@keyframes mcp-msg-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.mcp-msg-user {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--ink);
+  align-self: flex-end;
+  border-bottom-right-radius: 3px;
+}
+
+.mcp-msg-agent {
+  background: rgba(80, 219, 217, 0.1);
+  color: var(--ink);
+  align-self: flex-start;
+  border-bottom-left-radius: 3px;
+  border-left: 2px solid var(--gold);
+}
+
+.mcp-msg-system {
+  background: transparent;
+  color: var(--ink-soft);
+  align-self: stretch;
+  text-align: center;
+  font-size: 11.5px;
   font-style: italic;
+  letter-spacing: 0.04em;
+  padding: 4px 10px;
+  max-width: 100%;
+  border-top: 1px dashed var(--ink-line);
+  border-bottom: 1px dashed var(--ink-line);
+  border-radius: 0;
+}
+
+.mcp-msg-hero {
+  background: rgba(80, 219, 217, 0.16);
+  border-left-width: 3px;
+  font-size: 15px;
   font-weight: 500;
+}
+
+.mcp-msg-hero .mcp-emph {
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.mcp-sql {
+  border-top: 1px solid var(--ink-line);
+  padding: 10px 18px;
+  background: rgba(0, 0, 0, 0.22);
+  font-family: 'JetBrains Mono', 'Menlo', 'Monaco', monospace;
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--ink-2);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mcp-sql-label {
+  font-family: var(--sans);
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold-2);
+  font-weight: 600;
+}
+
+.mcp-sql code {
+  display: block;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: #B9C2CA;
+}
+
+/* ── Metrics sidebar ──────────────────────────────────── */
+.maya-metrics {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 480px;
+}
+
+.mm-block {
+  background: var(--paper);
+  border: 1px solid var(--ink-line);
+  border-radius: 10px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mm-tidb {
+  border-color: rgba(80, 219, 217, 0.4);
+  background: linear-gradient(180deg, rgba(80, 219, 217, 0.04), var(--paper) 80%);
+}
+
+.mm-frank {
+  border-color: rgba(243, 80, 72, 0.3);
+  background: linear-gradient(180deg, rgba(243, 80, 72, 0.04), var(--paper) 80%);
+}
+
+.mm-block-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--ink-line);
+  padding-bottom: 8px;
+}
+
+.mm-icon {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.mm-icon-good {
+  background: rgba(80, 219, 217, 0.2);
+  color: var(--gold);
+  border: 1px solid var(--gold);
+}
+
+.mm-icon-bad {
+  background: rgba(243, 80, 72, 0.18);
+  color: var(--burgundy);
+  border: 1px solid var(--burgundy);
+}
+
+.mm-name {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+.mm-tag {
+  font-family: var(--sans);
+  font-size: 9.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold-2);
+  font-weight: 600;
+  margin-left: auto;
+}
+
+.mm-tag-bad {
+  color: var(--burgundy);
+  font-size: 9px;
+  text-transform: none;
+  letter-spacing: 0.02em;
+  font-weight: 500;
+  text-align: right;
+  flex-basis: 100%;
+  margin-left: 0;
+  margin-top: 2px;
+}
+
+.mm-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mm-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  font-family: var(--sans);
+  font-size: 11.5px;
+  padding: 3px 0;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.04);
+}
+
+.mm-row:last-child {
+  border-bottom: none;
+}
+
+.mm-key {
+  color: var(--ink-soft);
+  flex: 1;
+  min-width: 0;
+}
+
+.mm-val {
+  font-weight: 600;
+  color: var(--ink-2);
+  text-align: right;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.mm-good {
+  color: var(--gold);
+}
+
+.mm-bad {
+  color: var(--burgundy);
+  font-weight: 600;
+}
+
+.mm-warn {
+  color: #F0B340;
+}
+
+/* VS divider between TiDB and Frankenstack blocks */
+.mm-vs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: -2px 0;
+}
+
+.mm-vs::before,
+.mm-vs::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--ink-line);
+}
+
+.mm-vs span {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 13px;
+  color: var(--ink-soft);
+  padding: 0 4px;
+}
+
+/* "Why TiDB wins" delta callout */
+.mm-delta {
+  background: rgba(80, 219, 217, 0.07);
+  border: 1px solid rgba(80, 219, 217, 0.3);
+  border-radius: 10px;
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: auto;
+}
+
+.mm-delta-label {
+  font-family: var(--sans);
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.mm-delta-text {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--ink);
+}
+
+/* ── Bottom nav ───────────────────────────────────────── */
+.maya-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin: 12px auto 0;
+  max-width: 1320px;
+}
+
+.mn-btn {
+  background: var(--paper);
+  border: 1px solid var(--ink-line);
+  color: var(--ink-2);
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 8px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.mn-btn:hover:not(:disabled) {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.mn-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.mn-position {
+  font-family: var(--sans);
+  font-size: 11px;
+  color: var(--ink-soft);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.mn-position span {
+  color: var(--gold);
+  font-weight: 700;
 }

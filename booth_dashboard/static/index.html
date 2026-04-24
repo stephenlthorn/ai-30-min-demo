@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="/static/styles.css?v=27" />
+  <link rel="stylesheet" href="/static/styles.css?v=28" />
 </head>
 
 <body>
@@ -643,153 +643,127 @@
   </section>
 
   <!-- =============================================================
-       SLIDE 6.5 — MAYA'S YEAR (compounding architecture)
+       SLIDE 6.5 — MAYA'S YEAR (interactive demo)
+       Hero chat panel + live cluster-metrics sidebar comparing
+       TiDB vs the 4-system Frankenstack at every step.
        ============================================================= -->
   <section class="slide" id="slide-maya">
     <div class="eyebrow">Beat 05.5 · The Compounding · 4 minutes</div>
-    <h2>Maya's Year — one customer, one cluster, <em>one architecture</em>.</h2>
-    <p class="maya-lede">
-      You just watched one conversation. Twelve months — five TiDB capabilities — one narrative
-      Frankenstack physically cannot render.
-    </p>
+    <h2 style="margin-bottom: 6px;">Maya's Year — <em>one cluster</em>, twelve months, six moments Frankenstack can't render.</h2>
 
-    <div class="maya-grid">
+    <!-- Step navigator -->
+    <div class="maya-stepper">
+      <button class="ms-step ms-active" data-mstep="0">
+        <span class="ms-day">DAY 1</span>
+        <span class="ms-lbl">First contact</span>
+      </button>
+      <div class="ms-line"></div>
+      <button class="ms-step" data-mstep="1">
+        <span class="ms-day">DAY 14</span>
+        <span class="ms-lbl">Returns + reasons</span>
+      </button>
+      <div class="ms-line"></div>
+      <button class="ms-step" data-mstep="2">
+        <span class="ms-day">DAY 21</span>
+        <span class="ms-lbl">Fleet learns</span>
+      </button>
+      <div class="ms-line"></div>
+      <button class="ms-step" data-mstep="3">
+        <span class="ms-day">DAY 22</span>
+        <span class="ms-lbl">Stranger benefits</span>
+      </button>
+      <div class="ms-line"></div>
+      <button class="ms-step ms-hero" data-mstep="4">
+        <span class="ms-day">DAY 60</span>
+        <span class="ms-lbl">★ Compounding payoff</span>
+      </button>
+      <div class="ms-line"></div>
+      <button class="ms-step" data-mstep="5">
+        <span class="ms-day">DAY 90</span>
+        <span class="ms-lbl">The audit</span>
+      </button>
+    </div>
 
-      <!-- ACT 1 -->
-      <div class="maya-act">
-        <div class="ma-header">
-          <span class="ma-day">DAY 1</span>
-          <span class="ma-tag">Empty memory</span>
-        </div>
-        <div class="ma-chat">
-          <div class="ma-msg ma-user">"Looking for a few new pieces."</div>
-          <div class="ma-msg ma-agent">"Welcome — tell me about your style."</div>
-        </div>
-        <div class="ma-sql"><pre>SELECT * FROM agent_episodic
-  WHERE customer_id = 'maya_8421';
-<span class="ma-comment">-- 0 rows · she's new</span>
+    <!-- Stage: chat panel + metrics sidebar -->
+    <div class="maya-stage">
 
-SELECT COUNT(*) FROM fleet_memory;
-<span class="ma-comment">-- 1,247,883 prior lessons</span></pre></div>
-        <div class="ma-caption">She's new. The fleet isn't.</div>
-      </div>
-
-      <!-- ACT 2 -->
-      <div class="maya-act">
-        <div class="ma-header">
-          <span class="ma-day">DAY 14</span>
-          <span class="ma-tag">Episodic builds</span>
-        </div>
-        <div class="ma-chat">
-          <div class="ma-msg-meta">Returns 2 of 3 dresses</div>
-          <div class="ma-msg ma-system">"tight at bust" · "too preppy"</div>
-        </div>
-        <div class="ma-sql"><pre>BEGIN;
-  UPDATE orders SET status='returned'...;
-  INSERT INTO agent_episodic VALUES
-    (..., AUTO_EMBED('tight at bust'), 0.85);
-COMMIT;
-<span class="ma-comment">-- order + reasoning · 1 ACID txn</span></pre></div>
-        <div class="ma-caption">Outcome and the why, captured atomically.</div>
-      </div>
-
-      <!-- ACT 3 -->
-      <div class="maya-act">
-        <div class="ma-header">
-          <span class="ma-day">DAY 21</span>
-          <span class="ma-tag">Fleet learns</span>
-        </div>
-        <div class="ma-chat ma-chat-fleet">
-          <div class="ma-fleet-event">
-            <span class="ma-fe-icon">↑</span>
-            <span class="ma-fe-text">Maya is the 49,848th data point</span>
+      <!-- ── CHAT PANEL ─────────────────────────────────── -->
+      <div class="maya-chat-panel">
+        <div class="mcp-header">
+          <div class="mcp-avatar" id="mcpAvatar">M</div>
+          <div class="mcp-meta">
+            <div class="mcp-name" id="mcpName">Maya — first session</div>
+            <div class="mcp-sub" id="mcpSub">Day 1 · cold start on a warm fleet</div>
           </div>
-          <div class="ma-fleet-bar">
-            <div class="ma-fleet-fill"></div>
-          </div>
-          <div class="ma-fleet-meta">confidence: 0.93 → <strong>0.94</strong> · propagated in 60s</div>
-        </div>
-        <div class="ma-sql"><pre>INSERT INTO fleet_memory ...
-ON DUPLICATE KEY UPDATE
-  evidence_count = evidence_count + 1,
-  confidence = LEAST(0.99, confidence + 0.01);
-<span class="ma-comment">-- no ETL · no batch job · 60s</span></pre></div>
-        <div class="ma-caption">Snowflake gets this in Q3. We got it in 60 seconds.</div>
-      </div>
-
-      <!-- ACT 4 -->
-      <div class="maya-act">
-        <div class="ma-header">
-          <span class="ma-day">DAY 22</span>
-          <span class="ma-tag">Stranger benefits</span>
-        </div>
-        <div class="ma-chat">
-          <div class="ma-msg-meta">Lena · never met Maya</div>
-          <div class="ma-msg ma-agent">"Heads up — this brand runs small at the bust. Want me to size up?"</div>
-        </div>
-        <div class="ma-sql"><pre>SELECT claim, confidence
-FROM fleet_memory
-WHERE VEC_COSINE_DISTANCE(embedding, @intent) &lt; 0.3
-  AND confidence &gt; 0.85
-ORDER BY confidence DESC LIMIT 3;
-<span class="ma-comment">-- 12ms · same cluster · zero data motion</span></pre></div>
-        <div class="ma-caption">Maya's data made a stranger's day better.</div>
-      </div>
-
-      <!-- ACT 5 — THE HERO -->
-      <div class="maya-act maya-act-hero">
-        <div class="ma-header">
-          <span class="ma-day">DAY 60</span>
-          <span class="ma-tag ma-tag-hero">★ Compounding payoff</span>
-        </div>
-        <div class="ma-chat">
-          <div class="ma-msg ma-agent ma-msg-hero">
-            "Five pieces picked just for you. <strong>Nothing on this list is something you'd return.</strong>"
+          <div class="mcp-status">
+            <span class="mcp-status-dot"></span>
+            <span class="mcp-status-text">Live · TiDB Cloud</span>
           </div>
         </div>
-        <div class="ma-sql"><pre>SELECT c.*, recent_orders, episodic_prefs,
-       chat_event, fleet_wisdom
-FROM customers c WHERE c.id = 'maya_8421';
-<span class="ma-comment">-- 1 query · 4 modalities · 1 ACID txn · 38ms</span>
-<span class="ma-comment">-- relational + vector + FTS + semantic</span></pre></div>
-        <div class="ma-caption">The line that cannot exist on Frankenstack.</div>
+
+        <div class="mcp-body" id="mcpBody">
+          <!-- Default Day 1 content -->
+          <div class="mcp-msg mcp-msg-user">Hi! Looking for a few new pieces — work, school pickup, the occasional date night.</div>
+          <div class="mcp-msg mcp-msg-agent">Welcome, Maya. Tell me about your style — minimalist, statement, somewhere in between?</div>
+        </div>
+
+        <div class="mcp-sql">
+          <span class="mcp-sql-label">Query running this turn:</span>
+          <code id="mcpSQL">SELECT * FROM agent_episodic WHERE customer_id='maya_8421';  -- 0 rows · cold start, but the fleet has 1.2M lessons</code>
+        </div>
       </div>
 
-      <!-- ACT 6 -->
-      <div class="maya-act">
-        <div class="ma-header">
-          <span class="ma-day">DAY 90</span>
-          <span class="ma-tag">The audit</span>
+      <!-- ── METRICS SIDEBAR ────────────────────────────── -->
+      <div class="maya-metrics">
+
+        <!-- TiDB block -->
+        <div class="mm-block mm-tidb">
+          <div class="mm-block-header">
+            <span class="mm-icon mm-icon-good">✓</span>
+            <span class="mm-name">TiDB Cloud</span>
+            <span class="mm-tag">1 cluster</span>
+          </div>
+          <div class="mm-rows" id="mmTidbRows">
+            <div class="mm-row"><span class="mm-key">Episodic memory</span><span class="mm-val">0 rows</span></div>
+            <div class="mm-row"><span class="mm-key">Fleet memory available</span><span class="mm-val mm-good">1,247,883 lessons</span></div>
+            <div class="mm-row"><span class="mm-key">Lookup latency</span><span class="mm-val mm-good">4 ms</span></div>
+            <div class="mm-row"><span class="mm-key">Systems involved</span><span class="mm-val mm-good">1</span></div>
+          </div>
         </div>
-        <div class="ma-chat">
-          <div class="ma-msg-meta">Compliance · 90 days later</div>
-          <div class="ma-msg ma-system">"Why did the agent recommend that satchel?"</div>
+
+        <!-- VS divider -->
+        <div class="mm-vs"><span>vs</span></div>
+
+        <!-- Frankenstack block -->
+        <div class="mm-block mm-frank">
+          <div class="mm-block-header">
+            <span class="mm-icon mm-icon-bad">✗</span>
+            <span class="mm-name">4-system Frankenstack</span>
+            <span class="mm-tag mm-tag-bad">Azure SQL · Pinecone · Snowflake · Elasticsearch</span>
+          </div>
+          <div class="mm-rows" id="mmFrankRows">
+            <div class="mm-row"><span class="mm-key">Azure SQL profile</span><span class="mm-val mm-bad">empty</span></div>
+            <div class="mm-row"><span class="mm-key">Pinecone namespace</span><span class="mm-val mm-bad">not provisioned</span></div>
+            <div class="mm-row"><span class="mm-key">Cross-system fleet learning</span><span class="mm-val mm-bad">unavailable</span></div>
+            <div class="mm-row"><span class="mm-key">Cold starts</span><span class="mm-val mm-bad">4 (one per system)</span></div>
+          </div>
         </div>
-        <div class="ma-sql"><pre>SELECT ts, tool_call, context_used,
-       confidence_at_time, fleet_signals
-FROM agent_episodic
-WHERE customer_id = 'maya_8421'
-  AND event = 'recommended:coach_4471';
-<span class="ma-comment">-- 8ms · full reasoning replay · defensible</span></pre></div>
-        <div class="ma-caption">Episodic memory IS your audit trail.</div>
+
+        <!-- Why TiDB wins -->
+        <div class="mm-delta" id="mmDelta">
+          <span class="mm-delta-label">Why TiDB wins this step</span>
+          <span class="mm-delta-text">Maya is new — but the fleet is warm with 1.2M lessons. On Frankenstack, every system starts cold and the fleet wisdom lives in a quarterly batch job that hasn't run yet.</span>
+        </div>
+
       </div>
 
     </div>
 
-    <div class="maya-tally">
-      <div class="mt-stat"><span class="mt-num">1</span><span class="mt-lbl">cluster</span></div>
-      <div class="mt-divider">·</div>
-      <div class="mt-stat"><span class="mt-num">4</span><span class="mt-lbl">modalities</span></div>
-      <div class="mt-divider">·</div>
-      <div class="mt-stat"><span class="mt-num">5</span><span class="mt-lbl">systems replaced</span></div>
-      <div class="mt-divider">·</div>
-      <div class="mt-stat"><span class="mt-num">0</span><span class="mt-lbl">ETL pipelines</span></div>
-      <div class="mt-divider">·</div>
-      <div class="mt-stat"><span class="mt-num">∞</span><span class="mt-lbl">compounding</span></div>
-
-      <div class="maya-punchline">
-        <em>Frankenstack can't draw this slide.</em> You can't render twelve months of compounding intelligence without a single ACID boundary.
-      </div>
+    <!-- Step navigation -->
+    <div class="maya-nav">
+      <button class="mn-btn mn-prev" id="mayaPrev">← Prev</button>
+      <span class="mn-position"><span id="mayaStepNum">1</span> of 6</span>
+      <button class="mn-btn mn-next" id="mayaNext">Next →</button>
     </div>
   </section>
 

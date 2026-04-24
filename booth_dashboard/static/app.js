@@ -57,7 +57,7 @@ const SPEAKER_NOTES = {
     "You just named the three memory types — now show them working. Let it play. Don't narrate over the animation.\n\nAFTER both windows finish:\n'Same customer. Same brand. Same chatbot UI. The only thing different is the memory architecture. One left without buying. One checked out for $172 in four turns. That delta — across 10 million customers, every day — is the whole game.'\n\nBRIDGE TO MAYA: 'You just saw one conversation. Now watch what twelve months of that looks like.'",
 
   maya:
-    "You just showed ONE conversation. Now show what compounds — same architecture, twelve months, the fleet effect.\n\nWALK THE TIMELINE LEFT TO RIGHT:\n• DAY 1 — Maya is new. The fleet isn't. (Point: 1.2M lessons already there.)\n• DAY 14 — episodic memory builds. Order outcome AND the reasoning behind it commit in the same ACID transaction. Try doing that with Aurora + Pinecone.\n• DAY 21 — fleet learns Maya's lesson in 60 seconds. No ETL. Snowflake gets this in next quarter's batch. We got it in the next minute.\n• DAY 22 — a stranger benefits. Maya's data made Lena's recommendation better. THIS is what semantic memory actually buys you. Pinecone gives you vectors. This gives you collective intelligence.\n• DAY 60 (HERO CARD) — the compounding payoff. ONE query. FOUR modalities. 38ms. The agent says: 'Nothing on this list is something you'd return.' That line cannot exist without all five capabilities firing on the same data, in the same transaction.\n• DAY 90 — compliance asks why. Episodic memory IS the audit trail. Try replaying this from a Pinecone namespace overwritten 200 times since April.\n\nLAND ON THE TALLY: 1 cluster. 4 modalities. 5 systems replaced. 0 ETL. Infinite compounding.\n\nFINAL LINE: 'Frankenstack can't draw this slide. You can't render twelve months of compounding intelligence without a single ACID boundary.'\n\nBRIDGE TO MANUS: 'And here's what twelve months of THIS, across ten million customers, costs.'",
+    "Interactive. Click the stepper at top — or Prev/Next at bottom — to walk the audience through the 6 days. The chat is the hero; the sidebar shows TiDB winning the metric at every single step. ALWAYS read the 'Why TiDB wins this step' callout out loud — it's the punchline for each beat.\n\nDAY 1 — Maya signs up. Point at the sidebar: 'Cold start for Maya. But the fleet is already warm with 1.2M lessons. Frankenstack can't show you that — every system starts cold.'\n\nDAY 14 — Maya returns 2 dresses with reasons. Point: 'Order outcome AND the reasoning behind it have to commit together. TiDB does it in one ACID transaction. Frankenstack hopes nothing fails between calls 2 and 3.'\n\nDAY 21 — fleet auto-learns. Point: 'No user is even talking. The fleet just got smarter. Snowflake gets this insight in next quarter's batch. We got it to every agent in 60 seconds.'\n\nDAY 22 — Lena, a stranger, benefits from Maya's data. Point: 'Maya never met Lena. THIS is what semantic memory actually buys you. Pinecone alone cannot do this.'\n\nDAY 60 (★ HERO) — the compounding payoff. Read the agent's reply out loud, slowly. End on 'Nothing on this list is something you'd return.' Then point at the metrics: 'One query. Four modalities. 38ms. Versus 5 calls, 47 lines of glue, 2.4 seconds — and one stale Snowflake field that would have killed the gala recommendation. 63× faster, atomically consistent.'\n\nDAY 90 — compliance asks why. Point: 'Episodic memory IS your audit trail. Try replaying this from a Pinecone namespace overwritten 200 times since April. Lawyer's nightmare.'\n\nFINAL LINE before Manus: 'You just watched twelve months of compounding intelligence in six clicks. Now let's look at what twelve months of THIS, across ten million customers, costs.'",
 
   memories:
     "This is THE architecture slide. The intellectual backbone — and it sets up the demo. Plant the vocabulary HERE so the audience has labels for what they're about to watch.\n\n• EPISODIC (agent_reasoning) — what happened. Per-customer, time-stamped, auditable. Watch for: recognizing Emma in the next slide.\n• SEMANTIC (fleet_memory) — what we learned. Cross-customer, deduplicated, compacted. Watch for: the size-up rule.\n• PROCEDURAL — what works. The missing layer. Strategy memory. The roadmap.\n\nTHE CREDIT LINE: 'Cognitive science named the types. We built the maintenance layer. The Cognitive Foundation is both.'\n\nLIBRARIAN: 'Every session, assemble_context() picks the right books off the shelf — ranked by relevance, fitted to budget. The model never sees 10,000 books it won't use.'\n\nNEXT SLIDE has the five duties.",
@@ -354,7 +354,252 @@ function resetDemo() {
   vvResetVV(true);
 }
 
-/* ---------- 3. INIT ---------- */
+/* ---------- 3. MAYA'S YEAR — interactive demo ---------- */
+/* 6-step compounding-architecture demo. Each step renders a chat
+   conversation, the SQL behind it, and a side-by-side cluster-metrics
+   panel showing TiDB winning vs the 4-system Frankenstack. */
+
+const MAYA_STEPS = [
+  {
+    avatar: "M",
+    name: "Maya — first session",
+    sub: "Day 1 · cold start on a warm fleet",
+    messages: [
+      { who: "user",  text: "Hi! Looking for a few new pieces — work, school pickup, the occasional date night." },
+      { who: "agent", text: "Welcome, Maya. Tell me about your style — minimalist, statement, somewhere in between?" }
+    ],
+    sql: "SELECT * FROM agent_episodic WHERE customer_id='maya_8421';  -- 0 rows · cold start, but the fleet has 1.2M lessons",
+    tidb: [
+      ["Episodic memory for Maya", "0 rows", null],
+      ["Fleet memory available", "1,247,883 lessons", "good"],
+      ["Lookup latency", "4 ms", "good"],
+      ["Systems involved", "1", "good"]
+    ],
+    frank: [
+      ["Azure SQL profile", "empty", "bad"],
+      ["Pinecone namespace", "not provisioned", "bad"],
+      ["Snowflake events", "0 (cold)", "bad"],
+      ["Cross-system fleet learning", "doesn't exist", "bad"]
+    ],
+    delta: "Maya is new — but the fleet is warm with 1.2M prior lessons. On Frankenstack, every system starts cold and the fleet wisdom lives in a quarterly batch job that hasn't run yet."
+  },
+  {
+    avatar: "M",
+    name: "Maya — return processing",
+    sub: "Day 14 · 2 returns, with reasons",
+    messages: [
+      { who: "system", text: "Order #4471 returned · Order #4472 returned" },
+      { who: "user",   text: "The first didn't fit at the bust. The second was just too preppy for me." },
+      { who: "agent",  text: "Got it — I've noted both. Sizing for that brand and your style preference. I won't recommend either pattern again." }
+    ],
+    sql: "BEGIN; UPDATE orders SET status='returned'...; INSERT INTO agent_episodic VALUES (..., AUTO_EMBED('tight at bust'), 0.85); COMMIT;  -- 1 ACID txn",
+    tidb: [
+      ["Transaction", "1 ACID txn", "good"],
+      ["Atomic operations", "outcome + reasoning + embedding", "good"],
+      ["AUTO_EMBED inline", "no preprocess pipeline", "good"],
+      ["Latency", "18 ms", "good"],
+      ["Partial-failure surface", "0", "good"]
+    ],
+    frank: [
+      ["UPDATE Azure SQL", "38 ms", "warn"],
+      ["INSERT Pinecone", "140 ms · separate call", "warn"],
+      ["Queue Snowflake event", "12 ms · visible in 6 h", "bad"],
+      ["UPDATE Redis session", "12 ms", "warn"],
+      ["Distributed transaction", "none — partial-failure risk", "bad"]
+    ],
+    delta: "Outcome and the reasoning behind it HAVE to commit together. TiDB does it in one transaction. Frankenstack hopes nothing fails between calls 2 and 3."
+  },
+  {
+    avatar: "F",
+    name: "Fleet event · system-wide",
+    sub: "Day 21 · pattern reaches critical confidence",
+    messages: [
+      { who: "system", text: "Fleet pattern detected: 'brand_x_runs_small_at_bust'" },
+      { who: "system", text: "Maya is the 49,848th data point · cosine-merged · confidence 0.93 → 0.94" },
+      { who: "system", text: "Propagated to 12,400 active agents · 60 s elapsed" }
+    ],
+    sql: "INSERT INTO fleet_memory (...) ON DUPLICATE KEY UPDATE evidence_count = evidence_count + 1, confidence = LEAST(0.99, confidence + 0.01);",
+    tidb: [
+      ["Cosine-similarity dedup", "merged into existing memory", "good"],
+      ["Confidence delta", "0.93 → 0.94", "good"],
+      ["Evidence count", "49,847 → 49,848", "good"],
+      ["Propagation to all agents", "60 s", "good"],
+      ["Batch jobs required", "0", "good"],
+      ["Model retraining required", "0", "good"]
+    ],
+    frank: [
+      ["Snowflake row inserted", "available in 6 h", "warn"],
+      ["ML team picks it up", "next quarterly review", "bad"],
+      ["Model retrain required", "yes — costs $$$", "bad"],
+      ["New model deployed", "Q3 2026", "bad"],
+      ["Time-to-fleet-intelligence", "~90 days", "bad"]
+    ],
+    delta: "Snowflake gets the insight in next quarter's batch. TiDB gets it to every agent in 60 seconds. ~130,000× faster — and zero engineer hours."
+  },
+  {
+    avatar: "L",
+    name: "Lena · never met Maya",
+    sub: "Day 22 · stranger benefits from Maya's data",
+    messages: [
+      { who: "user",  text: "Browsing the new spring collection from brand X — anything you'd recommend?" },
+      { who: "agent", text: "Heads up — this brand tends to run small at the bust. Want me to size up by one?" },
+      { who: "user",  text: "...Yes, actually. How did you know that?" },
+      { who: "agent", text: "Other customers' fit feedback. We learn together — and it stays anonymous." }
+    ],
+    sql: "SELECT claim, confidence FROM fleet_memory WHERE VEC_COSINE_DISTANCE(embedding, AUTO_EMBED(@intent)) < 0.3 AND confidence > 0.85 ORDER BY confidence DESC LIMIT 3;",
+    tidb: [
+      ["Vector query against fleet", "VEC_COSINE_DISTANCE", "good"],
+      ["Latency", "12 ms", "good"],
+      ["Data movement", "0 — same cluster", "good"],
+      ["Confidence threshold applied", "> 0.85", "good"],
+      ["High-quality claims returned", "3", "good"]
+    ],
+    frank: [
+      ["Maya's embedding lives in", "her Pinecone namespace", "bad"],
+      ["Cross-namespace aggregation", "needs separate batch job", "bad"],
+      ["Aggregation runs", "nightly into Snowflake", "bad"],
+      ["Snowflake → model retrain", "next quarter", "bad"],
+      ["Lena's agent gets this", "never (today)", "bad"]
+    ],
+    delta: "Maya never met Lena. Maya's data made Lena's recommendation better. THIS is what semantic memory actually buys you — and Pinecone alone can't do it."
+  },
+  {
+    avatar: "M",
+    name: "Maya · 60 days in — the payoff",
+    sub: "★ The query that cannot exist on Frankenstack",
+    messages: [
+      { who: "user",  text: "Hey, looking for a few things for the May beach trip — and that gala I mentioned." },
+      { who: "agent", text: "I picked five for you. The Coach satchel is from a brand you've kept twice. The dress is from a brand we learned runs true on you. The blazer is for the gala you mentioned in March — sized up because of brand X. <em class=\"mcp-emph\">Nothing on this list is something you'd return.</em>", hero: true, html: true }
+    ],
+    sql: "SELECT c.*, recent_orders, episodic_prefs, chat_event, fleet_wisdom FROM customers c WHERE c.id = 'maya_8421';  -- 1 query · 4 modalities · 1 ACID txn · 38 ms",
+    tidb: [
+      ["SQL queries", "1", "good"],
+      ["Modalities in one query", "relational + vector + FTS + semantic", "good"],
+      ["Round trips", "1", "good"],
+      ["ACID transaction", "yes", "good"],
+      ["Latency", "38 ms", "good"],
+      ["Cluster utilization", "0.4%", "good"]
+    ],
+    frank: [
+      ["Microservice calls", "5", "bad"],
+      ["Glue code required", "47 lines", "bad"],
+      ["Cumulative latency", "2,410 ms", "bad"],
+      ["Stale-data risk", "Snowflake 6h lag breaks gala recall", "bad"],
+      ["Fan-out failure surface", "5 systems", "bad"],
+      ["Dashboards to debug", "4 separate", "bad"]
+    ],
+    delta: "63× faster. Atomically consistent. One query instead of five. The line 'Nothing on this list is something you'd return' literally cannot exist on Frankenstack."
+  },
+  {
+    avatar: "?",
+    name: "Compliance · 90 days later",
+    sub: "Day 90 · regulator asks why",
+    messages: [
+      { who: "system", text: "Compliance ticket #2026-0814 — 'Why did the agent recommend the Coach satchel to Maya on April 14?'" },
+      { who: "agent",  text: "Replaying reasoning · customer maya_8421 · event coach_4471 · ts 2026-04-14T14:22:08Z" },
+      { who: "agent",  text: "Context: 4.2KB / 18 evidence items. Top signals: 2 prior Coach purchases (relational), brand affinity 0.91 (episodic), gala mention 03-12 (FTS), fleet memory 'Coach Q2 retention 89%' (semantic). Decision confidence 0.87." }
+    ],
+    sql: "SELECT ts, tool_call, context_used, confidence_at_time, fleet_signals FROM agent_episodic WHERE customer_id='maya_8421' AND event='recommended:coach_4471';",
+    tidb: [
+      ["Replay query latency", "8 ms", "good"],
+      ["Context window preserved", "yes — verbatim", "good"],
+      ["Confidence at decision time", "0.87", "good"],
+      ["Evidence chain reconstructable", "yes", "good"],
+      ["Audit trail = primary data", "yes — no second system", "good"],
+      ["Retention", "7 years configurable", "good"]
+    ],
+    frank: [
+      ["Pinecone namespace", "overwritten 217× since April", "bad"],
+      ["Splunk logs retention", "28 days only", "bad"],
+      ["Snowflake events", "outcome only — no context", "bad"],
+      ["Redis session", "expired Day 1", "bad"],
+      ["Reconstructable", "no — 'we think it was based on…'", "bad"]
+    ],
+    delta: "Episodic memory IS your audit trail. Try replaying this from a Pinecone namespace overwritten 200 times since April. Lawyer's nightmare."
+  }
+];
+
+let mayaStep = 0;
+
+function renderMayaStep(idx) {
+  const step = MAYA_STEPS[idx];
+  if (!step) return;
+
+  // Header
+  const avatar = $("mcpAvatar"); if (avatar) avatar.textContent = step.avatar;
+  const name   = $("mcpName");   if (name)   name.textContent   = step.name;
+  const sub    = $("mcpSub");    if (sub)    sub.textContent    = step.sub;
+
+  // Messages
+  const body = $("mcpBody");
+  if (body) {
+    while (body.firstChild) body.removeChild(body.firstChild);
+    step.messages.forEach((msg) => {
+      const div = document.createElement("div");
+      div.className = `mcp-msg mcp-msg-${msg.who}` + (msg.hero ? " mcp-msg-hero" : "");
+      if (msg.html) {
+        div.innerHTML = msg.text;
+      } else {
+        div.textContent = msg.text;
+      }
+      body.appendChild(div);
+    });
+  }
+
+  // SQL
+  const sqlEl = $("mcpSQL"); if (sqlEl) sqlEl.textContent = step.sql;
+
+  // Metric rows helper
+  const renderRows = (containerId, rows) => {
+    const c = $(containerId);
+    if (!c) return;
+    while (c.firstChild) c.removeChild(c.firstChild);
+    rows.forEach(([key, val, tone]) => {
+      const row = document.createElement("div");
+      row.className = "mm-row";
+      const k = document.createElement("span");
+      k.className = "mm-key";
+      k.textContent = key;
+      const v = document.createElement("span");
+      v.className = "mm-val" + (tone ? ` mm-${tone}` : "");
+      v.textContent = val;
+      row.appendChild(k);
+      row.appendChild(v);
+      c.appendChild(row);
+    });
+  };
+  renderRows("mmTidbRows", step.tidb);
+  renderRows("mmFrankRows", step.frank);
+
+  // Delta callout
+  const deltaText = document.querySelector(".mm-delta-text");
+  if (deltaText) deltaText.textContent = step.delta;
+
+  // Stepper visual state
+  document.querySelectorAll(".ms-step").forEach((btn, i) => {
+    btn.classList.toggle("ms-active", i === idx);
+    btn.classList.toggle("ms-done", i < idx);
+  });
+
+  // Position counter
+  const stepNum = $("mayaStepNum");
+  if (stepNum) stepNum.textContent = String(idx + 1);
+
+  // Prev/Next disabled state
+  const prevBtn = $("mayaPrev"); if (prevBtn) prevBtn.disabled = (idx === 0);
+  const nextBtn = $("mayaNext"); if (nextBtn) nextBtn.disabled = (idx === MAYA_STEPS.length - 1);
+
+  mayaStep = idx;
+}
+
+function mayaNext() {
+  if (mayaStep < MAYA_STEPS.length - 1) renderMayaStep(mayaStep + 1);
+}
+function mayaPrev() {
+  if (mayaStep > 0) renderMayaStep(mayaStep - 1);
+}
+
+/* ---------- 4. INIT ---------- */
 
 document.addEventListener("DOMContentLoaded", () => {
   // wire prev/next/tab controls
@@ -373,9 +618,20 @@ document.addEventListener("DOMContentLoaded", () => {
   if (vvPlayBtn) vvPlayBtn.addEventListener("click", vvPlay);
   if (vvResetBtn) vvResetBtn.addEventListener("click", () => vvResetVV(true));
 
+  // wire Maya demo controls
+  const mayaPrevBtn = $("mayaPrev");
+  const mayaNextBtn = $("mayaNext");
+  if (mayaPrevBtn) mayaPrevBtn.addEventListener("click", mayaPrev);
+  if (mayaNextBtn) mayaNextBtn.addEventListener("click", mayaNext);
+  document.querySelectorAll(".ms-step").forEach((btn, i) => {
+    btn.addEventListener("click", () => renderMayaStep(i));
+  });
+  // initial render so the slide reflects the data even before clicks
+  renderMayaStep(0);
+
   // route from URL
   loadFromHash();
 });
 
 // Expose on window for quick console debugging
-window.__deck = { showSlide, next, prev, resetDemo, vvPlay, vvResetVV, SLIDES };
+window.__deck = { showSlide, next, prev, resetDemo, vvPlay, vvResetVV, mayaNext, mayaPrev, renderMayaStep, SLIDES };
