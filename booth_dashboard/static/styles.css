@@ -305,6 +305,47 @@ body::before {
   color: var(--ink);
   font-weight: 500;
 }
+
+/* Single-line empowerment promise — hook in gold, rest dimmer */
+.slide-title .title-promise-line {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 24px;
+  color: var(--ink-soft);
+  line-height: 1.4;
+  margin: 12px 0 36px;
+  max-width: none;
+  white-space: nowrap;
+}
+.slide-title .title-promise-line .tp-hook {
+  color: var(--gold);
+  font-weight: 500;
+  margin-right: 6px;
+}
+.slide-title .title-promise-line em {
+  font-style: italic;
+  color: var(--ink);
+  font-weight: 500;
+}
+
+/* Two-line speaker block — name large, role smaller below */
+.slide-title .speaker-quiet .name {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+.slide-title .speaker-quiet .role {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
 .slide-title .speaker {
   padding-top: 32px;
   border-top: 1px solid var(--ink-line);
