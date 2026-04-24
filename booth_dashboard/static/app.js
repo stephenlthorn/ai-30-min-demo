@@ -119,6 +119,13 @@ function toggleNotes() {
   if (notesOpen) updateNotesContent(currentSlide);
 }
 
+/* Sarah slide — tab switcher */
+function sarahTab(idx) {
+  document.getElementById("sarah-session-0").style.display = idx === 0 ? "" : "none";
+  document.getElementById("sarah-session-1").style.display = idx === 1 ? "" : "none";
+  document.querySelectorAll(".stab").forEach((b, i) => b.classList.toggle("stab-active", i === idx));
+}
+
 function showSlide(idx, push = true) {
   if (idx < 0 || idx >= SLIDES.length) return;
 

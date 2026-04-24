@@ -407,15 +407,54 @@ body::before {
 }
 
 /* =========================================================
-   SLIDE 1 — SARAH SCENE (3-column visual)
+   SLIDE 1 — SARAH SCENE (profile + tabbed sessions)
    ========================================================= */
 .sarah-scene {
   display: grid;
-  grid-template-columns: 200px 1fr 1fr;
+  grid-template-columns: 180px 1fr;
   gap: 14px;
   margin: 20px 0 18px;
   align-items: stretch;
 }
+
+/* Tabbed session wrapper */
+.sarah-sessions-tabbed {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.session-tabs {
+  display: flex;
+  gap: 2px;
+  margin-bottom: 6px;
+}
+.stab {
+  padding: 7px 18px;
+  border-radius: 4px 4px 0 0;
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 700;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-bottom: none;
+  background: var(--paper);
+  color: var(--ink-faint);
+  transition: color 0.15s, background 0.15s;
+}
+.stab-ok.stab-active {
+  background: rgba(80, 219, 217, 0.1);
+  color: var(--gold-2);
+  border-color: rgba(80, 219, 217, 0.28);
+}
+.stab-bad.stab-active {
+  background: rgba(243, 80, 72, 0.1);
+  color: var(--burgundy);
+  border-color: rgba(243, 80, 72, 0.28);
+}
+.stab-ok:not(.stab-active):hover { color: var(--gold-2); }
+.stab-bad:not(.stab-active):hover { color: var(--burgundy); }
 
 /* Profile card */
 .sarah-profile {
