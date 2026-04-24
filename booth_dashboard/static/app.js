@@ -121,9 +121,13 @@ function toggleNotes() {
 
 /* Sarah slide — tab switcher */
 function sarahTab(idx) {
-  document.getElementById("sarah-session-0").style.display = idx === 0 ? "" : "none";
-  document.getElementById("sarah-session-1").style.display = idx === 1 ? "" : "none";
-  document.querySelectorAll(".stab").forEach((b, i) => b.classList.toggle("stab-active", i === idx));
+  const s0 = document.getElementById("sarah-session-0");
+  const s1 = document.getElementById("sarah-session-1");
+  if (s0) s0.style.display = idx === 0 ? "" : "none";
+  if (s1) s1.style.display = idx === 1 ? "" : "none";
+  document.querySelectorAll(".stab").forEach((b, i) => {
+    b.classList.toggle("stab-active", i === idx);
+  });
 }
 
 function showSlide(idx, push = true) {
@@ -624,6 +628,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const vvResetBtn = $("vvReset");
   if (vvPlayBtn) vvPlayBtn.addEventListener("click", vvPlay);
   if (vvResetBtn) vvResetBtn.addEventListener("click", () => vvResetVV(true));
+
+  // wire Sarah session tabs
+  document.querySelectorAll(".stab").forEach((btn, i) => {
+    btn.addEventListener("click", () => sarahTab(i));
+  });
 
   // wire Maya demo controls
   const mayaPrevBtn = $("mayaPrev");
