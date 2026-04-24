@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="/static/styles.css?v=25" />
+  <link rel="stylesheet" href="/static/styles.css?v=27" />
 </head>
 
 <body>
@@ -24,6 +24,7 @@
   <button id="tab-convergence"></button>
   <button id="tab-manus"></button>
   <button id="tab-demo"></button>
+  <button id="tab-maya"></button>
   <button id="tab-memories"></button>
   <button id="tab-cma"></button>
   <button id="tab-products"></button>
@@ -638,6 +639,157 @@
         </div>
       </div>
       <p class="reveal-tagline">Stateless model. <em>Stateful platform.</em> Cross-session learning.</p>
+    </div>
+  </section>
+
+  <!-- =============================================================
+       SLIDE 6.5 — MAYA'S YEAR (compounding architecture)
+       ============================================================= -->
+  <section class="slide" id="slide-maya">
+    <div class="eyebrow">Beat 05.5 · The Compounding · 4 minutes</div>
+    <h2>Maya's Year — one customer, one cluster, <em>one architecture</em>.</h2>
+    <p class="maya-lede">
+      You just watched one conversation. Twelve months — five TiDB capabilities — one narrative
+      Frankenstack physically cannot render.
+    </p>
+
+    <div class="maya-grid">
+
+      <!-- ACT 1 -->
+      <div class="maya-act">
+        <div class="ma-header">
+          <span class="ma-day">DAY 1</span>
+          <span class="ma-tag">Empty memory</span>
+        </div>
+        <div class="ma-chat">
+          <div class="ma-msg ma-user">"Looking for a few new pieces."</div>
+          <div class="ma-msg ma-agent">"Welcome — tell me about your style."</div>
+        </div>
+        <div class="ma-sql"><pre>SELECT * FROM agent_episodic
+  WHERE customer_id = 'maya_8421';
+<span class="ma-comment">-- 0 rows · she's new</span>
+
+SELECT COUNT(*) FROM fleet_memory;
+<span class="ma-comment">-- 1,247,883 prior lessons</span></pre></div>
+        <div class="ma-caption">She's new. The fleet isn't.</div>
+      </div>
+
+      <!-- ACT 2 -->
+      <div class="maya-act">
+        <div class="ma-header">
+          <span class="ma-day">DAY 14</span>
+          <span class="ma-tag">Episodic builds</span>
+        </div>
+        <div class="ma-chat">
+          <div class="ma-msg-meta">Returns 2 of 3 dresses</div>
+          <div class="ma-msg ma-system">"tight at bust" · "too preppy"</div>
+        </div>
+        <div class="ma-sql"><pre>BEGIN;
+  UPDATE orders SET status='returned'...;
+  INSERT INTO agent_episodic VALUES
+    (..., AUTO_EMBED('tight at bust'), 0.85);
+COMMIT;
+<span class="ma-comment">-- order + reasoning · 1 ACID txn</span></pre></div>
+        <div class="ma-caption">Outcome and the why, captured atomically.</div>
+      </div>
+
+      <!-- ACT 3 -->
+      <div class="maya-act">
+        <div class="ma-header">
+          <span class="ma-day">DAY 21</span>
+          <span class="ma-tag">Fleet learns</span>
+        </div>
+        <div class="ma-chat ma-chat-fleet">
+          <div class="ma-fleet-event">
+            <span class="ma-fe-icon">↑</span>
+            <span class="ma-fe-text">Maya is the 49,848th data point</span>
+          </div>
+          <div class="ma-fleet-bar">
+            <div class="ma-fleet-fill"></div>
+          </div>
+          <div class="ma-fleet-meta">confidence: 0.93 → <strong>0.94</strong> · propagated in 60s</div>
+        </div>
+        <div class="ma-sql"><pre>INSERT INTO fleet_memory ...
+ON DUPLICATE KEY UPDATE
+  evidence_count = evidence_count + 1,
+  confidence = LEAST(0.99, confidence + 0.01);
+<span class="ma-comment">-- no ETL · no batch job · 60s</span></pre></div>
+        <div class="ma-caption">Snowflake gets this in Q3. We got it in 60 seconds.</div>
+      </div>
+
+      <!-- ACT 4 -->
+      <div class="maya-act">
+        <div class="ma-header">
+          <span class="ma-day">DAY 22</span>
+          <span class="ma-tag">Stranger benefits</span>
+        </div>
+        <div class="ma-chat">
+          <div class="ma-msg-meta">Lena · never met Maya</div>
+          <div class="ma-msg ma-agent">"Heads up — this brand runs small at the bust. Want me to size up?"</div>
+        </div>
+        <div class="ma-sql"><pre>SELECT claim, confidence
+FROM fleet_memory
+WHERE VEC_COSINE_DISTANCE(embedding, @intent) &lt; 0.3
+  AND confidence &gt; 0.85
+ORDER BY confidence DESC LIMIT 3;
+<span class="ma-comment">-- 12ms · same cluster · zero data motion</span></pre></div>
+        <div class="ma-caption">Maya's data made a stranger's day better.</div>
+      </div>
+
+      <!-- ACT 5 — THE HERO -->
+      <div class="maya-act maya-act-hero">
+        <div class="ma-header">
+          <span class="ma-day">DAY 60</span>
+          <span class="ma-tag ma-tag-hero">★ Compounding payoff</span>
+        </div>
+        <div class="ma-chat">
+          <div class="ma-msg ma-agent ma-msg-hero">
+            "Five pieces picked just for you. <strong>Nothing on this list is something you'd return.</strong>"
+          </div>
+        </div>
+        <div class="ma-sql"><pre>SELECT c.*, recent_orders, episodic_prefs,
+       chat_event, fleet_wisdom
+FROM customers c WHERE c.id = 'maya_8421';
+<span class="ma-comment">-- 1 query · 4 modalities · 1 ACID txn · 38ms</span>
+<span class="ma-comment">-- relational + vector + FTS + semantic</span></pre></div>
+        <div class="ma-caption">The line that cannot exist on Frankenstack.</div>
+      </div>
+
+      <!-- ACT 6 -->
+      <div class="maya-act">
+        <div class="ma-header">
+          <span class="ma-day">DAY 90</span>
+          <span class="ma-tag">The audit</span>
+        </div>
+        <div class="ma-chat">
+          <div class="ma-msg-meta">Compliance · 90 days later</div>
+          <div class="ma-msg ma-system">"Why did the agent recommend that satchel?"</div>
+        </div>
+        <div class="ma-sql"><pre>SELECT ts, tool_call, context_used,
+       confidence_at_time, fleet_signals
+FROM agent_episodic
+WHERE customer_id = 'maya_8421'
+  AND event = 'recommended:coach_4471';
+<span class="ma-comment">-- 8ms · full reasoning replay · defensible</span></pre></div>
+        <div class="ma-caption">Episodic memory IS your audit trail.</div>
+      </div>
+
+    </div>
+
+    <div class="maya-tally">
+      <div class="mt-stat"><span class="mt-num">1</span><span class="mt-lbl">cluster</span></div>
+      <div class="mt-divider">·</div>
+      <div class="mt-stat"><span class="mt-num">4</span><span class="mt-lbl">modalities</span></div>
+      <div class="mt-divider">·</div>
+      <div class="mt-stat"><span class="mt-num">5</span><span class="mt-lbl">systems replaced</span></div>
+      <div class="mt-divider">·</div>
+      <div class="mt-stat"><span class="mt-num">0</span><span class="mt-lbl">ETL pipelines</span></div>
+      <div class="mt-divider">·</div>
+      <div class="mt-stat"><span class="mt-num">∞</span><span class="mt-lbl">compounding</span></div>
+
+      <div class="maya-punchline">
+        <em>Frankenstack can't draw this slide.</em> You can't render twelve months of compounding intelligence without a single ACID boundary.
+      </div>
     </div>
   </section>
 

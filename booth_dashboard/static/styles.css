@@ -3333,3 +3333,309 @@ body::before {
   color: var(--ink);
   font-weight: 700;
 }
+
+/* =========================================================
+   SLIDE — MAYA'S YEAR
+   Compounding-architecture demo. 6 acts in a 3x2 grid,
+   each with a chat panel + SQL panel + caption.
+   The hero card (Day 60) is gold-bordered.
+   Bottom tally bar summarizes the whole architectural pitch.
+   ========================================================= */
+#slide-maya {
+  padding-bottom: 48px;
+}
+
+.maya-lede {
+  font-family: var(--serif);
+  font-size: 16px;
+  font-style: italic;
+  color: var(--ink-2);
+  text-align: center;
+  margin: 4px auto 12px;
+  max-width: 920px;
+  line-height: 1.4;
+}
+
+.maya-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  max-width: 1320px;
+  margin: 0 auto;
+}
+
+.maya-act {
+  background: var(--paper);
+  border: 1px solid var(--ink-line);
+  border-radius: 8px;
+  padding: 10px 13px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-height: 226px;
+  position: relative;
+  overflow: hidden;
+}
+
+.maya-act-hero {
+  border: 1px solid var(--gold);
+  box-shadow:
+    0 0 0 1px rgba(80, 219, 217, 0.25),
+    0 4px 18px rgba(80, 219, 217, 0.15);
+}
+
+.maya-act-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+    rgba(80, 219, 217, 0.06) 0%,
+    transparent 60%);
+  pointer-events: none;
+}
+
+.ma-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid var(--ink-line);
+  padding-bottom: 6px;
+}
+
+.ma-day {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--gold);
+}
+
+.ma-tag {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.ma-tag-hero {
+  color: var(--gold);
+  font-weight: 700;
+}
+
+/* ── Chat panel ─────────────────────────────────────────── */
+.ma-chat {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-height: 52px;
+  position: relative;
+  z-index: 1;
+}
+
+.ma-msg {
+  font-family: var(--sans);
+  font-size: 12px;
+  line-height: 1.4;
+  padding: 6px 9px;
+  border-radius: 6px;
+  max-width: 96%;
+}
+
+.ma-user {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--ink-2);
+  align-self: flex-end;
+}
+
+.ma-agent {
+  background: rgba(80, 219, 217, 0.08);
+  border-left: 2px solid var(--gold);
+  color: var(--ink);
+  align-self: flex-start;
+}
+
+.ma-system {
+  background: transparent;
+  border-left: 2px solid var(--ink-faint);
+  color: var(--ink-soft);
+  font-style: italic;
+  font-size: 11.5px;
+  padding: 4px 8px;
+}
+
+.ma-msg-meta {
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  padding: 0 2px;
+  font-weight: 600;
+}
+
+.ma-msg-hero {
+  background: rgba(80, 219, 217, 0.14);
+  border-left-width: 3px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.ma-msg-hero strong {
+  color: var(--gold);
+  font-weight: 700;
+}
+
+/* ── Fleet event (Act 3 special) ────────────────────────── */
+.ma-chat-fleet {
+  align-items: stretch;
+  padding: 6px 4px 8px;
+  gap: 7px;
+}
+
+.ma-fleet-event {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11.5px;
+  color: var(--ink-2);
+}
+
+.ma-fe-icon {
+  color: var(--gold);
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.ma-fleet-bar {
+  background: rgba(255, 255, 255, 0.06);
+  height: 6px;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.ma-fleet-fill {
+  background: linear-gradient(90deg, var(--gold-2), var(--gold));
+  height: 100%;
+  width: 94%;
+  border-radius: 3px;
+}
+
+.ma-fleet-meta {
+  font-size: 10.5px;
+  color: var(--ink-soft);
+  letter-spacing: 0.04em;
+}
+
+.ma-fleet-meta strong {
+  color: var(--gold);
+  font-weight: 700;
+}
+
+/* ── SQL panel ──────────────────────────────────────────── */
+.ma-sql {
+  background: rgba(0, 0, 0, 0.28);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 6px;
+  padding: 8px 10px;
+  flex: 1;
+  overflow: hidden;
+}
+
+.ma-sql pre {
+  margin: 0;
+  font-family: 'JetBrains Mono', 'Menlo', 'Monaco', monospace;
+  font-size: 10.5px;
+  line-height: 1.5;
+  color: #B9C2CA;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.ma-comment {
+  color: var(--gold-2);
+  font-style: italic;
+}
+
+/* ── Caption ────────────────────────────────────────────── */
+.ma-caption {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 12px;
+  color: var(--ink-2);
+  text-align: center;
+  margin-top: auto;
+  padding-top: 6px;
+  border-top: 1px solid var(--ink-line);
+  line-height: 1.35;
+}
+
+.maya-act-hero .ma-caption {
+  color: var(--gold);
+  font-weight: 500;
+}
+
+/* ── Bottom tally bar ───────────────────────────────────── */
+.maya-tally {
+  margin: 14px auto 0;
+  max-width: 1320px;
+  background: rgba(80, 219, 217, 0.05);
+  border: 1px solid rgba(80, 219, 217, 0.22);
+  border-radius: 10px;
+  padding: 12px 22px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.mt-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  min-width: 70px;
+}
+
+.mt-num {
+  font-family: var(--serif);
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--gold);
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+
+.mt-lbl {
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  font-weight: 500;
+}
+
+.mt-divider {
+  color: var(--ink-faint);
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.maya-punchline {
+  flex-basis: 100%;
+  text-align: center;
+  font-family: var(--serif);
+  font-size: 14px;
+  color: var(--ink-2);
+  margin-top: 6px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(80, 219, 217, 0.15);
+  line-height: 1.4;
+}
+
+.maya-punchline em {
+  color: var(--gold);
+  font-style: italic;
+  font-weight: 500;
+}
