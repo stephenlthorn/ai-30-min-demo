@@ -3844,3 +3844,129 @@ body::before {
   color: var(--gold);
   font-weight: 700;
 }
+
+/* =========================================================
+   POST-AUDIT POLISH — Winston-framed opening + cross-slide bridges
+   ========================================================= */
+
+/* Title slide — quieter speaker block (just name + company) */
+.speaker-quiet {
+  margin-top: 36px;
+  text-align: center;
+  font-family: var(--sans);
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+}
+.speaker-quiet .name {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+}
+
+/* Sarah → Maya bridge line. The promise that pays off in slide 5b. */
+.sarah-bridge {
+  font-family: var(--sans);
+  font-size: 14px;
+  text-align: center;
+  color: var(--gold);
+  margin: 14px auto 0;
+  letter-spacing: 0.04em;
+  font-weight: 500;
+}
+.sarah-bridge .sb-arrow {
+  display: inline-block;
+  margin-right: 6px;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+/* Maya stepper — "resolves" callbacks under each step label */
+.ms-step {
+  min-height: 64px;
+  padding: 6px 10px 8px;
+}
+.ms-resolves {
+  display: block;
+  font-family: var(--sans);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-top: 2px;
+  font-weight: 500;
+}
+.ms-resolves-sarah {
+  color: var(--gold-2);
+  font-weight: 700;
+}
+.ms-step.ms-active .ms-resolves-sarah,
+.ms-step.ms-active .ms-resolves {
+  color: var(--gold);
+}
+
+/* Maya bottom-nav illustrative-numbers hedge */
+.mn-hedge {
+  flex-basis: 100%;
+  text-align: center;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 11px;
+  color: var(--ink-faint);
+  margin-top: 6px;
+  letter-spacing: 0.02em;
+}
+
+/* Products slide footer — preempts BYOC / RTBF / audit objections */
+.products-footer {
+  margin-top: 18px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--ink-line);
+}
+.pf-pill {
+  background: rgba(80, 219, 217, 0.08);
+  border: 1px solid rgba(80, 219, 217, 0.25);
+  border-radius: 16px;
+  padding: 6px 14px;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--gold);
+  letter-spacing: 0.02em;
+}
+
+/* Close slide — concrete CTA after the slogan */
+.close-cta {
+  margin: 18px auto 0;
+  max-width: 880px;
+  padding: 16px 22px;
+  background: rgba(80, 219, 217, 0.06);
+  border: 1px solid rgba(80, 219, 217, 0.3);
+  border-radius: 10px;
+  text-align: center;
+}
+.close-cta-line {
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--ink);
+}
+.close-cta-line .emph {
+  color: var(--gold);
+  font-weight: 600;
+  font-style: normal;
+}
+.close-cta-meta {
+  margin-top: 8px;
+  font-family: var(--sans);
+  font-size: 11.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}

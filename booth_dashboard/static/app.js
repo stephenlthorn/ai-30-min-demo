@@ -10,8 +10,8 @@
 
 const SLIDES = [
   { id: "title",       label: "Title",         shortLabel: "0" },
-  { id: "about",       label: "About",         shortLabel: "A" },
   { id: "sarah",       label: "The Hook",      shortLabel: "1" },
+  { id: "about",       label: "About",         shortLabel: "A" },
   { id: "why",         label: "Why",           shortLabel: "2" },
   { id: "convergence", label: "Convergence",   shortLabel: "3" },
   { id: "memories",    label: "Three Memories", shortLabel: "4a" },
@@ -36,13 +36,13 @@ const wait = (ms) => new Promise((r) => setTimeout(r, ms));
 /* Phrases to land per slide. Toggle with N. */
 const SPEAKER_NOTES = {
   title:
-    "Promise the deliverable up front: 30 minutes, three things you'll walk out with — why agents reset, the architecture that compounds, three questions for Monday. Don't dive in until you've made the promise.",
+    "EMPOWERMENT PROMISE FIRST. Read the subtitle line on screen, slowly, as your opening sentence. Don't say hello. Don't thank anyone. Don't introduce yourself yet — that comes after Sarah.\n\nVERBATIM OPENING (~70 seconds):\n\n'By the end of these 30 minutes, you'll be able to walk into your Monday staff meeting and ask the one question that tells you whether your AI is compounding customer value — or paying to rediscover the same customer every session.\n\nThat matters because the next 36 months in retail won't be won by the company with the flashiest model. They'll be won by the company whose AI actually gets smarter from every customer interaction.\n\nRight now, most teams are still wiring raw LLM calls together. So every new session starts over. Same customer. Same preferences. Same mistakes. Same token bill.\n\nThat is not a model problem. It is an architecture problem.\n\nFor the next 30 minutes, I'm going to show you what that failure looks like in a retail moment everyone in this room will recognize — and the architecture pattern that turns AI from a cost center that resets into an asset that compounds.'\n\nThen straight to Sarah. No throat-clearing.",
 
   about:
-    "30 seconds, no more. The point isn't your résumé — it's that you've been doing AI work since before it had a name. USNA capstone on 580M tweets, EACL 2012. Sosivio in-house models, no API to call. Now TiDB. Pivot fast to Sarah.",
+    "ONE SPOKEN LINE — after Sarah lands, before Why. Don't read the slide; the slide is the receipt for the line you spoke.\n\n'Quick context on me — I've been doing AI work since before it had a name. USNA capstone on 580 million tweets, EACL 2012. In-house LLMs at Sosivio when there was no API to call. Which is to say: I've watched four versions of this exact mistake. Now let's look at the architecture that ends it.'\n\n10-15 seconds total. Then Why. Don't dwell on the cards.",
 
   sarah:
-    "Slow this story down. Let the silence land after 'It has no idea who she is.'\n\nKEY LINES:\n• 'The model is brilliant. The model has amnesia.'\n• 'Agents do not have memory — not by accident, by design.'\n• 'That gap is the token tax — every AI investment in this room is leaking value through it right now.'\n\nDon't apologize for the discomfort. They paid to feel it.",
+    "Slow this story down. Let the silence land after 'It has no idea who she is.'\n\nKEY LINES:\n• 'The model is brilliant. The model has amnesia.'\n• 'Agents do not have memory — not by accident, by design.'\n• 'That gap is the token tax — every AI investment in this room is leaking value through it right now.'\n\nDon't apologize for the discomfort. They paid to feel it.\n\nLAND ON THE THREE FAILURE MODES — read each label out loud. Then point at the bridge line: 'Watch these three resolve, one by one, in six clicks.' That promise is the spine of the whole next act — Maya's Year is the receipt.\n\nBRIDGE TO ABOUT (one spoken line, then move): 'Quick context on me, then we go to the architecture.'",
 
   why:
     "Two halves.\n\nHALF 1 — The diagnosis (Memory Wall):\n• Three failure modes: token debt, context amnesia, memory decay.\n• THE TRAP: 'Model providers will sell you a 1M-token window as the answer. It benefits THEM, not you. Every token you load, you pay for. A bigger window is a bigger meter — it is not memory.'\n\nHALF 2 — The cure (Cognitive Foundation):\n• Frankenstack vs. one cluster.\n• Librarian analogy. assemble_context() = librarian with a 10-book limit, picking from 10,000.\n• LAND: 'Memory is infrastructure. Not a feature you bolt on. Stop running four systems.'",
@@ -78,10 +78,10 @@ const SPEAKER_NOTES = {
     "Eleven years. Enterprise battle-tested in production. Not a startup pivoting to AI — the database the AI labs are pivoting onto.\n\nThree eras: 2015 internet scale (Flipkart) → 2019 HTAP/real-time (banks, fraud) → 2023 agent memory (Manus, Kimi).\n\nLAND ON THE PIVOT LINE: 'Three eras. The fourth one is being decided right now.' That's the handoff to Why Now.",
 
   whynow:
-    "The window is now. Six months from now your competitors have agents that remember. Yours don't. The compounding starts the day you migrate, not the day you finish the RFP.",
+    "The window is now. The decision window is 36 months — but the compounding starts the day you migrate, not the day you finish the RFP. The competitor who picks the architecture this quarter has 36 months of compounding agent intelligence on you by the next earnings cycle. Not a model gap. An architecture gap. Architecture gaps don't close.",
 
   close:
-    "Three questions for Monday. The first is the killer:\n\n'Where does our agent's memory ACTUALLY live? Show me the database.'\n\nWalk away with: 'Memory isn't stored — it's maintained.' / 'One database beats four duct-taped together.' / 'The labs that build AI all chose this architecture.'\n\nFINAL LINE: 'We know how to build it. CMA is the Cognitive Foundation. The memory wall has an architecture on the other side. Stop running four systems.'",
+    "PROMISE KEPT. Open the close by reading the empowerment promise from slide 0 BACK to them: 'I promised you the one question. Here are the three.' Then walk the three Monday questions slowly — they are the deliverable.\n\n01 · MEMORY LOCATION — 'Show me the database. And the second one. And the third.' This exposes the Frankenstack on day 1.\n02 · TRANSACTIONAL BOUNDARY — 'When the agent writes outcome and reasoning, do they commit in one transaction?' This exposes partial-failure risk.\n03 · AUDIT OWNERSHIP — 'Who reconstructs a 90-day-old decision, from which system?' This exposes regulators.\n\nIf any one of those three gets a hand-wavy answer, the architecture is leaking value.\n\nCONCRETE CTA (read slowly, point at the email): 'Find me at the booth or email me. The next step is a 30-minute working session — we map your current memory architecture together. What's where, what's stale, what's at risk. No pitch. Diagnostic only.'\n\nFINAL LINE: 'Memory isn't stored. It's maintained. The memory wall has an architecture on the other side — and you now know the one question that gets you to it.'",
 
   qa:
     "Reference card. Don't read these out. Tap whichever the question matches and walk through it conversationally."

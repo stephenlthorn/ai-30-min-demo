@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="/static/styles.css?v=28" />
+  <link rel="stylesheet" href="/static/styles.css?v=29" />
 </head>
 
 <body>
@@ -49,12 +49,10 @@
 
     <h1>Build AI That Gets <em>Smarter</em> Every Day.</h1>
 
-    <p class="subtitle">AI agents forget. TiDB gives them memory.</p>
-    <p class="subtitle-sub"><em>Breaking through the memory wall — the architecture the labs that build AI all chose.</em></p>
+    <p class="subtitle">By the end of these 30 minutes, you'll be able to walk into your Monday staff meeting and ask <em>the one question</em> that tells you whether your AI is compounding customer value &mdash; or paying to rediscover the same customer every session.</p>
 
-    <div class="speaker">
-      <div class="name">Stephen Thorn</div>
-      <div class="role">Head of Solution Engineering</div>
+    <div class="speaker speaker-quiet">
+      <div class="name">Stephen Thorn · TiDB</div>
     </div>
   </section>
 
@@ -220,6 +218,9 @@
     <p class="sarah-land">
       <span class="emph">These aren't prompt bugs. They're architecture bugs.</span>
       You can't prompt your way out of an architecture problem.
+    </p>
+    <p class="sarah-bridge">
+      <span class="sb-arrow">↓</span> Watch these three resolve, one by one, in six clicks.
     </p>
   </section>
 
@@ -509,6 +510,14 @@
       <span class="emph">You don't have to become a database team to give your agents memory.</span>
       mem9 is the API. TiDB X is the substrate. Pick the entry point that fits your org.
     </p>
+
+    <!-- Preempt the regulated-buyer objection (NYBC, Tapestry, Westcon) -->
+    <div class="products-footer">
+      <span class="pf-pill">BYOC · in your AWS / GCP VPC</span>
+      <span class="pf-pill">Self-hostable · Apache-2.0 (mem9)</span>
+      <span class="pf-pill">Audit-ready · episodic memory IS the trail</span>
+      <span class="pf-pill">RTBF / GDPR · single delete, all modalities</span>
+    </div>
   </section>
 
   <!-- =============================================================
@@ -648,39 +657,45 @@
        TiDB vs the 4-system Frankenstack at every step.
        ============================================================= -->
   <section class="slide" id="slide-maya">
-    <div class="eyebrow">Beat 05.5 · The Compounding · 4 minutes</div>
-    <h2 style="margin-bottom: 6px;">Maya's Year — <em>one cluster</em>, twelve months, six moments Frankenstack can't render.</h2>
+    <div class="eyebrow">Beat 05.5 · The Compounding · 4 minutes · <span style="color:var(--gold)">Same Maya · 60 days into the relationship</span></div>
+    <h2 style="margin-bottom: 6px;">Maya's Year — <em>one cluster</em>, twelve months, Sarah's three failure modes resolved.</h2>
 
-    <!-- Step navigator -->
+    <!-- Step navigator with "resolves" callbacks to Sarah's failure modes -->
     <div class="maya-stepper">
       <button class="ms-step ms-active" data-mstep="0">
         <span class="ms-day">DAY 1</span>
         <span class="ms-lbl">First contact</span>
+        <span class="ms-resolves">setup</span>
       </button>
       <div class="ms-line"></div>
       <button class="ms-step" data-mstep="1">
         <span class="ms-day">DAY 14</span>
         <span class="ms-lbl">Returns + reasons</span>
+        <span class="ms-resolves ms-resolves-sarah">resolves 01 · written down</span>
       </button>
       <div class="ms-line"></div>
       <button class="ms-step" data-mstep="2">
         <span class="ms-day">DAY 21</span>
         <span class="ms-lbl">Fleet learns</span>
+        <span class="ms-resolves">at fleet scale</span>
       </button>
       <div class="ms-line"></div>
       <button class="ms-step" data-mstep="3">
         <span class="ms-day">DAY 22</span>
         <span class="ms-lbl">Stranger benefits</span>
+        <span class="ms-resolves ms-resolves-sarah">resolves 02 · findable</span>
       </button>
       <div class="ms-line"></div>
       <button class="ms-step ms-hero" data-mstep="4">
         <span class="ms-day">DAY 60</span>
         <span class="ms-lbl">★ Compounding payoff</span>
+        <span class="ms-resolves ms-resolves-sarah">resolves 03 · context rot</span>
       </button>
       <div class="ms-line"></div>
       <button class="ms-step" data-mstep="5">
         <span class="ms-day">DAY 90</span>
         <span class="ms-lbl">The audit</span>
+        <span class="ms-resolves">bonus · defensible</span>
       </button>
     </div>
 
@@ -764,6 +779,7 @@
       <button class="mn-btn mn-prev" id="mayaPrev">← Prev</button>
       <span class="mn-position"><span id="mayaStepNum">1</span> of 6</span>
       <button class="mn-btn mn-next" id="mayaNext">Next →</button>
+      <span class="mn-hedge">Numbers are representative of a workload of this shape.</span>
     </div>
   </section>
 
@@ -857,8 +873,8 @@
     <div class="eyebrow">Beat 08 · Your category · 2 minutes</div>
     <h2>Same architecture. <em>Your customer.</em></h2>
     <p class="lede">
-      The demo is dress sizing. The mechanism is identical for every retail
-      vertical. The agent's memory is whatever your customers come back for.
+      Maya's story is specific. The architecture underneath it isn't.
+      Whatever your customers come back for is what your agent has to remember.
     </p>
 
     <div class="category-grid">
@@ -1067,9 +1083,9 @@
       <div class="close-col monday">
         <div class="close-label">Three questions for Monday</div>
         <ol>
-          <li>"Where does our agent's memory <em>actually</em> live? Show me the database."</li>
-          <li>"Could a single query join customer history + conversation memory + live inventory?"</li>
-          <li>"What would change for our customer if our agents could learn between conversations?"</li>
+          <li><strong>Memory location.</strong> "Where does our agent's memory <em>actually</em> live? Show me the database — and the second one, and the third."</li>
+          <li><strong>Transactional boundary.</strong> "When the agent writes an outcome and the reasoning behind it, do they commit in the same transaction — or can one succeed and the other fail?"</li>
+          <li><strong>Audit ownership.</strong> "If a regulator asks why the agent made a decision 90 days ago, who reconstructs it — and from which system of record?"</li>
         </ol>
       </div>
     </div>
@@ -1078,9 +1094,15 @@
       Your AI agents aren't stuck because the models are dumb.<br>
       They're stuck because <span class="close-slogan-tail">your data architecture forgets.</span>
     </p>
-    <p class="close-cf-line">
-      <span class="emph">TiDB is the architecture that ends the forgetting.</span>
-    </p>
+
+    <!-- Concrete next step -->
+    <div class="close-cta">
+      <div class="close-cta-line">
+        <span class="emph">One next step:</span>
+        a 30-minute working session to map your current memory architecture &mdash; what's where, what's stale, what's at risk.
+      </div>
+      <div class="close-cta-meta">stephen@pingcap.com · find me at the booth</div>
+    </div>
   </section>
 
   <!-- =============================================================
