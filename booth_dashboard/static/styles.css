@@ -306,12 +306,12 @@ body::before {
   font-weight: 500;
 }
 
-/* Single-line empowerment promise — hook in gold, rest dimmer */
+/* Single-line empowerment promise — hook in gold, key words in gold, rest white */
 .slide-title .title-promise-line {
   font-family: var(--serif);
   font-style: italic;
   font-size: 24px;
-  color: var(--ink-soft);
+  color: var(--ink);
   line-height: 1.4;
   margin: 12px 0 36px;
   max-width: none;
@@ -324,7 +324,7 @@ body::before {
 }
 .slide-title .title-promise-line em {
   font-style: italic;
-  color: var(--ink);
+  color: var(--gold);
   font-weight: 500;
 }
 
