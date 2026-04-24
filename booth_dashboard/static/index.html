@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="/static/styles.css?v=18" />
+  <link rel="stylesheet" href="/static/styles.css?v=25" />
 </head>
 
 <body>
@@ -25,8 +25,9 @@
   <button id="tab-manus"></button>
   <button id="tab-demo"></button>
   <button id="tab-memories"></button>
+  <button id="tab-cma"></button>
+  <button id="tab-products"></button>
   <button id="tab-category"></button>
-  <button id="tab-proof"></button>
   <button id="tab-lineage"></button>
   <button id="tab-whynow"></button>
   <button id="tab-close"></button>
@@ -48,6 +49,7 @@
     <h1>Build AI That Gets <em>Smarter</em> Every Day.</h1>
 
     <p class="subtitle">AI agents forget. TiDB gives them memory.</p>
+    <p class="subtitle-sub"><em>Breaking through the memory wall — the architecture the labs that build AI all chose.</em></p>
 
     <div class="speaker">
       <div class="name">Stephen Thorn</div>
@@ -199,10 +201,24 @@
 
     </div>
 
+    <div class="failure-modes">
+      <div class="fm-card">
+        <div class="fm-label">01 · Never written down</div>
+        <div class="fm-desc">Sarah told Tuesday's agent her preferences. Session ended. Gone.</div>
+      </div>
+      <div class="fm-card">
+        <div class="fm-label">02 · Written but not findable</div>
+        <div class="fm-desc">Fraud flag is in Pinecone. Retention agent is querying Postgres.</div>
+      </div>
+      <div class="fm-card">
+        <div class="fm-label">03 · Context rot</div>
+        <div class="fm-desc">After 40 tool calls the agent is drowning in stale state. Quality collapses.</div>
+      </div>
+    </div>
+
     <p class="sarah-land">
-      <span class="emph">Agents do not have memory</span> — not by accident, <em>by design</em>.
-      The model is stateless. Every new session, every AI in this room starts over.
-      That gap is where your investment is leaking right now.
+      <span class="emph">These aren't prompt bugs. They're architecture bugs.</span>
+      You can't prompt your way out of an architecture problem.
     </p>
   </section>
 
@@ -211,7 +227,7 @@
        ============================================================= -->
   <section class="slide" id="slide-why">
     <div class="eyebrow">The Answer</div>
-    <h2>Two problems. One architectural answer.</h2>
+    <h2>Memory belongs in one place.</h2>
 
     <p class="why-lede">
       Memory has to live somewhere. The question is whether that somewhere is
@@ -221,26 +237,54 @@
     <div class="two-col">
       <div class="frankenstack">
         <div class="label">Before · the stack most retailers run today</div>
-        <div class="frank-grid">
-          <div class="frank-db">
-            <div class="name">Aurora / SQL Server</div>
-            <div class="role">Orders · customers · inventory</div>
+        <div class="show-of-hands">Show of hands — this is your stack today, or worse?</div>
+
+        <div class="frank-diagram">
+          <!-- Agent at top, confused -->
+          <div class="frank-agent">
+            <span class="fa-name">AI AGENT</span>
+            <span class="fa-q">"which version of reality is correct?"</span>
           </div>
-          <div class="frank-db">
-            <div class="name">Pinecone</div>
-            <div class="role">Vector memory · embeddings</div>
+
+          <!-- Question marks fanning down to each system -->
+          <div class="frank-fan">
+            <span>?</span><span>?</span><span>?</span><span>?</span>
           </div>
-          <div class="frank-db">
-            <div class="name">Snowflake</div>
-            <div class="role">Analytics · loyalty cohorts</div>
+
+          <!-- 4 disjoint systems, side by side -->
+          <div class="frank-row">
+            <div class="frank-sys fs-aurora">
+              <div class="fs-name">Azure SQL</div>
+              <div class="fs-role">Orders<br>Customers</div>
+              <div class="fs-cm">STRONG</div>
+            </div>
+            <div class="frank-sys fs-pinecone">
+              <div class="fs-name">Pinecone</div>
+              <div class="fs-role">Vector<br>Memory</div>
+              <div class="fs-cm">EVENTUAL</div>
+            </div>
+            <div class="frank-sys fs-snowflake">
+              <div class="fs-name">Snowflake</div>
+              <div class="fs-role">Analytics<br>Cohorts</div>
+              <div class="fs-cm">BATCH · 6h LAG</div>
+            </div>
+            <div class="frank-sys fs-redis">
+              <div class="fs-name">Elasticsearch</div>
+              <div class="fs-role">Full-text<br>Search</div>
+              <div class="fs-cm">REFRESH LAG</div>
+            </div>
           </div>
-          <div class="frank-db">
-            <div class="name">Redis</div>
-            <div class="role">Session cache · wipes on restart</div>
+
+          <!-- Broken sync indicators between systems -->
+          <div class="frank-sync">
+            <div class="sync-issue"><span class="si-icon">⚠</span> ETL broke 3:14 AM</div>
+            <div class="sync-issue"><span class="si-icon">⚠</span> Embedding drift 18%</div>
+            <div class="sync-issue"><span class="si-icon">⚠</span> RTBF cascade missed</div>
           </div>
         </div>
+
         <div class="frank-note">
-          Four systems. Four consistency models. Sync breaks at 3 AM. The agent reasons on four versions of reality.
+          The agent's data plane and context plane have to share an ACID boundary. Not a TiDB claim — an architectural necessity.
         </div>
       </div>
 
@@ -274,7 +318,94 @@
       </div>
     </div>
 
-    <!-- Librarian analogy — visual explanation of token tax vs curated context -->
+    <p class="why-land">
+      Memory is infrastructure. Not a feature you bolt on. <span class="gold">Stop running four systems.</span>
+    </p>
+  </section>
+
+  <!-- =============================================================
+       SLIDE 4 — THE CONVERGENCE
+       ============================================================= -->
+  <section class="slide" id="slide-convergence">
+    <div class="eyebrow">Proven in Production</div>
+    <h2>Different problems. Same architecture.</h2>
+
+    <div class="convergence-grid">
+      <div class="conv-card">
+        <div class="tag">AI Agents</div>
+        <div class="name">Global Top 5 AI Lab</div>
+        <div class="blurb">Powers AI Agent memory</div>
+        <div class="stat">Enterprise Agents</div>
+      </div>
+      <div class="conv-card">
+        <div class="tag">AI Agents</div>
+        <div class="name">Global Top 5 AI Lab</div>
+        <div class="blurb">TiDB for millions of users memory.</div>
+        <div class="stat">Main Chat Platform</div>
+      </div>
+      <div class="conv-card">
+        <div class="tag">AI app platform</div>
+        <div class="name">Dify</div>
+        <div class="blurb">500k+ DBs to 1 TiDB Cluster</div>
+        <div class="stat">80% Cost Reduction</div>
+      </div>
+      <div class="conv-card">
+        <div class="tag">AI Agents</div>
+        <div class="name">Meta (Manus)</div>
+        <div class="blurb">Powers Millions of Agents</div>
+        <div class="stat">Millions of agent branches · one cluster</div>
+      </div>
+    </div>
+
+    <div class="punchline">
+      <span class="emph">Convergence isn't coincidence.</span>
+      The database stopped being storage — it became the substrate the agent thinks against.
+    </div>
+  </section>
+
+  <!-- =============================================================
+       SLIDE 5 — THREE MEMORIES (the architecture, named)
+       ============================================================= -->
+  <section class="slide" id="slide-memories">
+    <div class="eyebrow">Beat 04 · The Architecture, Named · 3 minutes</div>
+    <h2>The Memory Wall <span class="arrow">→</span> The Cognitive Foundation.</h2>
+
+    <div class="memories-grid">
+      <div class="memory-type mt-episodic">
+        <div class="mt-label">Episodic</div>
+        <div class="mt-name">What happened</div>
+        <div class="mt-table">in TiDB · <code>agent_reasoning</code></div>
+        <div class="mt-desc">
+          Time-stamped history scoped by entity. Every interaction — across channels and six-month gaps — in one query.
+        </div>
+        <div class="mt-demo">Watch for: recognizing Emma. The cream linen shift. The wrap dress return.</div>
+        <div class="mt-tag">per-customer · per-session · auditable</div>
+      </div>
+
+      <div class="memory-type mt-semantic">
+        <div class="mt-label">Semantic</div>
+        <div class="mt-name">What we learned</div>
+        <div class="mt-table">in TiDB · <code>fleet_memory</code></div>
+        <div class="mt-desc">
+          Platform-wide knowledge — deduplicated, decayed, compacted. One customer pays the learning cost; every other benefits.
+        </div>
+        <div class="mt-demo">Watch for: the size-up rule for relaxed weaves. Bias cuts behave differently than straight cuts.</div>
+        <div class="mt-tag">cross-customer · self-maintaining · compounding</div>
+      </div>
+
+      <div class="memory-type mt-procedural">
+        <div class="mt-label">Procedural</div>
+        <div class="mt-name">What works</div>
+        <div class="mt-table">next architectural step</div>
+        <div class="mt-desc">
+          Learned investigation strategies. Implicit in semantic memory today — the next dedicated retrieval path on the roadmap.
+        </div>
+        <div class="mt-demo">Watch for: the order of operations the agent follows without being told.</div>
+        <div class="mt-tag">strategy memory · the missing layer · the roadmap</div>
+      </div>
+    </div>
+
+    <!-- Librarian analogy — how assemble_context() turns stored memory into curated context -->
     <div class="librarian-box">
       <div class="lb-panel lb-bad">
         <div class="lb-top-label">1M context window · the token tax</div>
@@ -307,108 +438,17 @@
       </div>
     </div>
 
-    <p class="why-land">
-      Memory is infrastructure. Not a feature you bolt on. <span class="gold">Stop running four systems.</span>
-    </p>
   </section>
 
   <!-- =============================================================
-       SLIDE 4 — THE CONVERGENCE
+       SLIDE 5b — CMA DUTIES
        ============================================================= -->
-  <section class="slide" id="slide-convergence">
-    <div class="eyebrow">Beat 03 · The Convergence · 4 minutes</div>
-    <p class="conv-kicker">You're not the first to figure this out.</p>
-    <h2>Four labs building AI. One architectural answer.</h2>
-
-    <div class="convergence-grid">
-      <div class="conv-card">
-        <div class="tag">Top-4 LLM · China</div>
-        <div class="name">Kimi</div>
-        <div class="blurb">Moonshot AI — frontier long-context models. Runs its agent memory on TiDB.</div>
-        <div class="stat">1M+ token context · one database</div>
-      </div>
-      <div class="conv-card">
-        <div class="tag">Open-source frontier</div>
-        <div class="name">DeepSeek</div>
-        <div class="blurb">The lab that shook the market with R1. Uses TiDB for execution-state memory.</div>
-        <div class="stat">Top-4 LLM globally</div>
-      </div>
-      <div class="conv-card">
-        <div class="tag">AI app platform</div>
-        <div class="name">Dify</div>
-        <div class="blurb">Consolidated 500K+ containers onto one cluster. Migration was weeks.</div>
-        <div class="stat">50–80% cost cut · 3–5× p99</div>
-      </div>
-      <div class="conv-card">
-        <div class="tag">Agentic platform</div>
-        <div class="name">Manus</div>
-        <div class="blurb">2M waitlist in 3 weeks. Now runs 10M+ databases — 95% created by agents, not humans.</div>
-        <div class="stat">Migrated in 2 weeks</div>
-      </div>
-    </div>
-
-    <div class="punchline">
-      When independent teams, in different countries, solving different problems,
-      <span class="emph">independently arrive at the same architectural answer</span> —
-      that's not a coincidence. That's convergence. The database stopped being a storage layer.
-      It became the substrate the agent thinks against.
-    </div>
-  </section>
-
-  <!-- =============================================================
-       SLIDE 5 — THREE MEMORIES (the architecture, named)
-       ============================================================= -->
-  <section class="slide" id="slide-memories">
-    <div class="eyebrow">Beat 04 · The Architecture, Named · 3 minutes</div>
-    <h2>The Memory Wall <span class="arrow">→</span> The Cognitive Foundation.</h2>
-    <p class="mem-lede">
-      Before we run the demo, here's the vocabulary. What you're about to watch isn't magic — it's three named memory types working in concert.
-      Cognitive science gave us the taxonomy. <span class="emph">We built the maintenance layer that makes it production-grade.</span>
-      The Cognitive Foundation is both — the named types, and the duties that keep them honest.
-    </p>
-
-    <div class="memories-grid">
-      <div class="memory-type mt-episodic">
-        <div class="mt-label">Episodic</div>
-        <div class="mt-name">What happened</div>
-        <div class="mt-table">in TiDB · <code>agent_reasoning</code></div>
-        <div class="mt-desc">
-          Time-stamped investigation history. Scoped by entity, linked by supersession chains.
-          Every interaction Emma had with the brand — across web, store, voice, six-month gaps —
-          available in one query.
-        </div>
-        <div class="mt-demo">Watch for: recognizing Emma. The cream linen shift. The wrap dress return.</div>
-        <div class="mt-tag">per-customer · per-session · auditable</div>
-      </div>
-
-      <div class="memory-type mt-semantic">
-        <div class="mt-label">Semantic</div>
-        <div class="mt-name">What we learned</div>
-        <div class="mt-table">in TiDB · <code>fleet_memory</code></div>
-        <div class="mt-desc">
-          Platform-wide knowledge. Scoped by global / site / segment. Deduplicated, decayed, compacted.
-          The lessons every customer pays for once and every other customer benefits from forever.
-        </div>
-        <div class="mt-demo">Watch for: the size-up rule for relaxed weaves. Bias cuts behave differently than straight cuts.</div>
-        <div class="mt-tag">cross-customer · self-maintaining · compounding</div>
-      </div>
-
-      <div class="memory-type mt-procedural">
-        <div class="mt-label">Procedural</div>
-        <div class="mt-name">What works</div>
-        <div class="mt-table">next architectural step</div>
-        <div class="mt-desc">
-          Learned investigation strategies. <em>"When a between-size customer asks about linen,
-          check return history first, then size-up rule, then color preference."</em>
-          Today this lives implicitly in semantic memory. Tomorrow: its own retrieval path and lifecycle.
-        </div>
-        <div class="mt-demo">Watch for: the order of operations the agent follows without being told.</div>
-        <div class="mt-tag">strategy memory · the missing layer · the roadmap</div>
-      </div>
-    </div>
+  <section class="slide" id="slide-cma">
+    <div class="eyebrow">Beat 04 · The Architecture, Named · continued</div>
+    <h2>What makes memory production-grade.</h2>
 
     <div class="duties-strip">
-      <div class="duties-strip-label">The five duties — what makes memory production-grade</div>
+      <div class="duties-strip-label">The five duties — what keeps memory honest over time</div>
       <div class="duties-strip-list">
         <span>Write control</span><span>Deduplication</span><span>Reconciliation</span><span>Confidence decay</span><span>Compaction</span>
       </div>
@@ -426,6 +466,47 @@
     <p class="mem-land">
       Session state and context snapshots are operational infrastructure — they support the memory system, but they aren't memory.
       <span class="emph">CMA — the Cognitive Memory Architecture — is the Cognitive Foundation. We know how to build it. Here's how it's built.</span>
+    </p>
+  </section>
+
+  <!-- =============================================================
+       SLIDE 5c — TWO PRODUCTS, TWO AUDIENCES (mem9 + TiDB X)
+       ============================================================= -->
+  <section class="slide" id="slide-products">
+    <div class="eyebrow">The Stack</div>
+    <h2>Two products. Two audiences. One architecture.</h2>
+
+    <div class="products-grid">
+      <div class="product-card product-tidbx">
+        <div class="pc-tag">For platform CIOs &amp; CTOs</div>
+        <div class="pc-name">TiDB X</div>
+        <div class="pc-sub">The substrate</div>
+        <div class="pc-bullets">
+          <div class="pc-row"><span class="pc-mark">›</span> Distributed SQL — MySQL-compatible, drops in behind your apps</div>
+          <div class="pc-row"><span class="pc-mark">›</span> Native vector + full-text + columnar analytics in one ACID transaction</div>
+          <div class="pc-row"><span class="pc-mark">›</span> Copy-on-write agent branches in milliseconds (millions in production)</div>
+          <div class="pc-row"><span class="pc-mark">›</span> GA on every major cloud · BYOC for regulated workloads</div>
+        </div>
+        <div class="pc-foot">Replaces 4 of your 5 data systems. The fifth (S3) it uses as object storage.</div>
+      </div>
+
+      <div class="product-card product-mem9">
+        <div class="pc-tag">For VP of AI / Data &amp; engineering</div>
+        <div class="pc-name">mem9</div>
+        <div class="pc-sub">The memory API, built on TiDB</div>
+        <div class="pc-bullets">
+          <div class="pc-row"><span class="pc-mark">›</span> One line of install. No schema design. Agent writes, mem9 persists.</div>
+          <div class="pc-row"><span class="pc-mark">›</span> Hybrid vector + keyword search out of the box</div>
+          <div class="pc-row"><span class="pc-mark">›</span> Cross-agent, cross-session memory — Sarah is Sarah everywhere</div>
+          <div class="pc-row"><span class="pc-mark">›</span> Apache-2.0 · self-hostable when compliance asks</div>
+        </div>
+        <div class="pc-foot">Auto-provisions on TiDB Cloud. No control plane to manage.</div>
+      </div>
+    </div>
+
+    <p class="products-land">
+      <span class="emph">You don't have to become a database team to give your agents memory.</span>
+      mem9 is the API. TiDB X is the substrate. Pick the entry point that fits your org.
     </p>
   </section>
 
@@ -566,6 +647,9 @@
   <section class="slide" id="slide-manus">
     <div class="eyebrow">Beat 06 · The Manus Math · 2 minutes</div>
     <h2>Their $5/month price is arithmetic — not marketing.</h2>
+    <p class="manus-frame">
+      <em>This is what production-grade agentic AI actually looks like — thousands of iterations per task, millions of users, math that has to work.</em>
+    </p>
 
     <div class="manus-grid">
 
@@ -637,43 +721,6 @@
       Manus charges $5/month because TiDB Serverless scales to zero.
       You can't price an AI product without solving the database problem first.
       <span class="emph">Every AI company eventually discovers this math.</span>
-    </div>
-  </section>
-
-  <!-- =============================================================
-       SLIDE 8 — PROOF
-       ============================================================= -->
-  <section class="slide" id="slide-proof">
-    <div class="eyebrow">Beat 07 · Production Proof · 2 minutes</div>
-    <h2>Not a vision. Already live in retail.</h2>
-
-    <div class="proof-grid">
-      <div class="proof-card">
-        <div class="logo">Rakuten</div>
-        <div class="sector">Loyalty · payments</div>
-        <div class="hero">Real-time <em>on live data</em></div>
-        <div class="desc">Modernized the loyalty platform with real-time analytics running on the same data that handles transactions. No ETL lag. Higher concurrency, lower operational load.</div>
-        <div class="why">The reference for Bob's Discount–scale reactivation and Amway loyalty rewards.</div>
-      </div>
-      <div class="proof-card">
-        <div class="logo">Pinterest</div>
-        <div class="sector">Graph · discovery</div>
-        <div class="hero">1M+ <em>QPS</em></div>
-        <div class="desc">Replaced the Zen graph service with a distributed graph built on this architecture. Horizontal scale, sub-5ms p95 tail latency, simpler ops.</div>
-        <div class="why">If you're building product-discovery graphs — Tapestry, Vineyard Vines — this is the scale ceiling.</div>
-      </div>
-      <div class="proof-card">
-        <div class="logo">Flipkart</div>
-        <div class="sector">Commerce · holiday scale</div>
-        <div class="hero">700 → <em>1 cluster</em></div>
-        <div class="desc">Replaced 700+ MySQL clusters with one. Zero-downtime maintenance during holiday-spike windows. Over one million queries per second.</div>
-        <div class="why">The reference architecture for Black Friday and Cyber Monday volume.</div>
-      </div>
-    </div>
-
-    <div class="punchline" style="margin-top: 20px;">
-      You have not read about this architecture in a pitch deck.
-      <span class="emph">You've watched competitors run on it for two years already.</span>
     </div>
   </section>
 
@@ -786,6 +833,22 @@
       </div>
     </div>
 
+    <div class="enterprise-strip">
+      <div class="es-label">Enterprise scale, in production today</div>
+      <div class="es-logos">
+        <span class="es-logo">Uber</span>
+        <span class="es-logo">Pinterest</span>
+        <span class="es-logo">Airbnb</span>
+        <span class="es-logo">Atlassian</span>
+        <span class="es-logo">Plaid</span>
+      </div>
+      <div class="es-stats">
+        <span><strong>1M+ QPS</strong> · graph at Pinterest</span>
+        <span><strong>700 → 1 cluster</strong> · Flipkart commerce</span>
+        <span><strong>10M+ databases</strong> · Manus agents</span>
+      </div>
+    </div>
+
     <div class="lineage-bookends">
       <div class="bookend">
         <div class="bookend-label">If you're starting your first agent pilot</div>
@@ -886,10 +949,11 @@
     </div>
 
     <p class="close-slogan">
-      Stop running four systems. <span class="close-slogan-tail">That's the whole argument.</span>
+      Your AI agents aren't stuck because the models are dumb.<br>
+      They're stuck because <span class="close-slogan-tail">your data architecture forgets.</span>
     </p>
     <p class="close-cf-line">
-      We know how to build it. <span class="emph">CMA is the Cognitive Foundation.</span> The memory wall has an architecture on the other side.
+      <span class="emph">TiDB is the architecture that ends the forgetting.</span>
     </p>
   </section>
 

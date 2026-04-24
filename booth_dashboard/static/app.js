@@ -14,14 +14,15 @@ const SLIDES = [
   { id: "sarah",       label: "The Hook",      shortLabel: "1" },
   { id: "why",         label: "Why",           shortLabel: "2" },
   { id: "convergence", label: "Convergence",   shortLabel: "3" },
-  { id: "memories",    label: "Three Memories", shortLabel: "4" },
+  { id: "memories",    label: "Three Memories", shortLabel: "4a" },
+  { id: "cma",         label: "Five Duties",   shortLabel: "4b" },
+  { id: "products",    label: "Two Products",  shortLabel: "4c" },
   { id: "demo",        label: "Demo",          shortLabel: "5" },
   { id: "manus",       label: "Manus Math",    shortLabel: "6" },
-  { id: "proof",       label: "Proof",         shortLabel: "7" },
-  { id: "category",    label: "Your Category", shortLabel: "8" },
-  { id: "lineage",     label: "11 Years",      shortLabel: "9" },
-  { id: "whynow",      label: "Why Now",       shortLabel: "10" },
-  { id: "close",       label: "Close",         shortLabel: "11" },
+  { id: "category",    label: "Your Category", shortLabel: "7" },
+  { id: "lineage",     label: "11 Years",      shortLabel: "8" },
+  { id: "whynow",      label: "Why Now",       shortLabel: "9" },
+  { id: "close",       label: "Close",         shortLabel: "10" },
   { id: "qa",          label: "Q&A",           shortLabel: "Q" }
 ];
 
@@ -46,7 +47,7 @@ const SPEAKER_NOTES = {
     "Two halves.\n\nHALF 1 — The diagnosis (Memory Wall):\n• Three failure modes: token debt, context amnesia, memory decay.\n• THE TRAP: 'Model providers will sell you a 1M-token window as the answer. It benefits THEM, not you. Every token you load, you pay for. A bigger window is a bigger meter — it is not memory.'\n\nHALF 2 — The cure (Cognitive Foundation):\n• Frankenstack vs. one cluster.\n• Librarian analogy. assemble_context() = librarian with a 10-book limit, picking from 10,000.\n• LAND: 'Memory is infrastructure. Not a feature you bolt on. Stop running four systems.'",
 
   convergence:
-    "OPEN with the kicker: 'You're not the first to figure this out.'\n\nFour labs. Different countries. Different problems. Same architectural answer. That's not a coincidence — that's convergence.\n\nThe database stopped being a storage layer. It became the substrate the agent thinks against.\n\nBRIDGE TO MEMORIES: 'So what IS that architecture? Three named memory types — let me show you.'",
+    "OPEN with: 'These four are illustrative — not the full list. We have many more AI customers. But pick any four building frontier AI and look at where their memory actually lives.'\n\nFour use cases. Different problems. Same architecture. That's not a coincidence — that's convergence.\n\nNote on anonymization: Two of these labs are top-5 frontier AI globally — one long-context, one open-source. We name them in 1:1s under NDA.\n\nThe database stopped being a storage layer. It became the substrate the agent thinks against.\n\nBRIDGE TO MEMORIES: 'So what IS that architecture? Three named memory types — let me show you.'",
 
   manus:
     "You just showed the architecture working — now show what it costs. The math IS the punchline. Walk the numbers slowly.\n\n• AWS cheapest DB: $9.60/month.\n• Manus has 10M databases.\n• That's $96M/month, $1.15B/year — on AWS.\n• Manus charges $5/month per user.\n\nLAND: 'You can't price an AI product without solving the database problem first. Every AI company eventually discovers this math.'\n\nBRIDGE TO PROOF: 'And it's not just AI labs running this architecture.'",
@@ -55,7 +56,13 @@ const SPEAKER_NOTES = {
     "You just named the three memory types — now show them working. Let it play. Don't narrate over the animation.\n\nAFTER both windows finish:\n'Same customer. Same brand. Same chatbot UI. The only thing different is the memory architecture. One left without buying. One checked out for $172 in four turns. That delta — across 10 million customers, every day — is the whole game.'\n\nBRIDGE TO MANUS: 'Now let's look at what that delta actually costs.'",
 
   memories:
-    "This is THE architecture slide. The intellectual backbone — and it sets up the demo. Plant the vocabulary HERE so the audience has labels for what they're about to watch.\n\n• EPISODIC (agent_reasoning) — what happened. Per-customer, time-stamped, auditable. Watch for: recognizing Emma in the next slide.\n• SEMANTIC (fleet_memory) — what we learned. Cross-customer, deduplicated, decayed. Watch for: the size-up rule.\n• PROCEDURAL — what works. The missing layer. Strategy memory. The roadmap.\n\nTHE CREDIT LINE: 'Cognitive science named the types. We built the maintenance layer. The Cognitive Foundation is both.'\n\nBRIDGE TO DEMO: 'Three named types. Now watch them work.'",
+    "This is THE architecture slide. The intellectual backbone — and it sets up the demo. Plant the vocabulary HERE so the audience has labels for what they're about to watch.\n\n• EPISODIC (agent_reasoning) — what happened. Per-customer, time-stamped, auditable. Watch for: recognizing Emma in the next slide.\n• SEMANTIC (fleet_memory) — what we learned. Cross-customer, deduplicated, compacted. Watch for: the size-up rule.\n• PROCEDURAL — what works. The missing layer. Strategy memory. The roadmap.\n\nTHE CREDIT LINE: 'Cognitive science named the types. We built the maintenance layer. The Cognitive Foundation is both.'\n\nLIBRARIAN: 'Every session, assemble_context() picks the right books off the shelf — ranked by relevance, fitted to budget. The model never sees 10,000 books it won't use.'\n\nNEXT SLIDE has the five duties.",
+
+  cma:
+    "Five duties — this is what makes the architecture production-grade, not just theoretically sound.\n\n• WRITE CONTROL — only confirmed outcomes persist. Hallucinated reasoning stays ephemeral.\n• DEDUPLICATION — cosine similarity merge. One strong memory, not ten weak ones.\n• RECONCILIATION — new evidence supersedes stale conclusions automatically.\n• CONFIDENCE DECAY — 5% monthly decay. Below 0.30, auto-deprecated.\n• COMPACTION — weekly re-clustering. Evidence counts consolidated.\n\nFIELD SIGNAL: Practitioners now say episodic memory and audit trails aren't nice-to-haves — they're the only way to control context bloat without retraining.\n\nLAND: 'Session state is not memory. CMA is the Cognitive Foundation. We know how to build it. Here's how it's built.' Then bridge to the products slide.",
+
+  products:
+    "Two products. Two audiences. Read the room and lean into whichever buyer profile is in front of you.\n\nFOR PLATFORM CIOs/CTOs (Amway, Vineyard Vines, Icon Health, Westcon, Tapestry CIO):\n→ TiDB X. The substrate. Replaces 4 of 5 data systems. ACID across rows + vectors + analytics. Copy-on-write branches. GA on every cloud. BYOC for regulated workloads.\n\nFOR VP AI/DATA AND ENG LEADS (Bob's Sanjay, NYBC engineering, Tapestry senior director):\n→ mem9. The memory API. One line of install. No schema. Cross-agent, cross-session memory. Apache-2.0. Self-hostable when compliance asks.\n\nLAND: 'You don't have to become a database team to give your agents memory. mem9 is the API. TiDB X is the substrate. Pick the entry point that fits your org.'\n\nBRIDGE TO DEMO: 'Now let me show you what either of those gives you in practice.'",
 
   category:
     "The dress is interchangeable. The architecture isn't. Pick the vertical that matches whoever you're talking to. Apparel = fit memory. Furniture = decision memory. Wellness = regimen memory. Loyalty = relationship memory.",
