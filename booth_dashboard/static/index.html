@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="/static/styles.css?v=29" />
+  <link rel="stylesheet" href="/static/styles.css?v=30" />
 </head>
 
 <body>
@@ -103,7 +103,7 @@
     </div>
 
     <p class="about-bridge">
-      Working with AI long before ChatGPT
+      Now &mdash; the architecture that ends it.
     </p>
   </section>
 
@@ -657,8 +657,19 @@
        TiDB vs the 4-system Frankenstack at every step.
        ============================================================= -->
   <section class="slide" id="slide-maya">
-    <div class="eyebrow">Beat 05.5 · The Compounding · 4 minutes · <span style="color:var(--gold)">Same Maya · 60 days into the relationship</span></div>
-    <h2 style="margin-bottom: 6px;">Maya's Year — <em>one cluster</em>, twelve months, Sarah's three failure modes resolved.</h2>
+    <div class="eyebrow">Beat 05.5 · The Compounding · 4 minutes</div>
+    <h2 style="margin-bottom: 4px;">Maya's Year — <em>one cluster</em>, twelve months, Sarah's three failure modes resolved.</h2>
+
+    <!-- Always-visible Sarah recap so the audience never has to remember -->
+    <div class="maya-recap">
+      <span class="mr-prefix">Sarah recap →</span>
+      <span class="mr-mode">01 · never written down</span>
+      <span class="mr-dot">·</span>
+      <span class="mr-mode">02 · written but not findable</span>
+      <span class="mr-dot">·</span>
+      <span class="mr-mode">03 · context rot</span>
+      <span class="mr-suffix">Same Maya · 60 days in</span>
+    </div>
 
     <!-- Step navigator with "resolves" callbacks to Sarah's failure modes -->
     <div class="maya-stepper">
@@ -677,7 +688,7 @@
       <button class="ms-step" data-mstep="2">
         <span class="ms-day">DAY 21</span>
         <span class="ms-lbl">Fleet learns</span>
-        <span class="ms-resolves">at fleet scale</span>
+        <span class="ms-resolves ms-resolves-sarah">resolves 01 · written (fleet)</span>
       </button>
       <div class="ms-line"></div>
       <button class="ms-step" data-mstep="3">
@@ -1081,12 +1092,26 @@
       </div>
 
       <div class="close-col monday">
-        <div class="close-label">Three questions for Monday</div>
-        <ol>
-          <li><strong>Memory location.</strong> "Where does our agent's memory <em>actually</em> live? Show me the database — and the second one, and the third."</li>
-          <li><strong>Transactional boundary.</strong> "When the agent writes an outcome and the reasoning behind it, do they commit in the same transaction — or can one succeed and the other fail?"</li>
-          <li><strong>Audit ownership.</strong> "If a regulator asks why the agent made a decision 90 days ago, who reconstructs it — and from which system of record?"</li>
-        </ol>
+        <div class="close-label">The one question for Monday</div>
+        <p class="the-question">
+          &ldquo;Where, exactly, does our agent's memory live? <em>Show me the database.</em>&rdquo;
+        </p>
+        <p class="the-tell">
+          If the answer involves four systems and a sync job, you're paying to rediscover every customer, every session.
+        </p>
+      </div>
+    </div>
+
+    <!-- Backup probes — for the CIO who wants to dig deeper -->
+    <div class="close-probes">
+      <div class="cp-label">Two probes if the answer is hand-wavy</div>
+      <div class="cp-row">
+        <span class="cp-num">→</span>
+        <span class="cp-text"><strong>Transactional boundary.</strong> When the agent writes an outcome and the reasoning behind it, do they commit in the same transaction &mdash; or can one succeed and the other fail?</span>
+      </div>
+      <div class="cp-row">
+        <span class="cp-num">→</span>
+        <span class="cp-text"><strong>Audit ownership.</strong> If a regulator asks why the agent made a decision 90 days ago, who reconstructs it &mdash; and from which system of record?</span>
       </div>
     </div>
 

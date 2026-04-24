@@ -2080,52 +2080,60 @@ body::before {
 }
 
 /* =========================================================
-   SLIDE 1 — ABOUT
+   SLIDE 1 — ABOUT (vertical row layout — 6 lean rows)
    ========================================================= */
 .about-cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin: 28px 0 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 24px auto 22px;
+  max-width: 980px;
 }
 .about-card {
-  padding: 22px 22px 20px;
+  display: grid;
+  grid-template-columns: 220px 200px 1fr;
+  gap: 24px;
+  align-items: baseline;
+  padding: 12px 22px;
   background: var(--paper);
   border-radius: 6px;
-  box-shadow: var(--shadow-card);
+  border-left: 2px solid var(--ink-line);
+  transition: border-color 0.2s ease;
 }
 .about-card-name {
   font-family: var(--serif);
   font-style: italic;
-  font-size: 26px;
+  font-size: 22px;
   color: var(--gold);
   line-height: 1.1;
-  margin-bottom: 6px;
+  margin: 0;
 }
 .about-card-tag {
   font-size: 10px;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
   font-weight: 600;
   color: var(--ink-soft);
   text-transform: uppercase;
-  margin-bottom: 14px;
+  margin: 0;
 }
 .about-card-desc {
   font-size: 13px;
-  line-height: 1.55;
-  color: var(--ink-soft);
-  border-top: 1px solid var(--ink-line);
-  padding-top: 12px;
+  line-height: 1.5;
+  color: var(--ink-2);
+  border-top: none;
+  padding-top: 0;
+  margin: 0;
 }
 .about-card-current {
-  border: 1px solid rgba(80, 219, 217, 0.35);
-  box-shadow: var(--shadow-card), 0 0 0 1px rgba(80, 219, 217, 0.15), 0 0 24px rgba(80, 219, 217, 0.08);
+  border-left: 2px solid var(--gold);
+  background: linear-gradient(90deg, rgba(80, 219, 217, 0.08), var(--paper) 60%);
+  box-shadow: 0 0 0 1px rgba(80, 219, 217, 0.18);
 }
 .about-card-current .about-card-name {
-  color: var(--gold-2);
+  color: var(--gold);
 }
 .about-card-current .about-card-tag {
-  color: rgba(80, 219, 217, 0.7);
+  color: var(--gold-2);
 }
 .about-bridge {
   font-family: var(--serif);
@@ -3885,18 +3893,18 @@ body::before {
 
 /* Maya stepper — "resolves" callbacks under each step label */
 .ms-step {
-  min-height: 64px;
-  padding: 6px 10px 8px;
+  min-height: 70px;
+  padding: 7px 10px 9px;
 }
 .ms-resolves {
   display: block;
   font-family: var(--sans);
-  font-size: 9px;
-  letter-spacing: 0.08em;
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--ink-faint);
-  margin-top: 2px;
-  font-weight: 500;
+  margin-top: 3px;
+  font-weight: 600;
 }
 .ms-resolves-sarah {
   color: var(--gold-2);
@@ -3905,6 +3913,108 @@ body::before {
 .ms-step.ms-active .ms-resolves-sarah,
 .ms-step.ms-active .ms-resolves {
   color: var(--gold);
+}
+
+/* Maya recap strip — Sarah failure modes always visible above stepper */
+.maya-recap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 6px auto 12px;
+  padding: 8px 16px;
+  background: rgba(243, 80, 72, 0.05);
+  border: 1px solid rgba(243, 80, 72, 0.18);
+  border-radius: 6px;
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+}
+.mr-prefix {
+  color: var(--burgundy);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 10px;
+}
+.mr-mode {
+  color: var(--ink-2);
+  font-weight: 500;
+}
+.mr-dot {
+  color: var(--ink-faint);
+}
+.mr-suffix {
+  margin-left: auto;
+  color: var(--gold);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 10px;
+}
+
+/* Close slide — the ONE question (hero) */
+.the-question {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 19px;
+  line-height: 1.4;
+  color: var(--ink);
+  margin: 12px 0 10px;
+  border-left: 3px solid var(--gold);
+  padding-left: 14px;
+}
+.the-question em {
+  color: var(--gold);
+  font-style: italic;
+  font-weight: 500;
+}
+.the-tell {
+  font-family: var(--sans);
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+/* Close slide — backup probes (smaller, dimmer) */
+.close-probes {
+  margin: 16px auto 0;
+  max-width: 980px;
+  padding: 12px 18px;
+  border-top: 1px dashed var(--ink-line);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.cp-label {
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 4px;
+}
+.cp-row {
+  display: flex;
+  gap: 10px;
+  font-family: var(--sans);
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+.cp-num {
+  color: var(--gold-2);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.cp-text strong {
+  color: var(--ink-2);
+  font-weight: 700;
 }
 
 /* Maya bottom-nav illustrative-numbers hedge */
