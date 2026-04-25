@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="/static/styles.css?v=41" />
+  <link rel="stylesheet" href="/static/styles.css?v=42" />
 </head>
 
 <body>
@@ -349,26 +349,48 @@
        ============================================================= -->
   <section class="slide" id="slide-cma">
     <div class="eyebrow">The Maintenance Layer</div>
-    <h2>What keeps memory honest.</h2>
+    <h2>Five duties that keep memory honest.</h2>
 
-    <div class="duties-strip">
-      <div class="duties-strip-label">Five duties that turn storage into a memory system</div>
-      <div class="duties-strip-list">
-        <span>Write control</span><span>Deduplication</span><span>Reconciliation</span><span>Confidence decay</span><span>Compaction</span>
+    <div class="duties-list">
+      <div class="duty-row">
+        <span class="duty-num">01</span>
+        <div class="duty-body">
+          <span class="duty-name">Write control</span>
+          <span class="duty-desc">Only confirmed outcomes persist. Hallucinated reasoning stays ephemeral.</span>
+        </div>
+      </div>
+      <div class="duty-row">
+        <span class="duty-num">02</span>
+        <div class="duty-body">
+          <span class="duty-name">Deduplication</span>
+          <span class="duty-desc">Cosine-similarity merge. One strong memory, not ten weak ones.</span>
+        </div>
+      </div>
+      <div class="duty-row">
+        <span class="duty-num">03</span>
+        <div class="duty-body">
+          <span class="duty-name">Reconciliation</span>
+          <span class="duty-desc">New evidence supersedes stale conclusions automatically.</span>
+        </div>
+      </div>
+      <div class="duty-row">
+        <span class="duty-num">04</span>
+        <div class="duty-body">
+          <span class="duty-name">Confidence decay</span>
+          <span class="duty-desc">5% monthly. Below 0.30, auto-deprecated.</span>
+        </div>
+      </div>
+      <div class="duty-row">
+        <span class="duty-num">05</span>
+        <div class="duty-body">
+          <span class="duty-name">Compaction</span>
+          <span class="duty-desc">Weekly re-clustering. Evidence counts consolidated.</span>
+        </div>
       </div>
     </div>
 
-    <div class="field-signal field-signal-compact">
-      <div class="field-signal-tag">What practitioners are converging on</div>
-      <ul class="field-signal-list">
-        <li><span class="pull-gold">Episodic memory and audit trails are not nice-to-haves</span> - they're the only way to control context bloat without retraining.</li>
-        <li>Compound ROI shows up where the same lesson never has to be paid for twice.</li>
-        <li>The question is no longer <em>whether</em> to build it - it's whose stack you build it on.</li>
-      </ul>
-    </div>
-
-    <p class="mem-land">
-      <span class="emph">We know how to build it. Here's how it's built.</span>
+    <p class="cma-land">
+      <span class="emph">Storage isn't memory.</span> Maintenance is what makes it production-grade.
     </p>
   </section>
 
