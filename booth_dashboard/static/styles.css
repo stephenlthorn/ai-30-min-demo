@@ -4214,19 +4214,19 @@ body::before {
 /* Memory-type badges - mirror the Three Memories slide footer */
 .mcp-memtypes {
   display: flex;
-  gap: 6px;
+  gap: 8px;
   flex-wrap: wrap;
   align-items: center;
   flex-shrink: 0;
 }
 .mcp-memtype {
   font-family: var(--sans);
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  font-weight: 700;
-  padding: 5px 10px;
-  border-radius: 3px;
-  border: 1px solid;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  font-weight: 800;
+  padding: 7px 14px;
+  border-radius: 4px;
+  border: 1.5px solid;
   white-space: nowrap;
 }
 .mcp-memtype-episodic {
@@ -4531,12 +4531,77 @@ body::before {
   padding: 0 4px;
 }
 
+/* TiDB vs Frankenstack gauge — visual bar comparison */
+.mm-gauge {
+  background: rgba(0, 0, 0, 0.18);
+  border: 1px solid var(--ink-line);
+  border-radius: 10px;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.mm-gauge-label {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  font-weight: 700;
+}
+.mm-gauge-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.mm-gauge-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+.mm-gauge-name {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.mm-gauge-tidb  .mm-gauge-name { color: var(--gold); }
+.mm-gauge-frank .mm-gauge-name { color: var(--burgundy); }
+.mm-gauge-num {
+  font-family: 'SF Mono', 'Menlo', 'Monaco', monospace;
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.mm-gauge-tidb  .mm-gauge-num { color: var(--gold); }
+.mm-gauge-frank .mm-gauge-num { color: var(--burgundy); }
+.mm-gauge-bar {
+  height: 14px;
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 7px;
+  overflow: hidden;
+}
+.mm-gauge-fill {
+  height: 100%;
+  border-radius: 7px;
+  transition: width 0.4s ease;
+}
+.mm-gauge-fill-tidb  { background: var(--gold); box-shadow: 0 0 12px rgba(80, 219, 217, 0.4); }
+.mm-gauge-fill-frank { background: var(--burgundy); }
+.mm-gauge-detail {
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--ink-soft);
+  font-weight: 500;
+}
+
 /* "Why TiDB wins" delta callout */
 .mm-delta {
   background: rgba(80, 219, 217, 0.07);
   border: 1px solid rgba(80, 219, 217, 0.3);
   border-radius: 10px;
-  padding: 10px 14px;
+  padding: 12px 16px;
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -4555,7 +4620,7 @@ body::before {
 .mm-delta-text {
   font-family: var(--serif);
   font-style: italic;
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.45;
   color: var(--ink);
 }

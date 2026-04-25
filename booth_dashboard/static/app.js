@@ -361,6 +361,7 @@ const MAYA_STEPS = [
     name: "Maya — first session",
     sub: "Day 1 · cold start on a warm fleet",
     memoryTypes: [],
+    gauge: { tidb: 1, frank: 4, tidbLabel: "1 cluster, warm", frankLabel: "4 systems, all cold" },
     messages: [
       { who: "user",  text: "Hi! Looking for a few new pieces — work, school pickup, the occasional date night." },
       { who: "agent", text: "Welcome, Maya. Tell me about your style — minimalist, statement, somewhere in between?" }
@@ -385,6 +386,7 @@ const MAYA_STEPS = [
     name: "Maya — return processing",
     sub: "Day 14 · 2 returns, with reasons",
     memoryTypes: ["episodic"],
+    gauge: { tidb: 1, frank: 4, tidbLabel: "1 ACID transaction · 18ms", frankLabel: "4 calls · partial-failure risk" },
     messages: [
       { who: "system", text: "Order #4471 returned · Order #4472 returned" },
       { who: "user",   text: "The first didn't fit at the bust. The second was just too preppy for me." },
@@ -412,6 +414,7 @@ const MAYA_STEPS = [
     name: "Fleet event · system-wide",
     sub: "Day 21 · pattern reaches critical confidence",
     memoryTypes: ["semantic"],
+    gauge: { tidb: 1, frank: 5, tidbLabel: "Live to all agents · 60s", frankLabel: "Quarterly batch · ~90 days" },
     messages: [
       { who: "system", text: "Fleet pattern detected: 'brand_x_runs_small_at_bust'" },
       { who: "system", text: "Maya is the 49,848th data point · cosine-merged · confidence 0.93 → 0.94" },
@@ -440,6 +443,7 @@ const MAYA_STEPS = [
     name: "Lena · never met Maya",
     sub: "Day 22 · stranger benefits from Maya's data",
     memoryTypes: ["semantic"],
+    gauge: { tidb: 1, frank: 5, tidbLabel: "1 vector query · 12ms", frankLabel: "Cross-namespace impossible" },
     messages: [
       { who: "user",  text: "Browsing the new spring collection from brand X — anything you'd recommend?" },
       { who: "agent", text: "Heads up — this brand tends to run small at the bust. Want me to size up by one?" },
@@ -468,6 +472,7 @@ const MAYA_STEPS = [
     name: "Maya · 60 days in — the payoff",
     sub: "★ The query that cannot exist on Frankenstack",
     memoryTypes: ["episodic", "semantic", "procedural"],
+    gauge: { tidb: 1, frank: 5, tidbLabel: "1 query · 4 modalities · 38ms", frankLabel: "5 services · 2,410ms · stale" },
     messages: [
       { who: "user",  text: "Hey, looking for a few things for the May beach trip — and that gala I mentioned." },
       { who: "agent", text: "I picked five for you. The Coach satchel is from a brand you've kept twice. The dress is from a brand we learned runs true on you. The blazer is for the gala you mentioned in March — sized up because of brand X. <em class=\"mcp-emph\">Nothing on this list is something you'd return.</em>", hero: true, html: true }
@@ -496,6 +501,7 @@ const MAYA_STEPS = [
     name: "Compliance · 90 days later",
     sub: "Day 90 · regulator asks why",
     memoryTypes: ["episodic"],
+    gauge: { tidb: 1, frank: 5, tidbLabel: "Replay query · 8ms", frankLabel: "Logs purged · cannot reconstruct" },
     messages: [
       { who: "system", text: "Compliance ticket #2026-0814 — 'Why did the agent recommend the Coach satchel to Maya on April 14?'" },
       { who: "agent",  text: "Replaying reasoning · customer maya_8421 · event coach_4471 · ts 2026-04-14T14:22:08Z" },
@@ -564,27 +570,15 @@ function renderMayaStep(idx) {
   // SQL
   const sqlEl = $("mcpSQL"); if (sqlEl) sqlEl.textContent = step.sql;
 
-  // Metric rows helper
-  const renderRows = (containerId, rows) => {
-    const c = $(containerId);
-    if (!c) return;
-    while (c.firstChild) c.removeChild(c.firstChild);
-    rows.forEach(([key, val, tone]) => {
-      const row = document.createElement("div");
-      row.className = "mm-row";
-      const k = document.createElement("span");
-      k.className = "mm-key";
-      k.textContent = key;
-      const v = document.createElement("span");
-      v.className = "mm-val" + (tone ? ` mm-${tone}` : "");
-      v.textContent = val;
-      row.appendChild(k);
-      row.appendChild(v);
-      c.appendChild(row);
-    });
-  };
-  renderRows("mmTidbRows", step.tidb);
-  renderRows("mmFrankRows", step.frank);
+  // Gauge — TiDB vs Frankenstack visual bar comparison
+  const gauge = step.gauge || { tidb: 1, frank: 4, tidbLabel: "", frankLabel: "" };
+  const gaugeMax = Math.max(gauge.tidb, gauge.frank, 1);
+  const tidbNum = $("mmGaugeTidbNum"); if (tidbNum) tidbNum.textContent = String(gauge.tidb);
+  const frankNum = $("mmGaugeFrankNum"); if (frankNum) frankNum.textContent = String(gauge.frank);
+  const tidbBar = $("mmGaugeTidbBar"); if (tidbBar) tidbBar.style.width = `${(gauge.tidb / gaugeMax) * 100}%`;
+  const frankBar = $("mmGaugeFrankBar"); if (frankBar) frankBar.style.width = `${(gauge.frank / gaugeMax) * 100}%`;
+  const tidbLbl = $("mmGaugeTidbLabel"); if (tidbLbl) tidbLbl.textContent = gauge.tidbLabel;
+  const frankLbl = $("mmGaugeFrankLabel"); if (frankLbl) frankLbl.textContent = gauge.frankLabel;
 
   // Delta callout
   const deltaText = document.querySelector(".mm-delta-text");
