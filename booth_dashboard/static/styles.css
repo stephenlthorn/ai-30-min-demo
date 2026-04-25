@@ -3119,31 +3119,100 @@ body::before {
   border-top: 1px dashed var(--ink-line);
 }
 
+/* Bulleted descriptions on memory cards */
+.mt-bullets {
+  list-style: none;
+  padding: 0;
+  margin: 4px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.mt-bullets li {
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--ink-2);
+  position: relative;
+  padding-left: 16px;
+}
+.mt-bullets li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--gold);
+  font-weight: 700;
+}
+
 /* Example data block on each memory card */
 .mt-example {
-  background: rgba(0, 0, 0, 0.18);
+  background: rgba(0, 0, 0, 0.22);
   border-left: 3px solid var(--gold-2);
   border-radius: 0 4px 4px 0;
-  padding: 8px 12px;
+  padding: 12px 14px;
   margin-top: 4px;
 }
 .mt-ex-label {
   font-family: var(--sans);
-  font-size: 8.5px;
+  font-size: 10px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--gold-2);
   font-weight: 700;
-  margin-bottom: 4px;
-  opacity: 0.85;
+  margin-bottom: 8px;
+  opacity: 0.95;
 }
-.mt-example code {
+.mt-ex-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
   font-family: 'SF Mono', 'Menlo', 'Monaco', monospace;
-  font-size: 11.5px;
-  line-height: 1.45;
+  font-size: 12px;
+  line-height: 1.4;
+}
+.mt-ex-row {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 8px;
+  align-items: baseline;
+}
+.mt-ex-key {
+  color: var(--ink-faint);
+  font-weight: 600;
+}
+.mt-ex-val {
   color: var(--ink);
-  display: block;
-  word-break: break-word;
+}
+
+/* Bulleted tag list (replacing single-line tag) */
+.mt-tag-list {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0;
+  border-top: 1px dashed var(--ink-line);
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.mt-tag-list li {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  font-weight: 600;
+  position: relative;
+  padding-left: 14px;
+}
+.mt-tag-list li::before {
+  content: "›";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--gold-2);
+  font-weight: 700;
 }
 
 /* Memories slide footer - "Watch for in the demo" */
