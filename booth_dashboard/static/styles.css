@@ -4163,7 +4163,7 @@ body::before {
   flex-direction: column;
   overflow: hidden;
   box-shadow: var(--shadow-card);
-  min-height: 480px;
+  min-height: 360px;
 }
 
 .mcp-header {
@@ -4283,12 +4283,49 @@ body::before {
 
 .mcp-msg {
   font-family: var(--sans);
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.55;
-  padding: 10px 14px;
+  padding: 12px 16px;
   border-radius: 10px;
-  max-width: 86%;
+  max-width: 88%;
   animation: mcp-msg-in 0.32s ease-out;
+}
+/* Bulleted lists inside agent messages */
+.mcp-msg .mcp-lead {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.mcp-msg .mcp-list {
+  list-style: none;
+  margin: 0 0 8px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.mcp-msg .mcp-list li {
+  position: relative;
+  padding-left: 16px;
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--ink);
+}
+.mcp-msg .mcp-list li::before {
+  content: "›";
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  font-weight: 700;
+}
+.mcp-msg .mcp-list li em {
+  font-style: italic;
+  color: var(--ink-soft);
+  font-size: 13px;
+  margin-left: 6px;
+}
+.mcp-msg .mcp-list li strong {
+  color: var(--ink);
+  font-weight: 700;
 }
 
 @keyframes mcp-msg-in {
@@ -4337,19 +4374,47 @@ body::before {
   color: var(--gold);
   font-weight: 700;
 }
+.mcp-msg .mcp-emph {
+  display: block;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed rgba(80, 219, 217, 0.25);
+  color: var(--gold);
+  font-weight: 700;
+  font-size: 15px;
+  font-style: italic;
+}
 
 .mcp-sql {
   border-top: 1px solid var(--ink-line);
-  padding: 10px 18px;
-  background: rgba(0, 0, 0, 0.22);
-  font-family: 'JetBrains Mono', 'Menlo', 'Monaco', monospace;
-  font-size: 11px;
-  line-height: 1.5;
+  padding: 14px 20px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.32), rgba(0, 0, 0, 0.22));
+  font-family: 'SF Mono', 'JetBrains Mono', 'Menlo', 'Monaco', monospace;
+  font-size: 13px;
+  line-height: 1.55;
   color: var(--ink-2);
   display: flex;
   flex-direction: column;
   gap: 4px;
+  position: relative;
 }
+.mcp-sql::before {
+  content: "SQL";
+  position: absolute;
+  top: 8px;
+  right: 14px;
+  font-family: var(--sans);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: var(--gold-2);
+  opacity: 0.6;
+  font-weight: 700;
+}
+/* SQL syntax highlighting */
+.sql-keyword { color: var(--gold); font-weight: 700; }
+.sql-string  { color: #C77C58; }
+.sql-comment { color: var(--ink-faint); font-style: italic; }
+.sql-num     { color: var(--moss); font-weight: 600; }
 
 .mcp-sql-label {
   font-family: var(--sans);
@@ -4363,8 +4428,8 @@ body::before {
 .mcp-sql code {
   display: block;
   white-space: pre-wrap;
-  word-break: break-word;
-  color: #B9C2CA;
+  word-break: normal;
+  color: var(--ink-2);
 }
 
 /* ── Metrics sidebar ──────────────────────────────────── */
@@ -4372,7 +4437,7 @@ body::before {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  min-height: 480px;
+  min-height: 360px;
 }
 
 .mm-block {

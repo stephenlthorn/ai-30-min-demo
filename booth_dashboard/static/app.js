@@ -355,6 +355,29 @@ function resetDemo() {
    conversation, the SQL behind it, and a side-by-side cluster-metrics
    panel showing TiDB winning vs the 4-system Frankenstack. */
 
+function highlightSQL(sql) {
+  if (!sql) return "";
+  let html = sql.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  // Comments first (so they don't get keyword-replaced inside)
+  html = html.replace(/(--[^\n]*)/g, '<span class="sql-comment">$1</span>');
+  // Strings
+  html = html.replace(/'([^']*)'/g, "<span class=\"sql-string\">'$1'</span>");
+  // Numbers
+  html = html.replace(/\b(\d+(?:\.\d+)?)\b/g, '<span class="sql-num">$1</span>');
+  // Keywords (case-insensitive, ordered to match longest first)
+  const keywords = [
+    "ON DUPLICATE KEY UPDATE", "ORDER BY", "GROUP BY", "INSERT INTO",
+    "SELECT", "FROM", "WHERE", "INSERT", "UPDATE", "SET", "VALUES",
+    "BEGIN", "COMMIT", "ROLLBACK", "AND", "OR", "NOT", "NULL", "LIMIT",
+    "JOIN", "ON", "AS", "DISTINCT", "HAVING", "CASE", "WHEN", "THEN",
+    "ELSE", "END", "LEAST", "GREATEST", "VEC_COSINE_DISTANCE", "AUTO_EMBED",
+    "DESC", "ASC", "BETWEEN", "IN"
+  ];
+  const kwRegex = new RegExp("\\b(" + keywords.join("|") + ")\\b", "g");
+  html = html.replace(kwRegex, '<span class="sql-keyword">$1</span>');
+  return html;
+}
+
 const MAYA_STEPS = [
   {
     avatar: "M",
@@ -366,7 +389,7 @@ const MAYA_STEPS = [
       { who: "user",  text: "Hi! Looking for a few new pieces — work, school pickup, the occasional date night." },
       { who: "agent", text: "Welcome, Maya. Tell me about your style — minimalist, statement, somewhere in between?" }
     ],
-    sql: "SELECT * FROM agent_episodic WHERE customer_id='maya_8421';  -- 0 rows · cold start, but the fleet has 1.2M lessons",
+    sql: "SELECT * FROM agent_episodic\nWHERE customer_id = 'maya_8421';\n-- 0 rows · cold start, but the fleet has 1.2M lessons",
     tidb: [
       ["Episodic memory for Maya", "0 rows", null],
       ["Fleet memory available", "1,247,883 lessons", "good"],
@@ -392,7 +415,7 @@ const MAYA_STEPS = [
       { who: "user",   text: "The first didn't fit at the bust. The second was just too preppy for me." },
       { who: "agent",  text: "Got it — I've noted both. Sizing for that brand and your style preference. I won't recommend either pattern again." }
     ],
-    sql: "BEGIN; UPDATE orders SET status='returned'...; INSERT INTO agent_episodic VALUES (..., AUTO_EMBED('tight at bust'), 0.85); COMMIT;  -- 1 ACID txn",
+    sql: "BEGIN;\n  UPDATE orders SET status = 'returned' WHERE id IN (4471, 4472);\n  INSERT INTO agent_episodic\n  VALUES (..., AUTO_EMBED('tight at bust'), 0.85);\nCOMMIT;\n-- 1 ACID transaction · all-or-nothing",
     tidb: [
       ["Transaction", "1 ACID txn", "good"],
       ["Atomic operations", "outcome + reasoning + embedding", "good"],
@@ -420,7 +443,7 @@ const MAYA_STEPS = [
       { who: "system", text: "Maya is the 49,848th data point · cosine-merged · confidence 0.93 → 0.94" },
       { who: "system", text: "Propagated to 12,400 active agents · 60 s elapsed" }
     ],
-    sql: "INSERT INTO fleet_memory (...) ON DUPLICATE KEY UPDATE evidence_count = evidence_count + 1, confidence = LEAST(0.99, confidence + 0.01);",
+    sql: "INSERT INTO fleet_memory (claim, embedding, confidence)\nVALUES ('brand_x_runs_small_at_bust', AUTO_EMBED(...), 0.94)\nON DUPLICATE KEY UPDATE\n  evidence_count = evidence_count + 1,\n  confidence = LEAST(0.99, confidence + 0.01);",
     tidb: [
       ["Cosine-similarity dedup", "merged into existing memory", "good"],
       ["Confidence delta", "0.93 → 0.94", "good"],
@@ -450,7 +473,7 @@ const MAYA_STEPS = [
       { who: "user",  text: "...Yes, actually. How did you know that?" },
       { who: "agent", text: "Other customers' fit feedback. We learn together — and it stays anonymous." }
     ],
-    sql: "SELECT claim, confidence FROM fleet_memory WHERE VEC_COSINE_DISTANCE(embedding, AUTO_EMBED(@intent)) < 0.3 AND confidence > 0.85 ORDER BY confidence DESC LIMIT 3;",
+    sql: "SELECT claim, confidence FROM fleet_memory\nWHERE VEC_COSINE_DISTANCE(embedding, AUTO_EMBED(@intent)) < 0.3\n  AND confidence > 0.85\nORDER BY confidence DESC\nLIMIT 3;",
     tidb: [
       ["Vector query against fleet", "VEC_COSINE_DISTANCE", "good"],
       ["Latency", "12 ms", "good"],
@@ -475,9 +498,9 @@ const MAYA_STEPS = [
     gauge: { tidb: 1, frank: 5, tidbLabel: "1 query · 4 modalities · 38ms", frankLabel: "5 services · 2,410ms · stale" },
     messages: [
       { who: "user",  text: "Hey, looking for a few things for the May beach trip — and that gala I mentioned." },
-      { who: "agent", text: "I picked five for you. The Coach satchel is from a brand you've kept twice. The dress is from a brand we learned runs true on you. The blazer is for the gala you mentioned in March — sized up because of brand X. <em class=\"mcp-emph\">Nothing on this list is something you'd return.</em>", hero: true, html: true }
+      { who: "agent", text: "<div class=\"mcp-lead\">I picked five for you:</div><ul class=\"mcp-list\"><li><strong>Coach satchel</strong> — brand you've kept twice</li><li><strong>The dress</strong> — runs true on you</li><li><strong>The blazer</strong> — for the March gala, sized up for brand X</li><li><strong>+2 more</strong> matched to your style and recent fits</li></ul><div class=\"mcp-emph\">Nothing on this list is something you'd return.</div>", hero: true, html: true }
     ],
-    sql: "SELECT c.*, recent_orders, episodic_prefs, chat_event, fleet_wisdom FROM customers c WHERE c.id = 'maya_8421';  -- 1 query · 4 modalities · 1 ACID txn · 38 ms",
+    sql: "SELECT c.*, recent_orders, episodic_prefs,\n       chat_event, fleet_wisdom\nFROM customers c\nWHERE c.id = 'maya_8421';\n-- 1 query · 4 modalities · 1 ACID txn · 38 ms",
     tidb: [
       ["SQL queries", "1", "good"],
       ["Modalities in one query", "relational + vector + FTS + semantic", "good"],
@@ -504,10 +527,9 @@ const MAYA_STEPS = [
     gauge: { tidb: 1, frank: 5, tidbLabel: "Replay query · 8ms", frankLabel: "Logs purged · cannot reconstruct" },
     messages: [
       { who: "system", text: "Compliance ticket #2026-0814 — 'Why did the agent recommend the Coach satchel to Maya on April 14?'" },
-      { who: "agent",  text: "Replaying reasoning · customer maya_8421 · event coach_4471 · ts 2026-04-14T14:22:08Z" },
-      { who: "agent",  text: "Context: 4.2KB / 18 evidence items. Top signals: 2 prior Coach purchases (relational), brand affinity 0.91 (episodic), gala mention 03-12 (FTS), fleet memory 'Coach Q2 retention 89%' (semantic). Decision confidence 0.87." }
+      { who: "agent",  text: "<div class=\"mcp-lead\">Replaying decision · 2026-04-14 · 4.2KB / 18 evidence items:</div><ul class=\"mcp-list\"><li>2 prior Coach purchases <em>(relational)</em></li><li>Brand affinity 0.91 <em>(episodic)</em></li><li>\"Gala\" mention 03-12 <em>(full-text)</em></li><li>Fleet: \"Coach Q2 retention 89%\" <em>(semantic)</em></li></ul><div class=\"mcp-emph\">Decision confidence: 0.87</div>", html: true }
     ],
-    sql: "SELECT ts, tool_call, context_used, confidence_at_time, fleet_signals FROM agent_episodic WHERE customer_id='maya_8421' AND event='recommended:coach_4471';",
+    sql: "SELECT ts, tool_call, context_used,\n       confidence_at_time, fleet_signals\nFROM agent_episodic\nWHERE customer_id = 'maya_8421'\n  AND event = 'recommended:coach_4471';",
     tidb: [
       ["Replay query latency", "8 ms", "good"],
       ["Context window preserved", "yes — verbatim", "good"],
@@ -567,8 +589,8 @@ function renderMayaStep(idx) {
     });
   }
 
-  // SQL
-  const sqlEl = $("mcpSQL"); if (sqlEl) sqlEl.textContent = step.sql;
+  // SQL — beautified with syntax highlighting
+  const sqlEl = $("mcpSQL"); if (sqlEl) sqlEl.innerHTML = highlightSQL(step.sql);
 
   // Gauge — TiDB vs Frankenstack visual bar comparison
   const gauge = step.gauge || { tidb: 1, frank: 4, tidbLabel: "", frankLabel: "" };
