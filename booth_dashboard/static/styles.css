@@ -2244,132 +2244,153 @@ body::before {
 .librarian-box {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
-  margin: 10px 0 0;
+  margin: 14px 0 0;
   border: 1px solid var(--ink-line);
   border-radius: 6px;
   overflow: hidden;
   background: var(--paper);
+  align-items: stretch;
 }
 .lb-panel {
-  padding: 8px 16px 10px;
+  padding: 14px 18px 14px;
+  display: flex;
+  flex-direction: column;
 }
 .lb-bad {
-  background: rgba(243, 80, 72, 0.04);
+  background: rgba(243, 80, 72, 0.05);
   border-right: 1px solid var(--ink-line);
 }
 .lb-good {
-  background: rgba(80, 157, 234, 0.04);
+  background: rgba(80, 219, 217, 0.05);
   border-left: 1px solid var(--ink-line);
 }
 .lb-top-label {
   font-family: var(--sans);
   font-size: 10px;
   font-weight: 700;
-  letter-spacing: 0.13em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--ink-soft);
-  margin-bottom: 6px;
+  margin-bottom: 12px;
 }
-/* Scattered book spines — the token pile */
+.lb-bad .lb-top-label { color: var(--burgundy); }
+.lb-good .lb-top-label { color: var(--gold-2); }
+
+/* Scattered book spines — the chaotic token pile */
 .lb-scatter {
   display: flex;
   flex-wrap: wrap;
-  align-content: flex-end;
+  align-items: flex-end;
   gap: 2px;
-  height: 28px;
-  margin-bottom: 6px;
+  min-height: 56px;
+  margin-bottom: 12px;
+  padding: 4px 0;
 }
 .lb-sb {
-  width: 7px;
+  width: 9px;
   border-radius: 1px 1px 0 0;
   background: var(--ink);
+  flex-shrink: 0;
 }
-.lb-sb:nth-child(1)  { height: 26px; opacity: 0.13; }
-.lb-sb:nth-child(2)  { height: 18px; opacity: 0.20; background: var(--burgundy); }
-.lb-sb:nth-child(3)  { height: 32px; opacity: 0.10; }
-.lb-sb:nth-child(4)  { height: 22px; opacity: 0.16; background: var(--moss); }
-.lb-sb:nth-child(5)  { height: 28px; opacity: 0.12; }
-.lb-sb:nth-child(6)  { height: 20px; opacity: 0.22; background: var(--gold-2); }
-.lb-sb:nth-child(7)  { height: 34px; opacity: 0.09; }
-.lb-sb:nth-child(8)  { height: 24px; opacity: 0.15; }
-.lb-sb:nth-child(9)  { height: 30px; opacity: 0.11; background: var(--burgundy); }
-.lb-sb:nth-child(10) { height: 19px; opacity: 0.18; }
-.lb-sb:nth-child(11) { height: 36px; opacity: 0.08; background: var(--moss); }
-.lb-sb:nth-child(12) { height: 23px; opacity: 0.17; }
-.lb-sb:nth-child(13) { height: 27px; opacity: 0.13; background: var(--gold-2); }
-.lb-sb:nth-child(14) { height: 16px; opacity: 0.21; }
-.lb-sb:nth-child(15) { height: 31px; opacity: 0.10; }
-.lb-sb:nth-child(16) { height: 21px; opacity: 0.19; background: var(--burgundy); }
-.lb-sb:nth-child(17) { height: 29px; opacity: 0.12; }
-.lb-sb:nth-child(18) { height: 17px; opacity: 0.23; background: var(--moss); }
+/* High-contrast chaos — varied heights, mixed colors, slight tilts */
+.lb-sb:nth-child(1)  { height: 38px; opacity: 0.55; transform: rotate(-2deg); }
+.lb-sb:nth-child(2)  { height: 28px; opacity: 0.7;  background: var(--burgundy); }
+.lb-sb:nth-child(3)  { height: 46px; opacity: 0.5;  transform: rotate(1deg); }
+.lb-sb:nth-child(4)  { height: 34px; opacity: 0.65; background: var(--moss); }
+.lb-sb:nth-child(5)  { height: 42px; opacity: 0.55; transform: rotate(-1deg); }
+.lb-sb:nth-child(6)  { height: 30px; opacity: 0.75; background: var(--gold-2); }
+.lb-sb:nth-child(7)  { height: 50px; opacity: 0.45; }
+.lb-sb:nth-child(8)  { height: 36px; opacity: 0.65; background: var(--burgundy); transform: rotate(2deg); }
+.lb-sb:nth-child(9)  { height: 44px; opacity: 0.55; }
+.lb-sb:nth-child(10) { height: 32px; opacity: 0.7;  transform: rotate(-1deg); }
+.lb-sb:nth-child(11) { height: 48px; opacity: 0.5;  background: var(--moss); }
+.lb-sb:nth-child(12) { height: 35px; opacity: 0.65; }
+.lb-sb:nth-child(13) { height: 40px; opacity: 0.6;  background: var(--gold-2); transform: rotate(1deg); }
+.lb-sb:nth-child(14) { height: 26px; opacity: 0.78; }
+.lb-sb:nth-child(15) { height: 45px; opacity: 0.5;  transform: rotate(-2deg); }
+.lb-sb:nth-child(16) { height: 33px; opacity: 0.7;  background: var(--burgundy); }
+.lb-sb:nth-child(17) { height: 41px; opacity: 0.6; }
+.lb-sb:nth-child(18) { height: 28px; opacity: 0.8;  background: var(--moss); transform: rotate(1deg); }
 
 .lb-caption {
   font-family: var(--sans);
   font-size: 11px;
   line-height: 1.55;
   color: var(--ink-soft);
+  margin-top: auto;
 }
-/* Middle column — the librarian / context assembler */
+/* Middle column — the function call */
 .lb-middle {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 12px 14px;
-  gap: 6px;
+  padding: 16px 18px;
+  gap: 10px;
   background: var(--gold-soft);
   border-left: 1px solid var(--ink-line);
   border-right: 1px solid var(--ink-line);
+  min-width: 180px;
 }
 .lb-fn {
-  font-family: var(--sans);
-  font-size: 11px;
+  font-family: 'SF Mono', 'Menlo', 'Monaco', monospace;
+  font-size: 12px;
   font-weight: 700;
   color: var(--gold);
-  background: rgba(80, 219, 217, 0.18);
-  border: 1px solid rgba(80, 219, 217, 0.3);
-  padding: 4px 10px;
-  border-radius: 3px;
+  background: rgba(80, 219, 217, 0.15);
+  border: 1px solid rgba(80, 219, 217, 0.5);
+  padding: 7px 14px;
+  border-radius: 4px;
   white-space: nowrap;
   letter-spacing: 0.02em;
 }
 .lb-arrow {
-  font-size: 20px;
+  font-size: 26px;
   color: var(--gold-2);
   line-height: 1;
+  font-weight: 700;
 }
-.lb-fn-note {
-  font-family: var(--sans);
-  font-size: 10px;
-  color: var(--ink-soft);
-  text-align: center;
-  line-height: 1.5;
-}
-/* Curated book stack */
+/* Curated book stack — ordered, numbered, clean */
 .lb-curated {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  margin-bottom: 8px;
+  gap: 5px;
+  margin-bottom: 12px;
 }
 .lb-cb {
   font-family: var(--sans);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 500;
   color: var(--ink);
-  padding: 4px 10px;
-  border-left: 3px solid var(--bc, var(--gold));
-  background: rgba(255,255,255,0.05);
+  padding: 7px 10px 7px 8px;
+  border-left: 4px solid var(--bc, var(--gold));
+  background: rgba(255,255,255,0.06);
   border-radius: 0 3px 3px 0;
+  display: grid;
+  grid-template-columns: 18px 1fr auto;
+  align-items: center;
+  gap: 8px;
+}
+.lb-cb-num {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--bc, var(--gold));
+  text-align: center;
+  opacity: 0.85;
+}
+.lb-cb-text {
+  font-weight: 600;
 }
 .lb-cb em {
   font-style: normal;
   color: var(--ink-faint);
   font-weight: 400;
   font-size: 10px;
-  margin-left: 6px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
-.lb-cb-opt { opacity: 0.55; }
+.lb-cb-opt { opacity: 0.5; }
 
 /* =========================================================
    DEMO REVEAL — "Stateless model. Stateful platform."
