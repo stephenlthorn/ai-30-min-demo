@@ -737,38 +737,33 @@ body::before {
   gap: 6px;
 }
 .frank-sys {
-  padding: 7px 6px 6px;
+  padding: 12px 8px 10px;
   border: 1px dashed rgba(243, 80, 72, 0.5);
   background: rgba(243, 80, 72, 0.04);
   border-radius: 3px;
   text-align: center;
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 6px;
+  justify-content: center;
 }
 .fs-name {
   font-family: var(--serif);
   font-style: italic;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 600;
-  color: var(--burgundy);
-  line-height: 1.1;
+  color: var(--ink);
+  line-height: 1.2;
 }
 .fs-role {
-  font-size: 9.5px;
-  color: var(--ink-soft);
-  line-height: 1.25;
-}
-.fs-cm {
   font-family: var(--sans);
-  font-size: 8px;
-  letter-spacing: 0.1em;
-  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--burgundy);
+  font-weight: 600;
   opacity: 0.85;
-  border-top: 1px dashed rgba(243, 80, 72, 0.3);
-  padding-top: 3px;
-  margin-top: auto;
+  line-height: 1.25;
 }
 /* Each system signals a different consistency model via accent */
 .fs-aurora    { border-top: 2px solid rgba(243, 80, 72, 0.7); }
@@ -895,33 +890,32 @@ body::before {
   gap: 12px;
 }
 .tidb-plane {
-  padding: 10px 14px;
+  padding: 14px 14px 12px;
   border: 1px solid rgba(80, 157, 234, 0.35);
   background: rgba(80, 157, 234, 0.04);
   position: relative;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  justify-content: center;
 }
 .tidb-plane .name {
   font-family: var(--serif);
   font-style: italic;
   font-size: 15px;
   font-weight: 600;
-  color: var(--moss);
-  margin-bottom: 2px;
-}
-.tidb-plane .role {
-  font-size: 11px;
-  color: var(--ink-soft);
-  line-height: 1.35;
-  margin-bottom: 8px;
+  color: var(--ink);
+  line-height: 1.2;
 }
 .tidb-plane .tag {
   font-family: var(--sans);
-  font-size: 9px;
+  font-size: 10px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--moss);
-  font-weight: 600;
-  opacity: 0.7;
+  font-weight: 700;
+  opacity: 0.85;
 }
 .tidb-note {
   margin-top: 12px;
