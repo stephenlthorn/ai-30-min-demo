@@ -25,7 +25,6 @@
   <button id="tab-maya"></button>
   <button id="tab-memories"></button>
   <button id="tab-librarian"></button>
-  <button id="tab-cma"></button>
   <button id="tab-category"></button>
   <button id="tab-lineage"></button>
   <button id="tab-whynow"></button>
@@ -282,119 +281,6 @@
   </section>
 
   <!-- =============================================================
-       SLIDE 5b - LIBRARIAN (assemble_context)
-       ============================================================= -->
-  <section class="slide" id="slide-librarian">
-    <div class="eyebrow">The Token Tax</div>
-    <h2>Curate, or pay per token.</h2>
-
-    <p class="lib-lede">
-      Every token you load, you pay for. <em>Even with caching, the only way to scale is curation.</em>
-    </p>
-
-    <div class="cost-ladder">
-
-      <div class="cl-tier cl-naive">
-        <div class="cl-head">
-          <div class="cl-name">Naive RAG</div>
-          <div class="cl-config">100K tokens · no cache</div>
-        </div>
-        <div class="cl-volume"><div class="cl-vol-fill cl-vol-full"></div></div>
-        <div class="cl-cost-row">
-          <span class="cl-cost-num">~$0.31</span>
-          <span class="cl-cost-unit">/ query</span>
-        </div>
-        <div class="cl-scale">~$310K / day at 1M queries</div>
-      </div>
-
-      <div class="cl-tier cl-cached">
-        <div class="cl-head">
-          <div class="cl-name">Cached RAG</div>
-          <div class="cl-config">100K tokens · best practice today</div>
-        </div>
-        <div class="cl-volume"><div class="cl-vol-fill cl-vol-cached"></div></div>
-        <div class="cl-cost-row">
-          <span class="cl-cost-num">~$0.04</span>
-          <span class="cl-cost-unit">/ query</span>
-        </div>
-        <div class="cl-scale">~$40K / day at 1M queries</div>
-      </div>
-
-      <div class="cl-tier cl-curated">
-        <div class="cl-head">
-          <div class="cl-name">Curated context</div>
-          <div class="cl-config">~580 tokens · <code>assemble_context()</code></div>
-        </div>
-        <div class="cl-volume"><div class="cl-vol-fill cl-vol-tiny"></div></div>
-        <div class="cl-cost-row">
-          <span class="cl-cost-num">~$0.0095</span>
-          <span class="cl-cost-unit">/ query</span>
-        </div>
-        <div class="cl-scale">~$9.5K / day at 1M queries</div>
-        <div class="cl-savings">
-          <span class="cls-num">32&times;</span> vs naive &nbsp;·&nbsp; <span class="cls-num">4&times;</span> vs cached
-        </div>
-      </div>
-
-    </div>
-
-    <p class="lib-land">
-      Even RAG done right costs <em>4&times; more</em> than curated memory.
-      <span class="emph">The win is curation, not capacity.</span>
-    </p>
-  </section>
-
-  <!-- =============================================================
-       SLIDE 5c - CMA DUTIES
-       ============================================================= -->
-  <section class="slide" id="slide-cma">
-    <div class="eyebrow">The Maintenance Layer</div>
-    <h2>Five duties that keep memory honest.</h2>
-
-    <div class="duties-list">
-      <div class="duty-row">
-        <span class="duty-num">01</span>
-        <div class="duty-body">
-          <span class="duty-name">Write control</span>
-          <span class="duty-desc">Only confirmed outcomes persist. Hallucinated reasoning stays ephemeral.</span>
-        </div>
-      </div>
-      <div class="duty-row">
-        <span class="duty-num">02</span>
-        <div class="duty-body">
-          <span class="duty-name">Deduplication</span>
-          <span class="duty-desc">Cosine-similarity merge. One strong memory, not ten weak ones.</span>
-        </div>
-      </div>
-      <div class="duty-row">
-        <span class="duty-num">03</span>
-        <div class="duty-body">
-          <span class="duty-name">Reconciliation</span>
-          <span class="duty-desc">New evidence supersedes stale conclusions automatically.</span>
-        </div>
-      </div>
-      <div class="duty-row">
-        <span class="duty-num">04</span>
-        <div class="duty-body">
-          <span class="duty-name">Confidence decay</span>
-          <span class="duty-desc">5% monthly. Below 0.30, auto-deprecated.</span>
-        </div>
-      </div>
-      <div class="duty-row">
-        <span class="duty-num">05</span>
-        <div class="duty-body">
-          <span class="duty-name">Compaction</span>
-          <span class="duty-desc">Weekly re-clustering. Evidence counts consolidated.</span>
-        </div>
-      </div>
-    </div>
-
-    <p class="cma-land">
-      <span class="emph">Storage isn't memory.</span> Maintenance is what makes it production-grade.
-    </p>
-  </section>
-
-  <!-- =============================================================
        SLIDE 6.5 - MAYA'S YEAR (interactive demo)
        Hero chat panel + live cluster-metrics sidebar comparing
        TiDB vs the 4-system Frankenstack at every step.
@@ -513,6 +399,69 @@
       <span class="mn-hedge">Representative numbers</span>
     </div>
   </section>
+  <!-- =============================================================
+       SLIDE 5b - LIBRARIAN (assemble_context)
+       ============================================================= -->
+  <section class="slide" id="slide-librarian">
+    <div class="eyebrow">The Token Tax</div>
+    <h2>Curate, or pay per token.</h2>
+
+    <p class="lib-lede">
+      Every token you load, you pay for. <em>Even with caching, the only way to scale is curation.</em>
+    </p>
+
+    <div class="cost-ladder">
+
+      <div class="cl-tier cl-naive">
+        <div class="cl-head">
+          <div class="cl-name">Naive RAG</div>
+          <div class="cl-config">100K tokens · no cache</div>
+        </div>
+        <div class="cl-volume"><div class="cl-vol-fill cl-vol-full"></div></div>
+        <div class="cl-cost-row">
+          <span class="cl-cost-num">~$0.31</span>
+          <span class="cl-cost-unit">/ query</span>
+        </div>
+        <div class="cl-scale">~$310K / day at 1M queries</div>
+      </div>
+
+      <div class="cl-tier cl-cached">
+        <div class="cl-head">
+          <div class="cl-name">Cached RAG</div>
+          <div class="cl-config">100K tokens · best practice today</div>
+        </div>
+        <div class="cl-volume"><div class="cl-vol-fill cl-vol-cached"></div></div>
+        <div class="cl-cost-row">
+          <span class="cl-cost-num">~$0.04</span>
+          <span class="cl-cost-unit">/ query</span>
+        </div>
+        <div class="cl-scale">~$40K / day at 1M queries</div>
+      </div>
+
+      <div class="cl-tier cl-curated">
+        <div class="cl-head">
+          <div class="cl-name">Curated context</div>
+          <div class="cl-config">~580 tokens · <code>assemble_context()</code></div>
+        </div>
+        <div class="cl-volume"><div class="cl-vol-fill cl-vol-tiny"></div></div>
+        <div class="cl-cost-row">
+          <span class="cl-cost-num">~$0.0095</span>
+          <span class="cl-cost-unit">/ query</span>
+        </div>
+        <div class="cl-scale">~$9.5K / day at 1M queries</div>
+        <div class="cl-savings">
+          <span class="cls-num">32&times;</span> vs naive &nbsp;·&nbsp; <span class="cls-num">4&times;</span> vs cached
+        </div>
+      </div>
+
+    </div>
+
+    <p class="lib-land">
+      Even RAG done right costs <em>4&times; more</em> than curated memory.
+      <span class="emph">The win is curation, not capacity.</span>
+    </p>
+  </section>
+
 
   <!-- =============================================================
        SLIDE 7 - MANUS UNIT ECONOMICS
