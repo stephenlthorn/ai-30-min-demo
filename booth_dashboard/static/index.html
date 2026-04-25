@@ -323,48 +323,42 @@
        SLIDE 5 - THREE MEMORIES (the architecture, named)
        ============================================================= -->
   <section class="slide" id="slide-memories">
-    <div class="eyebrow">Beat 04 · The Architecture, Named · 3 minutes</div>
-    <h2>The Memory Wall <span class="arrow">→</span> The Cognitive Foundation.</h2>
+    <div class="eyebrow">The Architecture</div>
+    <h2>Three memories every agent needs.</h2>
 
     <div class="memories-grid">
       <div class="memory-type mt-episodic">
         <div class="mt-label">Episodic</div>
         <div class="mt-name">What happened</div>
-        <div class="mt-table">in TiDB · <code>agent_reasoning</code></div>
         <div class="mt-desc">
-          Time-stamped history scoped by entity. Every interaction - across channels and six-month gaps - in one query.
+          Time-stamped history per customer. Every interaction in one query.
         </div>
-        <div class="mt-demo">Watch for: recognizing Maya. The cream linen shift. The wrap dress return.</div>
-        <div class="mt-tag">per-customer · per-session · auditable</div>
+        <div class="mt-tag">per-customer · auditable</div>
       </div>
 
       <div class="memory-type mt-semantic">
         <div class="mt-label">Semantic</div>
         <div class="mt-name">What we learned</div>
-        <div class="mt-table">in TiDB · <code>fleet_memory</code></div>
         <div class="mt-desc">
-          Platform-wide knowledge - deduplicated, decayed, compacted. One customer pays the learning cost; every other benefits.
+          Knowledge that compounds across customers. One pays the cost. All benefit.
         </div>
-        <div class="mt-demo">Watch for: the size-up rule for relaxed weaves. Bias cuts behave differently than straight cuts.</div>
-        <div class="mt-tag">cross-customer · self-maintaining · compounding</div>
+        <div class="mt-tag">cross-customer · compounding</div>
       </div>
 
       <div class="memory-type mt-procedural">
         <div class="mt-label">Procedural</div>
         <div class="mt-name">What works</div>
-        <div class="mt-table">next architectural step</div>
         <div class="mt-desc">
-          Learned investigation strategies. Implicit in semantic memory today - the next dedicated retrieval path on the roadmap.
+          Learned strategies. The next layer on the roadmap.
         </div>
-        <div class="mt-demo">Watch for: the order of operations the agent follows without being told.</div>
-        <div class="mt-tag">strategy memory · the missing layer · the roadmap</div>
+        <div class="mt-tag">strategy memory · roadmap</div>
       </div>
     </div>
 
     <!-- Librarian analogy - how assemble_context() turns stored memory into curated context -->
     <div class="librarian-box">
       <div class="lb-panel lb-bad">
-        <div class="lb-top-label">1M context window · the token tax</div>
+        <div class="lb-top-label">1M context window</div>
         <div class="lb-scatter">
           <div class="lb-sb"></div><div class="lb-sb"></div><div class="lb-sb"></div>
           <div class="lb-sb"></div><div class="lb-sb"></div><div class="lb-sb"></div>
@@ -373,24 +367,24 @@
           <div class="lb-sb"></div><div class="lb-sb"></div><div class="lb-sb"></div>
           <div class="lb-sb"></div><div class="lb-sb"></div><div class="lb-sb"></div>
         </div>
-        <div class="lb-caption">Carry all 10,000 books, every session. Pay per page - whether you read it or not.</div>
+        <div class="lb-caption">Pay per page. Whether you read it or not.</div>
       </div>
 
       <div class="lb-middle">
         <div class="lb-fn">assemble_context()</div>
         <div class="lb-arrow">↓</div>
-        <div class="lb-fn-note">ranked by relevance<br>fitted to budget</div>
+        <div class="lb-fn-note">ranked by relevance<br>fit to budget</div>
       </div>
 
       <div class="lb-panel lb-good">
-        <div class="lb-top-label">Cognitive Foundation · curated context</div>
+        <div class="lb-top-label">Curated context</div>
         <div class="lb-curated">
           <div class="lb-cb" style="--bc:var(--gold-2)">Customer profile <em>80 tok · always first</em></div>
           <div class="lb-cb" style="--bc:var(--burgundy)">Recent events <em>~200 tok</em></div>
           <div class="lb-cb" style="--bc:var(--moss)">Prior decisions <em>~300 tok</em></div>
           <div class="lb-cb lb-cb-opt" style="--bc:var(--ink-faint)">Fleet memory <em>if budget remains</em></div>
         </div>
-        <div class="lb-caption">A perfectly curated stack - never knowing 10,000 books existed but weren't selected.</div>
+        <div class="lb-caption">Only what matters. Ranked. Fit to budget.</div>
       </div>
     </div>
 
