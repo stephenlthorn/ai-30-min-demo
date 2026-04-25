@@ -2190,60 +2190,47 @@ body::before {
 }
 
 /* =========================================================
-   SLIDE 1 — ABOUT (vertical row layout — 6 lean rows)
+   SLIDE 1 — ABOUT (clean two-column list)
    ========================================================= */
-.about-cards {
+.about-list {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  margin: 24px auto 22px;
-  max-width: 980px;
+  margin: 28px auto 28px;
+  max-width: 860px;
+  width: 100%;
 }
-.about-card {
+.about-row {
   display: grid;
-  grid-template-columns: 220px 200px 1fr;
-  gap: 24px;
+  grid-template-columns: 220px 1fr;
+  gap: 40px;
   align-items: baseline;
-  padding: 12px 22px;
-  background: var(--paper);
-  border-radius: 6px;
-  border-left: 2px solid var(--ink-line);
-  transition: border-color 0.2s ease;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--ink-line);
 }
-.about-card-name {
+.about-row:first-child {
+  border-top: 1px solid var(--ink-line);
+}
+.about-org {
   font-family: var(--serif);
   font-style: italic;
-  font-size: 22px;
-  color: var(--gold);
-  line-height: 1.1;
-  margin: 0;
-}
-.about-card-tag {
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  font-weight: 600;
+  font-size: 19px;
   color: var(--ink-soft);
-  text-transform: uppercase;
-  margin: 0;
+  line-height: 1.2;
 }
-.about-card-desc {
-  font-size: 13px;
-  line-height: 1.5;
-  color: var(--ink-2);
-  border-top: none;
-  padding-top: 0;
-  margin: 0;
+.about-line {
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--ink);
+  line-height: 1.4;
 }
-.about-card-current {
-  border-left: 2px solid var(--gold);
-  background: linear-gradient(90deg, rgba(80, 219, 217, 0.08), var(--paper) 60%);
-  box-shadow: 0 0 0 1px rgba(80, 219, 217, 0.18);
-}
-.about-card-current .about-card-name {
+.about-row-current .about-org {
   color: var(--gold);
+  font-style: normal;
+  font-weight: 600;
 }
-.about-card-current .about-card-tag {
-  color: var(--gold-2);
+.about-row-current .about-line {
+  color: var(--gold);
+  font-weight: 500;
 }
 .about-bridge {
   font-family: var(--serif);
