@@ -3049,11 +3049,12 @@ body::before {
   background: var(--paper);
   border: 1px solid var(--ink-line);
   border-radius: 10px;
-  padding: 14px 16px 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
+  padding: 18px 20px 16px;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto auto;
+  gap: 12px;
   position: relative;
+  align-items: stretch;
 }
 .mt-episodic   { border-top: 3px solid var(--gold-2); }
 .mt-semantic   { border-top: 3px solid var(--moss); }
@@ -3123,10 +3124,11 @@ body::before {
 .mt-bullets {
   list-style: none;
   padding: 0;
-  margin: 4px 0 0;
+  margin: 0;
   display: flex;
   flex-direction: column;
   gap: 6px;
+  align-self: start;
 }
 .mt-bullets li {
   font-family: var(--sans);
