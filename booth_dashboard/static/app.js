@@ -10,20 +10,20 @@
 
 const SLIDES = [
   { id: "title",       label: "Title",         shortLabel: "0" },
-  { id: "sarah",       label: "The Hook",      shortLabel: "1" },
-  { id: "about",       label: "About",         shortLabel: "A" },
-  { id: "why",         label: "Why",           shortLabel: "2" },
-  { id: "convergence", label: "Convergence",   shortLabel: "3" },
-  { id: "memories",    label: "Three Memories", shortLabel: "4a" },
-  { id: "cma",         label: "Five Duties",   shortLabel: "4b" },
-  { id: "products",    label: "Two Products",  shortLabel: "4c" },
-  { id: "demo",        label: "Demo",          shortLabel: "5" },
-  { id: "maya",        label: "Maya's Year",   shortLabel: "5b" },
-  { id: "manus",       label: "Manus Math",    shortLabel: "6" },
-  { id: "category",    label: "Your Category", shortLabel: "7" },
-  { id: "lineage",     label: "11 Years",      shortLabel: "8" },
-  { id: "whynow",      label: "Why Now",       shortLabel: "9" },
-  { id: "close",       label: "Close",         shortLabel: "10" },
+  { id: "about",       label: "About",         shortLabel: "1" },
+  { id: "sarah",       label: "The Hook",      shortLabel: "2" },
+  { id: "why",         label: "Why",           shortLabel: "3" },
+  { id: "convergence", label: "Convergence",   shortLabel: "4" },
+  { id: "memories",    label: "Three Memories", shortLabel: "5a" },
+  { id: "cma",         label: "Five Duties",   shortLabel: "5b" },
+  { id: "products",    label: "Two Products",  shortLabel: "5c" },
+  { id: "demo",        label: "Demo",          shortLabel: "6" },
+  { id: "maya",        label: "Maya's Year",   shortLabel: "6b" },
+  { id: "manus",       label: "Manus Math",    shortLabel: "7" },
+  { id: "category",    label: "Your Category", shortLabel: "8" },
+  { id: "lineage",     label: "11 Years",      shortLabel: "9" },
+  { id: "whynow",      label: "Why Now",       shortLabel: "10" },
+  { id: "close",       label: "Close",         shortLabel: "11" },
   { id: "qa",          label: "Q&A",           shortLabel: "Q" }
 ];
 
@@ -36,13 +36,13 @@ const wait = (ms) => new Promise((r) => setTimeout(r, ms));
 /* Phrases to land per slide. Toggle with N. */
 const SPEAKER_NOTES = {
   title:
-    "EMPOWERMENT PROMISE FIRST. Read the subtitle line on screen, slowly, as your opening sentence. Don't say hello. Don't thank anyone. Don't introduce yourself yet — that comes after Sarah.\n\nVERBATIM OPENING (~70 seconds):\n\n'By the end of these 30 minutes, you'll be able to walk into your Monday staff meeting and ask the one question that tells you whether your AI is compounding customer value — or paying to rediscover the same customer every session.\n\nThat matters because the next 36 months in retail won't be won by the company with the flashiest model. They'll be won by the company whose AI actually gets smarter from every customer interaction.\n\nRight now, most teams are still wiring raw LLM calls together. So every new session starts over. Same customer. Same preferences. Same mistakes. Same token bill.\n\nThat is not a model problem. It is an architecture problem.\n\nFor the next 30 minutes, I'm going to show you what that failure looks like in a retail moment everyone in this room will recognize — and the architecture pattern that turns AI from a cost center that resets into an asset that compounds.'\n\nThen straight to Sarah. No throat-clearing.",
+    "EMPOWERMENT PROMISE FIRST. Read the subtitle line on screen, slowly, as your opening sentence. Don't say hello. Don't thank anyone. Then briefly introduce yourself with the About slide before going to Sarah.\n\nVERBATIM OPENING (~70 seconds):\n\n'By the end of these 30 minutes, you'll be able to walk into your Monday staff meeting and ask the one question that tells you whether your AI is compounding customer value - or paying to rediscover the same customer every session.\n\nThat matters because the next 36 months in retail won't be won by the company with the flashiest model. They'll be won by the company whose AI actually gets smarter from every customer interaction.\n\nRight now, most teams are still wiring raw LLM calls together. So every new session starts over. Same customer. Same preferences. Same mistakes. Same token bill.\n\nThat is not a model problem. It is an architecture problem.\n\nFor the next 30 minutes, I'm going to show you what that failure looks like in a retail moment everyone in this room will recognize - and the architecture pattern that turns AI from a cost center that resets into an asset that compounds.'\n\nThen About (15 seconds), then Sarah.",
 
   about:
-    "ONE SPOKEN LINE — after Sarah lands, before Why. Don't read the slide; the slide is the receipt for the line you spoke.\n\n'Quick context on me — I've been doing AI work since before it had a name. USNA capstone on 580 million tweets, EACL 2012. In-house LLMs at Sosivio when there was no API to call. Which is to say: I've watched four versions of this exact mistake. Now let's look at the architecture that ends it.'\n\n10-15 seconds total. Then Why. Don't dwell on the cards.",
+    "ONE SPOKEN LINE - establish credibility fast, then move on. Don't read the slide; the slide is the receipt for the line you spoke.\n\n'Quick context on me - I've been doing AI work since before it had a name. USNA capstone on 580 million tweets, EACL 2012. In-house LLMs at Sosivio when there was no API to call. Which is to say: I've watched four versions of this exact mistake. Now let me show you what it looks like.'\n\n10-15 seconds total. Then straight to Sarah. Don't dwell on the cards.",
 
   sarah:
-    "Slow this story down. Let the silence land after 'It has no idea who she is.'\n\nKEY LINES:\n• 'The model is brilliant. The model has amnesia.'\n• 'Agents do not have memory — not by accident, by design.'\n• 'That gap is the token tax — every AI investment in this room is leaking value through it right now.'\n\nDon't apologize for the discomfort. They paid to feel it.\n\nLAND ON THE THREE FAILURE MODES — read each label out loud. Then point at the bridge line: 'Watch these three resolve, one by one, in six clicks.' That promise is the spine of the whole next act — Maya's Year is the receipt.\n\nThen go straight to About — let it interrupt the architecture talk for 15 seconds before you earn it back.",
+    "Slow this story down. Let the silence land after 'It has no idea who she is.'\n\nKEY LINES:\n• 'The model is brilliant. The model has amnesia.'\n• 'Agents do not have memory - not by accident, by design.'\n• 'That gap is the token tax - every AI investment in this room is leaking value through it right now.'\n\nDon't apologize for the discomfort. They paid to feel it.\n\nLAND ON THE THREE FAILURE MODES - read each label out loud. Then land on: 'This is how LLMs work. No memory - by design.' That's the architecture problem the rest of the deck solves. Maya's Year is the receipt.\n\nThen straight to Why - the answer.",
 
   why:
     "Two halves.\n\nHALF 1 — The diagnosis (Memory Wall):\n• Three failure modes: token debt, context amnesia, memory decay.\n• THE TRAP: 'Model providers will sell you a 1M-token window as the answer. It benefits THEM, not you. Every token you load, you pay for. A bigger window is a bigger meter — it is not memory.'\n\nHALF 2 — The cure (Cognitive Foundation):\n• Frankenstack vs. one cluster.\n• Librarian analogy. assemble_context() = librarian with a 10-book limit, picking from 10,000.\n• LAND: 'Memory is infrastructure. Not a feature you bolt on. Stop running four systems.'",
