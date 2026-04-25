@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="/static/styles.css?v=40" />
+  <link rel="stylesheet" href="/static/styles.css?v=41" />
 </head>
 
 <body>
@@ -383,52 +383,58 @@
     <h2>Curate, or pay per token.</h2>
 
     <p class="lib-lede">
-      Storing memory is half the job. The other half is picking what to load <em>per query</em> -
-      because every token you load, you pay for.
+      Every token you load, you pay for. <em>Even with caching, the only way to scale is curation.</em>
     </p>
 
-    <div class="librarian-box">
-      <div class="lb-panel lb-bad">
-        <div class="lb-top-label">1M context window</div>
-        <div class="lb-scatter">
-          <div class="lb-sb"></div><div class="lb-sb"></div><div class="lb-sb"></div>
-          <div class="lb-sb"></div><div class="lb-sb"></div><div class="lb-sb"></div>
-          <div class="lb-sb"></div><div class="lb-sb"></div><div class="lb-sb"></div>
-          <div class="lb-sb"></div><div class="lb-sb"></div><div class="lb-sb"></div>
-          <div class="lb-sb"></div><div class="lb-sb"></div><div class="lb-sb"></div>
-          <div class="lb-sb"></div><div class="lb-sb"></div><div class="lb-sb"></div>
+    <div class="cost-ladder">
+
+      <div class="cl-tier cl-naive">
+        <div class="cl-head">
+          <div class="cl-name">Naive RAG</div>
+          <div class="cl-config">100K tokens · no cache</div>
         </div>
-        <div class="lb-cost lb-cost-bad">
-          <div class="lb-cost-row"><span class="lb-cost-num">~$3.00</span><span class="lb-cost-unit">/ query</span></div>
-          <div class="lb-cost-row"><span class="lb-cost-num">~$3M</span><span class="lb-cost-unit">/ day · 1M queries</span></div>
+        <div class="cl-volume"><div class="cl-vol-fill cl-vol-full"></div></div>
+        <div class="cl-cost-row">
+          <span class="cl-cost-num">~$0.31</span>
+          <span class="cl-cost-unit">/ query</span>
         </div>
-        <div class="lb-caption">Pay per page. Whether you read it or not.</div>
+        <div class="cl-scale">~$310K / day at 1M queries</div>
       </div>
 
-      <div class="lb-middle">
-        <div class="lb-fn">assemble_context()</div>
-        <div class="lb-arrow">→</div>
-        <div class="lb-savings">~1,500&times;<br><span>cheaper</span></div>
+      <div class="cl-tier cl-cached">
+        <div class="cl-head">
+          <div class="cl-name">Cached RAG</div>
+          <div class="cl-config">100K tokens · best practice today</div>
+        </div>
+        <div class="cl-volume"><div class="cl-vol-fill cl-vol-cached"></div></div>
+        <div class="cl-cost-row">
+          <span class="cl-cost-num">~$0.04</span>
+          <span class="cl-cost-unit">/ query</span>
+        </div>
+        <div class="cl-scale">~$40K / day at 1M queries</div>
       </div>
 
-      <div class="lb-panel lb-good">
-        <div class="lb-top-label">Curated context · ~580 tokens</div>
-        <div class="lb-curated">
-          <div class="lb-cb" style="--bc:var(--gold-2)"><span class="lb-cb-num">1</span><span class="lb-cb-text">Customer profile</span><em>80 tok</em></div>
-          <div class="lb-cb" style="--bc:var(--burgundy)"><span class="lb-cb-num">2</span><span class="lb-cb-text">Recent events</span><em>~200 tok</em></div>
-          <div class="lb-cb" style="--bc:var(--moss)"><span class="lb-cb-num">3</span><span class="lb-cb-text">Prior decisions</span><em>~300 tok</em></div>
-          <div class="lb-cb lb-cb-opt" style="--bc:var(--ink-faint)"><span class="lb-cb-num">4</span><span class="lb-cb-text">Fleet memory</span><em>if budget remains</em></div>
+      <div class="cl-tier cl-curated">
+        <div class="cl-head">
+          <div class="cl-name">Curated context</div>
+          <div class="cl-config">~580 tokens · <code>assemble_context()</code></div>
         </div>
-        <div class="lb-cost lb-cost-good">
-          <div class="lb-cost-row"><span class="lb-cost-num">~$0.002</span><span class="lb-cost-unit">/ query</span></div>
-          <div class="lb-cost-row"><span class="lb-cost-num">~$2K</span><span class="lb-cost-unit">/ day · 1M queries</span></div>
+        <div class="cl-volume"><div class="cl-vol-fill cl-vol-tiny"></div></div>
+        <div class="cl-cost-row">
+          <span class="cl-cost-num">~$0.0095</span>
+          <span class="cl-cost-unit">/ query</span>
         </div>
-        <div class="lb-caption">Only what matters. Ranked. Fit to budget.</div>
+        <div class="cl-scale">~$9.5K / day at 1M queries</div>
+        <div class="cl-savings">
+          <span class="cls-num">32&times;</span> vs naive &nbsp;·&nbsp; <span class="cls-num">4&times;</span> vs cached
+        </div>
       </div>
+
     </div>
 
     <p class="lib-land">
-      A 1M context window is a bigger meter, not memory. <span class="emph">The win is curation, not capacity.</span>
+      Even RAG done right costs <em>4&times; more</em> than curated memory.
+      <span class="emph">The win is curation, not capacity.</span>
     </p>
   </section>
 

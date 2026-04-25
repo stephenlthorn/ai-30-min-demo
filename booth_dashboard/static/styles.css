@@ -3192,6 +3192,143 @@ body::before {
   font-weight: 700;
 }
 
+/* =========================================================
+   COST LADDER — Token Tax slide (5b)
+   3 tiers showing per-query and per-day cost evolution
+   ========================================================= */
+.cost-ladder {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.15fr;
+  gap: 14px;
+  margin: 18px 0 18px;
+}
+.cl-tier {
+  padding: 18px 18px 16px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: var(--paper);
+  border: 1px solid var(--ink-line);
+}
+.cl-naive {
+  background: rgba(243, 80, 72, 0.06);
+  border: 1px solid rgba(243, 80, 72, 0.35);
+}
+.cl-cached {
+  background: rgba(199, 124, 88, 0.06);
+  border: 1px solid rgba(199, 124, 88, 0.32);
+}
+.cl-curated {
+  background: rgba(80, 219, 217, 0.07);
+  border: 1px solid rgba(80, 219, 217, 0.4);
+}
+.cl-head {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.cl-name {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.2;
+}
+.cl-naive .cl-name    { color: var(--burgundy); }
+.cl-cached .cl-name   { color: rgb(199, 124, 88); }
+.cl-curated .cl-name  { color: var(--gold); }
+.cl-config {
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  font-weight: 600;
+}
+.cl-config code {
+  font-family: 'SF Mono', 'Menlo', 'Monaco', monospace;
+  font-size: 10px;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ink-soft);
+  background: rgba(0,0,0,0.18);
+  padding: 1px 6px;
+  border-radius: 3px;
+  margin-left: 4px;
+}
+
+/* Token volume bar */
+.cl-volume {
+  height: 10px;
+  background: rgba(0,0,0,0.25);
+  border-radius: 5px;
+  overflow: hidden;
+}
+.cl-vol-fill {
+  height: 100%;
+  border-radius: 5px;
+}
+.cl-vol-full   { width: 100%;  background: var(--burgundy); opacity: 0.85; }
+.cl-vol-cached { width: 100%;  background: rgb(199, 124, 88); opacity: 0.7;
+                 background: repeating-linear-gradient(45deg, rgb(199, 124, 88), rgb(199, 124, 88) 6px, rgba(199, 124, 88, 0.5) 6px, rgba(199, 124, 88, 0.5) 12px); }
+.cl-vol-tiny   { width: 1%;    background: var(--gold); opacity: 0.95; }
+
+/* Big dollar number */
+.cl-cost-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.cl-cost-num {
+  font-family: 'SF Mono', 'Menlo', 'Monaco', monospace;
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: var(--ink);
+}
+.cl-naive .cl-cost-num   { color: var(--burgundy); }
+.cl-cached .cl-cost-num  { color: rgb(199, 124, 88); }
+.cl-curated .cl-cost-num { color: var(--gold); }
+.cl-cost-unit {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  font-weight: 600;
+}
+.cl-scale {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--ink-soft);
+  font-weight: 500;
+  padding-top: 8px;
+  border-top: 1px dashed var(--ink-line);
+}
+.cl-savings {
+  margin-top: auto;
+  padding: 10px 12px;
+  background: rgba(80, 219, 217, 0.12);
+  border-radius: 4px;
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  font-weight: 600;
+  text-align: center;
+}
+.cls-num {
+  font-family: 'SF Mono', 'Menlo', 'Monaco', monospace;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--gold);
+  letter-spacing: -0.02em;
+}
+
 /* Librarian slide lede + landing */
 .lib-lede {
   font-family: var(--serif);
@@ -3217,6 +3354,11 @@ body::before {
   line-height: 1.5;
   color: var(--ink-2);
   max-width: 1080px;
+}
+.lib-land em {
+  font-style: italic;
+  color: var(--ink);
+  font-weight: 600;
 }
 .lib-land .emph {
   color: var(--gold);
