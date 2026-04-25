@@ -3042,6 +3042,7 @@ body::before {
 .memories-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto auto 1fr auto auto;
   gap: 14px;
   margin: 14px 0 14px;
 }
@@ -3051,7 +3052,8 @@ body::before {
   border-radius: 10px;
   padding: 18px 20px 16px;
   display: grid;
-  grid-template-rows: auto auto 1fr auto auto;
+  grid-template-rows: subgrid;
+  grid-row: span 5;
   gap: 12px;
   position: relative;
   align-items: stretch;
