@@ -11,8 +11,8 @@
 const SLIDES = [
   { id: "title",       label: "Title",          shortLabel: "0" },
   { id: "about",       label: "About",          shortLabel: "1" },
-  { id: "sarah",       label: "The Hook",       shortLabel: "2" },
-  { id: "about-tidb",  label: "About TiDB",     shortLabel: "3" },
+  { id: "about-tidb",  label: "About TiDB",     shortLabel: "2" },
+  { id: "sarah",       label: "The Hook",       shortLabel: "3" },
   { id: "convergence", label: "Convergence",    shortLabel: "4" },
   { id: "memories",    label: "Three Memories", shortLabel: "5" },
   { id: "maya",        label: "Maya's Year",    shortLabel: "6" },
@@ -38,7 +38,7 @@ const SPEAKER_NOTES = {
     "ONE SPOKEN LINE - establish credibility fast, then move on. Don't read the slide; the slide is the receipt for the line you spoke.\n\n'Quick context on me - I've been doing AI work since before it had a name. USNA capstone on 580 million tweets, EACL 2012. In-house LLMs at Sosivio when there was no API to call. Which is to say: I've watched four versions of this exact mistake. Now let me show you what it looks like.'\n\n10-15 seconds total. Then straight to Sarah. Don't dwell on the cards.",
 
   sarah:
-    "Slow this story down. Let the silence land after 'It has no idea who she is.'\n\nKEY LINES:\n- 'The model is brilliant. The model has no memory - by design.'\n- 'Agents do not have memory - not by accident, by design.'\n- 'That gap is the token tax - every AI investment in this room is leaking value through it right now.'\n\nDon't apologize for the discomfort. They paid to feel it.\n\nLAND ON THE THREE FAILURE MODES - read each label out loud. Then land on: 'This is how LLMs work. No memory - by design.' That's the architecture problem the rest of the deck solves.\n\nBRIDGE TO ABOUT TiDB: 'Quick word on who's already solved this at scale - then I'll show you how.'",
+    "Slow this story down. Let the silence land after 'It has no idea who she is.'\n\nKEY LINES:\n- 'The model is brilliant. The model has no memory - by design.'\n- 'Agents do not have memory - not by accident, by design.'\n- 'That gap is the token tax - every AI investment in this room is leaking value through it right now.'\n\nDon't apologize for the discomfort. They paid to feel it.\n\nLAND ON THE THREE FAILURE MODES - read each label out loud. Then land on: 'This is how LLMs work. No memory - by design.' That's the architecture problem the rest of the deck solves.\n\nBRIDGE TO CONVERGENCE: 'And here's who's already solved it - and what they all picked.'",
 
   convergence:
     "OPEN with: 'These four are illustrative - not the full list. We have many more AI customers. But pick any four building frontier AI and look at where their memory actually lives.'\n\nIndependent teams. Same conclusion. The database is the agent's brain.\n\nNote on anonymization: Two of these labs are top-10 globally - one long-context, one open-source. We name them in 1:1s under NDA.\n\nBRIDGE TO MEMORIES: 'So what IS that architecture? Three named memory types - let me show you.'",
@@ -56,7 +56,7 @@ const SPEAKER_NOTES = {
     "MONEY SLIDE #1. The demo just landed - now show what it costs. Walk the cost ladder slowly. Real Anthropic pricing - bring receipts.\n\nMATH (Sonnet 4.5, with ~500 tokens output):\n- Naive RAG: 100K tokens at \\$3/1M = \\$0.30 input + \\$0.0075 output = \\$0.31/query. At 1M queries/day, \\$310K/day.\n- Cached RAG (best practice today): cached input is \\$0.30/1M (90% off). 100K × \\$0.30 = \\$0.03 + \\$0.0075 output = \\$0.04/query. \\$40K/day.\n- Curated context (~580 tokens): \\$0.002 + \\$0.0075 = \\$0.0095/query. \\$9.5K/day.\n\nKEY LINES:\n- 'You just saw the architecture run. Now look at what it costs to run.'\n- 'Even RAG done right - with prompt caching - costs you 4× more than memory architecture.'\n- THE TRAP: 'Model providers will sell you a 1M-token window as the answer. Bigger window = bigger meter. The win is curation, not capacity.'\n\nIF SOMEONE ASKS 'But you can cache' - YES, that's tier 2 in the chart. Even cached, curation wins 4×.\n\nBRIDGE TO MANUS: 'That's per-query. Now let's zoom out to a real production agent business.'",
 
   "about-tidb":
-    "Quick credibility moment - 30 seconds, max. The audience just felt Sarah's pain. Before getting into architecture, answer the unspoken question: 'Is TiDB a real company or some startup that's going to disappear?'\n\nKEY POINTS:\n- 11+ years in production. Shipped 2015. Not a startup pivoting to AI.\n- Pinterest runs a million-QPS graph on it.\n- Manus runs 10M+ databases on it.\n- MySQL-compatible - your apps don't change.\n\nLAND: 'Same architecture - new workload. The labs that build AI use what already scales commerce.'\n\nBRIDGE TO CONVERGENCE: 'Now let me show you which AI labs specifically - and what they all picked.'",
+    "Quick credibility moment - 30 seconds, max. Sets the table before the pain hit, so the audience trusts the vendor before they hear the problem.\n\nKEY POINTS:\n- 11+ years in production. Shipped 2015. Not a startup pivoting to AI.\n- Pinterest runs a million-QPS graph on it.\n- Manus runs 10M+ databases on it.\n- MySQL-compatible - your apps don't change.\n\nLAND: 'Same architecture - new workload. The labs that build AI use what already scales commerce.'\n\nBRIDGE TO SARAH: 'OK - now let me show you the moment your AI investment is leaking value through right now.'",
 
   whynow:
     "The window is now. The decision window is 36 months — but the compounding starts the day you migrate, not the day you finish the RFP. The competitor who picks the architecture this quarter has 36 months of compounding agent intelligence on you by the next earnings cycle. Not a model gap. An architecture gap. Architecture gaps don't close.",
