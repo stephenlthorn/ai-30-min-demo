@@ -13,13 +13,14 @@ const SLIDES = [
   { id: "about",       label: "About",          shortLabel: "1" },
   { id: "about-tidb",  label: "About TiDB",     shortLabel: "2" },
   { id: "sarah",       label: "The Hook",       shortLabel: "3" },
-  { id: "convergence", label: "Convergence",    shortLabel: "4" },
-  { id: "memories",    label: "Three Memories", shortLabel: "5" },
-  { id: "maya",        label: "Maya's Year",    shortLabel: "6" },
-  { id: "librarian",   label: "Token Tax",      shortLabel: "7" },
-  { id: "manus",       label: "Manus Math",     shortLabel: "8" },
-  { id: "whynow",      label: "Why Now",        shortLabel: "9" },
-  { id: "close",       label: "Close",          shortLabel: "10" },
+  { id: "why",         label: "The Answer",     shortLabel: "4" },
+  { id: "convergence", label: "Convergence",    shortLabel: "5" },
+  { id: "memories",    label: "Three Memories", shortLabel: "6" },
+  { id: "maya",        label: "Maya's Year",    shortLabel: "7" },
+  { id: "librarian",   label: "Token Tax",      shortLabel: "8" },
+  { id: "manus",       label: "Manus Math",     shortLabel: "9" },
+  { id: "whynow",      label: "Why Now",        shortLabel: "10" },
+  { id: "close",       label: "Close",          shortLabel: "11" },
   { id: "qa",          label: "Q&A",            shortLabel: "Q" }
 ];
 
@@ -38,7 +39,10 @@ const SPEAKER_NOTES = {
     "ONE SPOKEN LINE - establish credibility fast, then move on. Don't read the slide; the slide is the receipt for the line you spoke.\n\n'Quick context on me - I've been doing AI work since before it had a name. USNA capstone on 580 million tweets, EACL 2012. In-house LLMs at Sosivio when there was no API to call. Which is to say: I've watched four versions of this exact mistake. Now let me show you what it looks like.'\n\n10-15 seconds total. Then straight to Sarah. Don't dwell on the cards.",
 
   sarah:
-    "Slow this story down. Let the silence land after 'It has no idea who she is.'\n\nKEY LINES:\n- 'The model is brilliant. The model has no memory - by design.'\n- 'Agents do not have memory - not by accident, by design.'\n- 'That gap is the token tax - every AI investment in this room is leaking value through it right now.'\n\nDon't apologize for the discomfort. They paid to feel it.\n\nLAND ON THE THREE FAILURE MODES - read each label out loud. Then land on: 'This is how LLMs work. No memory - by design.' That's the architecture problem the rest of the deck solves.\n\nBRIDGE TO CONVERGENCE: 'And here's who's already solved it - and what they all picked.'",
+    "Slow this story down. Let the silence land after 'It has no idea who she is.'\n\nKEY LINES:\n- 'The model is brilliant. The model has no memory - by design.'\n- 'Agents do not have memory - not by accident, by design.'\n- 'That gap is the token tax - every AI investment in this room is leaking value through it right now.'\n\nDon't apologize for the discomfort. They paid to feel it.\n\nLAND ON THE THREE FAILURE MODES - read each label out loud. Then land on: 'This is how LLMs work. No memory - by design.' That's the architecture problem the rest of the deck solves.\n\nBRIDGE TO ANSWER: 'And here's the architectural answer - one place for memory instead of four.'",
+
+  why:
+    "THE ANSWER. Show the contrast - Frankenstack on the left, TiDB unified on the right.\n\nLEFT (Frankenstack):\n- AI Agent Memory in Azure MySQL, Semantic Search in Pinecone, Analytics in Snowflake, Keyword Search in Elasticsearch.\n- The agent at the top is asking 'which version of reality is correct?'\n- Sync warnings: ETL broke at 3:14 AM, embedding drift 18%, RTBF cascade missed.\n- LAND: 'Data and context need one ACID boundary. Architectural necessity, not a TiDB pitch.'\n\nRIGHT (TiDB):\n- Same four capabilities. One database. One transaction.\n- The repetition of 'TiDB' four times IS the punchline - say it out loud as you point.\n\nLAND: 'Memory is infrastructure. Not a feature you bolt on. Stop running four systems.'\n\nBRIDGE TO CONVERGENCE: 'And it's not just us saying this - here's who's already picked this architecture.'",
 
   convergence:
     "OPEN with: 'These four are illustrative - not the full list. We have many more AI customers. But pick any four building frontier AI and look at where their memory actually lives.'\n\nIndependent teams. Same conclusion. The database is the agent's brain.\n\nNote on anonymization: Two of these labs are top-10 globally - one long-context, one open-source. We name them in 1:1s under NDA.\n\nBRIDGE TO MEMORIES: 'So what IS that architecture? Three named memory types - let me show you.'",
