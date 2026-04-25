@@ -9,23 +9,21 @@
 /* ---------- 1. SLIDE NAVIGATION ---------- */
 
 const SLIDES = [
-  { id: "title",       label: "Title",         shortLabel: "0" },
-  { id: "about",       label: "About",         shortLabel: "1" },
-  { id: "sarah",       label: "The Hook",      shortLabel: "2" },
-  { id: "why",         label: "Why",           shortLabel: "3" },
-  { id: "convergence", label: "Convergence",   shortLabel: "4" },
-  { id: "memories",    label: "Three Memories", shortLabel: "5a" },
-  { id: "librarian",   label: "The Librarian", shortLabel: "5b" },
-  { id: "cma",         label: "Five Duties",   shortLabel: "5c" },
-  { id: "products",    label: "Two Products",  shortLabel: "5d" },
-  { id: "demo",        label: "Demo",          shortLabel: "6" },
-  { id: "maya",        label: "Maya's Year",   shortLabel: "6b" },
-  { id: "manus",       label: "Manus Math",    shortLabel: "7" },
-  { id: "category",    label: "Your Category", shortLabel: "8" },
-  { id: "lineage",     label: "11 Years",      shortLabel: "9" },
-  { id: "whynow",      label: "Why Now",       shortLabel: "10" },
-  { id: "close",       label: "Close",         shortLabel: "11" },
-  { id: "qa",          label: "Q&A",           shortLabel: "Q" }
+  { id: "title",       label: "Title",          shortLabel: "0" },
+  { id: "about",       label: "About",          shortLabel: "1" },
+  { id: "sarah",       label: "The Hook",       shortLabel: "2" },
+  { id: "convergence", label: "Convergence",    shortLabel: "3" },
+  { id: "memories",    label: "Three Memories", shortLabel: "4a" },
+  { id: "librarian",   label: "Token Tax",      shortLabel: "4b" },
+  { id: "cma",         label: "Five Duties",    shortLabel: "4c" },
+  { id: "products",    label: "Two Products",   shortLabel: "4d" },
+  { id: "maya",        label: "Maya's Year",    shortLabel: "5" },
+  { id: "manus",       label: "Manus Math",     shortLabel: "6" },
+  { id: "category",    label: "Your Category",  shortLabel: "7" },
+  { id: "lineage",     label: "11 Years",       shortLabel: "8" },
+  { id: "whynow",      label: "Why Now",        shortLabel: "9" },
+  { id: "close",       label: "Close",          shortLabel: "10" },
+  { id: "qa",          label: "Q&A",            shortLabel: "Q" }
 ];
 
 let currentSlide = 0;
@@ -43,22 +41,16 @@ const SPEAKER_NOTES = {
     "ONE SPOKEN LINE - establish credibility fast, then move on. Don't read the slide; the slide is the receipt for the line you spoke.\n\n'Quick context on me - I've been doing AI work since before it had a name. USNA capstone on 580 million tweets, EACL 2012. In-house LLMs at Sosivio when there was no API to call. Which is to say: I've watched four versions of this exact mistake. Now let me show you what it looks like.'\n\n10-15 seconds total. Then straight to Sarah. Don't dwell on the cards.",
 
   sarah:
-    "Slow this story down. Let the silence land after 'It has no idea who she is.'\n\nKEY LINES:\n• 'The model is brilliant. The model has amnesia.'\n• 'Agents do not have memory - not by accident, by design.'\n• 'That gap is the token tax - every AI investment in this room is leaking value through it right now.'\n\nDon't apologize for the discomfort. They paid to feel it.\n\nLAND ON THE THREE FAILURE MODES - read each label out loud. Then land on: 'This is how LLMs work. No memory - by design.' That's the architecture problem the rest of the deck solves. Maya's Year is the receipt.\n\nThen straight to Why - the answer.",
-
-  why:
-    "Two halves.\n\nHALF 1 — The diagnosis (Memory Wall):\n• Three failure modes: token debt, context amnesia, memory decay.\n• THE TRAP: 'Model providers will sell you a 1M-token window as the answer. It benefits THEM, not you. Every token you load, you pay for. A bigger window is a bigger meter — it is not memory.'\n\nHALF 2 — The cure (Cognitive Foundation):\n• Frankenstack vs. one cluster.\n• Librarian analogy. assemble_context() = librarian with a 10-book limit, picking from 10,000.\n• LAND: 'Memory is infrastructure. Not a feature you bolt on. Stop running four systems.'",
+    "Slow this story down. Let the silence land after 'It has no idea who she is.'\n\nKEY LINES:\n- 'The model is brilliant. The model has no memory - by design.'\n- 'Agents do not have memory - not by accident, by design.'\n- 'That gap is the token tax - every AI investment in this room is leaking value through it right now.'\n\nDon't apologize for the discomfort. They paid to feel it.\n\nLAND ON THE THREE FAILURE MODES - read each label out loud. Then land on: 'This is how LLMs work. No memory - by design.' That's the architecture problem the rest of the deck solves.\n\nBRIDGE TO CONVERGENCE: 'Here's who's already solved it - and what they all picked.'",
 
   convergence:
-    "OPEN with: 'These four are illustrative — not the full list. We have many more AI customers. But pick any four building frontier AI and look at where their memory actually lives.'\n\nFour use cases. Different problems. Same architecture. That's not a coincidence — that's convergence.\n\nNote on anonymization: Two of these labs are top-5 frontier AI globally — one long-context, one open-source. We name them in 1:1s under NDA.\n\nThe database stopped being a storage layer. It became the substrate the agent thinks against.\n\nBRIDGE TO MEMORIES: 'So what IS that architecture? Three named memory types — let me show you.'",
+    "OPEN with: 'These four are illustrative - not the full list. We have many more AI customers. But pick any four building frontier AI and look at where their memory actually lives.'\n\nIndependent teams. Same conclusion. The database is the agent's brain.\n\nNote on anonymization: Two of these labs are top-10 globally - one long-context, one open-source. We name them in 1:1s under NDA.\n\nBRIDGE TO MEMORIES: 'So what IS that architecture? Three named memory types - let me show you.'",
 
   manus:
-    "You just showed the architecture working — now show what it costs. The math IS the punchline. Walk the numbers slowly.\n\n• AWS cheapest DB: $9.60/month.\n• Manus has 10M databases.\n• That's $96M/month, $1.15B/year — on AWS.\n• Manus charges $5/month per user.\n\nLAND: 'You can't price an AI product without solving the database problem first. Every AI company eventually discovers this math.'\n\nBRIDGE TO PROOF: 'And it's not just AI labs running this architecture.'",
-
-  demo:
-    "You just named the three memory types — now show them working. Let it play. Don't narrate over the animation.\n\nAFTER both windows finish:\n'Same customer — Maya. Same brand. Same chatbot UI. The only thing different is the memory architecture. One left without buying. One checked out for $172 in four turns. That delta — across 10 million customers, every day — is the whole game.'\n\nBRIDGE TO MAYA'S YEAR: 'You just saw ONE moment of Maya's relationship with the brand. Now watch the same Maya across twelve months — and the architecture that makes every moment after this one better than the last.'",
+    "You just showed the architecture working - now show what it costs. The math IS the punchline. Walk the numbers slowly.\n\n- AWS cheapest DB: \\$9.60/month.\n- Manus has 10M databases.\n- That's \\$96M/month, \\$1.15B/year - on AWS.\n- Manus charges \\$5/month per user.\n\nLAND: 'You can't price an AI product without solving the database problem first. Every AI company eventually discovers this math.'\n\nBRIDGE TO PROOF: 'And it's not just AI labs running this architecture.'",
 
   maya:
-    "Interactive. Click the stepper at top — or Prev/Next at bottom — to walk the audience through the 6 days. The chat is the hero; the sidebar shows TiDB winning the metric at every single step. ALWAYS read the 'Why TiDB wins this step' callout out loud — it's the punchline for each beat.\n\nDAY 1 — Maya signs up. Point at the sidebar: 'Cold start for Maya. But the fleet is already warm with 1.2M lessons. Frankenstack can't show you that — every system starts cold.'\n\nDAY 14 — Maya returns 2 dresses with reasons. Point: 'Order outcome AND the reasoning behind it have to commit together. TiDB does it in one ACID transaction. Frankenstack hopes nothing fails between calls 2 and 3.'\n\nDAY 21 — fleet auto-learns. Point: 'No user is even talking. The fleet just got smarter. Snowflake gets this insight in next quarter's batch. We got it to every agent in 60 seconds.'\n\nDAY 22 — Lena, a stranger, benefits from Maya's data. Point: 'Maya never met Lena. THIS is what semantic memory actually buys you. Pinecone alone cannot do this.'\n\nDAY 60 (★ HERO) — the compounding payoff. Read the agent's reply out loud, slowly. End on 'Nothing on this list is something you'd return.' Then point at the metrics: 'One query. Four modalities. 38ms. Versus 5 calls, 47 lines of glue, 2.4 seconds — and one stale Snowflake field that would have killed the gala recommendation. 63× faster, atomically consistent.'\n\nDAY 90 — compliance asks why. Point: 'Episodic memory IS your audit trail. Try replaying this from a Pinecone namespace overwritten 200 times since April. Lawyer's nightmare.'\n\nFINAL LINE before Manus: 'You just watched twelve months of compounding intelligence in six clicks. Now let's look at what twelve months of THIS, across ten million customers, costs.'",
+    "THIS IS THE DEMO. Interactive. Click the stepper at top - or Prev/Next at bottom - to walk the audience through the 6 days. The chat is the hero; the sidebar shows TiDB winning the metric at every single step. ALWAYS read the 'Why TiDB wins this step' callout out loud - it's the punchline for each beat.\n\nOPEN: 'You just saw the architecture named. Now watch it run. Same customer - Maya - across her full year on a brand that uses memory architecture.'\n\nDAY 1 - Maya signs up. Point at the sidebar: 'Cold start for Maya. But the fleet is already warm with 1.2M lessons. Frankenstack can't show you that - every system starts cold.'\n\nDAY 14 - Maya returns 2 dresses with reasons. Point: 'Order outcome AND the reasoning behind it have to commit together. TiDB does it in one ACID transaction. Frankenstack hopes nothing fails between calls 2 and 3.'\n\nDAY 21 - fleet auto-learns. Point: 'No user is even talking. The fleet just got smarter. Snowflake gets this insight in next quarter's batch. We got it to every agent in 60 seconds.'\n\nDAY 22 - Lena, a stranger, benefits from Maya's data. Point: 'Maya never met Lena. THIS is what semantic memory actually buys you. Pinecone alone cannot do this.'\n\nDAY 60 (★ HERO) - the compounding payoff. Read the agent's reply out loud, slowly. End on 'Nothing on this list is something you'd return.' Then point at the metrics: 'One query. Four modalities. 38ms. Versus 5 calls, 47 lines of glue, 2.4 seconds - and one stale Snowflake field that would have killed the gala recommendation. 63x faster, atomically consistent.'\n\nDAY 90 - compliance asks why. Point: 'Episodic memory IS your audit trail. Try replaying this from a Pinecone namespace overwritten 200 times since April. Lawyer's nightmare.'\n\nFINAL LINE before Manus: 'You just watched twelve months of compounding intelligence in six clicks. Now let's look at what twelve months of THIS, across ten million customers, costs.'",
 
   memories:
     "This is THE architecture slide. The intellectual backbone - and it sets up the demos. Plant the vocabulary HERE so the audience has labels for what they're about to watch.\n\n- EPISODIC - what happened. Per-customer, time-stamped, auditable. Watch for: recognizing Maya in the live demo, and replaying her reasoning at Day 90 in the year demo.\n- SEMANTIC - what we learned. Cross-customer, deduplicated, compacted. Watch for: the size-up rule firing for both Maya AND a stranger she never met.\n- PROCEDURAL - what works. The missing layer. Strategy memory. The roadmap.\n\nLAND: 'Cognitive science named the types. We built the maintenance layer.'\n\nBRIDGE TO LIBRARIAN: 'But storing memory is half the job. The other half is picking what to load per query.'",
@@ -70,7 +62,7 @@ const SPEAKER_NOTES = {
     "Five duties — this is what makes the architecture production-grade, not just theoretically sound.\n\n• WRITE CONTROL — only confirmed outcomes persist. Hallucinated reasoning stays ephemeral.\n• DEDUPLICATION — cosine similarity merge. One strong memory, not ten weak ones.\n• RECONCILIATION — new evidence supersedes stale conclusions automatically.\n• CONFIDENCE DECAY — 5% monthly decay. Below 0.30, auto-deprecated.\n• COMPACTION — weekly re-clustering. Evidence counts consolidated.\n\nFIELD SIGNAL: Practitioners now say episodic memory and audit trails aren't nice-to-haves — they're the only way to control context bloat without retraining.\n\nLAND: 'Session state is not memory. CMA is the Cognitive Foundation. We know how to build it. Here's how it's built.' Then bridge to the products slide.",
 
   products:
-    "Two products. Two audiences. Read the room and lean into whichever buyer profile is in front of you.\n\nFOR PLATFORM CIOs/CTOs (Amway, Vineyard Vines, Icon Health, Westcon, Tapestry CIO):\n→ TiDB X. The substrate. Replaces 4 of 5 data systems. ACID across rows + vectors + analytics. Copy-on-write branches. GA on every cloud. BYOC for regulated workloads.\n\nFOR VP AI/DATA AND ENG LEADS (Bob's Sanjay, NYBC engineering, Tapestry senior director):\n→ mem9. The memory API. One line of install. No schema. Cross-agent, cross-session memory. Apache-2.0. Self-hostable when compliance asks.\n\nLAND: 'You don't have to become a database team to give your agents memory. mem9 is the API. TiDB X is the substrate. Pick the entry point that fits your org.'\n\nBRIDGE TO DEMO: 'Now let me show you what either of those gives you in practice.'",
+    "Two products. Two audiences. Read the room and lean into whichever buyer profile is in front of you.\n\nFOR PLATFORM CIOs/CTOs:\n-> TiDB X. The substrate. Replaces 4 of 5 data systems. ACID across rows + vectors + analytics. Copy-on-write branches. GA on every cloud. BYOC for regulated workloads.\n\nFOR VP AI/DATA AND ENG LEADS:\n-> mem9. The memory API. One line of install. No schema. Cross-agent, cross-session memory. Apache-2.0. Self-hostable when compliance asks.\n\nLAND: 'You don't have to become a database team to give your agents memory. mem9 is the API. TiDB X is the substrate. Pick the entry point that fits your org.'\n\nBRIDGE TO MAYA: 'Now let me show you what either of those gives you in practice - twelve months of one customer, in six clicks.'",
 
   category:
     "The dress is interchangeable. The architecture isn't. Pick the vertical that matches whoever you're talking to. Apparel = fit memory. Furniture = decision memory. Wellness = regimen memory. Loyalty = relationship memory.",
