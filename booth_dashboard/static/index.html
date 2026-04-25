@@ -429,56 +429,39 @@
        TiDB vs the 4-system Frankenstack at every step.
        ============================================================= -->
   <section class="slide" id="slide-maya">
-    <div class="eyebrow">Beat 05.5 · The Compounding · 4 minutes</div>
-    <h2 style="margin-bottom: 4px;">Maya's Year - <em>one cluster</em>, twelve months, Sarah's three failure modes resolved.</h2>
+    <div class="eyebrow">The Demo</div>
+    <h2>Maya's Year, in six clicks.</h2>
 
-    <!-- Always-visible Sarah recap so the audience never has to remember -->
-    <div class="maya-recap">
-      <span class="mr-prefix">Sarah recap →</span>
-      <span class="mr-mode">01 · never written down</span>
-      <span class="mr-dot">·</span>
-      <span class="mr-mode">02 · written but not findable</span>
-      <span class="mr-dot">·</span>
-      <span class="mr-mode">03 · context rot</span>
-      <span class="mr-suffix">Same Maya · 60 days in</span>
-    </div>
-
-    <!-- Step navigator with "resolves" callbacks to Sarah's failure modes -->
+    <!-- Step navigator -->
     <div class="maya-stepper">
       <button class="ms-step ms-active" data-mstep="0">
         <span class="ms-day">DAY 1</span>
         <span class="ms-lbl">First contact</span>
-        <span class="ms-resolves">setup</span>
       </button>
       <div class="ms-line"></div>
       <button class="ms-step" data-mstep="1">
         <span class="ms-day">DAY 14</span>
         <span class="ms-lbl">Returns + reasons</span>
-        <span class="ms-resolves ms-resolves-sarah">resolves 01 · written down</span>
       </button>
       <div class="ms-line"></div>
       <button class="ms-step" data-mstep="2">
         <span class="ms-day">DAY 21</span>
         <span class="ms-lbl">Fleet learns</span>
-        <span class="ms-resolves ms-resolves-sarah">resolves 01 · written (fleet)</span>
       </button>
       <div class="ms-line"></div>
       <button class="ms-step" data-mstep="3">
         <span class="ms-day">DAY 22</span>
         <span class="ms-lbl">Stranger benefits</span>
-        <span class="ms-resolves ms-resolves-sarah">resolves 02 · findable</span>
       </button>
       <div class="ms-line"></div>
       <button class="ms-step ms-hero" data-mstep="4">
         <span class="ms-day">DAY 60</span>
-        <span class="ms-lbl">★ Compounding payoff</span>
-        <span class="ms-resolves ms-resolves-sarah">resolves 03 · context rot</span>
+        <span class="ms-lbl">★ Payoff</span>
       </button>
       <div class="ms-line"></div>
       <button class="ms-step" data-mstep="5">
         <span class="ms-day">DAY 90</span>
         <span class="ms-lbl">The audit</span>
-        <span class="ms-resolves">bonus · defensible</span>
       </button>
     </div>
 
@@ -490,12 +473,8 @@
         <div class="mcp-header">
           <div class="mcp-avatar" id="mcpAvatar">M</div>
           <div class="mcp-meta">
-            <div class="mcp-name" id="mcpName">Maya - first session</div>
-            <div class="mcp-sub" id="mcpSub">Day 1 · cold start on a warm fleet</div>
-          </div>
-          <div class="mcp-status">
-            <span class="mcp-status-dot"></span>
-            <span class="mcp-status-text">Live · TiDB Cloud</span>
+            <div class="mcp-name" id="mcpName">Maya</div>
+            <div class="mcp-sub" id="mcpSub">Day 1 · cold start</div>
           </div>
         </div>
 
@@ -506,7 +485,6 @@
         </div>
 
         <div class="mcp-sql">
-          <span class="mcp-sql-label">Query running this turn:</span>
           <code id="mcpSQL">SELECT * FROM agent_episodic WHERE customer_id='maya_8421';  -- 0 rows · cold start, but the fleet has 1.2M lessons</code>
         </div>
       </div>
@@ -536,8 +514,8 @@
         <div class="mm-block mm-frank">
           <div class="mm-block-header">
             <span class="mm-icon mm-icon-bad">✗</span>
-            <span class="mm-name">4-system Frankenstack</span>
-            <span class="mm-tag mm-tag-bad">Azure SQL · Pinecone · Snowflake · Elasticsearch</span>
+            <span class="mm-name">Frankenstack</span>
+            <span class="mm-tag mm-tag-bad">4 systems</span>
           </div>
           <div class="mm-rows" id="mmFrankRows">
             <div class="mm-row"><span class="mm-key">Azure SQL profile</span><span class="mm-val mm-bad">empty</span></div>
@@ -549,7 +527,6 @@
 
         <!-- Why TiDB wins -->
         <div class="mm-delta" id="mmDelta">
-          <span class="mm-delta-label">Why TiDB wins this step</span>
           <span class="mm-delta-text">Maya is new - but the fleet is warm with 1.2M lessons. On Frankenstack, every system starts cold and the fleet wisdom lives in a quarterly batch job that hasn't run yet.</span>
         </div>
 
@@ -562,7 +539,7 @@
       <button class="mn-btn mn-prev" id="mayaPrev">← Prev</button>
       <span class="mn-position"><span id="mayaStepNum">1</span> of 6</span>
       <button class="mn-btn mn-next" id="mayaNext">Next →</button>
-      <span class="mn-hedge">Numbers are representative of a workload of this shape.</span>
+      <span class="mn-hedge">Representative numbers</span>
     </div>
   </section>
 
