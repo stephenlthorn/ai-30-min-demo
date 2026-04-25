@@ -3072,6 +3072,38 @@ body::before {
   font-weight: 700;
 }
 
+/* Librarian slide lede + landing */
+.lib-lede {
+  font-family: var(--serif);
+  font-size: 19px;
+  line-height: 1.5;
+  color: var(--ink-2);
+  max-width: 1080px;
+  margin: 0 0 18px;
+}
+.lib-lede em {
+  font-style: italic;
+  color: var(--gold);
+  font-weight: 500;
+}
+.lib-land {
+  margin-top: 18px;
+  padding: 14px 18px;
+  background: rgba(80, 219, 217, 0.06);
+  border-left: 3px solid var(--gold);
+  font-family: var(--serif);
+  font-size: 17px;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--ink-2);
+  max-width: 1080px;
+}
+.lib-land .emph {
+  color: var(--gold);
+  font-weight: 600;
+  font-style: normal;
+}
+
 .mem-land {
   margin-top: 14px;
   padding-top: 18px;
