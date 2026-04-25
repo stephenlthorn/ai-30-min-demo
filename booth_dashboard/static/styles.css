@@ -2040,8 +2040,23 @@ body::before {
 .topnav .tab.tab-appendix.active { opacity: 1; }
 
 /* =========================================================
-   SLIDE 6 — WHY NOW · bridge line above the three cards
+   SLIDE — WHY NOW · lede above the three cards
    ========================================================= */
+.whynow-lede {
+  font-family: var(--serif);
+  font-size: 20px;
+  line-height: 1.5;
+  color: var(--ink-2);
+  margin: 24px 0 32px;
+  max-width: 1080px;
+  padding: 16px 20px;
+  background: rgba(80, 219, 217, 0.05);
+  border-left: 3px solid var(--gold);
+}
+.whynow-lede .emph {
+  color: var(--gold);
+  font-weight: 600;
+}
 .whynow-bridge {
   font-family: var(--serif);
   font-style: italic;
