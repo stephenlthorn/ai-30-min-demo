@@ -3926,6 +3926,15 @@ body::before {
 .atd-logo-ai img {
   opacity: 1;
 }
+.atd-logo-anon {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 700;
+  border-style: dashed;
+  padding: 8px 16px;
+}
 
 .atd-land {
   margin: 0;
