@@ -410,11 +410,9 @@ body::before {
    SLIDE 1 — SARAH SCENE (profile + tabbed sessions)
    ========================================================= */
 .sarah-scene {
-  display: grid;
-  grid-template-columns: 180px 1fr;
-  gap: 14px;
+  display: block;
   margin: 20px 0 18px;
-  align-items: stretch;
+  max-width: 1100px;
 }
 
 /* Tabbed session wrapper */
@@ -429,10 +427,10 @@ body::before {
   margin-bottom: 6px;
 }
 .stab {
-  padding: 7px 18px;
+  padding: 10px 22px;
   border-radius: 4px 4px 0 0;
   font-family: var(--sans);
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   font-weight: 700;
@@ -577,17 +575,17 @@ body::before {
 
 /* Chat bubbles */
 .chat-log {
-  padding: 12px 14px;
+  padding: 22px 26px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 12px;
   flex: 1;
 }
 .chat-bubble {
-  padding: 9px 12px;
-  border-radius: 6px;
+  padding: 14px 18px;
+  border-radius: 8px;
   font-family: var(--sans);
-  font-size: 12.5px;
+  font-size: 18px;
   line-height: 1.5;
 }
 .chat-ai {
@@ -595,44 +593,52 @@ body::before {
   border: 1px solid var(--ink-line);
   color: var(--ink-soft);
   align-self: flex-start;
-  max-width: 92%;
+  max-width: 88%;
 }
 .chat-user {
   background: rgba(80, 219, 217, 0.07);
   border: 1px solid rgba(80, 219, 217, 0.14);
   color: var(--ink);
   align-self: flex-end;
-  max-width: 85%;
+  max-width: 82%;
+}
+.chat-user-angry {
+  background: rgba(243, 80, 72, 0.1);
+  border: 1px solid rgba(243, 80, 72, 0.3);
+  font-size: 40px;
+  line-height: 1;
+  padding: 12px 20px;
 }
 .chat-sender {
-  font-size: 8.5px;
-  letter-spacing: 0.1em;
+  font-size: 11px;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--ink-faint);
-  margin-bottom: 4px;
+  margin-bottom: 6px;
+  font-weight: 600;
 }
 .chat-receipt {
   margin-top: 2px;
-  padding: 8px 12px;
+  padding: 14px 20px;
   background: rgba(80, 219, 217, 0.1);
   border: 1px solid rgba(80, 219, 217, 0.2);
   border-radius: 6px;
   font-family: var(--sans);
-  font-size: 12px;
+  font-size: 16px;
   color: var(--gold-2);
   font-weight: 600;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
 }
 .chat-blank {
   margin-top: auto;
-  padding: 8px 12px;
+  padding: 12px 18px;
   background: rgba(243, 80, 72, 0.08);
   border: 1px solid rgba(243, 80, 72, 0.2);
   border-radius: 6px;
   font-family: var(--sans);
-  font-size: 11px;
+  font-size: 14px;
   color: var(--burgundy);
   font-weight: 700;
   letter-spacing: 0.06em;
