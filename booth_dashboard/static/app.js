@@ -360,6 +360,7 @@ const MAYA_STEPS = [
     avatar: "M",
     name: "Maya — first session",
     sub: "Day 1 · cold start on a warm fleet",
+    memoryTypes: [],
     messages: [
       { who: "user",  text: "Hi! Looking for a few new pieces — work, school pickup, the occasional date night." },
       { who: "agent", text: "Welcome, Maya. Tell me about your style — minimalist, statement, somewhere in between?" }
@@ -383,6 +384,7 @@ const MAYA_STEPS = [
     avatar: "M",
     name: "Maya — return processing",
     sub: "Day 14 · 2 returns, with reasons",
+    memoryTypes: ["episodic"],
     messages: [
       { who: "system", text: "Order #4471 returned · Order #4472 returned" },
       { who: "user",   text: "The first didn't fit at the bust. The second was just too preppy for me." },
@@ -409,6 +411,7 @@ const MAYA_STEPS = [
     avatar: "F",
     name: "Fleet event · system-wide",
     sub: "Day 21 · pattern reaches critical confidence",
+    memoryTypes: ["semantic"],
     messages: [
       { who: "system", text: "Fleet pattern detected: 'brand_x_runs_small_at_bust'" },
       { who: "system", text: "Maya is the 49,848th data point · cosine-merged · confidence 0.93 → 0.94" },
@@ -436,6 +439,7 @@ const MAYA_STEPS = [
     avatar: "L",
     name: "Lena · never met Maya",
     sub: "Day 22 · stranger benefits from Maya's data",
+    memoryTypes: ["semantic"],
     messages: [
       { who: "user",  text: "Browsing the new spring collection from brand X — anything you'd recommend?" },
       { who: "agent", text: "Heads up — this brand tends to run small at the bust. Want me to size up by one?" },
@@ -463,6 +467,7 @@ const MAYA_STEPS = [
     avatar: "M",
     name: "Maya · 60 days in — the payoff",
     sub: "★ The query that cannot exist on Frankenstack",
+    memoryTypes: ["episodic", "semantic", "procedural"],
     messages: [
       { who: "user",  text: "Hey, looking for a few things for the May beach trip — and that gala I mentioned." },
       { who: "agent", text: "I picked five for you. The Coach satchel is from a brand you've kept twice. The dress is from a brand we learned runs true on you. The blazer is for the gala you mentioned in March — sized up because of brand X. <em class=\"mcp-emph\">Nothing on this list is something you'd return.</em>", hero: true, html: true }
@@ -490,6 +495,7 @@ const MAYA_STEPS = [
     avatar: "?",
     name: "Compliance · 90 days later",
     sub: "Day 90 · regulator asks why",
+    memoryTypes: ["episodic"],
     messages: [
       { who: "system", text: "Compliance ticket #2026-0814 — 'Why did the agent recommend the Coach satchel to Maya on April 14?'" },
       { who: "agent",  text: "Replaying reasoning · customer maya_8421 · event coach_4471 · ts 2026-04-14T14:22:08Z" },
@@ -525,6 +531,19 @@ function renderMayaStep(idx) {
   const avatar = $("mcpAvatar"); if (avatar) avatar.textContent = step.avatar;
   const name   = $("mcpName");   if (name)   name.textContent   = step.name;
   const sub    = $("mcpSub");    if (sub)    sub.textContent    = step.sub;
+
+  // Memory-type badges (mirror the Three Memories slide footer)
+  const memContainer = $("mcpMemTypes");
+  if (memContainer) {
+    while (memContainer.firstChild) memContainer.removeChild(memContainer.firstChild);
+    const types = step.memoryTypes || [];
+    types.forEach((t) => {
+      const pill = document.createElement("span");
+      pill.className = `mcp-memtype mcp-memtype-${t}`;
+      pill.textContent = t.toUpperCase();
+      memContainer.appendChild(pill);
+    });
+  }
 
   // Messages
   const body = $("mcpBody");
