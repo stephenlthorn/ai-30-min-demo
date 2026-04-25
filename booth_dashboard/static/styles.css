@@ -663,7 +663,7 @@ body::before {
   box-shadow: var(--shadow-card);
 }
 .frankenstack .label {
-  font-size: 10px;
+  font-size: 14px;
   letter-spacing: 0.25em;
   text-transform: uppercase;
   color: var(--burgundy);
@@ -713,7 +713,7 @@ body::before {
 }
 .fa-name {
   font-family: var(--sans);
-  font-size: 9px;
+  font-size: 13px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   font-weight: 700;
@@ -722,7 +722,7 @@ body::before {
 .fa-q {
   font-family: var(--serif);
   font-style: italic;
-  font-size: 12px;
+  font-size: 17px;
   color: var(--burgundy);
 }
 .frank-fan {
@@ -730,7 +730,7 @@ body::before {
   grid-template-columns: repeat(4, 1fr);
   font-family: var(--serif);
   font-style: italic;
-  font-size: 16px;
+  font-size: 24px;
   color: var(--burgundy);
   text-align: center;
   opacity: 0.65;
@@ -756,14 +756,14 @@ body::before {
 .fs-name {
   font-family: var(--serif);
   font-style: italic;
-  font-size: 15px;
+  font-size: 20px;
   font-weight: 600;
   color: var(--ink);
   line-height: 1.2;
 }
 .fs-role {
   font-family: var(--sans);
-  font-size: 10px;
+  font-size: 13px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--burgundy);
@@ -786,7 +786,7 @@ body::before {
 }
 .sync-issue {
   font-family: var(--sans);
-  font-size: 9.5px;
+  font-size: 12px;
   font-weight: 600;
   color: var(--burgundy);
   text-align: center;
@@ -802,14 +802,14 @@ body::before {
 }
 
 .frank-note {
-  margin-top: 12px;
-  padding: 10px 14px;
+  margin-top: 14px;
+  padding: 12px 18px;
   background: rgba(243, 80, 72, 0.06);
-  border-left: 2px solid var(--burgundy);
+  border-left: 3px solid var(--burgundy);
   font-family: var(--serif);
   font-style: italic;
-  font-size: 14px;
-  line-height: 1.4;
+  font-size: 18px;
+  line-height: 1.45;
   color: var(--ink);
 }
 
@@ -883,7 +883,7 @@ body::before {
   border-left: 3px solid var(--moss);
 }
 .tidb-unified .label {
-  font-size: 10px;
+  font-size: 14px;
   letter-spacing: 0.25em;
   text-transform: uppercase;
   color: var(--moss);
@@ -909,14 +909,14 @@ body::before {
 .tidb-plane .name {
   font-family: var(--serif);
   font-style: italic;
-  font-size: 15px;
+  font-size: 20px;
   font-weight: 600;
   color: var(--ink);
   line-height: 1.2;
 }
 .tidb-plane .tag {
   font-family: var(--sans);
-  font-size: 10px;
+  font-size: 14px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--moss);
@@ -924,14 +924,14 @@ body::before {
   opacity: 0.85;
 }
 .tidb-note {
-  margin-top: 12px;
-  padding: 10px 14px;
+  margin-top: 14px;
+  padding: 12px 18px;
   background: rgba(80, 157, 234, 0.07);
-  border-left: 2px solid var(--moss);
+  border-left: 3px solid var(--moss);
   font-family: var(--serif);
   font-style: italic;
-  font-size: 14px;
-  line-height: 1.4;
+  font-size: 18px;
+  line-height: 1.45;
   color: var(--ink);
 }
 
