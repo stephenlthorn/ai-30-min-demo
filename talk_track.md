@@ -1,16 +1,15 @@
-# Talk track — 30-minute booth deck
+# Talk track - 45-minute booth deck
 
-30 minutes. Fifteen slides. Two demos. One promise.
+45 minutes. Eleven slides. One interactive demo. One promise.
 
-Optimized for a retail / CPG / health-exec audience (Tapestry, Vineyard Vines,
-Bob's Discount Furniture, Amway, Icon Health, NYBC, Westcon) — early in their
-AI journey, mostly still on raw LLM API calls.
+Optimized for a retail / CPG / health-exec audience early in their AI journey -
+mostly still wiring raw LLM API calls together.
 
 ---
 
 ## The one-sentence story
 
-> **"Your AI agents forget every customer they meet — by design. That's not
+> **"Your AI agents forget every customer they meet - by design. That's not
 > a model problem, it's an architecture problem. Fix the architecture and
 > every conversation makes the next one better. Don't, and you're paying
 > to rediscover the same customer every session."**
@@ -25,517 +24,368 @@ memory live? Show me the database."*
 
 | Min | Beat | Slide | Purpose |
 |---:|---|---:|---|
-| 0–1       | Empowerment promise          | 00 · title        | The Winston opening. Earn the next 29 minutes. |
-| 1–4       | Sarah — the Black Friday VIP | 01 · sarah        | Name the pain with a retail story every exec recognizes |
-| 4:00–4:15 | About — one spoken line      | A  · about        | Earn the mic. 15 seconds. Don't dwell. |
-| 4–8       | Why — memory belongs in one place | 02 · why    | Frankenstack diagnosis + the ACID-boundary answer |
-| 8–11      | Convergence                  | 03 · convergence  | The labs that build AI all chose this architecture |
-| 11–13     | Three memories               | 4a · memories     | Episodic · semantic · procedural — the vocabulary |
-| 13–14     | Five duties (CMA)            | 4b · cma          | What makes the architecture production-grade |
-| 14–15     | Two products                 | 4c · products     | TiDB X for CIOs · mem9 for VP AI/Data |
-| 15–19     | Live demo                    | 05 · demo         | Two-window VV chat — same Maya, two architectures |
-| 19–23     | Maya's Year                  | 5b · maya         | 6-step compounding demo · Sarah's failure modes resolved |
-| 23–25     | Manus math                   | 06 · manus        | $5/user/month is arithmetic — and impossible on Aurora |
-| 25–26     | Your category                | 07 · category     | Same architecture, your customer |
-| 26–27     | Eleven years                 | 08 · lineage      | Enterprise-battle-tested — not a startup pivoting to AI |
-| 27–29     | Why now                      | 09 · whynow       | The 36-month decision window |
-| 29–30     | Close · promise kept         | 10 · close        | The one question for Monday |
+| 0-2     | Empowerment promise         | 00 · title        | The cold open. Earn the next 44 minutes. |
+| 2-3     | About me - one spoken line  | 01 · about        | Earn the mic. 60 seconds. Don't dwell. |
+| 3-6     | About TiDB                  | 02 · about-tidb   | Receipts before pain. 11+ years. Real logos. |
+| 6-11    | Sarah - the Black Friday VIP | 03 · sarah       | Name the pain. Three failure modes. |
+| 11-16   | The Answer                  | 04 · why          | Frankenstack vs one ACID boundary. |
+| 16-19   | Convergence                 | 05 · convergence  | LinkedIn quote + 4 labs. Same conclusion. |
+| 19-24   | Three Memories              | 06 · memories     | Episodic · semantic · procedural - vocabulary for the demo. |
+| 24-34   | Maya's Year (interactive)   | 07 · maya         | 6 days of compounding intelligence in 6 clicks. |
+| 34-39   | Token Tax                   | 08 · librarian    | The cost ladder. Curation, not capacity. |
+| 39-43   | Manus Math                  | 09 · manus        | $5/user/month is arithmetic - and impossible on standard DBs. |
+| 43-46   | Closing - promise kept      | 10 · whynow       | The model forgets. The platform remembers. The human decides. |
 
-Q&A appendix is the final slide — reference only; don't walk through it.
+**Total target: ~46 minutes.** Built in 1-minute slack for transitions and audience reactions.
 
 ---
 
-## Beat 00 — Empowerment promise (0:00 – 1:00) · Slide `title`
+## Beat 00 - Empowerment promise (0:00 - 2:00) · Slide `title`
 
-**Open on the empowerment promise. Don't say hello. Don't thank anyone.
-Don't introduce yourself yet — that comes after Sarah.**
+Open cold. Don't say hello. Don't thank anyone. Read the subtitle line as your opening sentence.
 
-Walk to the front. Read the subtitle line on the slide, slowly, as your
-opening sentence. Then keep going.
+**Verbatim opening:**
 
-### Verbatim opening (~70 seconds):
-
-> *"By the end of these 30 minutes, you'll be able to walk into your Monday
+> "By the end of the next 45 minutes, you'll be able to walk into your Monday
 > staff meeting and ask the one question that tells you whether your AI is
-> compounding customer value — or paying to rediscover the same customer
-> every session.*
+> compounding customer value - or paying to rediscover the same customer every
+> session.
 >
-> *That matters because the next 36 months in retail won't be won by the
-> company with the flashiest model. They'll be won by the company whose
-> AI actually gets smarter from every customer interaction.*
+> That matters because the next few years in retail won't be won by the company
+> with the flashiest model. They'll be won by the company whose AI actually
+> gets smarter from every customer interaction.
 >
-> *Right now, most teams are still wiring raw LLM calls together. So every
-> new session starts over. Same customer. Same preferences. Same mistakes.
-> Same token bill.*
+> Right now, most teams are still wiring raw LLM calls together. So every new
+> session starts over. Same customer. Same preferences. Same mistakes. Same
+> token bill.
 >
-> *That is not a model problem. It is an architecture problem.*
+> That is not a model problem. It is an architecture problem.
 >
-> *For the next 30 minutes, I'm going to show you what that failure looks
-> like in a retail moment everyone in this room will recognize — and the
-> architecture pattern that turns AI from a cost center that resets into
-> an asset that compounds."*
+> For the next 45 minutes, I'm going to show you what that failure looks like
+> in a retail moment everyone here will recognize - and the architecture
+> pattern that turns AI from a cost center that resets into an asset that
+> compounds."
 
-Then straight to Sarah. No throat-clearing.
+Then About.
 
 ---
 
-## Beat 01 — Sarah, the Black Friday VIP (1:00 – 4:00) · Slide `sarah`
+## Beat 01 - About me (2:00 - 3:00) · Slide `about`
 
-**Slow this story down.** Let the silence land after *"It has no idea who she is."*
+One spoken line. Don't read the slide; the slide is the receipt for the line you spoke.
 
-### The story
+> "Quick context on me - Naval Academy NLP work on 580 million tweets, infantry
+> officer in the Marines, then open-source databases at Percona, in-house LLMs
+> at Sosivio before there was an API to call, AI tooling for the US Government
+> at BabelStreet. Which is to say: I've watched four versions of this exact
+> mistake. Now I run Solution Engineering at TiDB."
 
-- It's Black Friday. Your top-1% VIP is back in a digital channel.
-- Your AI handled her brilliantly three weeks ago. $4,800 basket closed. Madison Avenue note about bold prints on file. Open return on a black sheath dress.
-- Tonight she's back. Different session. Same AI. Same brand.
-- **It has no idea who she is.** Not the dress. Not the size. Not the return.
-- Your Madison Avenue associate has already solved this conversation forty times.
+45-60 seconds. Don't dwell on the cards.
 
-### Key lines
+---
 
-- *"The model is brilliant. The model has amnesia."*
-- *"Agents do not have memory — not by accident, by design."*
-- *"That gap is the token tax — every AI investment in this room is leaking value through it right now."*
+## Beat 02 - About TiDB (3:00 - 6:00) · Slide `about-tidb`
+
+Credibility moment. Sets the table before the pain hits, so the audience
+trusts the vendor before they hear the problem.
+
+**Key points:**
+- 11+ years in production. Shipped 2015. Not a startup pivoting to AI.
+- Millions of tables per cluster. 4M+ QPS per cluster. Hybrid workloads native.
+- **Enterprise scale:** LinkedIn (largest TiDB community user in the world),
+  Uber, Pinterest, Airbnb, Atlassian, Plaid, Flipkart, Square, Shopee,
+  Databricks, Bolt.
+- **Agentic AI:** Meta's Manus, two top-10 global AI labs, Dify, Plaud AI, GMGN.
+
+**Land:**
+> "Same architecture - new workload. The labs that build AI run what already
+> scales commerce."
+
+**Bridge to Sarah:**
+> "Now let me show you the moment your AI investment is leaking value through
+> right now."
+
+---
+
+## Beat 03 - Sarah, the Black Friday VIP (6:00 - 11:00) · Slide `sarah`
+
+Slow this story down. Let the silence land between Session 1 and Session 2.
+
+**Walk the tabs:**
+- **Session 1 (3 weeks ago):** Sarah is a $4,800 VIP. The agent helped her -
+  she bought, she returned, she came back.
+- **Session 2 (Tonight):** Same Sarah. Black Friday. The agent has no idea
+  who she is. Top 1% customer. Treated like a stranger.
+
+**Key lines:**
+- "The model is brilliant. The model has no memory - by design."
+- "That gap is every AI investment in this room leaking value through it
+  right now."
 
 Don't apologize for the discomfort. They paid to feel it.
 
-### Land on the three failure modes
+**Three failure modes** - read each label out loud:
+- **NEVER WRITTEN** - the agent had context, didn't persist it.
+- **NOT FINDABLE** - it's in the database somewhere, can't retrieve it.
+- **CONTEXT ROT** - it's there, but it's stale or contradictory.
 
-Read each label out loud:
+**Land:**
+> "This is how LLMs work. No memory - by design."
 
-1. **01 · Never written down.** Sarah told Tuesday's agent her preferences. Session ended. Gone.
-2. **02 · Written but not findable.** Fraud flag is in Pinecone. Retention agent is querying Postgres.
-3. **03 · Context rot.** After 40 tool calls the agent is drowning in stale state. Quality collapses.
+That's the architecture problem the rest of the deck solves.
 
-> *"These aren't prompt bugs. They're architecture bugs. You can't prompt
-> your way out of an architecture problem."*
-
-### Bridge forward (the spine of Act 2)
-
-Point at the gold bridge line on the slide:
-
-> *"Watch these three resolve, one by one, in six clicks."*
-
-That promise is the spine of the whole next act. Maya's Year (slide 5b) is the receipt.
-
-Then go straight to About — let it interrupt the architecture talk for
-15 seconds before you earn it back.
+**Bridge to The Answer:**
+> "And here's the architectural answer - one place for memory instead of four."
 
 ---
 
-## Beat 01.5 — About (4:00 – 4:15) · Slide `about`
+## Beat 04 - The Answer (11:00 - 16:00) · Slide `why`
 
-**ONE spoken line. The slide is the receipt for the line you spoke — don't read the cards.**
+Show the contrast. Frankenstack on the left, TiDB unified on the right.
 
-> *"Quick context on me — I've been doing AI work since before it had a
-> name. USNA capstone on 580 million tweets, EACL 2012. In-house LLMs at
-> Sosivio when there was no API to call. Which is to say: I've watched
-> four versions of this exact mistake. Now let's look at the architecture
-> that ends it."*
+**LEFT (Frankenstack):**
+- Four systems duct-taped together: SQL DB, Vector DB, Analytics DB, Search DB.
+- The agent at the top is asking *"which version of reality is correct?"*
+- Real-world sync issues: "Sync broke overnight," "Recommendations gone stale,"
+  "Customer delete missed."
+- Land: *"Data and context need one ACID boundary."*
 
-10-15 seconds total. Move.
+**RIGHT (TiDB):**
+- Same four capabilities. One database. One transaction. Apps keep talking MySQL.
+- The repetition of "TiDB" four times **is** the punchline - say it out loud
+  as you point.
 
----
+**Land - read both lines, each on its own beat:**
+> *"Infrastructure designed for legacy transactional purposes, not for
+> compound knowledge."*
+>
+> **"Memory is infrastructure - not a feature you bolt on."**
 
-## Beat 02 — Why agents forget (4:15 – 8:00) · Slide `why`
-
-**Two halves.**
-
-### Half 1 — The diagnosis (Memory Wall)
-
-Three failure modes at the architectural level:
-
-- **Token debt** — every token you reload every session is a token you pay for twice.
-- **Context amnesia** — the model is stateless. When the chat ends, everything is gone.
-- **Memory decay** — even when you try to store context, it rots without active maintenance.
-
-**The trap:**
-
-> *"Model providers will sell you a 1M-token context window as the answer.
-> It benefits THEM, not you. Every token you load, you pay for. A bigger
-> window is a bigger meter — it is not memory."*
-
-### Half 2 — The cure (Cognitive Foundation)
-
-**Frankenstack vs. one cluster.** Point at the diagram:
-
-- Orders in Azure SQL. Vectors in Pinecone. Analytics in Snowflake. Full-text in Elasticsearch.
-- Four consistency models. Sync breaks at 3 AM. The agent reasons on four versions of reality.
-- *"The agent's data plane and context plane have to share an ACID boundary. Not a TiDB claim — an architectural necessity."*
-
-**Librarian analogy** (the mental model that makes the next three beats click):
-
-> *"Every session, assemble_context() picks the right books off the shelf —
-> ranked by relevance, fitted to budget. The model never sees 10,000 books
-> it won't use."*
-
-### Land
-
-> *"Memory is infrastructure. Not a feature you bolt on. Stop running four systems."*
+**Bridge to Convergence:**
+> "And it's not just us saying this - here's who's already picked this
+> architecture."
 
 ---
 
-## Beat 03 — Convergence (8:00 – 11:00) · Slide `convergence`
+## Beat 05 - Convergence (16:00 - 19:00) · Slide `convergence`
 
-**Open with the framing:**
+Open with the LinkedIn quote on screen. Read it verbatim. LinkedIn is the
+largest TiDB community user in the world; this isn't marketing copy, it's
+their engineering blog from March 2026.
 
-> *"These four are illustrative — not the full list. We have many more AI
-> customers. But pick any four building frontier AI and look at where
-> their memory actually lives."*
+> "Memory stops being incidental context and becomes a first-class primitive
+> with explicit read/write semantics and lifecycle management."
+> — LinkedIn Engineering, March 2026
 
-Four use cases. Different problems. Same architecture. **That's not a coincidence — that's convergence.**
+Then the four cards:
 
-Note on anonymization: Two of these labs are top-5 frontier AI globally —
-one long-context, one open-source. Name them in 1:1s under NDA.
+> "These are illustrative - not the full list. We have many more AI customers.
+> But pick any four building frontier AI and look at where their memory lives."
 
-### Punchline
+- Two top-10 AI labs (anonymized under NDA - one long-context, one main chat platform)
+- **Dify:** 500K+ databases consolidated to one TiDB cluster, 80% cost reduction
+- **Meta (Manus):** millions of agent branches on one cluster
 
-> *"The database stopped being a storage layer. It became the substrate
-> the agent thinks against."*
+**Land:**
+> "Same answer, every time. The database is the agent's brain."
 
-### Bridge to Memories
-
-> *"So what IS that architecture? Three named memory types — let me show you."*
-
----
-
-## Beat 04a — Three memories (11:00 – 13:00) · Slide `memories`
-
-**This is the intellectual backbone. Plant the vocabulary HERE so the
-audience has labels for what they're about to watch in the demos.**
-
-- **Episodic** (`agent_reasoning`) — *what happened.* Per-customer, time-stamped, auditable. Watch for: recognizing Maya in the live demo, and replaying her reasoning at Day 90 in the year demo.
-- **Semantic** (`fleet_memory`) — *what we learned.* Cross-customer, deduplicated, compacted. Watch for: the size-up rule firing for both Maya AND a stranger she never met.
-- **Procedural** — *what works.* The missing layer. Strategy memory. The roadmap.
-
-### Credit line
-
-> *"Cognitive science named the types. We built the maintenance layer.
-> The Cognitive Foundation is both."*
-
-### The librarian (re-cite)
-
-> *"Every session, assemble_context() picks the right books off the shelf —
-> ranked by relevance, fitted to budget. The model never sees 10,000 books
-> it won't use."*
+**Bridge to Memories:**
+> "So what IS that architecture? Three named memory types - let me show you."
 
 ---
 
-## Beat 04b — Five duties (13:00 – 14:00) · Slide `cma`
+## Beat 06 - Three Memories (19:00 - 24:00) · Slide `memories`
 
-**The CMA — Cognitive Memory Architecture. Five duties. This is what makes
-the architecture production-grade, not just theoretically sound.**
+THE architecture slide. Plant the vocabulary HERE so the audience has labels
+for what they're about to watch in the demo.
 
-- **Write control** — only confirmed outcomes persist. Hallucinated reasoning stays ephemeral.
-- **Deduplication** — cosine similarity merge. One strong memory, not ten weak ones.
-- **Reconciliation** — new evidence supersedes stale conclusions automatically.
-- **Confidence decay** — 5% monthly decay. Below 0.30, auto-deprecated.
-- **Compaction** — weekly re-clustering. Evidence counts consolidated.
+**Walk each card slowly:**
+- **EPISODIC** - what happened. Per-customer, time-stamped, auditable.
+  Example: Maya returned a size 4 wrap dress on April 21.
+- **SEMANTIC** - what we learned. Cross-customer, compounding.
+  Example: bias-cut linen runs small - +1 size for relaxed weaves.
+  *One pays the cost. All benefit.*
+- **PROCEDURAL** - what works. Strategy memory. The next layer on the
+  roadmap. Example: check returns, confirm size, suggest fit alternatives.
 
-### Field signal
+**Land:**
+> "Cognitive science named the types. TiDB is the maintenance layer."
 
-Practitioners now say episodic memory and audit trails aren't nice-to-haves —
-they're the only way to control context bloat without retraining.
-
-### Land
-
-> *"Session state is not memory. CMA is the Cognitive Foundation.
-> We know how to build it. Here's how it's built."*
-
----
-
-## Beat 04c — Two products (14:00 – 15:00) · Slide `products`
-
-**Two products. Two audiences. Read the room and lean into whichever buyer
-profile is in front of you.**
-
-### For platform CIOs / CTOs (Amway, Vineyard Vines, Icon Health, Westcon, Tapestry CIO)
-
-→ **TiDB X.** The substrate. Replaces 4 of 5 data systems. ACID across rows + vectors + analytics. Copy-on-write branches. GA on every cloud. BYOC for regulated workloads.
-
-### For VP AI / Data and engineering leads (Bob's Sanjay, NYBC engineering, Tapestry senior director)
-
-→ **mem9.** The memory API, built on TiDB. One line of install. No schema. Cross-agent, cross-session memory. Apache-2.0. Self-hostable when compliance asks.
-
-### Land
-
-> *"You don't have to become a database team to give your agents memory.
-> mem9 is the API. TiDB X is the substrate. Pick the entry point that
-> fits your org."*
-
-**Footer pills on the slide preempt the regulated-buyer objection:**
-BYOC · Self-hostable · Audit-ready · RTBF/GDPR. Let them see it. You don't have to narrate it.
-
-### Bridge to demo
-
-> *"Now let me show you what either of those gives you in practice."*
+**Bridge to Maya:**
+> "Now watch all three fire in real time. Twelve months of one customer,
+> in six clicks."
 
 ---
 
-## Beat 05 — Live demo (15:00 – 19:00) · Slide `demo`
+## Beat 07 - Maya's Year - the demo (24:00 - 34:00) · Slide `maya`
 
-**Two windows, side by side. Same customer — Maya. Same brand. Same chatbot UI. The only thing different is the memory architecture.**
+**This is the demo.** Interactive. Click the stepper on the left to walk the
+6 days. Always read the "Why TiDB wins" bullets out loud - they ARE the
+punchline for each beat. The gauge shows steps-to-answer: TiDB always 1,
+Frankenstack always 4+.
 
-Let it play. Press `▶ Play` and **don't narrate over the animation.**
+**Open:**
+> "You just saw the architecture named. Now watch it run. Same customer -
+> Maya - across her year on a brand that uses memory architecture."
 
-Watch for:
+**DAY 1 - First contact.** Cold start for Maya, but the fleet is already warm
+with 1.2M lessons. *Frankenstack can't show you that - every system starts cold.*
 
-- **Episodic memory** recognizing Maya
-- **Semantic memory** applying the size-up rule
-- **Procedural memory** deciding the order of operations
+**DAY 14 - Returns + reasons.** Order outcome AND the reasoning have to commit
+together. *TiDB does it in one ACID transaction. Frankenstack hopes nothing
+fails between calls 2 and 3.*
 
-### After both windows finish
+**DAY 21 - Fleet learns.** No user is even talking. The fleet just got smarter
+from 2,847 fit reviews. *Snowflake delivers this insight in next quarter's
+batch. We got it to every agent in 60 seconds.*
 
-> *"Same customer — Maya. Same brand. Same chatbot UI. The only thing
-> different is the memory architecture. One left without buying. One
-> checked out for $172 in four turns. That delta — across 10 million
-> customers, every day — is the whole game."*
+**DAY 22 - Stranger benefits.** Lena, a brand-new customer, gets the size-up
+nudge Maya's data taught the fleet. *Maya never met Lena. THIS is what
+semantic memory buys you. Pinecone alone cannot do this.*
 
-### Bridge to Maya's Year
+**DAY 60 (★ PAYOFF).** Read the agent's reply out loud, slowly. End on
+*"Nothing on this list is something you'd return."* Then point at the
+metrics: one query, four modalities. Versus five calls, lines of glue, and
+one stale field that would have killed the recommendation. ACID-consistent.
 
-> *"You just saw ONE moment of Maya's relationship with the brand. Now
-> watch the same Maya across twelve months — and the architecture that
-> makes every moment after this one better than the last."*
+**DAY 90 - The audit.** Compliance asks why. *Episodic memory IS your audit
+trail. Try replaying this from a Pinecone namespace overwritten 200 times
+since April. Lawyer's nightmare.*
 
----
-
-## Beat 05b — Maya's Year (19:00 – 23:00) · Slide `maya` · **THE ARCHITECTURAL WOW**
-
-**Interactive. Click the stepper at top — or Prev/Next at bottom — to walk
-the audience through the 6 days.** The chat is the hero; the sidebar shows
-TiDB winning the metric at every single step.
-
-**ALWAYS read the "Why TiDB wins this step" callout out loud — it's the punchline for each beat.**
-
-The always-visible Sarah recap strip above the stepper shows the three
-failure modes so no one has to remember — if the audience zoned out in Sarah,
-they still catch the payoff.
-
-### Day 1 — First contact
-
-> *"Cold start for Maya. But the fleet is already warm with 1.2M lessons.
-> Frankenstack can't show you that — every system starts cold."*
-
-### Day 14 — Returns + reasons · resolves failure mode 01
-
-> *"Order outcome AND the reasoning behind it have to commit together.
-> TiDB does it in one ACID transaction. Frankenstack hopes nothing fails
-> between calls 2 and 3."*
-
-### Day 21 — Fleet auto-learns · resolves 01 at fleet scale
-
-> *"No user is even talking. The fleet just got smarter. Snowflake gets
-> this insight in next quarter's batch. We got it to every agent in
-> 60 seconds."*
-
-### Day 22 — Stranger benefits · resolves failure mode 02
-
-> *"Maya never met Lena. THIS is what semantic memory actually buys you.
-> Pinecone alone cannot do this."*
-
-### Day 60 — ★ Compounding payoff · resolves failure mode 03
-
-Read the agent's reply out loud, slowly. End on the emphasized line:
-
-> *"Nothing on this list is something you'd return."*
-
-Then point at the metrics:
-
-> *"One query. Four modalities. 38ms. Versus 5 calls, 47 lines of glue,
-> 2.4 seconds — and one stale Snowflake field that would have killed the
-> gala recommendation. 63× faster, atomically consistent."*
-
-### Day 90 — The audit · bonus capability
-
-> *"Episodic memory IS your audit trail. Try replaying this from a
-> Pinecone namespace overwritten 200 times since April. Lawyer's nightmare."*
-
-### Final line before Manus
-
-> *"You just watched twelve months of compounding intelligence in six
-> clicks. Now let's look at what twelve months of THIS, across ten
-> million customers, costs."*
-
-**Note:** A footer under the nav reminds the audience: *"Numbers are representative of a workload of this shape."* If anyone fact-checks in real time, that framing is the answer.
+**Final line:**
+> "You just watched twelve months of compounding intelligence in six clicks.
+> Now let's look at what running this actually costs."
 
 ---
 
-## Beat 06 — Manus math (23:00 – 25:00) · Slide `manus`
+## Beat 08 - Token Tax (34:00 - 39:00) · Slide `librarian`
 
-**You just showed the architecture working — now show what it costs.
-The math IS the punchline. Walk the numbers slowly.**
+**Money slide #1.** The demo just landed - now show what it costs. Walk the
+cost ladder slowly. Real model pricing - bring receipts.
 
-- Cheapest managed DB available: ~$6/month per database.
-- Manus has 1,000,000+ databases.
-- That's $6M/month on any standard managed DB.
-- Manus charges $5/month per user.
-- On TiDB Serverless: most databases are idle and cost ~$0.
+**Three tiers:**
+- **Naive RAG** (100K tokens, no cache): ~$0.31 / query.
+  At 1M queries/day, **~$310K / day**.
+- **Cached RAG** (best practice today): ~$0.04 / query. **~$40K / day**.
+- **Curated context** (~580 tokens via `assemble_context()`): ~$0.0095 / query.
+  **~$9.5K / day**. **32x vs naive, 4x vs cached.**
 
-### Land
+**Key lines:**
+- "Even RAG done right - with prompt caching - costs you 4x more than curated memory."
+- "Model providers will sell you a 1M-token window as the answer. Bigger window
+  = bigger meter. The win is curation, not capacity."
 
-> *"You can't price an AI product without solving the database problem
-> first. Every AI company eventually discovers this math."*
+**Then the comparison block** - this is the TiDB-specific answer:
 
-### Bridge to category
+| On a Frankenstack | On TiDB |
+|---|---|
+| Pull from SQL DB, vector DB, search DB, analytics DB | One `assemble_context()` call |
+| Merge + rank in app code | Rows + vectors + search + analytics in one ACID query |
+| 4 round trips · partial-failure surface | 1 round trip · no partial-failure risk |
 
-> *"And it's not just AI labs. This architecture lands in YOUR category too."*
+**Land:**
+> "The win is curation - and TiDB is what makes curation a single ACID query
+> instead of glue code across four systems."
 
----
-
-## Beat 07 — Your category (25:00 – 26:00) · Slide `category`
-
-**Pick the two cards that match your room.** 25 seconds each. Don't read all four.
-
-- **Apparel / accessories / luxury** → *Fit memory.* Cross-brand, cross-channel, cross-session.
-- **Furniture / home / big-ticket** → *Decision memory.* Multi-visit, financing-aware, household-level.
-- **Wellness / beauty / CPG** → *Regimen memory.* Side-effect aware, rep-empowering, subscription-native.
-- **Loyalty / gifting / advisory** → *Relationship memory.* Occasion-aware, tier-aware, associate-grade.
-
-### Land
-
-> *"Maya's story is specific. The architecture underneath it isn't.
-> Whatever your customers come back for is what your agent has to remember."*
+**Bridge to Manus:**
+> "That's per-query economics. Now let's zoom out to a real production agent business."
 
 ---
 
-## Beat 08 — Eleven years (26:00 – 27:00) · Slide `lineage`
+## Beat 09 - Manus Math (39:00 - 43:00) · Slide `manus`
 
-**Enterprise battle-tested in production. Not a startup pivoting to AI —
-the database the AI labs are pivoting onto.**
+**Money slide #2.** The math IS the punchline. Walk the numbers slowly.
 
-Three eras:
+**The number on screen:** 1.4M databases live on TiDB Cloud today, powering Manus.
 
-- 2015 — internet scale (Flipkart)
-- 2019 — HTAP / real-time (banks, fraud detection)
-- 2023 — agent memory (Manus, Kimi)
+**Left column (any standard managed DB):**
+- Manus charges users $5 / month.
+- Cheapest hosted database anywhere: $6 / month.
+- **Loss per user: $1+ / month.**
+- The business is dead before it starts.
 
-Enterprise logos on the slide: Uber · Pinterest · Airbnb · Atlassian · Plaid. 11 years of production.
+**Right column (with TiDB):**
+- Idle database cost: ~$0 / month (scales to zero).
+- ~90% reduction vs standard DB.
+- **Business model: possible.**
 
-### Land (handoff line)
+**Key line:**
+> "Manus prices at $5/month because TiDB scales to zero. You can't price an
+> AI product without solving the database problem first. Every AI company
+> eventually discovers this math."
 
-> *"Three eras. The fourth one is being decided right now."*
-
----
-
-## Beat 09 — Why now (27:00 – 29:00) · Slide `whynow`
-
-**The 36-month window. Deliver this as the urgency close — don't rush it.**
-
-> *"The window is now. The decision window is 36 months — but the
-> compounding starts the day you migrate, not the day you finish the
-> RFP. The competitor who picks the architecture this quarter has
-> 36 months of compounding agent intelligence on you by the next
-> earnings cycle. Not a model gap. An architecture gap. Architecture
-> gaps don't close."*
+**Bridge to Closing:**
+> "So the architecture is real, the labs converged, and the economics work.
+> Here's what you walk out with."
 
 ---
 
-## Beat 10 — Close · promise kept (29:00 – 30:00) · Slide `close`
+## Beat 10 - Closing - promise kept (43:00 - 46:00) · Slide `whynow`
 
-**PROMISE KEPT.** Open by referencing the empowerment promise from slide 0 verbatim:
+**Read the title triad on screen, slowly:**
+> "The model forgets. The platform remembers. The human decides."
 
-> *"Thirty minutes ago I promised you ONE question. Here it is."*
+**Walk the three columns:**
+- **THE MODEL forgets** - stateless by design, every session starts from zero.
+- **THE PLATFORM remembers** - three memories, one cluster, one ACID transaction.
+- **THE HUMAN decides** - engineers stop digging through logs, they curate the
+  playbooks the agents learn from.
 
-Then read the on-screen question **slowly**:
+**Then the recap card** - point at the two bullets:
+- Agents fail because LLMs are stateless and stacks are fragmented.
+- The labs that build production AI converged on one architecture. **TiDB.**
 
+**Then the Monday question** (this is the headline deliverable - read SLOWLY):
 > *"Where, exactly, does our agent's memory live? Show me the database."*
 
-Then the tell, slower:
+Then the tell:
+> "If the answer involves four systems and a sync job, you're paying to
+> rediscover every customer, every session."
 
-> *"If the answer involves four systems and a sync job, you're paying
-> to rediscover every customer, every session."*
+Let that land. Don't fill the silence.
 
-**Let that land. Don't fill the silence.**
+**Final line:**
+> "Memory isn't stored. It's maintained. You now know the one question that
+> tells you whether your stack is built to compound - or built to forget."
 
-### Only if the room is engaged — the two backup probes
-
-> *"If they hand-wave the first answer, two more probes. Transactional
-> boundary: do outcome and reasoning commit together? Audit ownership:
-> who reconstructs a 90-day-old decision? Either of those exposes the
-> architecture too."*
-
-The ONE question is the deliverable. The two probes are insurance, not headline.
-
-### Concrete CTA
-
-Point at the email on the slide:
-
-> *"Find me at the booth or email me. The next step is a 30-minute
-> working session — we map your current memory architecture together.
-> What's where, what's stale, what's at risk. No pitch. Diagnostic only."*
-
-### Final line
-
-> *"Memory isn't stored. It's maintained. The memory wall has an
-> architecture on the other side — and you now know the one question
-> that gets you to it."*
-
-### Open the floor
-
-Stay on this slide during Q&A — don't replace it with "thank you."
-
----
-
-## Slide Q — Q&A appendix (reference, don't walk through)
-
-Eight anticipated questions with plain-English answers. Pull up if asked.
-Tap the card that matches; walk through it conversationally.
-
-- "We already have Postgres / MySQL / Aurora. Why another database?"
-- "Our data cannot leave our tenant."
-- "What about Copilot / Bedrock / Vertex agents?"
-- "How is this different from pgvector on Postgres?"
-- "What does migration from Aurora / MySQL look like?"
-- "Pinecone benchmarks better on vector recall."
-- "We're evaluating CockroachDB / YugabyteDB / PlanetScale."
-- "What's the compliance story — CCPA, GDPR, EU exposure?"
-
----
-
-## Slogan repetition map
-
-Per Patrick Winston's Star framework, the slogan must hit at least three times.
-Currently in the deck:
-
-1. **Beat 01 (Sarah):** *"The model is brilliant. The model has amnesia."* — the frame that survives into their Monday hallway.
-2. **Beat 02 (Why) land:** *"Memory is infrastructure. Not a feature you bolt on. Stop running four systems."*
-3. **Beat 10 (Close) CTA:** *"Memory isn't stored. It's maintained."*
-
-If you want a fourth hit, drop *"stop running four systems"* into the
-Beat 03 punchline: *"…the same architectural answer. They stopped running
-four systems. So can you."*
+Then point at the QR code:
+> "Scan to learn more. Find me at the booth - happy to map your current
+> memory architecture with you. No pitch. Diagnostic only."
 
 ---
 
 ## Sarah → Maya closed-loop map
 
-The three failure modes in Sarah map one-to-one onto Maya's day chips.
-The audience sees the resolution happen in real time — this is the
-deck's main narrative arc.
+The deck's main narrative arc: Sarah names the failure modes; Maya resolves
+each one in the demo. Use this map for Q&A or to remind the audience what
+they just watched.
 
-| Sarah failure mode | Resolved on Maya Day | What happens |
-|---|---|---|
-| 01 · Never written down | Day 14 | Return outcome + reasoning commit in one ACID txn |
-| 01 · At fleet scale | Day 21 | Fleet memory written — propagates in 60s |
-| 02 · Written but not findable | Day 22 | Lena finds Maya's lesson cross-tenant in 12ms |
-| 03 · Context rot | Day 60 | One query, 4 modalities, 38ms — no fan-out |
-| Bonus: audit defensibility | Day 90 | Episodic memory IS the audit trail |
+| Sarah failure mode | Where Maya resolves it |
+|---|---|
+| **Never written** - agent had context, didn't persist it | Day 14: outcome + reasoning commit together in one ACID transaction |
+| **Not findable** - it's in the database somewhere | Day 60: one query across four modalities, 38ms |
+| **Context rot** - it's there, but stale or contradictory | Day 21 & 22: fleet auto-learns; Day 90: episodic memory IS the audit trail |
 
 ---
 
-## Tone notes
+## Pacing & risk management
 
-- **Audience stage:** early in their AI journey. They've heard "agents" but mostly haven't shipped. Speak outcomes before architecture.
-- **Anti-frames — do NOT use:** "Your AI has amnesia" (too forward). Pitching to AI labs (these are retail execs). Heavy DB jargon up front.
-- **Keep the protagonist count at 2:** Sarah for the cold open (the wound), Maya for both demos (the resolution).
-- **Speaker notes are canonical.** The slide visuals are the receipts. Press `N` in the deck to toggle them on any slide.
+- **The 10-minute Maya demo is the load-bearing beat.** If the room is
+  cold or the demo is slow, drop Day 22 (stranger benefits) - it's the
+  most cuttable. Days 1, 14, 60, 90 are non-negotiable.
+- **If running long:** trim Beat 03 (Sarah) by skipping Session 1 and
+  jumping straight to Session 2 with the line "she's been here before."
+  Saves ~2 min.
+- **If running short:** expand Beat 05 (Convergence) with Pinterest's
+  6-system consolidation story or Plaud AI's audio-to-memory pipeline.
+- **Q&A:** held at the booth, not on the clock. Don't open Q&A from the
+  stage - it kills the closing.
 
 ---
 
-## Source material
+## Speaker-notes panel
 
-- Bernard Kavanagh's Stockholm "Memory Class" deck (TiDB Data Innovation Summit 2026)
-- Bernard's Medium post, *The Database as Cognitive Foundation* (April 9 2026)
-- TiDB Master Pitch playbook (April 2026, v1)
-- TiDB Memory Class 60-min speaker script
-- Patrick Winston's *How to Speak* — MIT lecture on empowerment promise and the Star framework
+Press **N** on any slide to open the speaker-notes panel. Each note opens
+with a `[~N min]` budget so you can pace from the panel itself. Notes are
+the abbreviated version of this document - same content, condensed to
+glanceable bullets.
