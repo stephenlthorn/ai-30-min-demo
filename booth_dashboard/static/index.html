@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="/static/styles.css?v=60" />
+  <link rel="stylesheet" href="/static/styles.css?v=61" />
 </head>
 
 <body>
@@ -159,9 +159,9 @@
     <div class="eyebrow">The Problem</div>
     <h2>It's Black Friday. Your top-1% VIP is back.</h2>
 
-    <div class="sarah-scene">
+    <div class="sarah-scene sarah-scene-split">
 
-      <!-- Tabbed session windows -->
+      <!-- LEFT: Tabbed chat window (pinched) -->
       <div class="sarah-sessions-tabbed">
         <div class="session-tabs">
           <button class="stab stab-ok stab-active">Session 1 · 3 weeks ago</button>
@@ -211,23 +211,20 @@
         </div>
       </div>
 
-    </div>
+      <!-- RIGHT: Failure modes (vertical) + diagnosis -->
+      <div class="sarah-diagnosis">
+        <div class="sd-label">Three failure modes</div>
+        <ul class="sd-modes">
+          <li>Never written</li>
+          <li>Not findable</li>
+          <li>Context rot</li>
+        </ul>
+        <p class="sarah-land">
+          <span class="emph">This is how LLMs work.<br>No memory - by design.</span>
+        </p>
+      </div>
 
-    <div class="failure-modes">
-      <div class="fm-card">
-        <div class="fm-label">Never written</div>
-      </div>
-      <div class="fm-card">
-        <div class="fm-label">Not findable</div>
-      </div>
-      <div class="fm-card">
-        <div class="fm-label">Context rot</div>
-      </div>
     </div>
-
-    <p class="sarah-land">
-      <span class="emph">This is how LLMs work. No memory - by design.</span>
-    </p>
   </section>
 
   <!-- =============================================================

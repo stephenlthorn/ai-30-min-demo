@@ -415,6 +415,69 @@ body::before {
   max-width: 1100px;
 }
 
+/* Two-column split: chat (left, pinched) | diagnosis (right) */
+.sarah-scene-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(280px, 1fr);
+  gap: 28px;
+  max-width: none;
+  align-items: start;
+}
+
+/* Right-side diagnosis column */
+.sarah-diagnosis {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 22px 24px;
+  background: var(--paper);
+  border: 1px solid var(--ink-line);
+  border-left: 4px solid var(--burgundy);
+  border-radius: 8px;
+}
+.sd-label {
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--burgundy);
+}
+.sd-modes {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.sd-modes li {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.1;
+  padding: 12px 16px;
+  background: rgba(243, 80, 72, 0.06);
+  border-left: 3px solid var(--burgundy);
+  border-radius: 0 6px 6px 0;
+}
+.sarah-diagnosis .sarah-land {
+  margin: 4px 0 0;
+  padding: 16px 18px;
+  background: rgba(80, 219, 217, 0.08);
+  border-left: 3px solid var(--gold);
+  border-radius: 0 6px 6px 0;
+  font-size: 18px;
+  line-height: 1.4;
+}
+.sarah-diagnosis .sarah-land .emph {
+  color: var(--gold);
+  font-weight: 700;
+  font-style: normal;
+}
+
 /* Tabbed session wrapper */
 .sarah-sessions-tabbed {
   display: flex;
