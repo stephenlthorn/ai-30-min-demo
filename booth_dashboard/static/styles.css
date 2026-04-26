@@ -4701,7 +4701,7 @@ body::before {
   font-weight: 500;
 }
 
-/* "Why TiDB wins" delta callout */
+/* "Why TiDB wins" delta callout - sits directly under the gauge */
 .mm-delta {
   background: rgba(80, 219, 217, 0.08);
   border: 1px solid rgba(80, 219, 217, 0.32);
@@ -4711,7 +4711,6 @@ body::before {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin-top: auto;
 }
 
 .mm-delta-label {
