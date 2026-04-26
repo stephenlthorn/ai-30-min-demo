@@ -402,7 +402,10 @@ const MAYA_STEPS = [
       ["Snowflake events", "0 (cold)", "bad"],
       ["Cross-system fleet learning", "doesn't exist", "bad"]
     ],
-    delta: "Maya is new — but the fleet is warm with 1.2M prior lessons. On Frankenstack, every system starts cold and the fleet wisdom lives in a quarterly batch job that hasn't run yet."
+    deltaPoints: [
+      "Maya is new - fleet already warm with 1.2M lessons",
+      "Frankenstack: every system starts cold"
+    ]
   },
   {
     avatar: "M",
@@ -430,7 +433,10 @@ const MAYA_STEPS = [
       ["UPDATE Redis session", "12 ms", "warn"],
       ["Distributed transaction", "none — partial-failure risk", "bad"]
     ],
-    delta: "Outcome and the reasoning behind it HAVE to commit together. TiDB does it in one transaction. Frankenstack hopes nothing fails between calls 2 and 3."
+    deltaPoints: [
+      "Outcome + reasoning commit together in 1 ACID txn",
+      "Frankenstack: hopes nothing fails between calls"
+    ]
   },
   {
     avatar: "F",
@@ -459,7 +465,11 @@ const MAYA_STEPS = [
       ["New model deployed", "Q3 2026", "bad"],
       ["Time-to-fleet-intelligence", "~90 days", "bad"]
     ],
-    delta: "Snowflake gets the insight in next quarter's batch. TiDB gets it to every agent in 60 seconds. ~130,000× faster — and zero engineer hours."
+    deltaPoints: [
+      "TiDB: live to every agent in 60 seconds",
+      "Snowflake: same insight in next quarter's batch",
+      "~130,000× faster, zero engineer hours"
+    ]
   },
   {
     avatar: "L",
@@ -488,7 +498,11 @@ const MAYA_STEPS = [
       ["Snowflake → model retrain", "next quarter", "bad"],
       ["Lena's agent gets this", "never (today)", "bad"]
     ],
-    delta: "Maya never met Lena. Maya's data made Lena's recommendation better. THIS is what semantic memory actually buys you — and Pinecone alone can't do it."
+    deltaPoints: [
+      "Maya never met Lena - her data still helped",
+      "This is what semantic memory does",
+      "Pinecone alone can't do this"
+    ]
   },
   {
     avatar: "M",
@@ -517,7 +531,11 @@ const MAYA_STEPS = [
       ["Fan-out failure surface", "5 systems", "bad"],
       ["Dashboards to debug", "4 separate", "bad"]
     ],
-    delta: "63× faster. Atomically consistent. One query instead of five. The line 'Nothing on this list is something you'd return' literally cannot exist on Frankenstack."
+    deltaPoints: [
+      "1 query instead of 5",
+      "63× faster, atomically consistent",
+      "'Nothing you'd return' is impossible on Frankenstack"
+    ]
   },
   {
     avatar: "?",
@@ -545,7 +563,11 @@ const MAYA_STEPS = [
       ["Redis session", "expired Day 1", "bad"],
       ["Reconstructable", "no — 'we think it was based on…'", "bad"]
     ],
-    delta: "Episodic memory IS your audit trail. Try replaying this from a Pinecone namespace overwritten 200 times since April. Lawyer's nightmare."
+    deltaPoints: [
+      "Episodic memory IS the audit trail",
+      "Try replaying from a Pinecone namespace overwritten 200×",
+      "Lawyer's nightmare"
+    ]
   }
 ];
 
@@ -602,9 +624,17 @@ function renderMayaStep(idx) {
   const tidbLbl = $("mmGaugeTidbLabel"); if (tidbLbl) tidbLbl.textContent = gauge.tidbLabel;
   const frankLbl = $("mmGaugeFrankLabel"); if (frankLbl) frankLbl.textContent = gauge.frankLabel;
 
-  // Delta callout
-  const deltaText = document.querySelector(".mm-delta-text");
-  if (deltaText) deltaText.textContent = step.delta;
+  // Delta callout (bulleted list)
+  const deltaList = $("mmDeltaList");
+  if (deltaList) {
+    while (deltaList.firstChild) deltaList.removeChild(deltaList.firstChild);
+    const points = step.deltaPoints || [];
+    points.forEach((p) => {
+      const li = document.createElement("li");
+      li.textContent = p;
+      deltaList.appendChild(li);
+    });
+  }
 
   // Stepper visual state
   document.querySelectorAll(".ms-step").forEach((btn, i) => {
