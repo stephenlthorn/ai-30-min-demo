@@ -424,7 +424,8 @@ body::before {
   align-items: start;
 }
 
-/* Right-side diagnosis column */
+/* Right-side diagnosis column - top-aligned with chat panel
+   (offset down by tab height + tab margin-bottom) */
 .sarah-diagnosis {
   display: flex;
   flex-direction: column;
@@ -434,6 +435,7 @@ body::before {
   border: 1px solid var(--ink-line);
   border-left: 4px solid var(--burgundy);
   border-radius: 8px;
+  margin-top: 46px;
 }
 .sd-label {
   font-family: var(--sans);
