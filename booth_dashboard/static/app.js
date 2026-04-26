@@ -43,7 +43,7 @@ const SPEAKER_NOTES = {
     "[~5 min] Slow this story down. Let the silence land between Session 1 and Session 2.\n\nWALK THE TABS:\n- Session 1 (3 weeks ago): Sarah is a $4,800 VIP. The agent helped her - she bought, she returned, she came back.\n- Session 2 (Tonight): Same Sarah. The agent has no idea who she is. Black Friday. Top 1% customer. Treated like a stranger.\n\nKEY LINES:\n- 'The model is brilliant. The model has no memory - by design.'\n- 'That gap is every AI investment in this room leaking value through it right now.'\n\nDon't apologize for the discomfort. They paid to feel it.\n\nLAND ON THE THREE FAILURE MODES - read each label out loud:\n- NEVER WRITTEN - the agent had context, didn't persist it.\n- NOT FINDABLE - it's in the database somewhere, can't retrieve it.\n- CONTEXT ROT - it's there, but it's stale or contradictory.\n\nLAND: 'This is how LLMs work. No memory - by design.' That's the architecture problem the rest of the deck solves.\n\nBRIDGE TO ANSWER: 'And here's the architectural answer - one place for memory instead of four.'",
 
   why:
-    "[~5 min] THE ANSWER. Show the contrast - Frankenstack on the left, TiDB unified on the right.\n\nLEFT (Frankenstack):\n- Four systems duct-taped together: SQL DB, Vector DB, Analytics DB, Search DB.\n- The agent at the top is asking 'which version of reality is correct?'\n- Real-world sync issues: 'Sync broke overnight,' 'Recommendations gone stale,' 'Customer delete missed.'\n- LAND: 'Data and context need one ACID boundary.'\n\nRIGHT (TiDB):\n- Same four capabilities. One database. One transaction. Apps keep talking MySQL.\n- The repetition of 'TiDB' four times IS the punchline - say it out loud as you point.\n\nLAND - read both lines:\n- 'Infrastructure designed for legacy transactional purposes, not for compound knowledge.'\n- 'Memory is infrastructure - not a feature you bolt on.'\n\nBRIDGE TO CONVERGENCE: 'And it's not just us saying this - here's who's already picked this architecture.'",
+    "[~5 min] THE ANSWER. Show the contrast - Fragmented stack on the left, TiDB unified on the right.\n\nLEFT (Fragmented stack):\n- Four systems duct-taped together: SQL DB, Vector DB, Analytics DB, Search DB.\n- The agent at the top is asking 'which version of reality is correct?'\n- Real-world sync issues: 'Sync broke overnight,' 'Recommendations gone stale,' 'Customer delete missed.'\n- LAND: 'Data and context need one ACID boundary.'\n\nRIGHT (TiDB):\n- Same four capabilities. One database. One transaction. Apps keep talking MySQL.\n- The repetition of 'TiDB' four times IS the punchline - say it out loud as you point.\n\nLAND - read both lines:\n- 'Infrastructure designed for legacy transactional purposes, not for compound knowledge.'\n- 'Memory is infrastructure - not a feature you bolt on.'\n\nBRIDGE TO CONVERGENCE: 'And it's not just us saying this - here's who's already picked this architecture.'",
 
   convergence:
     "[~3 min] Open with the LinkedIn quote on screen - read it verbatim. LinkedIn is the largest TiDB community user in the world; this isn't marketing copy, it's their engineering blog from March 2026.\n\n'Memory stops being incidental context and becomes a first-class primitive with explicit read/write semantics and lifecycle management.'\n\nThen the four cards: 'These are illustrative - not the full list. We have many more AI customers. But pick any four building frontier AI and look at where their memory lives.'\n\n- Two top-10 AI labs (anonymized under NDA - one long-context, one main chat platform)\n- Dify: 500K+ databases consolidated to one TiDB cluster, 80% cost reduction\n- Meta (Manus): millions of agent branches on one cluster\n\nLAND: 'Same answer, every time. The database is the agent's brain.'\n\nBRIDGE TO MEMORIES: 'So what IS that architecture? Three named memory types - let me show you.'",
@@ -52,10 +52,10 @@ const SPEAKER_NOTES = {
     "[~5 min] THE architecture slide. Plant the vocabulary HERE so the audience has labels for what they're about to watch in the demo.\n\nWalk each card slowly:\n- EPISODIC - what happened. Per-customer, time-stamped, auditable. Example: Maya returned a size 4 wrap dress on April 21.\n- SEMANTIC - what we learned. Cross-customer, compounding. Example: bias-cut linen runs small - +1 size for relaxed weaves. ONE pays the cost; ALL benefit.\n- PROCEDURAL - what works. Strategy memory. The next layer on the roadmap. Example: check returns, confirm size, suggest fit alternatives.\n\nKEY LINE: 'One pays the cost. All benefit.' (the semantic insight)\n\nLAND: 'Cognitive science named the types. TiDB is the maintenance layer.'\n\nBRIDGE TO MAYA: 'Now watch all three fire in real time. Twelve months of one customer, in six clicks.'",
 
   maya:
-    "[~10 min] THIS IS THE DEMO. Interactive. Click the stepper on the left to walk the 6 days. Always read the 'Why TiDB wins' bullets out loud - they ARE the punchline for each beat. The gauge shows steps-to-answer: TiDB always 1, Frankenstack always 4+.\n\nOPEN: 'You just saw the architecture named. Now watch it run. Same customer - Maya - across her year on a brand that uses memory architecture.'\n\nDAY 1 - First contact. Cold start for Maya, but the fleet is already warm with 1.2M lessons. Frankenstack can't show you that - every system starts cold.\n\nDAY 14 - Returns + reasons. Order outcome AND the reasoning have to commit together. TiDB does it in one ACID transaction. Frankenstack hopes nothing fails between calls 2 and 3.\n\nDAY 21 - Fleet learns. No user is talking. The fleet just got smarter from 2,847 fit reviews. Snowflake delivers this insight in next quarter's batch. We got it to every agent in 60 seconds.\n\nDAY 22 - Stranger benefits. Lena, a brand new customer, gets the size-up nudge Maya's data taught the fleet. Maya never met Lena. THIS is what semantic memory buys you. Pinecone alone cannot do this.\n\nDAY 60 (★ PAYOFF) - Read the agent's reply out loud, slowly. End on 'Nothing on this list is something you'd return.' Then point at the metrics: one query, four modalities. Versus five calls, lines of glue, and one stale field that would have killed the recommendation. ACID-consistent.\n\nDAY 90 - The audit. Compliance asks why. Episodic memory IS your audit trail. Try replaying this from a Pinecone namespace overwritten 200 times since April. Lawyer's nightmare.\n\nFINAL LINE: 'You just watched twelve months of compounding intelligence in six clicks. Now let's look at what running this actually costs.'",
+    "[~10 min] THIS IS THE DEMO. Interactive. Click the stepper on the left to walk the 6 days. Always read the 'Why TiDB wins' bullets out loud - they ARE the punchline for each beat. The gauge shows steps-to-answer: TiDB always 1, Fragmented stack always 4+.\n\nOPEN: 'You just saw the architecture named. Now watch it run. Same customer - Maya - across her year on a brand that uses memory architecture.'\n\nDAY 1 - First contact. Cold start for Maya, but the fleet is already warm with 1.2M lessons. Fragmented stack can't show you that - every system starts cold.\n\nDAY 14 - Returns + reasons. Order outcome AND the reasoning have to commit together. TiDB does it in one ACID transaction. Fragmented stack hopes nothing fails between calls 2 and 3.\n\nDAY 21 - Fleet learns. No user is talking. The fleet just got smarter from 2,847 fit reviews. Snowflake delivers this insight in next quarter's batch. We got it to every agent in 60 seconds.\n\nDAY 22 - Stranger benefits. Lena, a brand new customer, gets the size-up nudge Maya's data taught the fleet. Maya never met Lena. THIS is what semantic memory buys you. Pinecone alone cannot do this.\n\nDAY 60 (★ PAYOFF) - Read the agent's reply out loud, slowly. End on 'Nothing on this list is something you'd return.' Then point at the metrics: one query, four modalities. Versus five calls, lines of glue, and one stale field that would have killed the recommendation. ACID-consistent.\n\nDAY 90 - The audit. Compliance asks why. Episodic memory IS your audit trail. Try replaying this from a Pinecone namespace overwritten 200 times since April. Lawyer's nightmare.\n\nFINAL LINE: 'You just watched twelve months of compounding intelligence in six clicks. Now let's look at what running this actually costs.'",
 
   librarian:
-    "[~5 min] MONEY SLIDE #1. The demo just landed - now show what it costs. Walk the cost ladder slowly. Real model pricing - bring receipts.\n\nTHREE TIERS:\n- Naive RAG (100K tokens, no cache): ~$0.31/query. At 1M queries/day, ~$310K/day.\n- Cached RAG (best practice today): ~$0.04/query. ~$40K/day.\n- Curated context (~580 tokens via assemble_context): ~$0.0095/query. ~$9.5K/day. 32x vs naive, 4x vs cached.\n\nKEY LINES:\n- 'Even RAG done right - with prompt caching - costs you 4x more than curated memory.'\n- 'Model providers will sell you a 1M-token window as the answer. Bigger window = bigger meter. The win is curation, not capacity.'\n\nTHEN THE COMPARISON BLOCK - this is the TiDB-specific answer:\n- On a Frankenstack: 4 round trips, merge in app code, partial-failure surface.\n- On TiDB: one assemble_context() call, rows + vectors + search + analytics in one ACID query, one round trip.\n\nLAND: 'The win is curation - and TiDB is what makes curation a single ACID query instead of glue code across four systems.'\n\nBRIDGE TO MANUS: 'That's per-query economics. Now let's zoom out to a real production agent business.'",
+    "[~5 min] MONEY SLIDE #1. The demo just landed - now show what it costs. Walk the cost ladder slowly. Real model pricing - bring receipts.\n\nTHREE TIERS:\n- Naive RAG (100K tokens, no cache): ~$0.31/query. At 1M queries/day, ~$310K/day.\n- Cached RAG (best practice today): ~$0.04/query. ~$40K/day.\n- Curated context (~580 tokens via assemble_context): ~$0.0095/query. ~$9.5K/day. 32x vs naive, 4x vs cached.\n\nKEY LINES:\n- 'Even RAG done right - with prompt caching - costs you 4x more than curated memory.'\n- 'Model providers will sell you a 1M-token window as the answer. Bigger window = bigger meter. The win is curation, not capacity.'\n\nTHEN THE COMPARISON BLOCK - this is the TiDB-specific answer:\n- On a Fragmented stack: 4 round trips, merge in app code, partial-failure surface.\n- On TiDB: one assemble_context() call, rows + vectors + search + analytics in one ACID query, one round trip.\n\nLAND: 'The win is curation - and TiDB is what makes curation a single ACID query instead of glue code across four systems.'\n\nBRIDGE TO MANUS: 'That's per-query economics. Now let's zoom out to a real production agent business.'",
 
   manus:
     "[~4 min] MONEY SLIDE #2. The math IS the punchline. Walk the numbers slowly.\n\nTHE NUMBER ON SCREEN: 1.4M databases live on TiDB Cloud today, powering Manus.\n\nLEFT COLUMN (any standard managed DB):\n- Manus charges users $5/month.\n- Cheapest hosted database anywhere: $6/month.\n- Loss per user: $1+/month.\n- The business is dead before it starts.\n\nRIGHT COLUMN (with TiDB):\n- Idle database cost: ~$0/month (scales to zero).\n- ~90% reduction vs standard DB.\n- Business model: possible.\n\nKEY LINE: 'Manus prices at $5/month because TiDB scales to zero. You can't price an AI product without solving the database problem first. Every AI company eventually discovers this math.'\n\nBRIDGE TO CLOSING: 'So the architecture is real, the labs converged, and the economics work. Here's what you walk out with.'",
@@ -306,7 +306,7 @@ function resetDemo() {
 /* ---------- 3. MAYA'S YEAR — interactive demo ---------- */
 /* 6-step compounding-architecture demo. Each step renders a chat
    conversation, the SQL behind it, and a side-by-side cluster-metrics
-   panel showing TiDB winning vs the 4-system Frankenstack. */
+   panel showing TiDB winning vs the 4-system Fragmented stack. */
 
 function highlightSQL(sql) {
   if (!sql) return "";
@@ -357,7 +357,7 @@ const MAYA_STEPS = [
     ],
     deltaPoints: [
       "Maya is new - fleet already warm with 1.2M lessons",
-      "Frankenstack: every system starts cold"
+      "Fragmented stack: every system starts cold"
     ]
   },
   {
@@ -388,7 +388,7 @@ const MAYA_STEPS = [
     ],
     deltaPoints: [
       "Outcome + reasoning commit together in 1 ACID txn",
-      "Frankenstack: hopes nothing fails between calls"
+      "Fragmented stack: hopes nothing fails between calls"
     ]
   },
   {
@@ -487,7 +487,7 @@ const MAYA_STEPS = [
     deltaPoints: [
       "1 query instead of 5",
       "63× faster, atomically consistent",
-      "'Nothing you'd return' is impossible on Frankenstack"
+      "'Nothing you'd return' is impossible on Fragmented stack"
     ]
   },
   {
@@ -567,7 +567,7 @@ function renderMayaStep(idx) {
   // SQL — beautified with syntax highlighting
   const sqlEl = $("mcpSQL"); if (sqlEl) sqlEl.innerHTML = highlightSQL(step.sql);
 
-  // Gauge — TiDB vs Frankenstack visual bar comparison
+  // Gauge — TiDB vs Fragmented stack visual bar comparison
   const gauge = step.gauge || { tidb: 1, frank: 4, tidbLabel: "", frankLabel: "" };
   const gaugeMax = Math.max(gauge.tidb, gauge.frank, 1);
   const tidbNum = $("mmGaugeTidbNum"); if (tidbNum) tidbNum.textContent = String(gauge.tidb);
