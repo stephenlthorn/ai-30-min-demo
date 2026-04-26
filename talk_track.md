@@ -279,42 +279,96 @@ customer, in six clicks."
 punchline. The gauge shows steps-to-answer: TiDB always 1, Frankenstack always 4+.
 
 **Open:**
-> "You just saw the architecture named. Now watch it run. Same customer - Maya
-> - across her year on a brand that uses memory architecture."
+> "Let's look at your application now running on TiDB. This is your new
+> customer, Maya. Watch what the agent knows - and when - compared to a
+> stitched stack trying to do the same thing."
 
-**DAY 1 - First contact.** Cold start for Maya, but the fleet is already warm
-with 1.2M lessons. *Frankenstack can't show you that - every system starts cold.*
+---
 
-**DAY 14 - Returns + reasons.** Order outcome AND the reasoning have to commit
-together. *TiDB does it in one ACID transaction. Frankenstack hopes nothing
-fails between calls 2 and 3.*
+**DAY 1 - First contact.**
 
-**DAY 21 - Fleet learns.** No user is talking. The fleet just got smarter from
-2,847 fit reviews. *An analytics warehouse delivers this insight on its
-refresh cadence, not the agent's request cadence.*
+> "Maya is brand new. The agent has never seen her. But the agent's data layer
+> has 1.2 million lessons from every customer who came before her - fit
+> patterns, return reasons, size preferences, brand affinities. All of that is
+> warm, in one cluster, available in a single query before Maya finishes her
+> first sentence."
 
-**DAY 22 - Stranger benefits.** Lena, a brand-new customer, gets the size-up
-nudge Maya's data taught the fleet.
+*Why this matters - say it:*
+> "On a Frankenstack, that fleet knowledge is split across a vector store, an
+> analytics warehouse, and a search index. To answer 'what does the fleet know
+> that's relevant to a first-time customer like Maya,' the agent has to query
+> three systems, merge the results in application code, and hope nothing
+> fails in between. Every system starts cold - every time. On TiDB, the fleet
+> wisdom was never split. It's warm because it was never fragmented."
 
-> *(add this 30-sec sidebar)*
->
-> "Same pattern with no consumer in sight. Your store-ops agent learns from one
-> warehouse exception, every store benefits the next morning. Your reseller
-> agent learns from one quote, every rep benefits the next call. Same
-> architecture, different domain."
+---
 
-**DAY 60 (★ PAYOFF).** Read the agent's reply out loud, slowly. End on
-*"Nothing on this list is something you'd return."* Then point at the metrics:
-one query, four modalities, ACID-consistent. Versus five calls, lines of glue,
-one stale field that would have killed the recommendation.
+**DAY 14 - Returns + reasons.**
 
-**DAY 90 - The audit.** Compliance asks why.
+> "Maya returns two dresses. The agent captures the outcome - the return - and
+> the reason - fit issue, wrong size. Those two facts have to commit together.
+> If the return lands in the transactional database and the reason lands in a
+> separate vector store, you now have a sync problem. TiDB does it in one ACID
+> transaction. Frankenstack hopes nothing fails between call 2 and call 3."
 
-> "This is the beat that matters most for the regulated rooms - NYBC, Icon
-> Health, Amway in twenty-something jurisdictions. Episodic memory IS your
-> audit trail. Replay any agent decision for any customer, ninety days later,
-> with the reasoning intact. Try that across four systems where retention
-> policies don't even agree."
+---
+
+**DAY 21 - Fleet learns.**
+
+> "Nobody is shopping right now. But the fleet just processed 2,847 fit
+> reviews overnight and learned that bias-cut linen runs small. That insight is
+> immediately available to every agent on every customer query - because it
+> lives in the same cluster. An analytics warehouse delivers this on its
+> refresh cadence, not the agent's request cadence. There's a difference
+> between 'we'll know by next Tuesday' and 'we know right now.'"
+
+---
+
+**DAY 22 - Stranger benefits.**
+
+> "Lena is brand new. She's never interacted with this brand. But the fleet
+> knows something about customers with her profile - and the size-up nudge
+> Maya's return taught the system fires immediately. Maya never met Lena.
+> Maya's data helped her anyway."
+
+*(30-sec sidebar for non-retail rooms - use if Amway, Westcon, Bob's ops people are in the front row)*
+
+> "Same pattern, no consumer in sight. Your store-ops agent learns from one
+> warehouse exception - every store gets the updated playbook by morning. Your
+> reseller agent learns from one quote that closed - every rep benefits on the
+> next call. Same architecture, different domain."
+
+---
+
+**DAY 60 (★ PAYOFF) - Read the agent reply out loud, slowly.**
+
+> "I picked five for you. The Coach satchel - brand you've kept twice. The
+> dress - runs true on you. The blazer - for the March gala, sized up for
+> brand X. Nothing on this list is something you'd return."
+
+*(pause - let that land)*
+
+> "One query. Four modalities - relational, vector, full-text, semantic.
+> One ACID transaction. 38 milliseconds. On the Frankenstack side: five
+> microservice calls, 47 lines of glue code, 2,410 milliseconds - and one
+> stale Snowflake field that would have killed the gala recommendation
+> entirely. That's not a performance story. That's a correctness story."
+
+---
+
+**DAY 90 - The audit.**
+
+> "Compliance asks why the agent recommended a product to this customer on
+> this date. On TiDB, that's a query. The episodic memory is the audit trail -
+> every decision, with the reasoning that drove it, in the same transactional
+> system. *(slow down)* Try that across four systems where retention policies
+> don't agree, where the vector store was overwritten 200 times since April,
+> where the warehouse snapshot is from a different timestamp than the
+> transactional record. That's not a technical inconvenience. For NYBC,
+> Icon Health, Amway operating across twenty-something jurisdictions - that's
+> a compliance gap."
+
+---
 
 **Final line:**
 > "Twelve months of compounding intelligence in six clicks. Now let's look at
