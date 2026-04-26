@@ -459,8 +459,8 @@ const MAYA_STEPS = [
   },
   {
     avatar: "M",
-    name: "Maya · 60 days in — the payoff",
-    sub: "★ The query that cannot exist on Frankenstack",
+    name: "Maya · Day 60",
+    sub: "★ The payoff",
     memoryTypes: ["episodic", "semantic", "procedural"],
     gauge: { tidb: 1, frank: 5, tidbLabel: "1 query · 4 modalities · 38ms", frankLabel: "5 services · 2,410ms · stale" },
     messages: [
