@@ -19,9 +19,7 @@ const SLIDES = [
   { id: "maya",        label: "Maya's Year",    shortLabel: "7" },
   { id: "librarian",   label: "Token Tax",      shortLabel: "8" },
   { id: "manus",       label: "Manus Math",     shortLabel: "9" },
-  { id: "whynow",      label: "Why Now",        shortLabel: "10" },
-  { id: "close",       label: "Close",          shortLabel: "11" },
-  { id: "qa",          label: "Q&A",            shortLabel: "Q" }
+  { id: "whynow",      label: "Closing",        shortLabel: "10" }
 ];
 
 let currentSlide = 0;

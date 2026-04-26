@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="/static/styles.css?v=64" />
+  <link rel="stylesheet" href="/static/styles.css?v=65" />
 </head>
 
 <body>
@@ -28,8 +28,6 @@
   <button id="tab-librarian"></button>
   <button id="tab-about-tidb"></button>
   <button id="tab-whynow"></button>
-  <button id="tab-close"></button>
-  <button id="tab-qa"></button>
   <span id="slideCounter"></span>
 </div>
 
@@ -722,7 +720,7 @@
       <div class="ct-col ct-platform">
         <div class="ct-label">The platform</div>
         <div class="ct-verb">remembers</div>
-        <div class="ct-desc">Three memories, five duties, one cluster - on TiDB.</div>
+        <div class="ct-desc">Three memories. One cluster. One ACID transaction.</div>
       </div>
       <div class="ct-col">
         <div class="ct-label">The human</div>
@@ -735,135 +733,25 @@
       <div class="cr-label">What you walk out knowing</div>
       <ul class="cr-list">
         <li>Agents fail because LLMs are stateless and stacks are fragmented - not because models are dumb</li>
-        <li>Memory has three tiers (episodic, semantic, procedural) and five maintenance duties</li>
+        <li>Memory has three tiers: episodic, semantic, procedural</li>
         <li>Curation, not capacity, beats the token tax - and TiDB makes curation a single ACID query</li>
         <li>The labs that build production AI converged on one architecture. Three teams. Same conclusion.</li>
       </ul>
     </div>
 
-    <p class="closing-final">
-      <span class="emph">Three teams proved it. The code is open source.</span>
-    </p>
-  </section>
-
-  <!-- =============================================================
-       SLIDE 12 - CONTRIBUTIONS CLOSE (mirrors the opening promise)
-       ============================================================= -->
-  <section class="slide" id="slide-close">
-    <div class="eyebrow">Beat 11 · Promise kept · 2 minutes</div>
-    <h2>What you walked in vs. what you walk out with.</h2>
-
-    <div class="close-grid">
-      <div class="close-col walked-in">
-        <div class="close-label">Walked in not knowing</div>
-        <ul>
-          <li>Why brilliant LLMs still produce dumb agent experiences</li>
-          <li>Why bigger context windows and better models won't fix it</li>
-          <li>Why your competitors' AI feels like it's compounding while yours plateaus</li>
-        </ul>
-      </div>
-
-      <div class="close-col walk-out">
-        <div class="close-label">Walk out knowing</div>
-        <ul>
-          <li><strong>Memory isn't stored. It's maintained</strong> - and only one architecture does it without four systems breaking at 3 AM</li>
-          <li><strong>One database</strong> with rows + vectors + search + analytics beats four duct-taped together</li>
-          <li><strong>The labs that actually build AI</strong> - Kimi, DeepSeek, Manus, Dify - all chose this architecture</li>
-        </ul>
-      </div>
-
-      <div class="close-col monday">
-        <div class="close-label">The one question for Monday</div>
-        <p class="the-question">
-          &ldquo;Where, exactly, does our agent's memory live? <em>Show me the database.</em>&rdquo;
-        </p>
-        <p class="the-tell">
-          If the answer involves four systems and a sync job, you're paying to rediscover every customer, every session.
-        </p>
-      </div>
+    <div class="closing-monday">
+      <div class="cm-label">The one question to ask Monday</div>
+      <div class="cm-question">&ldquo;Where, exactly, does our agent's memory live? Show me the database.&rdquo;</div>
     </div>
 
-    <!-- Backup probes - for the CIO who wants to dig deeper -->
-    <div class="close-probes">
-      <div class="cp-label">Two probes if the answer is hand-wavy</div>
-      <div class="cp-row">
-        <span class="cp-num">→</span>
-        <span class="cp-text"><strong>Transactional boundary.</strong> When the agent writes an outcome and the reasoning behind it, do they commit in the same transaction &mdash; or can one succeed and the other fail?</span>
+    <div class="closing-cta">
+      <div class="cta-text">
+        <div class="cta-prompt">Let's continue the conversation</div>
+        <div class="cta-name">Stephen Thorn &middot; Head of Solution Engineering, TiDB</div>
       </div>
-      <div class="cp-row">
-        <span class="cp-num">→</span>
-        <span class="cp-text"><strong>Audit ownership.</strong> If a regulator asks why the agent made a decision 90 days ago, who reconstructs it &mdash; and from which system of record?</span>
-      </div>
-    </div>
-
-    <p class="close-slogan">
-      Your AI agents aren't stuck because the models are dumb.<br>
-      They're stuck because <span class="close-slogan-tail">your data architecture forgets.</span>
-    </p>
-
-    <!-- Concrete next step -->
-    <div class="close-cta">
-      <div class="close-cta-line">
-        <span class="emph">One next step:</span>
-        a 30-minute working session to map your current memory architecture &mdash; what's where, what's stale, what's at risk.
-      </div>
-      <div class="close-cta-meta">stephen@pingcap.com · find me at the booth</div>
-    </div>
-  </section>
-
-  <!-- =============================================================
-       SLIDE 13 - Q&A APPENDIX (reference card for audience questions)
-       ============================================================= -->
-  <section class="slide" id="slide-qa">
-    <div class="eyebrow">Appendix · Anticipated questions</div>
-    <h2>Reference - if asked.</h2>
-    <p class="lede">Answers in plain English. Tap any card to see the underlying architecture reasoning.</p>
-
-    <div class="qa-grid">
-      <div class="qa-card">
-        <div class="q">"We already have Postgres / MySQL / Aurora. Why another database?"</div>
-        <div class="a">MySQL-compatible wire protocol - if you're on Aurora or MySQL, the app doesn't change. Adds <strong>native vector search + real-time analytics on live data</strong> in one transaction boundary. Replaces three or four systems with one.</div>
-      </div>
-      <div class="qa-card">
-        <div class="q">"Our data cannot leave our tenant."</div>
-        <div class="a">BYOC - runs inside your own cloud account. Control plane never touches customer data. <strong>Your IAM, your keys, your encryption.</strong> PrivateLink only.</div>
-      </div>
-      <div class="qa-card">
-        <div class="q">"What about Copilot / Bedrock agents / Vertex agents?"</div>
-        <div class="a">Those are the reasoning layer - language centres. <strong>This is the memory layer underneath them.</strong> They connect via MCP (Model Context Protocol). Complementary, not competing - works with any agent framework.</div>
-      </div>
-      <div class="qa-card">
-        <div class="q">"How is this different from pgvector on Postgres?"</div>
-        <div class="a"><strong>Two things.</strong> (1) pgvector hits a practical ceiling around 10M vectors - Manus runs 10M+ databases on this. (2) pgvector still leaves analytics in a separate warehouse, so your agents reason on stale data. TiDB keeps SQL, vectors, full-text, and real-time analytics in <strong>one transaction boundary.</strong></div>
-      </div>
-      <div class="qa-card">
-        <div class="q">"What does migration from Aurora / MySQL look like?"</div>
-        <div class="a">Typically a weekend with two engineers. Snapshot, replicate binlog in real-time, 48–72 hours of dual-write validation, DNS cutover. <strong>MySQL-compatible means your apps don't change.</strong></div>
-      </div>
-      <div class="qa-card">
-        <div class="q">"Pinecone benchmarks better on vector recall."</div>
-        <div class="a">In isolation, yes. The real question isn't raw recall - it's whether running two systems with a sync job between them beats one unified system. The sync lag, the failed deletes, the Right-to-Delete cascade that doesn't reach your vector store - <strong>those costs show up in your 3 AM pages, not a benchmark.</strong></div>
-      </div>
-      <div class="qa-card">
-        <div class="q">"We're evaluating CockroachDB / YugabyteDB / PlanetScale."</div>
-        <div class="a">MySQL compatibility is the unlock vs. Cockroach's Postgres-first approach. HTAP (real-time analytics on live data) is the unlock vs. all of them. Native vector + full-text is the unlock vs. PlanetScale. <strong>Happy to do a head-to-head on a specific workload.</strong></div>
-      </div>
-      <div class="qa-card">
-        <div class="q">"What's the compliance story - CCPA, GDPR, EU exposure?"</div>
-        <div class="a">One ACID audit log covers every agent decision. Right-to-Delete cascades through the relational layer and the vector layer <strong>in one transaction</strong> - they're the same engine. That's something a Frankenstack fundamentally can't give you.</div>
-      </div>
-      <div class="qa-card qa-card-wide">
-        <div class="q">"How does the memory stay accurate over time? Doesn't it get stale or contradictory?"</div>
-        <div class="a">Memory has <strong>five maintenance duties</strong> - all running inside a single TiDB cluster, no external schedulers:
-          <div class="duties-grid">
-            <div class="duty"><strong>Write control</strong> - Only confirmed outcomes persist. Working reasoning stays ephemeral.</div>
-            <div class="duty"><strong>Deduplication</strong> - Cosine similarity &lt; 0.15 merges with existing memory. One strong memory, not ten weak ones.</div>
-            <div class="duty"><strong>Reconciliation</strong> - New evidence auto-supersedes contradicted conclusions. Stale facts are linked, not lost.</div>
-            <div class="duty"><strong>Confidence decay</strong> - 5% monthly decay without reinforcement. Below 0.30 = auto-deprecated.</div>
-            <div class="duty"><strong>Compaction</strong> - Weekly re-clustering merges drifted memories. Evidence counts consolidated.</div>
-          </div>
-        </div>
-      </div>
+      <a class="cta-btn" href="https://www.linkedin.com/in/stephenlthorn/" target="_blank" rel="noopener">
+        Connect on LinkedIn &rarr;
+      </a>
     </div>
   </section>
 
