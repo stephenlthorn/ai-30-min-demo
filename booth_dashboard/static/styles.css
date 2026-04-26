@@ -2275,7 +2275,7 @@ body::before {
 .about-list {
   display: flex;
   flex-direction: column;
-  margin: 28px auto 28px;
+  margin: 28px 0;
   max-width: 860px;
   width: 100%;
 }
