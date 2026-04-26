@@ -27,10 +27,8 @@ let currentSlide = 0;
 const $ = (id) => document.getElementById(id);
 const wait = (ms) => new Promise((r) => setTimeout(r, ms));
 
-/* ---------- SPEAKER NOTES ---------- */
-/* Talking points per slide. Toggle with N.
-   Total runtime target: ~45 minutes.
-   Per-slide budget shown at top of each note. */
+/* ---------- SPEAKER NOTES (kept for reference; on-screen panel removed)
+   Full talk track lives in /talk_track.md - the canonical document. */
 const SPEAKER_NOTES = {
   title:
     "[~2 min] OPEN COLD. Read the subtitle line on screen, slowly, as your opening sentence. Don't say hello. Don't thank anyone.\n\nVERBATIM OPENING:\n\n'By the end of the next 45 minutes, you'll be able to walk into your Monday staff meeting and ask the one question that tells you whether your AI is compounding customer value - or paying to rediscover the same customer every session.\n\nThat matters because the next few years in retail won't be won by the company with the flashiest model. They'll be won by the company whose AI actually gets smarter from every customer interaction.\n\nRight now, most teams are still wiring raw LLM calls together. So every new session starts over. Same customer. Same preferences. Same mistakes. Same token bill.\n\nThat is not a model problem. It is an architecture problem.\n\nFor the next 45 minutes, I'm going to show you what that failure looks like in a retail moment everyone here will recognize - and the architecture pattern that turns AI from a cost center that resets into an asset that compounds.'\n\nThen About slide.",
@@ -66,38 +64,6 @@ const SPEAKER_NOTES = {
     "[~3 min] CLOSING. Promise kept.\n\nFIRST - read the title triad on screen, slowly:\n'The model forgets. The platform remembers. The human decides.'\n\nThen walk the three columns:\n- THE MODEL forgets - stateless by design, every session starts from zero.\n- THE PLATFORM remembers - three memories, one cluster, one ACID transaction.\n- THE HUMAN decides - engineers stop digging through logs, they curate the playbooks the agents learn from.\n\nTHEN THE RECAP CARD - point at the two bullets:\n- Agents fail because LLMs are stateless and stacks are fragmented.\n- The labs that build production AI converged on one architecture. TiDB.\n\nTHEN THE MONDAY QUESTION (this is the headline deliverable - read SLOWLY):\n'Where, exactly, does our agent's memory live? Show me the database.'\n\nThen the tell: 'If the answer involves four systems and a sync job, you're paying to rediscover every customer, every session.'\n\nLet that land. Don't fill the silence.\n\nFINAL LINE: 'Memory isn't stored. It's maintained. You now know the one question that tells you whether your stack is built to compound - or built to forget.'\n\nThen point at the QR code: 'Scan to learn more. Find me at the booth - happy to map your current memory architecture with you. No pitch. Diagnostic only.'"
 };
 
-let notesOpen = false;
-
-function updateNotesContent(slideIdx) {
-  const id = SLIDES[slideIdx]?.id;
-  const note = SPEAKER_NOTES[id] || "";
-  const nameEl = $("notesSlideName");
-  const contentEl = $("notesContent");
-  if (nameEl) nameEl.textContent = `${String(slideIdx).padStart(2, "0")} · ${SLIDES[slideIdx]?.label || ""}`;
-  if (contentEl) {
-    while (contentEl.firstChild) contentEl.removeChild(contentEl.firstChild);
-    note.split("\n\n").forEach((para) => {
-      const p = document.createElement("p");
-      // preserve single \n as line breaks within a paragraph
-      const lines = para.split("\n");
-      lines.forEach((line, i) => {
-        if (i > 0) p.appendChild(document.createElement("br"));
-        p.appendChild(document.createTextNode(line));
-      });
-      contentEl.appendChild(p);
-    });
-  }
-}
-
-function toggleNotes() {
-  notesOpen = !notesOpen;
-  const panel = $("notesPanel");
-  if (!panel) return;
-  panel.classList.toggle("open", notesOpen);
-  panel.setAttribute("aria-hidden", notesOpen ? "false" : "true");
-  if (notesOpen) updateNotesContent(currentSlide);
-}
-
 /* Sarah slide — tab switcher */
 function sarahTab(idx) {
   const s0 = document.getElementById("sarah-session-0");
@@ -131,9 +97,6 @@ function showSlide(idx, push = true) {
 
   currentSlide = idx;
   window.scrollTo({ top: 0, behavior: "instant" });
-
-  // refresh notes panel content if it's open
-  if (notesOpen) updateNotesContent(idx);
 
   // sync URL hash so links work
   if (push) {
@@ -176,10 +139,6 @@ document.addEventListener("keydown", (e) => {
     // Q jumps straight to the Q&A appendix (slide indices > 9 aren't reachable via digit keys)
     const idx = SLIDES.findIndex((s) => s.id === "qa");
     if (idx >= 0) { e.preventDefault(); showSlide(idx); }
-  } else if (e.key === "n" || e.key === "N") {
-    // N toggles speaker notes panel
-    e.preventDefault();
-    toggleNotes();
   } else if (e.key === "c" && (e.ctrlKey || e.metaKey) && e.shiftKey) {
     // Ctrl+Shift+C — jump to demo cases directly (1/2/3 already reserved for slide nav)
     // no-op here; documented in queries.md
