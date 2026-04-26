@@ -3560,6 +3560,228 @@ body::before {
   font-style: normal;
 }
 
+/* Token Tax slide - TiDB vs Frankenstack curation comparison */
+.lib-curation-compare {
+  margin-top: 18px;
+  padding: 18px 22px;
+  background: var(--paper);
+  border: 1px solid var(--ink-line);
+  border-radius: 8px;
+}
+.lib-cc-label {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--ink-faint);
+  margin-bottom: 14px;
+}
+.lib-cc-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+.lib-cc-col {
+  padding: 14px 18px;
+  border-radius: 6px;
+  border-left: 3px solid;
+}
+.lib-cc-frank {
+  background: rgba(243, 80, 72, 0.06);
+  border-left-color: var(--burgundy);
+}
+.lib-cc-tidb {
+  background: rgba(80, 219, 217, 0.07);
+  border-left-color: var(--gold);
+}
+.lib-cc-head {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+.lib-cc-frank .lib-cc-head { color: var(--burgundy); }
+.lib-cc-tidb .lib-cc-head { color: var(--gold); }
+.lib-cc-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.lib-cc-col li {
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--ink-2);
+  position: relative;
+  padding-left: 16px;
+}
+.lib-cc-col li::before {
+  content: "›";
+  position: absolute;
+  left: 0;
+  color: var(--ink-faint);
+  font-weight: 700;
+}
+.lib-cc-tidb li::before { color: var(--gold); }
+.lib-cc-frank li::before { color: var(--burgundy); }
+.lib-cc-col code {
+  font-family: 'SF Mono', 'Menlo', 'Monaco', monospace;
+  font-size: 13px;
+  background: rgba(0,0,0,0.25);
+  padding: 1px 6px;
+  border-radius: 3px;
+  color: var(--ink);
+}
+
+/* Convergence slide - LinkedIn quote callout */
+.conv-quote {
+  margin: 16px 0 24px;
+  padding: 22px 28px;
+  background: rgba(80, 219, 217, 0.07);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+}
+.conv-quote-text {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 22px;
+  line-height: 1.45;
+  color: var(--ink);
+  font-weight: 500;
+}
+.conv-quote-attr {
+  margin-top: 12px;
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--ink-soft);
+  font-weight: 500;
+}
+.conv-quote-tag {
+  display: inline-block;
+  padding: 4px 10px;
+  background: rgba(80, 219, 217, 0.18);
+  border: 1px solid rgba(80, 219, 217, 0.4);
+  border-radius: 3px;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--gold);
+  margin-left: 4px;
+}
+
+/* Closing slide - triad + recap */
+.closing-triad {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  margin: 32px 0 28px;
+}
+.ct-col {
+  padding: 22px 22px 20px;
+  background: var(--paper);
+  border: 1px solid var(--ink-line);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.ct-col.ct-platform {
+  background: rgba(80, 219, 217, 0.07);
+  border-color: rgba(80, 219, 217, 0.4);
+  border-left: 4px solid var(--gold);
+}
+.ct-label {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--ink-faint);
+}
+.ct-platform .ct-label { color: var(--gold); }
+.ct-verb {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 36px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.ct-platform .ct-verb { color: var(--gold); }
+.ct-desc {
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-2);
+  margin-top: 4px;
+}
+
+.closing-recap {
+  margin-bottom: 24px;
+  padding: 18px 22px;
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+}
+.cr-label {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--gold-2);
+  margin-bottom: 12px;
+}
+.cr-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.cr-list li {
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink);
+  position: relative;
+  padding-left: 18px;
+}
+.cr-list li::before {
+  content: "›";
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  font-weight: 700;
+  font-size: 17px;
+}
+
+.closing-final {
+  margin: 0;
+  padding: 16px 22px;
+  background: rgba(80, 219, 217, 0.08);
+  border-left: 3px solid var(--gold);
+  border-radius: 4px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 22px;
+  line-height: 1.4;
+  color: var(--ink-2);
+}
+.closing-final .emph {
+  color: var(--gold);
+  font-weight: 700;
+  font-style: normal;
+}
+
 .mem-land {
   margin-top: 14px;
   padding-top: 18px;
