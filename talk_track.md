@@ -400,18 +400,45 @@ punchline. The gauge shows steps-to-answer: TiDB always 1, Frankenstack always 4
 >
 > *(bring this back to operations)*
 >
+> So why doesn't every team curate aggressively?
+>
+> Anthropic, LangChain, AWS - their production reference architectures all say
+> the same thing. You need vector search, keyword search with BM25 reranking,
+> and your relational state. All three, kept in sync, queried together, with
+> consistent results. That's several systems wired together before you write
+> your first agent query.
+>
+> Here's how it actually plays out. Teams don't build all of that on day one -
+> they build it in stages. Vector store first. Keyword search bolted on later.
+> Relational joins stitched in by the application. It works as a POC. It works
+> at small scale.
+>
+> *(pause)*
+>
+> Then scale arrives - and with AI, scale arrives fast. Suddenly you're paying
+> for three systems, syncing data between them, debugging consistency bugs
+> across them, and your latency budget is gone. Cost and complexity hit at the
+> same time.
+>
+> So instead of curating harder, the industry sells you bigger context windows.
+> Gemini's at two million tokens. That's not a retrieval strategy. That's a
+> bigger bill.
+>
 > Every internal agent your team deploys will face this math. Multiply
 > per-query cost by seat count. Then by query rate. That's the bill your CFO
 > will be reading by Q3."
 
 **Then the comparison block** - frankenstack vs TiDB on curation:
-- On a Frankenstack: 4 round trips, merge in app code, partial-failure surface.
+- On a fragmented stack: those three systems are real, the sync problem is
+  real, and the consistency bugs surface exactly when you scale.
 - On TiDB: one `assemble_context()` call, rows + vectors + search + analytics
-  in one ACID query, one round trip.
+  in one ACID query, one round trip. The complexity that breaks at scale never
+  gets built in the first place.
 
 **Land:**
-> "Curation is the lever. The operational data layer is what makes curation a
-> single ACID query instead of orchestration code across four systems."
+> "Curation is the lever. TiDB makes curation a single ACID query - so the
+> architecture that works at POC is the same one that works at a million queries
+> a day."
 
 **Bridge:** "That's per-query economics. Now let's zoom out to a real
 production agent business."
