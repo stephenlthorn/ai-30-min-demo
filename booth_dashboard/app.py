@@ -33,9 +33,23 @@ def healthz() -> dict:
 
 
 @app.get("/")
+@app.head("/")
 def root() -> FileResponse:
-    """Serve the slide deck at the root."""
-    return FileResponse(STATIC_DIR / "index.html")
+    """Serve the slide deck at the root.
+
+    no-store on the HTML page so iterative edits to index.html show up
+    on a normal reload - critical during the booth-prep loop. The
+    versioned ?v=N query strings on /static/styles.css and /static/app.js
+    handle cache busting for those assets independently.
+    """
+    return FileResponse(
+        STATIC_DIR / "index.html",
+        headers={
+            "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0",
+            "Pragma": "no-cache",
+            "Expires": "0",
+        },
+    )
 
 
 # Mount everything else under /static/* so relative links in index.html resolve.

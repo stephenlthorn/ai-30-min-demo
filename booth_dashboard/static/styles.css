@@ -259,9 +259,20 @@ body::before {
   max-width: 1100px;
 }
 .slide-title h1 em {
-  font-style: normal;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--ink);
+  font-size: 0.55em;
+  vertical-align: 0.18em;
+  margin: 0 0.12em;
+}
+.slide-title h1 .t-num {
+  font-style: italic;
   font-weight: 600;
   color: var(--gold-2);
+  font-size: 1.45em;
+  letter-spacing: -0.04em;
+  line-height: 1;
 }
 .slide-title .subtitle {
   font-family: var(--serif);
