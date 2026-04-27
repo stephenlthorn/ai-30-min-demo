@@ -5802,3 +5802,14 @@ body::before {
   font-style: italic;
   line-height: 1.4;
 }
+
+/* Subtitle below the "4 -> 1. Get back to building." headline */
+.simp-subtitle {
+  margin: -8px 0 24px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 22px;
+  line-height: 1.4;
+  color: var(--ink-soft);
+  max-width: 980px;
+}
