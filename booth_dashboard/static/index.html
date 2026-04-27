@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="/static/styles.css?v=73" />
+  <link rel="stylesheet" href="/static/styles.css?v=74" />
 </head>
 
 <body>
@@ -42,10 +42,10 @@
       <img class="tidb-logo-img" src="/static/tidb-logo.png?v=2" alt="TiDB" />
     </div>
 
-    <h1>One Database. <em>Zero</em> Complexity.</h1>
+    <h1>One Database.<br><em>Zero</em> Complexity.</h1>
 
     <p class="title-promise-line">
-      <span class="tp-hook">Engineers build the business,</span>
+      <span class="tp-hook">Engineers build the <em>business</em>,</span>
       not the <em>plumbing</em>.
     </p>
 
@@ -157,40 +157,38 @@
        ============================================================= -->
   <section class="slide" id="slide-simplify">
     <div class="eyebrow">The Simplification</div>
-    <h2>Where does your engineering team actually spend its time?</h2>
+    <h2>The standard AI stack is four systems. TiDB is one.</h2>
 
     <div class="simp-grid">
       <div class="simp-card simp-card-now">
-        <div class="simp-card-label">Today</div>
-        <div class="simp-card-num">40-60%</div>
-        <div class="simp-card-desc">of senior engineering effort goes to data infrastructure plumbing</div>
+        <div class="simp-card-label">Standard AI stack</div>
+        <div class="simp-card-num">4</div>
+        <div class="simp-card-desc">separate data systems to ship <em>one</em> AI feature</div>
         <ul class="simp-list">
-          <li>Sharding strategies &amp; rebalancing</li>
-          <li>Replication topology &amp; failover</li>
-          <li>Sync jobs that broke at 3 AM</li>
-          <li>Schema migrations across 12 services</li>
-          <li>Vector store reindexing</li>
-          <li>Warehouse ETL pipelines</li>
+          <li>Vector store &middot; embeddings</li>
+          <li>Keyword / BM25 search index</li>
+          <li>Relational DB &middot; the source of truth</li>
+          <li>Embedding pipeline + orchestration glue</li>
         </ul>
+        <div class="simp-card-source">As described by Anthropic, LangChain, AWS reference architectures</div>
       </div>
 
       <div class="simp-card simp-card-arrow">
-        <div class="simp-arrow">→</div>
-        <div class="simp-arrow-label">AI adds 4 more systems</div>
+        <div class="simp-arrow">&rarr;</div>
+        <div class="simp-arrow-label">One ACID boundary</div>
       </div>
 
       <div class="simp-card simp-card-future">
-        <div class="simp-card-label">With AI on top</div>
-        <div class="simp-card-num">70%+</div>
-        <div class="simp-card-desc">unless you collapse the layers underneath</div>
+        <div class="simp-card-label">With TiDB</div>
+        <div class="simp-card-num">1</div>
+        <div class="simp-card-desc">operational data layer &middot; same four capabilities</div>
         <ul class="simp-list">
-          <li>Vector store + sync</li>
-          <li>Search index + reindex</li>
-          <li>Embedding pipeline lag</li>
-          <li>Orchestration glue code</li>
-          <li>Consistency reconciliation</li>
-          <li>Another 3 AM rotation</li>
+          <li>Vectors</li>
+          <li>BM25 full-text search</li>
+          <li>SQL rows + JOINs</li>
+          <li>Columnar analytics &middot; all in one query</li>
         </ul>
+        <div class="simp-card-source">MySQL wire protocol &middot; 11 years in production</div>
       </div>
     </div>
 
@@ -313,10 +311,10 @@
        ============================================================= -->
   <section class="slide" id="slide-why">
     <div class="eyebrow">The Answer</div>
-    <h2>Count the systems your team operates</h2>
+    <h2>Same four capabilities. One database.</h2>
 
     <p class="why-lede">
-      <em>Your existing stack + 4 AI systems = 9-12 systems your engineers maintain</em> - or one.
+      <em>Vectors, search, SQL, analytics</em> - four systems duct-taped together, or one MySQL-compatible cluster with all four built in.
     </p>
 
     <div class="two-col">
@@ -388,7 +386,7 @@
 
     <p class="why-land">
       <em>Infrastructure designed for legacy transactional purposes, not for compound knowledge.</em><br>
-      <span class="gold">Memory is infrastructure. So is the data layer underneath it. Neither belongs in nine systems.</span>
+      <span class="gold">Memory is infrastructure. So is the data layer underneath it. Neither belongs in four systems.</span>
     </p>
   </section>
 
@@ -858,7 +856,7 @@
       <div class="ct-col ct-engineers">
         <div class="ct-label">The engineers</div>
         <div class="ct-verb">build</div>
-        <div class="ct-desc">Not maintaining nine systems. Shipping product. Building the business.</div>
+        <div class="ct-desc">Not maintaining four databases per AI feature. Shipping product. Building the business.</div>
       </div>
     </div>
 
@@ -867,7 +865,7 @@
         <div class="cm-label">Two questions to ask Monday</div>
         <div class="cm-question cm-question-primary">
           <span class="cm-q-num">1</span>
-          &ldquo;How much of our engineering team's calendar is plumbing instead of product?&rdquo;
+          &ldquo;For every AI feature we ship - how many separate data systems does it touch?&rdquo;
         </div>
         <div class="cm-question">
           <span class="cm-q-num">2</span>

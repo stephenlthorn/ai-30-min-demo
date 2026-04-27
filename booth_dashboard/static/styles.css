@@ -318,7 +318,7 @@ body::before {
   white-space: nowrap;
 }
 .slide-title .title-promise-line .tp-hook {
-  color: var(--gold);
+  color: var(--ink);
   font-weight: 500;
   margin-right: 6px;
 }
@@ -5789,4 +5789,16 @@ body::before {
   font-size: 16px;
   color: var(--gold-2);
   text-align: center;
+}
+
+/* Source attribution under simplify cards (4 vs 1 framing) */
+.simp-card-source {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--ink-line);
+  font-family: var(--sans);
+  font-size: 11px;
+  color: var(--ink-soft);
+  font-style: italic;
+  line-height: 1.4;
 }

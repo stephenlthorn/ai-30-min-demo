@@ -19,10 +19,11 @@ simplification realization first; AI proves the urgency.
 
 ## The one-sentence story (the primary thesis)
 
-> **"Your data infrastructure already consumes 40-60% of your engineering
-> team. AI is about to push that past 70%. TiDB is one database that
-> eliminates complexity at any scale - so your engineers build the business
-> instead of the plumbing."**
+> **"The standard AI stack - the one Anthropic, LangChain, and AWS all
+> describe - takes four separate data systems to ship one feature. TiDB
+> does the same thing in one. Same capabilities. One ACID boundary. So
+> your engineers build the business instead of the plumbing between
+> four databases."**
 
 Source line we lean on: *"One database. Infinite scale. Zero complexity."*
 (TiDB Cloud Technical Value Proposition, April 2026)
@@ -50,10 +51,10 @@ workloads, not the only one. Land both in the closing.
 | 0-2     | Cold open                | 00 · title         | SIMP | Engineering effort question first. AI is the trigger, not the story. |
 | 2-3     | About me                 | 01 · about         | -    | 60 sec credibility. |
 | 3-7     | About TiDB               | 02 · about-tidb    | SIMP | Scale-out without the engineering team. Logos prove the simplification. |
-| 7-13    | The Simplification       | 03 · simplify      | SIMP | EXPANDED to 6 min. The spine. Where 40-60% of engineering goes today. |
+| 7-13    | The Simplification       | 03 · simplify      | SIMP | EXPANDED to 6 min. The spine. The standard AI stack is 4 systems. TiDB is 1. |
 | 13-19   | Customer Proof           | 04 · convergence   | SIMP | EXPANDED to 6 min. **MOVED EARLIER.** Pinterest 6→1, Flipkart 700→1, Plaid 26 weeks. AI labs come second. |
 | 19-22   | The Urgent Example (AI)  | 05 · sarah         | AI   | 3 min. Reframed: AI is the symptom that the existing problem is now unsurvivable. |
-| 22-25   | The Architecture (4→1)   | 06 · why           | AI/SIMP | 3 min. 9-12 systems collapse to 1. |
+| 22-25   | The Architecture (4→1)   | 06 · why           | AI/SIMP | 3 min. The four-system stack drawn out, collapsed to one. |
 | 25-27   | Three Memories           | 07 · memories      | AI   | 2 min. Vocabulary plant. |
 | 27-33   | Maya's Year (compressed) | 08 · maya          | AI/SIMP | 6 min. Day 22 dropped. Each beat = "1 query vs 4 systems." |
 | 33-37   | Token Tax + Eng Reality  | 09 · librarian     | SIMP/AI | 4 min. Why teams don't curate at scale. |
@@ -99,25 +100,27 @@ Open cold. Don't say hello. Don't thank anyone.
 >
 > *(pause)*
 >
-> *How much of our engineering team's calendar this quarter is data
-> infrastructure plumbing instead of building product?*
+> *For every AI feature we ship - how many separate data systems does it
+> touch?*
 >
 > *(pause)*
 >
-> Industry surveys say the answer at most enterprises is 40 to 60 percent.
-> Sharding strategies. Replication topology. Sync jobs that broke at 3 AM.
-> Schema migrations across a dozen services. Warehouse ETL. Vector store
-> reindexing.
+> The answer for most teams - and this is straight out of the production
+> reference architectures Anthropic, LangChain, and AWS all publish - is
+> four. A vector store for embeddings. A keyword search index for BM25.
+> A relational database for the source of truth. An embedding pipeline
+> with orchestration glue tying them together.
 >
-> Not building product. Plumbing.
+> Four systems to ship one AI feature. Each one needs an engineer who
+> knows it cold. Each one fails differently. Each one is a 3 AM page.
 >
 > *(slow down)*
 >
-> And here's the trigger that brought us into this room - AI is about to
-> double that load. Every AI pilot you've seen in the last twelve months
-> adds another four systems on top of what you already have. The same
-> architectural sprawl that's been quietly draining your team for a
-> decade is about to compound.
+> Now multiply that by the number of AI features on your roadmap.
+> Multiply by the number of business units shipping their own pilots.
+> The same architectural sprawl that's been quietly draining your team
+> for a decade is about to compound - because every AI feature ships
+> with its own four-system tax.
 >
 > The companies winning aren't doing it with smarter AI. They're doing it
 > with simpler infrastructure. The architecture they picked is the same
@@ -192,49 +195,52 @@ Plant the proof points the convergence slide will then dwell on.
 >
 > *(slow down - this is the slide everything else hangs on)*
 >
-> Industry surveys say between 40 and 60 percent of senior engineering effort
-> at most enterprises goes to data infrastructure. Not feature work. Not
-> customer-facing product. Plumbing.
+> The standard AI architecture - look at any RAG tutorial, any
+> production reference from Anthropic, LangChain, or AWS - is four
+> separate systems.
 >
-> Specifically: sharding decisions. Replication topology. Read-replica
-> rebalancing. Failover runbooks. Sync jobs between transactional and
-> analytics. Schema migrations across a dozen services. Warehouse ETL
-> pipelines. Vector store reindexing.
->
-> Count the systems your team operates today. The typical enterprise has
-> a sharded transactional fleet of 5 to 10 instances. Read replicas. An
-> analytics warehouse with its own ETL. A search index. A cache cluster.
-> That's already 5 to 12 separate operational systems before you put a
-> single AI workload on top.
+> One: a vector store for embeddings. Pinecone, Weaviate, pgvector.
+> Two: a keyword search index for BM25 ranking. Elasticsearch,
+> OpenSearch. Three: your relational database, the source of truth for
+> who the customer is and what they ordered. Four: an embedding pipeline
+> with orchestration glue tying it all together. LangChain, LlamaIndex,
+> custom Python.
 >
 > *(this is the key point)*
 >
-> Your customers don't care about your replication topology. Your
-> competitors aren't beating you with better sharding. The AI-native
-> startup eating your lunch isn't winning because their engineers are
-> smarter - they're winning because their engineers spend their time on
-> the business, not on the plumbing underneath it.
+> Four systems to ship one AI feature.
 >
-> *(then escalate to the AI compounding)*
+> Each one needs an engineer who knows it cold. Each one fails
+> differently. Each one has its own consistency model - and if your
+> vector store and your relational DB drift, your agent recommends a
+> product that's already been refunded. Each one is a 3 AM page.
 >
-> AI is the trigger that makes this unsurvivable. Every AI pilot you've
-> seen adds four more systems on top: a vector store, a search index, an
-> embedding pipeline, and orchestration glue code. That's not 50 percent
-> of engineering on plumbing - that's 70.
+> Your customers don't care about your vector reindexing topology. Your
+> competitors aren't beating you with a better embedding pipeline. The
+> AI-native startup eating your lunch isn't winning because their
+> engineers are smarter - they're winning because they ship one AI
+> feature with one query, not four.
+>
+> *(then the compounding)*
+>
+> Multiply that by the number of AI features on your roadmap. The
+> internal copilot. The store-ops agent. The supply-chain agent. Each
+> one carries its own four-system tax. Each one needs the same four
+> engineers on call. Each one ships its own version of the sync bug.
 >
 > *(pause)*
 >
 > Here's what I want you to hold in your head for the rest of the talk.
-> The companies who collapsed those layers - I'm going to walk you through
-> the proof in two minutes - didn't do it because they wanted a fancier
-> database. They did it because they ran out of engineers willing to
-> maintain six systems. Pinterest collapsed six systems into one. Flipkart
-> replaced 700 MySQL clusters with one. Plaid eliminated 26 engineer-weeks
-> of toil in a single quarter. Dify went from 500,000 containers to one
-> system.
+> The companies who collapsed those four layers into one - I'm going to
+> walk you through the proof in two minutes - didn't do it because they
+> wanted a fancier database. They did it because they ran out of
+> engineers willing to maintain four. Pinterest collapsed six different
+> data systems into one. Flipkart replaced 700 MySQL clusters with one.
+> Plaid eliminated 26 engineer-weeks of toil in a single quarter. Dify
+> went from 500,000 containers to one system.
 >
-> The question isn't whether you can afford another four systems for AI.
-> It's whether you can afford the ones you already have."
+> The question isn't whether you can afford four systems per AI feature.
+> It's whether you can afford to keep building that way."
 
 **Bridge:** "Let me show you the math on those four customers - and what
 their engineering teams went back to building."
@@ -352,33 +358,30 @@ existing complexity is now unsurvivable. Pick ONE vignette - retail.
 
 ## Beat 06 - The Architecture (22:00 - 25:00) · Slide `why`
 
-**Compressed to 3 min.** Show the 9-12 → 1 collapse.
+**Compressed to 3 min.** Show the four-system stack drawn out, then
+collapsed to one.
 
-> "On the left - what most pilot stacks look like. Four systems duct-taped
-> together: a transactional database, a vector store, an analytics
-> warehouse, a search index. Glue code in the middle. The agent at the top
-> asking 'which version of reality is correct?'
+> "On the left - the four-system stack we just named on the previous
+> slide, drawn out. A transactional database. A vector store. An
+> analytics warehouse. A search index. Glue code in the middle. The
+> agent at the top asking 'which version of reality is correct?'
 >
-> But this isn't the whole picture. This four-system AI stack is going on
-> top of what you already have. Your transactional database is probably
-> already sharded across 5 to 10 instances. You probably have read
-> replicas. You probably have an analytics warehouse with its own ETL
-> pipeline. Now you're adding a vector store, a search index, and
-> orchestration glue.
->
-> Count the systems. You're not at four. You're at nine or twelve.
+> Look at the sync issues on screen - 'sync broke overnight,'
+> 'recommendations stale,' 'customer delete missed.' Those aren't
+> hypothetical. Each one is the kind of incident your on-call rotation
+> works through every week.
 >
 > *(point right)*
 >
-> Consolidated, the same capabilities live in one operational data layer.
-> Not just AI memory - your transactional state, your analytics, your
-> search, your vectors, all in one MySQL-compatible cluster. One audit
-> log. One scaling story. One team operates one system.
+> Consolidated, the same four capabilities live in one operational
+> data layer. Vectors. Full-text search. Relational rows. Columnar
+> analytics. All in one MySQL-compatible cluster. One transaction. One
+> audit log. One team operates one system instead of four.
 >
 > *(land)*
 >
-> Memory is infrastructure. So is the data layer underneath it. Neither
-> belongs in nine systems."
+> Memory is infrastructure. So is the data layer underneath it.
+> Neither belongs in four systems."
 
 **Bridge:** "Three named patterns to watch for in the demo."
 
@@ -614,21 +617,26 @@ engineering one.
 > and start curating the playbooks the agents learn from.
 >
 > **The engineers build the business** because they're not maintaining
-> nine systems anymore. They're not the database operations team. They're
-> shipping product.
+> four databases per AI feature anymore. They're not the database
+> operations team. They're shipping product.
 >
 > *(slow down)*
 >
-> Two questions for Monday. **Lead with the second one - it's the one
+> Two questions for Monday. **Lead with the first one - it's the one
 > this whole talk is about.**
 >
-> First: *How much of our engineering team's calendar this quarter is
-> data infrastructure plumbing instead of business product?*
+> First: *For every AI feature we ship - how many separate data systems
+> does it touch?*
 >
-> If the answer is more than 30 percent, you have an engineering capacity
-> problem - and AI is about to compound it. The AI-native startup
-> threatening you doesn't have it. They architected around it from day
-> one. You can too. Pinterest did. Flipkart did. Plaid did. Dify did.
+> If the answer is four - vector store, search index, relational DB,
+> orchestration glue - you're shipping the standard architecture.
+> That's defensible at one feature. By feature five, the four-system
+> tax is what your engineering team is doing instead of building the
+> sixth feature. The AI-native startup threatening you ships each
+> feature with one query, not four. Pinterest collapsed six different
+> data systems into one. Flipkart 700 into one. Plaid eliminated 26
+> engineer-weeks of toil in a single quarter. The architecture is real
+> and proven.
 >
 > Second: *Where, exactly, does our agent's memory live? Show me the
 > database.*
@@ -668,7 +676,7 @@ simplification spine.
 
 1. "Your engineers should build the business, not the plumbing."
 2. "One database. Infinite scale. Zero complexity."
-3. "How much of our engineering team's calendar is plumbing instead of product?"
+3. "The standard AI stack is four systems for one feature. TiDB is one."
 4. "Pinterest didn't pick TiDB for more QPS. They picked it to free their engineers."
 5. "Same architecture, two journeys. Enterprise from consolidation. AI from headcount constraint. Same place."
 6. "Bigger context window is a bigger meter, not a better answer."
@@ -677,8 +685,8 @@ simplification spine.
 9. "AI-native startups aren't winning on smarter AI - they're winning on lighter infrastructure debt."
 10. "One pays the cost. All benefit." (semantic memory)
 11. "Two kinds of users: your apps and your agents. One data layer."
-12. "Count the systems. You're not at four. You're at nine."
-13. "Memory is infrastructure. So is the data layer underneath it. Neither belongs in nine systems."
+12. "Four systems for one AI feature. Multiply by the features on your roadmap."
+13. "Memory is infrastructure. So is the data layer underneath it. Neither belongs in four systems."
 14. "The complexity that breaks at scale never gets built in the first place."
 15. "The model forgets. The platform remembers. The human decides. The engineers build."
 
@@ -698,7 +706,7 @@ simplification spine.
 | "How long until we have a working POC?" | "Free serverless tier today. A working POC in days, not quarters. We bring the integration patterns - LangChain, LlamaIndex, MCP - so you're not building from scratch *or* hiring a sharding expert." |
 | "What's the failure mode when TiDB goes down?" | "Distributed by design. Raft consensus, multi-AZ, multi-region. The mode that kills your agent isn't TiDB going down - it's the sync job between your four systems failing at 3 AM. That's exactly what consolidation removes - and that's the on-call rotation your engineers stop carrying." |
 | "We're committed to Snowflake / Databricks. Where do they fit?" | "TiDB is operational - the live state your agent reads and writes. Snowflake / Databricks are analytical - the warehouse your data team queries. Different workloads. The fragmentation problem is across operational systems, not between operational and analytical." |
-| "We don't have an engineering capacity problem." | "Then you're an outlier. The companies who quantified it - Plaid, Pinterest, Dify, Flipkart - all found 20-90% of an engineering team's time going to data infrastructure plumbing. Worth measuring before you add four more systems for AI." |
+| "We don't have an engineering capacity problem." | "Then look at one AI feature on your roadmap. Walk it through the production reference architecture - vector store, search index, relational DB, orchestration glue. Four systems your team has to build, sync, monitor, and page on. Multiply by the number of AI features in flight. Plaid eliminated 26 engineer-weeks of toil in one quarter when they consolidated. Pinterest collapsed six systems into one. Worth measuring." |
 
 ---
 
@@ -717,7 +725,9 @@ simplification spine.
 
 | Claim | How to land it |
 |---|---|
-| "40-60% engineering on data plumbing" | "Industry surveys" or "what enterprises tell us when they measure it." Don't cite a specific report you can't name. |
+| "Standard AI stack = 4 systems" | Sourceable to public production reference architectures from Anthropic, LangChain, AWS, every major RAG tutorial. The four are: vector store, BM25 keyword search, relational DB, embedding pipeline + orchestration glue. Defensible by example - name any one of them and the audience nods. |
+| **DROPPED: "40-60% engineering on plumbing"** | Removed - no defensible source. Replaced with the "4 systems per AI feature" architecture frame and customer-sourced numbers (Plaid 26 weeks, Pinterest 6→1, Dify 90%, etc.). |
+| **DROPPED: "5-12 operational systems today, +4 with AI"** | Removed - too synthesized; required the audience to do mental math about their own stack. Replaced with the cleaner "4 → 1" anchored to the standard AI reference architecture. |
 | "Pinterest 6→1, 80% reduction, 3-5x p99, 1.3M QPS" | All public. From PingCAP Technical Value Proposition (April 2026). |
 | "Flipkart 700+ MySQL → 1, 1M+ QPS, P95 <5ms" | Public. Same source. |
 | "Plaid 104 min downtime + 26 engineer-weeks eliminated" | Public. Same source. |
@@ -735,13 +745,12 @@ simplification spine.
 
 Use this if you have to summarize the whole talk in 30 seconds:
 
-> "Your data infrastructure already consumes 40 to 60 percent of your
-> engineering team. AI is about to push that to 70. The companies who
-> got out of that trap - Pinterest, Flipkart, Plaid, Dify - did it by
-> consolidating onto one database that handles SQL, vectors, and search
-> in one ACID boundary. That database is TiDB. Two questions to ask
-> Monday: how much of our engineering team is plumbing instead of
-> product, and where does our agent's memory live? If the first answer
-> is over 30 percent and the second is four systems and a sync job, you
-> have one problem - not two - and the architecture to solve it already
-> exists."
+> "The standard AI architecture - the one Anthropic, LangChain, and AWS
+> all describe - takes four separate data systems to ship one feature:
+> vector store, search index, relational DB, and orchestration glue.
+> The companies who collapsed those four into one - Pinterest, Flipkart,
+> Plaid, Dify - did it on TiDB. Two questions to ask Monday: for every
+> AI feature we ship, how many systems does it touch, and where does
+> the agent's memory actually live? If the answers are four and four
+> systems and a sync job, you have one problem - not two - and the
+> architecture to solve it already exists."
