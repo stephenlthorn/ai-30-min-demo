@@ -122,9 +122,10 @@ One spoken line. Don't read the slide.
 **Lead with consolidation. Logos are backup.**
 
 > "Before we get to the pain - one frame. TiDB is a distributed,
-> MySQL-compatible operational data layer. Eleven years in production. Pinterest
-> consolidated six systems onto it - 1.3M+ QPS, ~80% infrastructure reduction.
-> LinkedIn runs it at scale. Square, Plaid, Flipkart, Shopee.
+> MySQL-compatible operational data layer from PingCAP. Founded in 2015,
+> drawing on Google's Spanner and F1 papers. Pinterest consolidated six
+> systems onto it - 1.3M+ QPS, ~80% infrastructure reduction. LinkedIn
+> runs it at scale. Square, Plaid, Flipkart, Shopee, Bolt.
 >
 > *(point at AI logos)*
 >
@@ -228,9 +229,9 @@ this architecture."
 > *(then pivot to AI-native)*
 >
 > And the AI-native companies converged on the same answer from a different
-> direction. Dify - 500K databases consolidated to one TiDB cluster, 80% cost
-> reduction. Manus - millions of agent branches on one cluster. Two top-tier
-> AI labs we work with under NDA.
+> direction. Dify - 500K+ containers consolidated to one TiDB system, 90%
+> operational reduction. Manus - millions of agent branches on one cluster.
+> Two top-tier AI labs we work with under NDA.
 >
 > *(this is the key point)*
 >
@@ -318,9 +319,10 @@ punchline. The gauge shows steps-to-answer: TiDB always 1, Frankenstack always 4
 > "Nobody is shopping right now. But the fleet just processed 2,847 fit
 > reviews overnight and learned that bias-cut linen runs small. That insight is
 > immediately available to every agent on every customer query - because it
-> lives in the same cluster. An analytics warehouse delivers this on its
-> refresh cadence, not the agent's request cadence. There's a difference
-> between 'we'll know by next Tuesday' and 'we know right now.'"
+> lives in the same cluster. Most analytics warehouses deliver this on a
+> refresh cadence measured in minutes to hours - even with streaming ingest,
+> the embedding pipeline still adds lag. Either way, the fleet learning is
+> not at the agent's request cadence. On TiDB, it is."
 
 ---
 
@@ -348,11 +350,12 @@ punchline. The gauge shows steps-to-answer: TiDB always 1, Frankenstack always 4
 
 *(pause - let that land)*
 
-> "One query. Four modalities - relational, vector, full-text, semantic.
-> One ACID transaction. 38 milliseconds. On the Frankenstack side: five
-> microservice calls, 47 lines of glue code, 2,410 milliseconds - and one
-> stale Snowflake field that would have killed the gala recommendation
-> entirely. That's not a performance story. That's a correctness story."
+> "One query. Four modalities - relational rows, vector similarity,
+> full-text BM25, and columnar analytics - all in one ACID transaction.
+> 38 milliseconds. On the fragmented stack: five microservice calls,
+> 47 lines of glue code, 2,410 milliseconds - and one stale field that
+> would have killed the gala recommendation entirely. That's not a
+> performance story. That's a correctness story."
 
 ---
 
@@ -544,7 +547,7 @@ Three claims to source on stage or hedge:
 
 | Claim | How to land it |
 |---|---|
-| "LinkedIn - largest TiDB community user in the world" | Say "one of the largest publicly disclosed TiDB users, per their March 2026 engineering blog" |
+| "LinkedIn TiDB scale" | Always frame as "one of the largest publicly disclosed TiDB users, per their March 2026 engineering blog" |
 | "1.4M Manus databases" | Say "publicly disclosed by Manus - over a million databases, one cluster" |
 | Cost-ladder math | Always say "rough order; your numbers will vary by model and provider" |
 
