@@ -164,8 +164,7 @@ One spoken line. Don't read the slide.
 >
 > TiDB does that scale-out automatically. MySQL wire protocol on top,
 > distributed SQL underneath. Built from the Google Spanner papers in 2015.
-> Eleven years in production. Pinterest, Flipkart, LinkedIn, Plaid, Square,
-> Bolt, Atlassian.
+> Eleven years in production. Pinterest, Flipkart, Plaid, Square, Atlassian.
 >
 > *(then the AI second-arrival)*
 >
@@ -253,39 +252,30 @@ their engineering teams went back to building."
 not just proof of the AI story. Lead with non-AI consolidation; AI labs
 come last.
 
-> "Six customers. Two journeys. One architecture.
+> "Five customers. Two journeys. One architecture.
 >
 > *(start with enterprise consolidation - lead here)*
 >
-> **Pinterest** - the headline metric is 80 percent infrastructure cost
-> reduction. The story behind that metric is the team that used to operate
-> six different data systems is now operating one. Those engineers went back
-> to building product. They also got 3-to-5x p99 latency improvement and now
-> sustain 1.3 million QPS, but the latency was the side effect. The
-> consolidation was the point.
+> **Pinterest** - six separate data systems collapsed onto one TiDB cluster.
+> The team that used to operate six systems is now operating one. Those
+> engineers went back to building product.
 >
 > **Flipkart** - 700-plus MySQL clusters replaced by a single TiDB
-> deployment. P95 latency under 5 milliseconds at over a million QPS. The
-> team operating that fleet went from a database operations function to a
-> handful of engineers. Same workload, an order of magnitude less to
-> operate.
+> deployment. The team operating that fleet went from a database operations
+> function to a handful of engineers. Same workload, an order of magnitude
+> less to operate.
 >
-> **Plaid** - eliminated 104 minutes of downtime *and* 26 engineer-weeks of
-> toil in one quarter. That's two engineers freed up for an entire quarter
-> to do something other than fight infrastructure fires.
+> **Plaid** - 26 engineer-weeks of toil eliminated in one quarter. Two
+> engineers freed up for an entire quarter to do something other than fight
+> infrastructure fires.
 >
-> **Bolt** - storage compression alone delivered 3x reduction. Different
-> lever, same theme: less infrastructure to operate.
+> **Atlassian** - 750-plus Postgres clusters replaced by 16 global TiDB
+> clusters for the Forge plugin platform. Jira alone has over 800 tables
+> per tenant, 3 million-plus tables total. DDL pipeline throughput went
+> 6-to-7x higher. Major version upgrades now run without downtime.
 >
-> **GMGN** - migrated to TiDB Cloud in two weeks, cut cost 50 percent.
->
-> *(pause - then the LinkedIn quote on screen)*
->
-> And LinkedIn - one of the largest publicly disclosed TiDB users - wrote
-> in March that memory in their agent systems 'stops being incidental
-> context and becomes a first-class primitive with explicit read/write
-> semantics and lifecycle management.' That's the language of operating an
-> infrastructure layer. Not bolting on a feature.
+> **Square** - payment processing and real-time analytics unified on one
+> layer. No ETL pipeline between OLTP and reporting.
 >
 > *(then the AI-native arrivals - SECONDARY)*
 >
@@ -296,20 +286,9 @@ come last.
 > per-database cost scales to zero when idle. Two top-10 AI labs we work
 > with under NDA picked the same architecture for the same reason.
 >
-> *(land - this is the convergence story)*
+> *(land)*
 >
-> Two journeys. One architecture. Enterprise teams arrived from data
-> platform consolidation - they had too many systems, too few engineers,
-> too many 3 AM pages. AI teams arrived because their headcount wouldn't
-> allow anything else - they could not afford to hire your infrastructure
-> team. They met in the same place: one database that eliminates complexity
-> at any scale.
->
-> *(reinforce the spine)*
->
-> Notice what every customer story has in common. The headline is never
-> 'we got more QPS.' The headline is *'we freed our engineers.'* That's the
-> question I want you to ask Monday. That's what this whole talk is about."
+> Two journeys, one architecture."
 
 **Bridge:** "Now - to be clear, you don't have a Pinterest-scale problem
 yet. But there's one workload that's about to put you there faster than
@@ -702,7 +681,7 @@ simplification spine.
 | "How is this different from MongoDB / DynamoDB / NoSQL?" | "Strong consistency, distributed ACID, MySQL compatibility, native analytical access. NoSQL stores trade consistency for scale; agents need both - and your engineers need fewer specialty skills, not more." |
 | "Data residency / sovereignty - we operate in 80+ countries." | "TiDB Cloud runs in every major region; for regulated workloads we offer BYOC - the cluster runs inside your AWS / Azure / GCP account, your IAM, your CISO's certification. Deploys in 3-4 hours." |
 | "Compliance - HIPAA / PCI / SOX." | "SOC 2 Type II, HIPAA-eligible deployments, audit logs as a first-class capability. Episodic memory IS your audit trail by design - one retention policy, not four that disagree." |
-| "Show me a non-AI customer at scale." | "Eleven years in production. LinkedIn, Pinterest, Square, Plaid, Flipkart, Bolt, Atlassian. Pinterest's headline isn't 1.3M QPS - it's that they freed the team that was operating six systems. AI is one workload pattern among many." |
+| "Show me a non-AI customer at scale." | "Eleven years in production. Pinterest, Flipkart, Plaid, Square, Atlassian. Pinterest's headline isn't 1.3M QPS - it's that they freed the team that was operating six systems. Atlassian collapsed 750-plus Postgres clusters into 16. AI is one workload pattern among many." |
 | "How long until we have a working POC?" | "Free serverless tier today. A working POC in days, not quarters. We bring the integration patterns - LangChain, LlamaIndex, MCP - so you're not building from scratch *or* hiring a sharding expert." |
 | "What's the failure mode when TiDB goes down?" | "Distributed by design. Raft consensus, multi-AZ, multi-region. The mode that kills your agent isn't TiDB going down - it's the sync job between your four systems failing at 3 AM. That's exactly what consolidation removes - and that's the on-call rotation your engineers stop carrying." |
 | "We're committed to Snowflake / Databricks. Where do they fit?" | "TiDB is operational - the live state your agent reads and writes. Snowflake / Databricks are analytical - the warehouse your data team queries. Different workloads. The fragmentation problem is across operational systems, not between operational and analytical." |
@@ -730,11 +709,10 @@ simplification spine.
 | **DROPPED: "5-12 operational systems today, +4 with AI"** | Removed - too synthesized; required the audience to do mental math about their own stack. Replaced with the cleaner "4 → 1" anchored to the standard AI reference architecture. |
 | "Pinterest 6→1, 80% reduction, 3-5x p99, 1.3M QPS" | All public. From PingCAP Technical Value Proposition (April 2026). |
 | "Flipkart 700+ MySQL → 1, 1M+ QPS, P95 <5ms" | Public. Same source. |
-| "Plaid 104 min downtime + 26 engineer-weeks eliminated" | Public. Same source. |
+| "Plaid 26 engineer-weeks eliminated" | Public. Same source. |
 | "Dify 500K+ containers → 1, 90% ops reduction" | Public. Same source. |
-| "GMGN 2 weeks, 50% cost reduction" | Public. Same source. |
-| "Bolt 3x compression" | Public. Same source. |
-| "LinkedIn quote on memory primitives" | Always frame as "LinkedIn Engineering, March 2026" |
+| "Atlassian 750+ Postgres → 16 TiDB clusters, 3M+ tables, 6-7x DDL throughput" | Public. PingCAP blog, TiDB SCaiLE 2025 keynote (Sergey Mineyev, Senior Principal Engineer). |
+| "Square - payments + analytics unified, no ETL" | Public customer. Directional claim only - no specific metrics. |
 | "1.4M Manus databases" | Say "publicly disclosed by Manus - over a million databases on one cluster" |
 | Cost-ladder math | "Rough order; your numbers will vary by model and provider" |
 | "95% of new TiDB Cloud clusters created by AI agents" | Internal stat from PingCAP. Frame as "our internal data shows" |
