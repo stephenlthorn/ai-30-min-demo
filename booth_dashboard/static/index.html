@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="/static/styles.css?v=71" />
+  <link rel="stylesheet" href="/static/styles.css?v=72" />
 </head>
 
 <body>
@@ -95,7 +95,7 @@
        ============================================================= -->
   <section class="slide" id="slide-about-tidb">
     <div class="eyebrow">About TiDB</div>
-    <h2>The unified data foundation for the AI era</h2>
+    <h2>Scale-out without the engineering team</h2>
 
     <div class="atd-stats">
       <div class="atd-stat">
@@ -147,12 +147,61 @@
     </div>
 
     <p class="atd-land">
-      <span class="emph">Scaling enterprise workloads for over a decade.</span>
+      <em>Two journeys, one architecture.</em>
+      <span class="emph">Enterprise teams freed engineers. AI teams never had to hire them.</span>
     </p>
   </section>
 
   <!-- =============================================================
-       SLIDE 2 - THE HOOK (the Sarah story)
+       SLIDE 3 - THE SIMPLIFICATION (where engineering time goes)
+       ============================================================= -->
+  <section class="slide" id="slide-simplify">
+    <div class="eyebrow">The Simplification</div>
+    <h2>Where does your engineering team actually spend its time?</h2>
+
+    <div class="simp-grid">
+      <div class="simp-card simp-card-now">
+        <div class="simp-card-label">Today</div>
+        <div class="simp-card-num">40-60%</div>
+        <div class="simp-card-desc">of senior engineering effort goes to data infrastructure plumbing</div>
+        <ul class="simp-list">
+          <li>Sharding strategies &amp; rebalancing</li>
+          <li>Replication topology &amp; failover</li>
+          <li>Sync jobs that broke at 3 AM</li>
+          <li>Schema migrations across 12 services</li>
+          <li>Vector store reindexing</li>
+          <li>Warehouse ETL pipelines</li>
+        </ul>
+      </div>
+
+      <div class="simp-card simp-card-arrow">
+        <div class="simp-arrow">→</div>
+        <div class="simp-arrow-label">AI adds 4 more systems</div>
+      </div>
+
+      <div class="simp-card simp-card-future">
+        <div class="simp-card-label">With AI on top</div>
+        <div class="simp-card-num">70%+</div>
+        <div class="simp-card-desc">unless you collapse the layers underneath</div>
+        <ul class="simp-list">
+          <li>Vector store + sync</li>
+          <li>Search index + reindex</li>
+          <li>Embedding pipeline lag</li>
+          <li>Orchestration glue code</li>
+          <li>Consistency reconciliation</li>
+          <li>Another 3 AM rotation</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="simp-land">
+      <em>Your customers don't care about your replication topology.</em><br>
+      <span class="emph">Your engineers should build the business, not the plumbing.</span>
+    </p>
+  </section>
+
+  <!-- =============================================================
+       SLIDE 4 - THE HOOK (the Sarah story)
        ============================================================= -->
   <section class="slide" id="slide-sarah">
     <div class="eyebrow">The Problem</div>
@@ -210,16 +259,22 @@
         </div>
       </div>
 
-      <!-- RIGHT: Failure modes (vertical) + diagnosis -->
+      <!-- RIGHT: Three victims + failure modes + diagnosis -->
       <div class="sarah-diagnosis">
-        <div class="sd-label">Three failure modes</div>
+        <div class="sd-label">Three victims, same failure</div>
+        <ul class="sd-victims">
+          <li><span class="sd-vrole">Customer</span> - VIP treated like a stranger</li>
+          <li><span class="sd-vrole">Operations</span> - same person, two strangers</li>
+          <li><span class="sd-vrole">Engineering</span> - 6 weeks of glue, half doesn't work</li>
+        </ul>
+        <div class="sd-label sd-label-modes">Three failure modes</div>
         <ul class="sd-modes">
           <li>Never written</li>
           <li>Not findable</li>
           <li>Context rot</li>
         </ul>
         <p class="sarah-land">
-          <span class="emph">This is how LLMs work.<br>No memory - by design.</span>
+          <span class="emph">No memory - by design.<br>This is a data architecture problem.</span>
         </p>
       </div>
 
@@ -231,10 +286,10 @@
        ============================================================= -->
   <section class="slide" id="slide-why">
     <div class="eyebrow">The Answer</div>
-    <h2>Memory belongs in one place</h2>
+    <h2>Count the systems your team operates</h2>
 
     <p class="why-lede">
-      <em>Four systems duct-taped together</em> - or one.
+      <em>Your existing stack + 4 AI systems = 9-12 systems your engineers maintain</em> - or one.
     </p>
 
     <div class="two-col">
@@ -306,7 +361,7 @@
 
     <p class="why-land">
       <em>Infrastructure designed for legacy transactional purposes, not for compound knowledge.</em><br>
-      <span class="gold">Memory is infrastructure - not a feature you bolt on.</span>
+      <span class="gold">Memory is infrastructure. So is the data layer underneath it. Neither belongs in nine systems.</span>
     </p>
   </section>
 
@@ -315,7 +370,7 @@
        ============================================================= -->
   <section class="slide" id="slide-convergence">
     <div class="eyebrow">Proven in Production</div>
-    <h2>Independent teams · Same conclusion</h2>
+    <h2>They didn't pick TiDB for more QPS. They picked it to free their engineers.</h2>
 
     <blockquote class="conv-quote">
       <div class="conv-quote-text">
@@ -356,8 +411,8 @@
     </div>
 
     <div class="punchline">
-      <span class="emph">Same answer, every time.</span>
-      The database is the agent's brain.
+      <span class="emph">Two journeys, one architecture.</span>
+      Enterprise from data platform consolidation. AI from headcount constraint. Same place.
     </div>
   </section>
 
@@ -708,9 +763,9 @@
        ============================================================= -->
   <section class="slide" id="slide-whynow">
     <div class="eyebrow">Closing</div>
-    <h2>The model forgets · The platform remembers · The human decides</h2>
+    <h2>Model forgets · Platform remembers · Human decides · Engineers build</h2>
 
-    <div class="closing-triad">
+    <div class="closing-triad closing-quartet">
       <div class="ct-col">
         <div class="ct-label">The model</div>
         <div class="ct-verb">forgets</div>
@@ -724,18 +779,20 @@
       <div class="ct-col">
         <div class="ct-label">The human</div>
         <div class="ct-verb">decides</div>
-        <div class="ct-desc">Engineers stop digging through logs. They curate the playbooks the agents learn from.</div>
+        <div class="ct-desc">Engineers stop digging through logs. They curate the playbooks.</div>
+      </div>
+      <div class="ct-col ct-engineers">
+        <div class="ct-label">The engineers</div>
+        <div class="ct-verb">build</div>
+        <div class="ct-desc">Not maintaining nine systems. Shipping product. Building the business.</div>
       </div>
     </div>
 
     <div class="closing-bottom-row">
       <div class="closing-recap">
-        <ul class="cr-list">
-          <li>Agents fail because LLMs are stateless and stacks are fragmented</li>
-          <li>The labs that build production AI converged on one architecture. <span class="gold">TiDB</span></li>
-        </ul>
-        <div class="cm-label">The one question to ask Monday</div>
-        <div class="cm-question">&ldquo;Where, exactly, does our agent's memory live? Show me the database.&rdquo;</div>
+        <div class="cm-label">Two questions to ask Monday</div>
+        <div class="cm-question">&ldquo;Where, exactly, does our agent's memory live?&rdquo;</div>
+        <div class="cm-question">&ldquo;How much of our engineering team's calendar is plumbing instead of product?&rdquo;</div>
       </div>
 
       <div class="closing-cta">
@@ -754,6 +811,6 @@
   <button class="nav-btn" id="nextBtn" aria-label="Next slide">›</button>
 </div>
 
-<script src="/static/app.js?v=19"></script>
+<script src="/static/app.js?v=20"></script>
 </body>
 </html>
