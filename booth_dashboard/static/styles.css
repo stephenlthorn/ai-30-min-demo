@@ -425,40 +425,40 @@ body::before {
    ========================================================= */
 .signals-subtitle {
   font-family: var(--serif);
-  font-size: 19px;
+  font-size: 17px;
   font-style: italic;
   color: var(--ink-soft);
   text-align: center;
-  margin: 18px auto 28px;
-  max-width: 880px;
-  line-height: 1.45;
+  margin: 10px auto 20px;
+  max-width: 860px;
+  line-height: 1.4;
 }
 
 .signals-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  gap: 18px;
   max-width: 1180px;
-  margin: 0 auto 28px;
+  margin: 0 auto 18px;
 }
 
 .signal-card {
   position: relative;
-  padding: 28px 24px 24px;
+  padding: 18px 18px 16px 22px;
   background: rgba(255, 255, 255, 0.025);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 6px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 10px;
 }
 
 .signal-card::before {
   content: "";
   position: absolute;
   left: 0;
-  top: 24px;
-  bottom: 24px;
+  top: 18px;
+  bottom: 18px;
   width: 3px;
   background: var(--gold-2);
   border-radius: 2px;
@@ -467,7 +467,7 @@ body::before {
 .signal-num {
   font-family: var(--serif);
   font-style: italic;
-  font-size: 36px;
+  font-size: 26px;
   font-weight: 600;
   color: var(--gold-2);
   line-height: 1;
@@ -476,26 +476,26 @@ body::before {
 
 .signal-headline {
   font-family: var(--serif);
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 500;
   color: var(--ink);
-  line-height: 1.32;
+  line-height: 1.3;
 }
 
 .signal-cause {
   font-family: var(--sans);
-  font-size: 14.5px;
+  font-size: 13px;
   color: var(--ink-soft);
-  line-height: 1.55;
+  line-height: 1.5;
   margin-top: auto;
-  padding-top: 14px;
+  padding-top: 10px;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .signal-cause-label {
   display: inline-block;
   font-family: var(--sans);
-  font-size: 10px;
+  font-size: 9.5px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   font-weight: 700;
@@ -506,13 +506,13 @@ body::before {
 
 .signals-land {
   font-family: var(--serif);
-  font-size: 22px;
+  font-size: 19px;
   font-style: italic;
   text-align: center;
-  margin: 8px auto 0;
+  margin: 4px auto 0;
   max-width: 920px;
   color: var(--ink-soft);
-  line-height: 1.45;
+  line-height: 1.4;
 }
 
 .signals-land em {
@@ -523,7 +523,7 @@ body::before {
 
 .signals-land .emph {
   display: inline-block;
-  margin-top: 6px;
+  margin-top: 4px;
   font-style: normal;
   font-weight: 600;
   color: var(--gold);
@@ -532,7 +532,7 @@ body::before {
 @media (max-width: 1100px) {
   .signals-grid {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 12px;
   }
 }
 
