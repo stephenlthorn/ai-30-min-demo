@@ -558,112 +558,137 @@ body::before {
 }
 
 /* =========================================================
-   SLIDE — TIDB X (cloud-native, AI-ready)
-   Four-card grid showing the 2026 architecture's pillars:
-   storage / isolation / scale / cost. Sourced from internal
-   TiDB X enablement deck (External copy, BYOC Architecture).
+   SLIDE — TIDB CLOUD ARCHITECTURE (layered diagram)
+   Vertical stack of layers showing the cloud-native architecture:
+   apps -> stateless compute -> row+columnar engines -> shared
+   services -> object storage. Sourced from internal TiDB Cloud
+   enablement deck (External copy, BYOC Architecture, L2 deck).
    ========================================================= */
-.tidbx-subtitle {
+.tcx-subtitle {
   font-family: var(--serif);
-  font-size: 17px;
+  font-size: 16px;
   font-style: italic;
   color: var(--ink-soft);
   text-align: center;
-  margin: 8px auto 22px;
-  max-width: 920px;
+  margin: 8px auto 14px;
+  max-width: 940px;
   line-height: 1.4;
 }
 
-.tidbx-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 14px;
-  max-width: 1240px;
-  margin: 0 auto 18px;
-}
-
-.tidbx-card {
-  position: relative;
-  padding: 18px 16px 16px 20px;
-  background: rgba(255, 255, 255, 0.025);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 6px;
+.tcx-arch {
+  max-width: 880px;
+  margin: 0 auto 12px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  align-items: stretch;
+  gap: 4px;
 }
 
-.tidbx-card::before {
+.tcx-layer {
+  position: relative;
+  padding: 10px 18px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  text-align: center;
+}
+
+.tcx-layer::before {
   content: "";
   position: absolute;
   left: 0;
-  top: 18px;
-  bottom: 18px;
+  top: 10px;
+  bottom: 10px;
   width: 3px;
   background: var(--gold-2);
   border-radius: 2px;
 }
 
-.tidbx-card-eyebrow {
+.tcx-layer-label {
   font-family: var(--sans);
-  font-size: 10px;
-  letter-spacing: 0.22em;
+  font-size: 11.5px;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   font-weight: 700;
-  color: var(--gold);
-}
-
-.tidbx-card-headline {
-  font-family: var(--serif);
-  font-size: 19px;
-  font-weight: 500;
   color: var(--ink);
-  line-height: 1.3;
+  margin-bottom: 2px;
 }
 
-.tidbx-card-body {
-  font-family: var(--sans);
-  font-size: 13px;
-  color: var(--ink-soft);
-  line-height: 1.5;
-  margin-top: auto;
-  padding-top: 8px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.tidbx-land {
+.tcx-layer-detail {
   font-family: var(--serif);
-  font-size: 19px;
+  font-size: 13.5px;
+  font-style: italic;
+  color: var(--ink-soft);
+  line-height: 1.35;
+}
+
+.tcx-layer-apps {
+  background: rgba(80, 219, 217, 0.06);
+  border-color: rgba(80, 219, 217, 0.22);
+}
+.tcx-layer-apps::before { background: var(--gold-2); }
+
+.tcx-layer-compute {
+  background: rgba(196, 162, 86, 0.05);
+  border-color: rgba(196, 162, 86, 0.22);
+}
+.tcx-layer-compute::before { background: var(--gold); }
+
+.tcx-layer-services {
+  background: rgba(255, 255, 255, 0.015);
+  font-style: italic;
+}
+.tcx-layer-services::before { background: var(--ink-soft); }
+
+.tcx-layer-storage {
+  background: rgba(80, 219, 217, 0.08);
+  border-color: rgba(80, 219, 217, 0.3);
+}
+.tcx-layer-storage::before { background: var(--gold-2); }
+
+.tcx-layer-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.tcx-arrow {
+  font-family: var(--serif);
+  font-size: 16px;
+  color: var(--gold-2);
+  text-align: center;
+  line-height: 1;
+  margin: 0;
+  opacity: 0.7;
+}
+
+.tcx-land {
+  font-family: var(--serif);
+  font-size: 17px;
   font-style: italic;
   text-align: center;
-  margin: 4px auto 0;
+  margin: 6px auto 0;
   max-width: 940px;
   color: var(--ink-soft);
   line-height: 1.45;
 }
 
-.tidbx-land em {
+.tcx-land em {
   font-style: italic;
   color: var(--ink);
   font-weight: 500;
 }
 
-.tidbx-land .emph {
+.tcx-land .emph {
   font-style: normal;
   font-weight: 600;
   color: var(--gold);
 }
 
-@media (max-width: 1100px) {
-  .tidbx-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
 /* =========================================================
    SLIDE — BYOC (your VPC, your IAM, your CISO)
    Three-card grid for the regulated-industries objection.
-   Sourced from internal TiDB X BYOC architecture deck.
+   Sourced from internal TiDB Cloud BYOC architecture deck.
    ========================================================= */
 .byoc-subtitle {
   font-family: var(--serif);
@@ -4715,7 +4740,7 @@ body::before {
 }
 
 /* =========================================================
-   PRODUCTS slide — TiDB X + mem9
+   PRODUCTS slide — TiDB Cloud + mem9
    ========================================================= */
 .products-grid {
   display: grid;

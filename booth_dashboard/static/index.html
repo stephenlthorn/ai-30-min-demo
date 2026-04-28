@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="/static/styles.css?v=85" />
+  <link rel="stylesheet" href="/static/styles.css?v=86" />
 </head>
 
 <body>
@@ -445,45 +445,99 @@
   </section>
 
   <!-- =============================================================
-       SLIDE - TIDB X (cloud-native, AI-ready architecture)
+       SLIDE - TIDB CLOUD (architecture diagram, layered)
        ============================================================= -->
   <section class="slide" id="slide-tidbx">
-    <div class="eyebrow">TiDB X</div>
+    <div class="eyebrow">TiDB Cloud</div>
     <h2>The architecture <em>built for the workload</em> that didn't exist in 2015.</h2>
 
-    <p class="tidbx-subtitle">
-      Cloud-native rebuild on object storage. Same MySQL wire your team already speaks - new economics underneath.
+    <p class="tcx-subtitle">
+      Stateless compute over shared object storage. Same MySQL wire your team already speaks &middot; new economics underneath.
     </p>
 
-    <div class="tidbx-grid">
-      <div class="tidbx-card">
-        <div class="tidbx-card-eyebrow">Storage</div>
-        <div class="tidbx-card-headline">S3 as source of truth</div>
-        <div class="tidbx-card-body">Native object storage on AWS, GCS, Azure Blob. Not block storage. Cloud-economic by design.</div>
+    <div class="tcx-arch">
+
+      <div class="tcx-layer tcx-layer-apps">
+        <div class="tcx-layer-label">Your apps</div>
+        <div class="tcx-layer-detail">MySQL wire protocol &middot; no driver changes</div>
       </div>
 
-      <div class="tidbx-card">
-        <div class="tidbx-card-eyebrow">Isolation</div>
-        <div class="tidbx-card-headline">Microservices for the noisy work</div>
-        <div class="tidbx-card-body">Compaction, analyze, DDL, index builds run separate from online traffic. AI vector workloads don't disturb OLTP.</div>
+      <div class="tcx-arrow">&darr;</div>
+
+      <div class="tcx-layer tcx-layer-compute">
+        <div class="tcx-layer-label">Stateless SQL Compute</div>
+        <div class="tcx-layer-detail">Auto-scales in seconds &middot; pay-as-you-go &middot; OLTP, vector, BM25, hybrid in one query</div>
       </div>
 
-      <div class="tidbx-card">
-        <div class="tidbx-card-eyebrow">Scale</div>
-        <div class="tidbx-card-headline">3-5&times; faster scale operations</div>
-        <div class="tidbx-card-body">Auto-scaling within seconds. Pay-as-you-go pricing. Minute-level backups for 100TB+ clusters.</div>
+      <div class="tcx-arrow">&darr;</div>
+
+      <div class="tcx-layer-row">
+        <div class="tcx-layer tcx-layer-row-engine">
+          <div class="tcx-layer-label">Row Engine</div>
+          <div class="tcx-layer-detail">Transactional · vector · full-text</div>
+        </div>
+        <div class="tcx-layer tcx-layer-col-engine">
+          <div class="tcx-layer-label">Columnar Engine</div>
+          <div class="tcx-layer-detail">Real-time analytics &middot; zero ETL</div>
+        </div>
       </div>
 
-      <div class="tidbx-card">
-        <div class="tidbx-card-eyebrow">Cost</div>
-        <div class="tidbx-card-headline">Up to 80% lower cost</div>
-        <div class="tidbx-card-body">For cold-data-heavy estates. Cloud-grade durability without the EBS bill.</div>
+      <div class="tcx-arrow">&darr;</div>
+
+      <div class="tcx-layer tcx-layer-services">
+        <div class="tcx-layer-label">Shared Services &middot; isolated lane</div>
+        <div class="tcx-layer-detail">Compaction · Analyze · DDL · Index builds &mdash; never disturb online traffic</div>
+      </div>
+
+      <div class="tcx-arrow">&darr;</div>
+
+      <div class="tcx-layer tcx-layer-storage">
+        <div class="tcx-layer-label">S3 / GCS / Azure Blob &middot; source of truth</div>
+        <div class="tcx-layer-detail">Cloud-economic &middot; durable &middot; up to 80% lower cost on cold-data-heavy estates</div>
+      </div>
+
+    </div>
+
+    <p class="tcx-land">
+      <em>One unified platform - OLTP, OLAP, and Gen-AI workloads.</em>
+      <span class="emph">Same MySQL fluency. New cloud economics.</span>
+    </p>
+  </section>
+
+  <!-- =============================================================
+       SLIDE - BYOC (your VPC, your IAM, regulated industries)
+       ============================================================= -->
+  <section class="slide" id="slide-byoc">
+    <div class="eyebrow">BYOC</div>
+    <h2>Your VPC. Your IAM. <em>Your CISO's certification.</em></h2>
+
+    <p class="byoc-subtitle">
+      For regulated industries that can't move data out of their cloud account.
+    </p>
+
+    <div class="byoc-grid">
+      <div class="byoc-card">
+        <div class="byoc-num">01</div>
+        <div class="byoc-headline">Full data sovereignty</div>
+        <div class="byoc-body">TiDB cluster runs inside your AWS, Azure, or GCP account. Customer-managed VPC, IAM, and keys. Compliance-ready by construction.</div>
+      </div>
+
+      <div class="byoc-card">
+        <div class="byoc-num">02</div>
+        <div class="byoc-headline">3-4 hour deploy</div>
+        <div class="byoc-body">PrivateLink, 13 static IAM roles, fully scripted. SOC 2 Type II. HIPAA-eligible deployments.</div>
+      </div>
+
+      <div class="byoc-card">
+        <div class="byoc-num">03</div>
+        <div class="byoc-headline">PingCAP managed - no data access</div>
+        <div class="byoc-body">Centralized control plane handles upgrades, scaling, observability. We never see your data. Your CISO signs off, not us.</div>
       </div>
     </div>
 
-    <p class="tidbx-land">
-      <em>For OLTP, OLAP, and Gen-AI workloads -</em>
-      <span class="emph">on one unified platform.</span>
+    <p class="byoc-land">
+      <em>Healthcare. Financial services. Government.</em>
+      <span class="emph">Your data stays in your account.</span>
     </p>
   </section>
 
@@ -827,43 +881,6 @@
     <div class="manus-punchline">
       <span class="emph">Manus prices at $5/month because TiDB scales to zero.</span>
     </div>
-  </section>
-
-  <!-- =============================================================
-       SLIDE - BYOC (your VPC, your IAM, regulated industries)
-       ============================================================= -->
-  <section class="slide" id="slide-byoc">
-    <div class="eyebrow">BYOC</div>
-    <h2>Your VPC. Your IAM. <em>Your CISO's certification.</em></h2>
-
-    <p class="byoc-subtitle">
-      For regulated industries that can't move data out of their cloud account.
-    </p>
-
-    <div class="byoc-grid">
-      <div class="byoc-card">
-        <div class="byoc-num">01</div>
-        <div class="byoc-headline">Full data sovereignty</div>
-        <div class="byoc-body">TiDB cluster runs inside your AWS, Azure, or GCP account. Customer-managed VPC, IAM, and keys. Compliance-ready by construction.</div>
-      </div>
-
-      <div class="byoc-card">
-        <div class="byoc-num">02</div>
-        <div class="byoc-headline">3-4 hour deploy</div>
-        <div class="byoc-body">PrivateLink, 13 static IAM roles, fully scripted. SOC 2 Type II. HIPAA-eligible deployments.</div>
-      </div>
-
-      <div class="byoc-card">
-        <div class="byoc-num">03</div>
-        <div class="byoc-headline">PingCAP managed - no data access</div>
-        <div class="byoc-body">Centralized control plane handles upgrades, scaling, observability. We never see your data. Your CISO signs off, not us.</div>
-      </div>
-    </div>
-
-    <p class="byoc-land">
-      <em>Healthcare. Financial services. Government.</em>
-      <span class="emph">Your data stays in your account.</span>
-    </p>
   </section>
 
   <!-- =============================================================
