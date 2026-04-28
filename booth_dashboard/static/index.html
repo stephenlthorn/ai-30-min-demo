@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="/static/styles.css?v=81" />
+  <link rel="stylesheet" href="/static/styles.css?v=82" />
 </head>
 
 <body>
@@ -200,81 +200,48 @@
        SLIDE 4 - THE HOOK (the Sarah story)
        ============================================================= -->
   <section class="slide" id="slide-sarah">
-    <div class="eyebrow">The Problem</div>
-    <h2>It's Black Friday - Your top-1% VIP is back</h2>
+    <div class="eyebrow">The Urgent Example</div>
+    <h2>You're already seeing it - <em>three signals from your own halls.</em></h2>
 
-    <div class="sarah-scene sarah-scene-split">
+    <p class="signals-subtitle">
+      The four-system tax doesn't show up as a slide in your roadmap deck. It shows up like this:
+    </p>
 
-      <!-- LEFT: Tabbed chat window (pinched) -->
-      <div class="sarah-sessions-tabbed">
-        <div class="session-tabs">
-          <button class="stab stab-ok stab-active">Session 1 · 3 weeks ago</button>
-          <button class="stab stab-bad">Session 2 · Tonight</button>
-        </div>
-        <div class="sarah-session sarah-ok" id="sarah-session-0">
-          <div class="chat-log">
-            <div class="chat-bubble chat-ai">
-              <div class="chat-sender">AI Associate</div>
-              Hi! Welcome to Harbor &amp; Vine. How can I help you today?
-            </div>
-            <div class="chat-bubble chat-user">
-              I'm looking for the Arabella floral midi - size 4. And I have a return for a black sheath dress.
-            </div>
-            <div class="chat-bubble chat-ai">
-              <div class="chat-sender">AI Associate</div>
-              Found the size 4 - want the matching belt too? I'll schedule the return pickup.
-            </div>
-            <div class="chat-bubble chat-user">
-              Yes to both, please.
-            </div>
-            <div class="chat-receipt">
-              <span>🛍</span> $4,800 · 3 items · Checkout complete
-            </div>
-          </div>
-        </div>
-        <div class="sarah-session sarah-bad" id="sarah-session-1" style="display:none">
-          <div class="chat-log">
-            <div class="chat-bubble chat-ai">
-              <div class="chat-sender">AI Associate</div>
-              Hi! Welcome to Harbor &amp; Vine. How can I help you today?
-            </div>
-            <div class="chat-bubble chat-user">
-              It's me again - any update on my return?
-            </div>
-            <div class="chat-bubble chat-ai">
-              <div class="chat-sender">AI Associate</div>
-              I'd be happy to help! Could you share your order number?
-            </div>
-            <div class="chat-bubble chat-user chat-user-angry">
-              😡
-            </div>
-            <div class="chat-blank">
-              Same script. Same stranger. Sarah did the work last time - the LLM kept none of it.
-            </div>
-          </div>
+    <div class="signals-grid">
+
+      <div class="signal-card">
+        <div class="signal-num">01</div>
+        <div class="signal-headline">Your AI/ML team is hiring a vector DB specialist.</div>
+        <div class="signal-cause">
+          <span class="signal-cause-label">Why</span>
+          The new roadmap features need a vector store nobody on the platform team knows how to operate. So you're staffing a new specialty.
         </div>
       </div>
 
-      <!-- RIGHT: Three victims + failure modes + diagnosis -->
-      <div class="sarah-diagnosis">
-        <div class="sd-label">Three victims, same failure</div>
-        <ul class="sd-victims">
-          <li><span class="sd-vrole">Customer</span> - VIP treated like a stranger</li>
-          <li><span class="sd-vrole">Operations</span> - same person, two strangers</li>
-          <li><span class="sd-vrole">Engineering</span> - 6 weeks of glue, half doesn't work</li>
-        </ul>
-        <div class="sd-label sd-label-modes">Three failure modes</div>
-        <ul class="sd-modes">
-          <li>Never written</li>
-          <li>Not findable</li>
-          <li>Context rot</li>
-        </ul>
-        <p class="sarah-land">
-          <span class="emph">No memory - by design.<br>This is a data architecture problem.</span>
-        </p>
+      <div class="signal-card">
+        <div class="signal-num">02</div>
+        <div class="signal-headline">Your platform team is debating which database is &ldquo;the source of truth&rdquo; for the agent.</div>
+        <div class="signal-cause">
+          <span class="signal-cause-label">Why</span>
+          The agent's memory lives in three places that disagree. Every refactor proposal is really a sync-strategy proposal.
+        </div>
+      </div>
+
+      <div class="signal-card">
+        <div class="signal-num">03</div>
+        <div class="signal-headline">Your CFO is asking why each AI feature has its own data infrastructure line item.</div>
+        <div class="signal-cause">
+          <span class="signal-cause-label">Why</span>
+          Every AI feature on the standard architecture comes with four new systems. By feature five, the line item is conspicuous.
+        </div>
       </div>
 
     </div>
+
+    <p class="signals-land">
+      <em>You don't have a Pinterest-scale problem yet.</em><br>
+      <span class="emph">You have a hiring-plan problem. Same architecture - different stage.</span>
+    </p>
   </section>
 
   <!-- =============================================================

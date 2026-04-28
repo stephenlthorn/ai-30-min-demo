@@ -418,7 +418,127 @@ body::before {
 }
 
 /* =========================================================
-   SLIDE 1 — SARAH SCENE (profile + tabbed sessions)
+   SLIDE — URGENT EXAMPLE (field signals, three cards)
+   Replaces the old Sarah chat-mockup layout. The three
+   signals are framed as things the audience is already
+   seeing in their own org this quarter.
+   ========================================================= */
+.signals-subtitle {
+  font-family: var(--serif);
+  font-size: 19px;
+  font-style: italic;
+  color: var(--ink-soft);
+  text-align: center;
+  margin: 18px auto 28px;
+  max-width: 880px;
+  line-height: 1.45;
+}
+
+.signals-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1180px;
+  margin: 0 auto 28px;
+}
+
+.signal-card {
+  position: relative;
+  padding: 28px 24px 24px;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.signal-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 24px;
+  bottom: 24px;
+  width: 3px;
+  background: var(--gold-2);
+  border-radius: 2px;
+}
+
+.signal-num {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 36px;
+  font-weight: 600;
+  color: var(--gold-2);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.signal-headline {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.32;
+}
+
+.signal-cause {
+  font-family: var(--sans);
+  font-size: 14.5px;
+  color: var(--ink-soft);
+  line-height: 1.55;
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.signal-cause-label {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--gold);
+  margin-right: 8px;
+  vertical-align: 1px;
+}
+
+.signals-land {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-style: italic;
+  text-align: center;
+  margin: 8px auto 0;
+  max-width: 920px;
+  color: var(--ink-soft);
+  line-height: 1.45;
+}
+
+.signals-land em {
+  font-style: italic;
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.signals-land .emph {
+  display: inline-block;
+  margin-top: 6px;
+  font-style: normal;
+  font-weight: 600;
+  color: var(--gold);
+}
+
+@media (max-width: 1100px) {
+  .signals-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+/* =========================================================
+   SLIDE 1 — SARAH SCENE (profile + tabbed sessions) - LEGACY
+   Kept in case any reference remains; layout no longer used.
    ========================================================= */
 .sarah-scene {
   display: block;
