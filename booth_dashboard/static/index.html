@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="/static/styles.css?v=86" />
+  <link rel="stylesheet" href="/static/styles.css?v=87" />
 </head>
 
 <body>
@@ -505,39 +505,103 @@
   </section>
 
   <!-- =============================================================
-       SLIDE - BYOC (your VPC, your IAM, regulated industries)
+       SLIDE - BYOC (data plane vs control plane diagram)
        ============================================================= -->
   <section class="slide" id="slide-byoc">
     <div class="eyebrow">BYOC</div>
-    <h2>Your VPC. Your IAM. <em>Your CISO's certification.</em></h2>
+    <h2>Your VPC holds the data. <em>PingCAP manages the lifecycle.</em></h2>
 
     <p class="byoc-subtitle">
-      For regulated industries that can't move data out of their cloud account.
+      Two planes, one boundary. <span class="emph">Data never leaves your cloud account.</span>
     </p>
 
-    <div class="byoc-grid">
-      <div class="byoc-card">
-        <div class="byoc-num">01</div>
-        <div class="byoc-headline">Full data sovereignty</div>
-        <div class="byoc-body">TiDB cluster runs inside your AWS, Azure, or GCP account. Customer-managed VPC, IAM, and keys. Compliance-ready by construction.</div>
+    <div class="byoc-diagram">
+
+      <!-- LEFT: Customer Data Plane -->
+      <div class="byoc-plane byoc-plane-customer">
+        <div class="byoc-plane-eyebrow">Data Plane</div>
+        <div class="byoc-plane-title">Your Cloud Account</div>
+        <div class="byoc-plane-sub">AWS &middot; Azure &middot; GCP</div>
+
+        <div class="byoc-plane-stack">
+          <div class="byoc-component">
+            <span class="bc-name">TiDB Cluster</span>
+            <span class="bc-detail">SQL &middot; TiKV &middot; TiFlash &middot; PD</span>
+          </div>
+          <div class="byoc-component">
+            <span class="bc-name">Object Storage</span>
+            <span class="bc-detail">S3 / GCS / Azure Blob &middot; source of truth</span>
+          </div>
+          <div class="byoc-component">
+            <span class="bc-name">Customer VPC</span>
+            <span class="bc-detail">your subnets, security groups, peering</span>
+          </div>
+          <div class="byoc-component">
+            <span class="bc-name">Customer IAM</span>
+            <span class="bc-detail">13 static roles &middot; auditable</span>
+          </div>
+          <div class="byoc-component">
+            <span class="bc-name">Customer KMS Keys</span>
+            <span class="bc-detail">BYOK encryption at rest</span>
+          </div>
+        </div>
+
+        <div class="byoc-plane-foot">
+          <span class="byoc-plane-foot-emph">All your data.</span>
+          Your encryption. Your network. Your auditors.
+        </div>
       </div>
 
-      <div class="byoc-card">
-        <div class="byoc-num">02</div>
-        <div class="byoc-headline">3-4 hour deploy</div>
-        <div class="byoc-body">PrivateLink, 13 static IAM roles, fully scripted. SOC 2 Type II. HIPAA-eligible deployments.</div>
+      <!-- MIDDLE: PrivateLink boundary -->
+      <div class="byoc-link">
+        <div class="byoc-link-arrow byoc-link-arrow-out">&rarr;</div>
+        <div class="byoc-link-label">
+          <div class="byoc-link-name">PrivateLink</div>
+          <div class="byoc-link-detail">Management traffic only<br>No data crosses</div>
+        </div>
+        <div class="byoc-link-arrow byoc-link-arrow-in">&larr;</div>
       </div>
 
-      <div class="byoc-card">
-        <div class="byoc-num">03</div>
-        <div class="byoc-headline">PingCAP managed - no data access</div>
-        <div class="byoc-body">Centralized control plane handles upgrades, scaling, observability. We never see your data. Your CISO signs off, not us.</div>
+      <!-- RIGHT: PingCAP Control Plane -->
+      <div class="byoc-plane byoc-plane-pingcap">
+        <div class="byoc-plane-eyebrow">Control Plane</div>
+        <div class="byoc-plane-title">PingCAP Managed</div>
+        <div class="byoc-plane-sub">Centralized &middot; no data access</div>
+
+        <div class="byoc-plane-stack">
+          <div class="byoc-component">
+            <span class="bc-name">Cluster Orchestration</span>
+            <span class="bc-detail">provisioning &middot; upgrades &middot; scaling</span>
+          </div>
+          <div class="byoc-component">
+            <span class="bc-name">Monitoring</span>
+            <span class="bc-detail">metrics + health &middot; never row data</span>
+          </div>
+          <div class="byoc-component">
+            <span class="bc-name">Backup Coordination</span>
+            <span class="bc-detail">triggers only &middot; backups stay in your bucket</span>
+          </div>
+          <div class="byoc-component">
+            <span class="bc-name">Audit Log</span>
+            <span class="bc-detail">every operation &middot; customer-readable</span>
+          </div>
+          <div class="byoc-component">
+            <span class="bc-name">Web Console + API</span>
+            <span class="bc-detail">SSO &middot; RBAC</span>
+          </div>
+        </div>
+
+        <div class="byoc-plane-foot">
+          <span class="byoc-plane-foot-emph">We see metrics, never data.</span>
+          Your CISO signs off, not us.
+        </div>
       </div>
+
     </div>
 
     <p class="byoc-land">
-      <em>Healthcare. Financial services. Government.</em>
-      <span class="emph">Your data stays in your account.</span>
+      <em>SOC 2 Type II &middot; HIPAA-eligible &middot; 3-4 hour deploy.</em>
+      <span class="emph">Healthcare. Financial services. Government.</span>
     </p>
   </section>
 
