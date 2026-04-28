@@ -418,12 +418,12 @@ body::before {
 }
 
 /* =========================================================
-   SLIDE — URGENT EXAMPLE (field signals, three cards)
-   Replaces the old Sarah chat-mockup layout. The three
-   signals are framed as things the audience is already
-   seeing in their own org this quarter.
+   SLIDE — URGENT EXAMPLE (three failure modes, three industries)
+   Audience-mapping pattern: each card pairs a named failure
+   mode with an industry-anchored scenario and the architectural
+   cause. Fits on one screen at 1080p+.
    ========================================================= */
-.signals-subtitle {
+.failures-subtitle {
   font-family: var(--serif);
   font-size: 17px;
   font-style: italic;
@@ -434,7 +434,13 @@ body::before {
   line-height: 1.4;
 }
 
-.signals-grid {
+.failures-subtitle .emph {
+  font-style: normal;
+  font-weight: 600;
+  color: var(--gold);
+}
+
+.failures-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 18px;
@@ -442,7 +448,7 @@ body::before {
   margin: 0 auto 18px;
 }
 
-.signal-card {
+.failure-card {
   position: relative;
   padding: 18px 18px 16px 22px;
   background: rgba(255, 255, 255, 0.025);
@@ -450,10 +456,10 @@ body::before {
   border-radius: 6px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
 
-.signal-card::before {
+.failure-card::before {
   content: "";
   position: absolute;
   left: 0;
@@ -464,25 +470,59 @@ body::before {
   border-radius: 2px;
 }
 
-.signal-num {
+.failure-head {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 10px;
+}
+
+.failure-num {
   font-family: var(--serif);
   font-style: italic;
-  font-size: 26px;
+  font-size: 22px;
   font-weight: 600;
   color: var(--gold-2);
   line-height: 1;
   letter-spacing: -0.02em;
 }
 
-.signal-headline {
-  font-family: var(--serif);
-  font-size: 18px;
-  font-weight: 500;
+.failure-name {
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 700;
   color: var(--ink);
-  line-height: 1.3;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  flex: 1;
 }
 
-.signal-cause {
+.failure-industry {
+  display: inline-block;
+  padding: 3px 9px;
+  background: rgba(196, 162, 86, 0.16);
+  border: 1px solid rgba(196, 162, 86, 0.4);
+  border-radius: 3px;
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--gold);
+  white-space: nowrap;
+}
+
+.failure-scenario {
+  font-family: var(--serif);
+  font-size: 16px;
+  font-style: italic;
+  color: var(--ink);
+  line-height: 1.4;
+}
+
+.failure-cause {
   font-family: var(--sans);
   font-size: 13px;
   color: var(--ink-soft);
@@ -492,7 +532,7 @@ body::before {
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.signal-cause-label {
+.failure-cause-label {
   display: inline-block;
   font-family: var(--sans);
   font-size: 9.5px;
@@ -504,33 +544,31 @@ body::before {
   vertical-align: 1px;
 }
 
-.signals-land {
+.failures-land {
   font-family: var(--serif);
   font-size: 19px;
   font-style: italic;
   text-align: center;
   margin: 4px auto 0;
-  max-width: 920px;
+  max-width: 940px;
   color: var(--ink-soft);
-  line-height: 1.4;
+  line-height: 1.45;
 }
 
-.signals-land em {
+.failures-land em {
   font-style: italic;
   color: var(--ink);
   font-weight: 500;
 }
 
-.signals-land .emph {
-  display: inline-block;
-  margin-top: 4px;
+.failures-land .emph {
   font-style: normal;
   font-weight: 600;
   color: var(--gold);
 }
 
 @media (max-width: 1100px) {
-  .signals-grid {
+  .failures-grid {
     grid-template-columns: 1fr;
     gap: 12px;
   }

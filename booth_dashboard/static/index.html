@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="/static/styles.css?v=83" />
+  <link rel="stylesheet" href="/static/styles.css?v=84" />
 </head>
 
 <body>
@@ -201,46 +201,64 @@
        ============================================================= -->
   <section class="slide" id="slide-sarah">
     <div class="eyebrow">The Urgent Example</div>
-    <h2>You're already seeing it - <em>three signals from your own halls.</em></h2>
+    <h2>The same failure pattern - <em>three industries you know.</em></h2>
 
-    <p class="signals-subtitle">
-      The four-system tax doesn't appear in your roadmap deck. It appears like this:
+    <p class="failures-subtitle">
+      Different vertical. Different scenario. <span class="emph">Same root cause.</span>
     </p>
 
-    <div class="signals-grid">
+    <div class="failures-grid">
 
-      <div class="signal-card">
-        <div class="signal-num">01</div>
-        <div class="signal-headline">Your AI/ML team is hiring a vector DB specialist.</div>
-        <div class="signal-cause">
-          <span class="signal-cause-label">Why</span>
-          Roadmap features need a vector store nobody on platform operates. New specialty, new salary band.
+      <div class="failure-card">
+        <div class="failure-head">
+          <span class="failure-num">01</span>
+          <span class="failure-name">Never written</span>
+          <span class="failure-industry">Retail</span>
+        </div>
+        <div class="failure-scenario">
+          &ldquo;Top-1% VIP returned a $4,800 order three weeks ago. Tonight she's back to reorder. The agent has no record - asks her to start over.&rdquo;
+        </div>
+        <div class="failure-cause">
+          <span class="failure-cause-label">Cause</span>
+          The conversation was never persisted. No episodic store, or the agent doesn't write to it.
         </div>
       </div>
 
-      <div class="signal-card">
-        <div class="signal-num">02</div>
-        <div class="signal-headline">Your platform team is fighting over the agent's source of truth.</div>
-        <div class="signal-cause">
-          <span class="signal-cause-label">Why</span>
-          Agent memory lives in three places that disagree. Every refactor proposal is a sync-strategy proposal.
+      <div class="failure-card">
+        <div class="failure-head">
+          <span class="failure-num">02</span>
+          <span class="failure-name">Not findable</span>
+          <span class="failure-industry">Healthcare</span>
+        </div>
+        <div class="failure-scenario">
+          &ldquo;Patient's allergy is in the EHR. The booking agent can't reach it - offers an appointment with a contraindicated specialist.&rdquo;
+        </div>
+        <div class="failure-cause">
+          <span class="failure-cause-label">Cause</span>
+          The data exists - in a separate system. Agent retrieves from what it indexed, not the system of record.
         </div>
       </div>
 
-      <div class="signal-card">
-        <div class="signal-num">03</div>
-        <div class="signal-headline">Your CFO is asking why each AI feature has its own infra line item.</div>
-        <div class="signal-cause">
-          <span class="signal-cause-label">Why</span>
-          Each AI feature ships four new systems. By feature five, the line item gets conspicuous.
+      <div class="failure-card">
+        <div class="failure-head">
+          <span class="failure-num">03</span>
+          <span class="failure-name">Context rot</span>
+          <span class="failure-industry">B2B SaaS</span>
+        </div>
+        <div class="failure-scenario">
+          &ldquo;Renewal agent loads 2M tokens of account history. Buried in it: the customer churned from this exact product six months ago. Agent recommends it again.&rdquo;
+        </div>
+        <div class="failure-cause">
+          <span class="failure-cause-label">Cause</span>
+          Bigger context window is a bigger meter, not a better answer. No curation, agent surfaces the wrong thing.
         </div>
       </div>
 
     </div>
 
-    <p class="signals-land">
-      <em>You don't have a Pinterest-scale problem yet.</em><br>
-      <span class="emph">You have a hiring-plan problem. Same architecture - different stage.</span>
+    <p class="failures-land">
+      <em>Three patterns. One root cause:</em>
+      <span class="emph">agent memory split across four systems that don't share a transaction.</span>
     </p>
   </section>
 
