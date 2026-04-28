@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="/static/styles.css?v=84" />
+  <link rel="stylesheet" href="/static/styles.css?v=85" />
 </head>
 
 <body>
@@ -200,65 +200,83 @@
        SLIDE 4 - THE HOOK (the Sarah story)
        ============================================================= -->
   <section class="slide" id="slide-sarah">
-    <div class="eyebrow">The Urgent Example</div>
-    <h2>The same failure pattern - <em>three industries you know.</em></h2>
+    <div class="eyebrow">The Capabilities</div>
+    <h2>Same four capabilities. <em>Four vendors - or one.</em></h2>
 
-    <p class="failures-subtitle">
-      Different vertical. Different scenario. <span class="emph">Same root cause.</span>
+    <p class="caps-subtitle">
+      Every product on the left is a real budget line. Every capability on the right is built into TiDB.
     </p>
 
-    <div class="failures-grid">
+    <div class="caps-table">
+      <div class="caps-header">
+        <div class="caps-h-left">You'd otherwise buy</div>
+        <div class="caps-h-right">TiDB calls it</div>
+      </div>
 
-      <div class="failure-card">
-        <div class="failure-head">
-          <span class="failure-num">01</span>
-          <span class="failure-name">Never written</span>
-          <span class="failure-industry">Retail</span>
+      <div class="caps-row">
+        <div class="caps-left">
+          <div class="caps-vendors">Pinecone &middot; Weaviate &middot; pgvector</div>
+          <div class="caps-purpose">for embeddings</div>
         </div>
-        <div class="failure-scenario">
-          &ldquo;Top-1% VIP returned a $4,800 order three weeks ago. Tonight she's back to reorder. The agent has no record - asks her to start over.&rdquo;
-        </div>
-        <div class="failure-cause">
-          <span class="failure-cause-label">Cause</span>
-          The conversation was never persisted. No episodic store, or the agent doesn't write to it.
+        <div class="caps-arrow">&rarr;</div>
+        <div class="caps-right">
+          <div class="caps-feature">Vector Search</div>
+          <div class="caps-detail">native HNSW index, up to 16,383 dims</div>
         </div>
       </div>
 
-      <div class="failure-card">
-        <div class="failure-head">
-          <span class="failure-num">02</span>
-          <span class="failure-name">Not findable</span>
-          <span class="failure-industry">Healthcare</span>
+      <div class="caps-row">
+        <div class="caps-left">
+          <div class="caps-vendors">Elasticsearch &middot; OpenSearch</div>
+          <div class="caps-purpose">for keyword retrieval</div>
         </div>
-        <div class="failure-scenario">
-          &ldquo;Patient's allergy is in the EHR. The booking agent can't reach it - offers an appointment with a contraindicated specialist.&rdquo;
-        </div>
-        <div class="failure-cause">
-          <span class="failure-cause-label">Cause</span>
-          The data exists - in a separate system. Agent retrieves from what it indexed, not the system of record.
+        <div class="caps-arrow">&rarr;</div>
+        <div class="caps-right">
+          <div class="caps-feature">Full-Text Search (BM25)</div>
+          <div class="caps-detail">tantivy-backed ranking on text + JSON</div>
         </div>
       </div>
 
-      <div class="failure-card">
-        <div class="failure-head">
-          <span class="failure-num">03</span>
-          <span class="failure-name">Context rot</span>
-          <span class="failure-industry">B2B SaaS</span>
+      <div class="caps-row">
+        <div class="caps-left">
+          <div class="caps-vendors">MySQL &middot; Postgres &middot; Aurora</div>
+          <div class="caps-purpose">for the source of truth</div>
         </div>
-        <div class="failure-scenario">
-          &ldquo;Renewal agent loads 2M tokens of account history. Buried in it: the customer churned from this exact product six months ago. Agent recommends it again.&rdquo;
-        </div>
-        <div class="failure-cause">
-          <span class="failure-cause-label">Cause</span>
-          Bigger context window is a bigger meter, not a better answer. No curation, agent surfaces the wrong thing.
+        <div class="caps-arrow">&rarr;</div>
+        <div class="caps-right">
+          <div class="caps-feature">SQL + JOINs</div>
+          <div class="caps-detail">MySQL wire protocol &middot; distributed ACID</div>
         </div>
       </div>
 
+      <div class="caps-row">
+        <div class="caps-left">
+          <div class="caps-vendors">LangChain &middot; custom Python</div>
+          <div class="caps-purpose">for orchestration glue</div>
+        </div>
+        <div class="caps-arrow">&rarr;</div>
+        <div class="caps-right">
+          <div class="caps-feature">Hybrid Search + Auto Embedding</div>
+          <div class="caps-detail">vector + keyword in one query, embeddings on insert</div>
+        </div>
+      </div>
+
+      <div class="caps-row">
+        <div class="caps-left">
+          <div class="caps-vendors">Snowflake &middot; BigQuery</div>
+          <div class="caps-purpose">for reporting</div>
+        </div>
+        <div class="caps-arrow">&rarr;</div>
+        <div class="caps-right">
+          <div class="caps-feature">Columnar analytics (TiFlash)</div>
+          <div class="caps-detail">same data, columnar replica &middot; zero ETL</div>
+        </div>
+      </div>
     </div>
 
-    <p class="failures-land">
-      <em>Three patterns. One root cause:</em>
-      <span class="emph">agent memory split across four systems that don't share a transaction.</span>
+    <p class="caps-land">
+      <em>Same four capabilities every RAG tutorial tells you to wire up.</em>
+      <span class="emph">One operational data layer. One ACID transaction. One MySQL wire.</span>
     </p>
   </section>
 
@@ -424,6 +442,49 @@
     <div class="punchline">
       <span class="emph">Two journeys, one architecture.</span>
     </div>
+  </section>
+
+  <!-- =============================================================
+       SLIDE - TIDB X (cloud-native, AI-ready architecture)
+       ============================================================= -->
+  <section class="slide" id="slide-tidbx">
+    <div class="eyebrow">TiDB X</div>
+    <h2>The architecture <em>built for the workload</em> that didn't exist in 2015.</h2>
+
+    <p class="tidbx-subtitle">
+      Cloud-native rebuild on object storage. Same MySQL wire your team already speaks - new economics underneath.
+    </p>
+
+    <div class="tidbx-grid">
+      <div class="tidbx-card">
+        <div class="tidbx-card-eyebrow">Storage</div>
+        <div class="tidbx-card-headline">S3 as source of truth</div>
+        <div class="tidbx-card-body">Native object storage on AWS, GCS, Azure Blob. Not block storage. Cloud-economic by design.</div>
+      </div>
+
+      <div class="tidbx-card">
+        <div class="tidbx-card-eyebrow">Isolation</div>
+        <div class="tidbx-card-headline">Microservices for the noisy work</div>
+        <div class="tidbx-card-body">Compaction, analyze, DDL, index builds run separate from online traffic. AI vector workloads don't disturb OLTP.</div>
+      </div>
+
+      <div class="tidbx-card">
+        <div class="tidbx-card-eyebrow">Scale</div>
+        <div class="tidbx-card-headline">3-5&times; faster scale operations</div>
+        <div class="tidbx-card-body">Auto-scaling within seconds. Pay-as-you-go pricing. Minute-level backups for 100TB+ clusters.</div>
+      </div>
+
+      <div class="tidbx-card">
+        <div class="tidbx-card-eyebrow">Cost</div>
+        <div class="tidbx-card-headline">Up to 80% lower cost</div>
+        <div class="tidbx-card-body">For cold-data-heavy estates. Cloud-grade durability without the EBS bill.</div>
+      </div>
+    </div>
+
+    <p class="tidbx-land">
+      <em>For OLTP, OLAP, and Gen-AI workloads -</em>
+      <span class="emph">on one unified platform.</span>
+    </p>
   </section>
 
   <!-- =============================================================
@@ -766,6 +827,43 @@
     <div class="manus-punchline">
       <span class="emph">Manus prices at $5/month because TiDB scales to zero.</span>
     </div>
+  </section>
+
+  <!-- =============================================================
+       SLIDE - BYOC (your VPC, your IAM, regulated industries)
+       ============================================================= -->
+  <section class="slide" id="slide-byoc">
+    <div class="eyebrow">BYOC</div>
+    <h2>Your VPC. Your IAM. <em>Your CISO's certification.</em></h2>
+
+    <p class="byoc-subtitle">
+      For regulated industries that can't move data out of their cloud account.
+    </p>
+
+    <div class="byoc-grid">
+      <div class="byoc-card">
+        <div class="byoc-num">01</div>
+        <div class="byoc-headline">Full data sovereignty</div>
+        <div class="byoc-body">TiDB cluster runs inside your AWS, Azure, or GCP account. Customer-managed VPC, IAM, and keys. Compliance-ready by construction.</div>
+      </div>
+
+      <div class="byoc-card">
+        <div class="byoc-num">02</div>
+        <div class="byoc-headline">3-4 hour deploy</div>
+        <div class="byoc-body">PrivateLink, 13 static IAM roles, fully scripted. SOC 2 Type II. HIPAA-eligible deployments.</div>
+      </div>
+
+      <div class="byoc-card">
+        <div class="byoc-num">03</div>
+        <div class="byoc-headline">PingCAP managed - no data access</div>
+        <div class="byoc-body">Centralized control plane handles upgrades, scaling, observability. We never see your data. Your CISO signs off, not us.</div>
+      </div>
+    </div>
+
+    <p class="byoc-land">
+      <em>Healthcare. Financial services. Government.</em>
+      <span class="emph">Your data stays in your account.</span>
+    </p>
   </section>
 
   <!-- =============================================================
