@@ -4547,6 +4547,25 @@ body::before {
    SLIDE — SIMPLIFICATION (engineering effort allocation)
    Two-column "today vs AI on top" with arrow between.
    ========================================================= */
+.simp-compounding {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-style: italic;
+  text-align: center;
+  margin: 36px auto 0;
+  max-width: 900px;
+  color: var(--ink-soft);
+  line-height: 1.4;
+}
+.simp-compounding em {
+  color: var(--gold-2);
+  font-weight: 600;
+}
+.simp-compounding .emph {
+  color: var(--gold);
+  font-style: normal;
+  font-weight: 600;
+}
 .simp-grid {
   display: grid;
   grid-template-columns: 1fr 100px 1fr;
